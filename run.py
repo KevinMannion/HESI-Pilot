@@ -2,7 +2,13 @@
 import numpy as np,pandas as pd,zipfile,pathlib,json,hashlib
 BASE = pathlib.Path(__file__).resolve().parent
 DATA_DIR = BASE / 'input_data'
-PERSONS = [DATA_DIR / 'HESI_Person_Part_1.zip', DATA_DIR / 'HESI_Person_Part_2.zip']
+
+# Support original Census csv_pus.zip directly, with fallback to split parts for backward compatibility
+if (DATA_DIR / 'csv_pus.zip').exists():
+    PERSONS = [DATA_DIR / 'csv_pus.zip']
+else:
+    PERSONS = [DATA_DIR / 'HESI_Person_Part_1.zip', DATA_DIR / 'HESI_Person_Part_2.zip']
+
 HOUSING = DATA_DIR / 'csv_hus.zip'
 # Official USDA monthly food plan tables issued Jan 2025; December 2024 (USD); age 0 extrapolation via age 1 value (flagged)
 # child age bands; adult male/female ages 12+; table footnotes apply size economies
