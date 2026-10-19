@@ -1,6 +1,25 @@
 import zipfile,pathlib,numpy as np,pandas as pd,json
-B=pathlib.Path('/mnt/data'); O=B/'HESI_2019_test'; O.mkdir(exist_ok=True)
-ps=[B/'HESI_2019_Person_Part_1(1).zip',B/'HESI_2019_Person_Part_2(1).zip']; housing=B/'csv_hus (1).zip'
+
+BASE = pathlib.Path(__file__).resolve().parent
+DATA_DIR = BASE / "input_data"
+O = BASE
+
+# Prefer the original Census person archive.
+# Split archives remain supported for compatibility.
+if (DATA_DIR / "csv_pus.zip").exists():
+    ps = [DATA_DIR / "csv_pus.zip"]
+else:
+    ps = [
+        DATA_DIR / "HESI_2019_Person_Part_1.zip",
+        DATA_DIR / "HESI_2019_Person_Part_2.zip",
+    ]
+
+housing = DATA_DIR / "csv_hus.zip"
+
+for source in ps + [housing]:
+    if not source.is_file():
+        raise FileNotFoundError(f"Missing 2019 Census archive: {source}")
+
 # USDA official OCTOBER 2019 age-sex food plans, monthly dollars. October snapshot only, comparison to Dec 2024 is not matched month.
 C={'thrifty':[95.1,104.1,109.9,139.2,158.1],'low':[127.7,134.5,138.,193.5,208.9]}
 M={'thrifty':[169.2,175.2,187.5,171.,171.4],'low':[240.7,245.1,242.6,229.5,224.7]}
