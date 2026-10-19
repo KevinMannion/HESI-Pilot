@@ -18,7 +18,7 @@ The real-data pipeline successfully ingested all 3,422,888 person records, integ
 2. All meals/snacks are assumed prepared at home. The age-1 rate is provisionally assigned to 0-year-olds; this must be sensitivity-tested.
 3. ACS housing expenses and incomes are observational household variables; food is a modeled allowance. Taxes, childcare, health care, transport, emergency savings, and assets are omitted.
 4. 80 ACS housing replicate weights estimate sampling uncertainty conditional on model assumptions, not uncertainty in food costs.
-5. Data source ZIPs remain with the user; this release does not redistribute protected or large microdata files.
+5. The original Census PUMS microdata files are publicly available. This repository does not host the large source archives due to file size limits; researchers can download them directly from the U.S. Census Bureau.
 
 ## Run
 
