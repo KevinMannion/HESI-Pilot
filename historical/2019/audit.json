@@ -1,0 +1,10 @@
+{
+  "persons": 3239553,
+  "person_serials": 1428037,
+  "occupied": 1276716,
+  "matched": 1276716,
+  "mismatched": 0,
+  "eligible": 1253821,
+  "excluded_nocash": 22895,
+  "eligible_weighted": 120691221
+}

@@ -1,0 +1,7 @@
+year,food_month,plan,tenure,n,weighted_households,pct,ci_low,ci_high
+2019,October,thrifty,all,1253821,120691221,8.35,8.286,8.414
+2019,October,thrifty,renter,344016,41899896,15.001,14.871,15.13
+2019,October,thrifty,owner,909805,78791325,4.813,4.756,4.87
+2019,October,low,all,1253821,120691221,9.243,9.176,9.31
+2019,October,low,renter,344016,41899896,16.645,16.516,16.775
+2019,October,low,owner,909805,78791325,5.307,5.247,5.367
