@@ -22,11 +22,12 @@ The real-data pipeline successfully ingested all 3,422,888 person records, integ
 
 ## Run
 
-1. Create a folder named `input_data` in the root directory.
-2. Place `csv_hus.zip`, `HESI_Person_Part_1.zip`, and `HESI_Person_Part_2.zip` inside the `input_data/` folder.
-3. Execute `python run.py`. 
+1. Create an `input_data/` folder in the repository root.
+2. Download `csv_hus.zip` and `csv_pus.zip` from the U.S. Census Bureau and place both files inside `input_data/`.
+3. Install dependencies using `pip install -r requirements.txt`.
+4. Execute `python run.py`.
 
-The script processes large microdata volumes, applies official USDA food plans, computes 80-replicate-weight SDR variance, and generates `results.csv` alongside a cryptographic `manifest.json` file.
+The script also supports the previously split person ZIP archives for backward compatibility.
 
 ### Obtaining the Raw Data
 
