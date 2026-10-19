@@ -43,6 +43,18 @@ The analysis uses 2019 ACS 1-Year PUMS household and person records, October 201
 
 The initial results are consistent with increased housing-and-food affordability pressure between 2019 and 2024, but they do not yet establish a fully harmonized economic-security trend.
 
+## Reproducing the 2019 Analysis
+
+1. Download the official **2019 ACS 1-Year PUMS** housing (`csv_hus.zip`) and person (`csv_pus.zip`) archives from the U.S. Census Bureau.
+2. Create an `input_data/` folder inside `historical/2019/`.
+3. Place both ZIP files inside `input_data/`.
+4. From the repository root, install dependencies using `pip install -r requirements.txt`.
+5. Run `python historical/2019/run.py`.
+
+The script also supports the previously split person archives, `HESI_2019_Person_Part_1.zip` and `HESI_2019_Person_Part_2.zip`. Splitting is optional, not required.
+
+The program generates `results_2019_october_snapshot.csv` and `audit.json` inside `historical/2019/`.
+
 ## Sources
 
 - [U.S. Census Bureau ACS PUMS](https://www.census.gov/programs-surveys/acs/microdata.html)
