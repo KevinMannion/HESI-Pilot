@@ -1,6 +1,5 @@
 """HESI research pilot: Dec 2024 USDA age-sex Thrifty/Low-cost food + ACS housing; not a complete essential-cost index."""
 import numpy as np,pandas as pd,zipfile,pathlib,json,hashlib
-BASE=pathlib.Path(__file__).resolve().parent
 BASE = pathlib.Path(__file__).resolve().parent
 DATA_DIR = BASE / 'input_data'
 PERSONS = [DATA_DIR / 'HESI_Person_Part_1.zip', DATA_DIR / 'HESI_Person_Part_2.zip']
