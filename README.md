@@ -22,4 +22,8 @@ The real-data pipeline successfully ingested all 3,422,888 person records, integ
 
 ## Run
 
-Place `csv_hus.zip`, `HESI_Person_Part_1.zip`, and `HESI_Person_Part_2.zip` at the paths defined in `run.py`, then execute `python run.py`. The script processes large microdata volumes and generates `results.csv` along with a cryptographic `manifest.json` file.
+1. Create a folder named `input_data` in the root directory.
+2. Place `csv_hus.zip`, `HESI_Person_Part_1.zip`, and `HESI_Person_Part_2.zip` inside the `input_data/` folder.
+3. Execute `python run.py`. 
+
+The script processes large microdata volumes, applies official USDA food plans, computes 80-replicate-weight SDR variance, and generates `results.csv` alongside a cryptographic `manifest.json` file.
