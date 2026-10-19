@@ -1,8 +1,10 @@
 """HESI research pilot: Dec 2024 USDA age-sex Thrifty/Low-cost food + ACS housing; not a complete essential-cost index."""
 import numpy as np,pandas as pd,zipfile,pathlib,json,hashlib
 BASE=pathlib.Path(__file__).resolve().parent
-PERSONS=[pathlib.Path('/mnt/data/HESI_Person_Part_1.zip'),pathlib.Path('/mnt/data/HESI_Person_Part_2.zip')]
-HOUSING=pathlib.Path('/mnt/data/csv_hus.zip')
+BASE = pathlib.Path(__file__).resolve().parent
+DATA_DIR = BASE / 'input_data'
+PERSONS = [DATA_DIR / 'HESI_Person_Part_1.zip', DATA_DIR / 'HESI_Person_Part_2.zip']
+HOUSING = DATA_DIR / 'csv_hus.zip'
 # Official USDA monthly food plan tables issued Jan 2025; December 2024 (USD); age 0 extrapolation via age 1 value (flagged)
 # child age bands; adult male/female ages 12+; table footnotes apply size economies
 T_CHILD={'thrifty':[110.7,166.5,181.6,201.7,233.2],'low':[157.7,164.4,171,245.2,258.1]}
