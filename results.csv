@@ -1,0 +1,7 @@
+food_plan,tenure,households_unweighted,households_weighted,pct_below_housing_plus_food,ci_low,ci_high
+thrifty,all,1324794,130550444,10.301,10.233,10.368
+thrifty,renter,336110,43839481,17.593,17.443,17.744
+thrifty,owner,988684,86710963,6.613,6.545,6.682
+low,all,1324794,130550444,10.515,10.448,10.582
+low,renter,336110,43839481,17.961,17.81,18.112
+low,owner,988684,86710963,6.751,6.682,6.819
