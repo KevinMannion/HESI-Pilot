@@ -32,17 +32,11 @@ The script processes large microdata volumes, applies official USDA food plans, 
 
 HESI uses the **2024 American Community Survey (ACS) 1-Year Public Use Microdata Sample (PUMS)**, published by the U.S. Census Bureau.
 
-Download the original data from the [Census Bureau's 2024 PUMS download page](https://www.census.gov/programs-surveys/acs/microdata/access/2024.html).
+Download the original files from the [Census Bureau's 2024 PUMS download page](https://www.census.gov/programs-surveys/acs/microdata/access/2024.html).
 
 1. **Housing:** Download the nationwide housing CSV archive, `csv_hus.zip`.
 2. **Persons:** Download the nationwide person CSV archive, `csv_pus.zip`.
-3. **Prepare person files:** The current `run.py` expects two ZIP archives:
-   - `HESI_Person_Part_1.zip`, containing `psam_pusa.csv`.
-   - `HESI_Person_Part_2.zip`, containing `psam_pusb.csv`.
+3. **Organize inputs:** Create an `input_data/` directory in the repository root and place both ZIP files inside it. The script also supports the previously split archives, `HESI_Person_Part_1.zip` and `HESI_Person_Part_2.zip`, for backward compatibility. Splitting is no longer required.
+4. **Verify integrity and reproducibility:** The repository's `manifest.json` records SHA-256 hashes from the original pilot run using split person archives. Running `run.py` with the original `csv_pus.zip` generates a new manifest containing hashes for the files used in that run. Different ZIP packaging can produce different hashes even when the underlying Census records are identical.
 
-   Extract these two CSV members from `csv_pus.zip` and package each into its own ZIP using the expected filename.
-
-4. **Organize inputs:** Create an `input_data/` directory in the repository root and place the housing ZIP and both person ZIPs inside it.
-5. **Verify integrity:** The SHA-256 hashes in `manifest.json` describe the exact ZIP archives used in the original analysis. Repackaging ZIPs may produce different archive hashes even when their underlying CSV contents are identical. Therefore, checksum mismatches for independently repackaged person files do not necessarily indicate different Census data.
-
-**Important:** This release has not yet established independently reproducible canonical hashes for the extracted Census CSV members. Successful reproduction should include verification of record counts, household matches, weighted totals and published results—not merely matching ZIP hashes.
+**Replication standard:** Researchers should verify the person-record counts, household matching, weighted household totals, and calculated estimates—including confidence intervals—against the published `results.csv`. Matching archive hashes alone is neither necessary nor sufficient to establish numerical replication.
