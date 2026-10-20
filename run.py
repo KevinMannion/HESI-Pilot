@@ -70,5 +70,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-(BASE/'manifest.json').write_text(json.dumps({'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in PERSONS+[HOUSING]},'USDA':['https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Thrifty_Food_Plan_December_2024.pdf','https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Low_Moderate_Liberal_Food_Plans_December_2024.pdf'],'reference_period':'December 2024 monthly food prices applied to full-year annual household income','limitation':'Not a complete essentials budget; taxes, healthcare, childcare, transport excluded. No 2024 full-year food average. Age-0 uses age-1 USDA estimate. Adult male low-cost groups use 19-50. Annualizing December 2024 prices is a scenario, not average 2024.', 'weight':'ACS WGTP and WGTP1-80, 4/80 variance'},indent=2))
-print(pd.DataFrame(rows).to_string(index=False),flush=True)
