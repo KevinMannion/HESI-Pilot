@@ -1,0 +1,22 @@
+{
+  "person_records_read": 3422888,
+  "person_unique_households": 1531614,
+  "housing_records_read": 1631969,
+  "occupied_records_np_positive": 1531614,
+  "person_join_matched": 1531614,
+  "person_join_unmatched": 0,
+  "person_count_mismatch": 0,
+  "eligible_households_unweighted": 1324794,
+  "eligible_households_weighted": 130550444,
+  "excluded_by_primary_reason": {
+    "nonoccupied_or_zero_persons": 100355,
+    "unmatched_person_record": 0,
+    "person_count_mismatch": 0,
+    "unsupported_tenure": 206820,
+    "missing_income": 0,
+    "missing_housing_cost": 0,
+    "nonpositive_weight": 0,
+    "invalid_adjustment_factor": 0
+  },
+  "excluded_households_total": 307175
+}
