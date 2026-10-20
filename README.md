@@ -6,6 +6,35 @@ This release replaces arbitrary per-person food scenarios with published Decembe
 
 The real-data pipeline successfully ingested all 3,422,888 person records, integrated official USDA food plans, and executed full 80-replicate-weight Successive Difference Replication (SDR) variance math across 1.32M unweighted households (representing 130.5M weighted households). Results are stored in `results.csv`. `run.py` is a candidate implementation, provided for peer review and methodological transparency.
 
+## National Replication and Household Audit — October 2026
+
+The updated 2024 ACS PUMS pipeline was executed against the original nationwide Census person and housing archives. All six published estimates in `results.csv`, including weighted household counts and 95% confidence interval bounds, reproduced exactly when compared with the previously published CSV.
+
+The automated test suite also passed all five tests, including USDA food-cost checks and synthetic end-to-end pipeline tests.
+
+### Household Accounting
+
+| Audit measure | Unweighted records |
+|---|---:|
+| Person records processed | 3,422,888 |
+| Housing records processed | 1,631,969 |
+| Occupied households with positive person counts | 1,531,614 |
+| Successfully matched occupied households | 1,531,614 |
+| Unmatched occupied households | 0 |
+| Person-count mismatches | 0 |
+| Nonoccupied or zero-person housing records excluded | 100,355 |
+| Unsupported-tenure records excluded | 206,820 |
+| Other recorded exclusions | 0 |
+| **Eligible households analyzed** | **1,324,794** |
+
+The final eligible sample represents **130,550,444 weighted households**.
+
+The reported percentages refer to this eligible analytical population, not every household in the United States. Unsupported tenure includes housing records outside the owner's and cash-renter tenure codes accepted by the pilot. The exclusion categories are assigned according to the pipeline's ordered filtering rules.
+
+The full audit is published in `audit.json`, and source archive fingerprints are recorded in `manifest.json`.
+
+These findings establish reproducibility of the implemented pilot calculations, but do not constitute independent external validation of the economic assumptions or a complete household economic stress index.
+
 ## USDA Source and Frozen Inputs
 
 * Thrifty Food Plan, December 2024: https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Thrifty_Food_Plan_December_2024.pdf
@@ -38,6 +67,6 @@ Download the original files from the [Census Bureau's 2024 PUMS download page](h
 1. **Housing:** Download the nationwide housing CSV archive, `csv_hus.zip`.
 2. **Persons:** Download the nationwide person CSV archive, `csv_pus.zip`.
 3. **Organize inputs:** Create an `input_data/` directory in the repository root and place both ZIP files inside it. The script also supports the previously split archives, `HESI_Person_Part_1.zip` and `HESI_Person_Part_2.zip`, for backward compatibility. Splitting is no longer required.
-4. **Verify integrity and reproducibility:** The repository's `manifest.json` records SHA-256 hashes from the original pilot run using split person archives. Running `run.py` with the original `csv_pus.zip` generates a new manifest containing hashes for the files used in that run. Different ZIP packaging can produce different hashes even when the underlying Census records are identical.
+4. **Verify integrity and reproducibility:** The repository's current `manifest.json` records SHA-256 hashes for the original Census `csv_pus.zip` and `csv_hus.zip` archives used in the October 2026 replication. Researchers using differently packaged archives should expect different file hashes and should compare the underlying record counts, audit results, estimates, and confidence intervals.
 
 **Replication standard:** Researchers should verify the person-record counts, household matching, weighted household totals, and calculated estimates—including confidence intervals—against the published `results.csv`. Matching archive hashes alone is neither necessary nor sufficient to establish numerical replication.
