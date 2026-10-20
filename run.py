@@ -23,18 +23,21 @@ def costs(age,sex,plan):
     return np.where(age<=11,child,np.where(sex==1,np.array(T_M[plan])[band],np.array(T_F[plan])[band]))
 def factor(n):return np.select([n==1,n==2,n==3,n==4,n<=6],[1.2,1.1,1.05,1.,.95],default=.9)
 def main():
+    audit = {'person_records_read': 0, 'person_unique_households': 0, 'housing_records_read': 0, 'occupied_records_np_positive': 0, 'person_join_matched': 0, 'person_join_unmatched': 0, 'person_count_mismatch': 0, 'eligible_households_unweighted': 0, 'eligible_households_weighted': 0, 'excluded_by_primary_reason': {k: 0 for k in ('nonoccupied_or_zero_persons','unmatched_person_record','person_count_mismatch','unsupported_tenure','missing_income','missing_housing_cost','nonpositive_weight','invalid_adjustment_factor')}}
     parts=[]
     for p in PERSONS:
      with zipfile.ZipFile(p) as z:
       for member in z.namelist():
        if not member.endswith('.csv'):continue
        for d in pd.read_csv(z.open(member),usecols=['SERIALNO','AGEP','SEX'],chunksize=180000):
+        audit['person_records_read'] += len(d)
         a=d.AGEP.to_numpy();s=d.SEX.to_numpy()
         d['thrifty']=costs(a,s,'thrifty');d['low']=costs(a,s,'low')
         parts.append(d.groupby('SERIALNO',sort=False).agg(persons=('AGEP','size'),thrifty=('thrifty','sum'),low=('low','sum')))
         print('person chunk',len(d),flush=True)
     # sum chunk groups safely across CSV boundaries
     agg=pd.concat(parts).groupby(level=0,sort=False).sum()
+    audit['person_unique_households'] = len(agg)
     print('unique households in people',len(agg),flush=True)
     acc={(plan,group):{'den':np.zeros(81),'num':np.zeros(81),'covered':0,'n':0} for plan in ('thrifty','low') for group in ('all','renter','owner')}
     for p in [HOUSING]:
@@ -44,9 +47,35 @@ def main():
        cols=['SERIALNO','NP','TEN','HINCP','ADJINC','ADJHSG','GRNTP','SMOCP','WGTP']+[f'WGTP{k}' for k in range(1,81)]
        for d in pd.read_csv(z.open(member),usecols=cols,chunksize=65000):
         d=d.join(agg,on='SERIALNO',how='left')
-        assert ((d.loc[(d.NP>0)&d.persons.notna(),'NP'] ==d.loc[(d.NP>0)&d.persons.notna(),'persons'])).all()
+        audit['housing_records_read'] += len(d)
+        occupied=(d.NP>0)
+        matched=occupied & d.persons.notna()
+        mismatched=matched & (d.NP != d.persons)
+        audit['occupied_records_np_positive'] += int(occupied.sum())
+        audit['person_join_matched'] += int(matched.sum())
+        audit['person_join_unmatched'] += int((occupied & ~matched).sum())
+        audit['person_count_mismatch'] += int(mismatched.sum())
+        if mismatched.any():
+         raise ValueError(f"Person-count mismatch in {int(mismatched.sum())} housing record(s); no results written")
         housing=np.where(d.TEN==3,d.GRNTP,np.where(d.TEN.isin([1,2]),d.SMOCP,np.nan))
         valid=(d.NP>0)&d.persons.notna()&d.TEN.isin([1,2,3])&d.HINCP.notna()&np.isfinite(housing)&(d.WGTP>0)&(d.ADJHSG>0)&(d.ADJINC>0)
+        # Mutually exclusive primary exclusion reasons, in the same order as the validity gate.
+        remaining=np.ones(len(d), dtype=bool)
+        checks=(('nonoccupied_or_zero_persons',occupied.to_numpy()),
+                ('unmatched_person_record',d.persons.notna().to_numpy()),
+                ('person_count_mismatch',~mismatched.to_numpy()),
+                ('unsupported_tenure',d.TEN.isin([1,2,3]).to_numpy()),
+                ('missing_income',d.HINCP.notna().to_numpy()),
+                ('missing_housing_cost',np.isfinite(housing)),
+                ('nonpositive_weight',(d.WGTP>0).to_numpy()),
+                ('invalid_adjustment_factor',((d.ADJHSG>0)&(d.ADJINC>0)).to_numpy()))
+        for reason,passed in checks:
+         newly_excluded=remaining & ~passed
+         audit['excluded_by_primary_reason'][reason] += int(newly_excluded.sum())
+         remaining &= passed
+        assert np.array_equal(remaining,valid.to_numpy())
+        audit['eligible_households_unweighted'] += int(valid.sum())
+        audit['eligible_households_weighted'] += float(d.loc[valid,'WGTP'].sum())
         x=d[valid].copy()
         if x.empty:continue
         inc=x.HINCP.to_numpy(float)*x.ADJINC.to_numpy(float)/1e6
@@ -65,6 +94,10 @@ def main():
      rows.append(dict(food_plan=plan,tenure=group,households_unweighted=int(a['n']),households_weighted=round(a['den'][0]),pct_below_housing_plus_food=round(p[0]*100,3),ci_low=round(max(0,p[0]-1.96*se)*100,3),ci_high=round(min(1,p[0]+1.96*se)*100,3)))
     pd.DataFrame(rows).to_csv(BASE/'results.csv',index=False)
     (BASE/'manifest.json').write_text(json.dumps({'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in PERSONS+[HOUSING]},'USDA':['https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Thrifty_Food_Plan_December_2024.pdf','https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Low_Moderate_Liberal_Food_Plans_December_2024.pdf'],'reference_period':'December 2024 monthly food prices applied to full-year annual household income','limitation':'Not a complete essentials budget; taxes, healthcare, childcare, transport excluded. No 2024 full-year food average. Age-0 uses age-1 USDA estimate. Adult male low-cost groups use 19-50. Annualizing December 2024 prices is a scenario, not average 2024.', 'weight':'ACS WGTP and WGTP1-80, 4/80 variance'},indent=2))
+    audit['eligible_households_weighted'] = round(audit['eligible_households_weighted'])
+    audit['excluded_households_total'] = sum(audit['excluded_by_primary_reason'].values())
+    assert audit['housing_records_read'] == audit['eligible_households_unweighted'] + audit['excluded_households_total']
+    (BASE/'audit.json').write_text(json.dumps(audit,indent=2))
     print(pd.DataFrame(rows).to_string(index=False),flush=True)
 
 
