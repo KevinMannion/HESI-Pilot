@@ -1,0 +1,18 @@
+{
+  "captured_utc": "2026-10-22T00:29:30+00:00",
+  "git_baseline_commit": "d658c08cf425873b5dea6c0cf6fdbb537446db6a",
+  "python": "/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python",
+  "numpy": "1.26.4",
+  "pandas": "2.3.3",
+  "tests": [
+    {"name": "core_r24 unittest discover", "command": "python -m unittest discover -s core_r24/tests -v", "status": "PASS", "detail": "22 tests"},
+    {"name": "core_r24 verify_package.py", "command": "python verify_package.py", "status": "PASS", "detail": "34 package hashes; 22 tests; check-existing rebuilt_from_raw vs national_R22"},
+    {"name": "pillar verify_release.py", "command": "python research/september2026_core_r2/verify_release.py", "status": "PASS", "detail": "food, housing, transportation, release_register"},
+    {"name": "food test_current_food.py", "command": "python -m unittest -v test_current_food.py (cwd=food)", "status": "PASS", "detail": "7 tests"},
+    {"name": "housing unittest", "command": "python -m unittest -v test_adequacy test_reference", "status": "PASS", "detail": "21 tests"},
+    {"name": "transportation unittest", "command": "python -m unittest discover -s . -p test_*.py -v", "status": "PASS", "detail": "4 tests"},
+    {"name": "2024 pilot pytest", "command": "pytest tests/test_hesi.py tests/test_synthetic_pipeline.py -v", "status": "PASS", "detail": "5 tests; pytest==8.4.2 installed after national run as test harness only"},
+    {"name": "live synthetic run_joint on packaged pkl fixtures", "command": "python core_r24/src/run_joint.py --housing-zip fixtures/synthetic_housing.zip ...", "status": "FAIL", "detail": "ModuleNotFoundError: numpy._core.numeric — fixtures were pickled with NumPy 2; isolated env uses documented NumPy 1.26.4. test_joint_fixture.py still PASS because it reads saved CSVs only. National path rebuilt caches in this env and did not use these pickles."},
+    {"name": "national reproduce_from_raw.py", "command": "python reproduce_from_raw.py --housing csv_hus.zip --person-a HESI_Person_Part_1.zip --person-b HESI_Person_Part_2.zip --output /Users/kevinmannion/HESI-R25-CleanRepro/output", "status": "PASS", "detail": "3,422,888 persons rebuilt; 6 metrics + 80 replicates + exclusion frame vs national_R22; no-car metric vs rebuilt_from_raw also matched atol=1e-7"}
+  ]
+}

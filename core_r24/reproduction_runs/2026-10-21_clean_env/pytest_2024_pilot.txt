@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.2, pytest-8.4.2, pluggy-1.7.0 -- /Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/kevinmannion/HESI-Pilot
+collecting ... collected 5 items
+
+tests/test_hesi.py::test_size_factor PASSED                              [ 20%]
+tests/test_hesi.py::test_usda_exact_boundary_values PASSED               [ 40%]
+tests/test_hesi.py::test_female_adult_boundaries PASSED                  [ 60%]
+tests/test_synthetic_pipeline.py::test_complete_synthetic_calculation PASSED [ 80%]
+tests/test_synthetic_pipeline.py::test_count_mismatch_fails_closed PASSED [100%]
+
+============================== 5 passed in 0.20s ===============================

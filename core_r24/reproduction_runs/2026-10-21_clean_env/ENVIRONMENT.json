@@ -1,0 +1,28 @@
+{
+  "captured_utc": "2026-10-22T00:27:39.026527+00:00",
+  "git_branch": "hesi/core-r25-integration",
+  "git_baseline_commit": "d658c08cf425873b5dea6c0cf6fdbb537446db6a",
+  "python_version": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "python_executable": "/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python",
+  "platform": "macOS-14.5-arm64-arm-64bit-Mach-O",
+  "implementation": "CPython",
+  "packages": {
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python-dateutil": "3.0.0",
+    "pytz": "2026.5",
+    "six": "1.17.0",
+    "tzdata": "2026.5"
+  },
+  "requirements_file": "HESI-Pilot/requirements.txt",
+  "requirements_text": "numpy>=1.22.0,<2.0.0\npandas>=1.4.0,<3.0.0\n",
+  "pip_freeze": true,
+  "venv": "/Users/kevinmannion/HESI-R25-CleanRepro/venv",
+  "isolation": "fresh venv created 2026-10-21; not the repository .venv",
+  "env_thread_limits": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  }
+}

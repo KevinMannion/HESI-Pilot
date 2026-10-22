@@ -1,0 +1,12 @@
+test_age19 (test_current_food.TestCurrent.test_age19) ... ok
+test_complete (test_current_food.TestCurrent.test_complete) ... ok
+test_infant (test_current_food.TestCurrent.test_infant) ... ok
+test_september_thrifty (test_current_food.TestCurrent.test_september_thrifty) ... ok
+test_size (test_current_food.TestCurrent.test_size) ... ok
+test_source_levels (test_current_food.TestCurrent.test_source_levels) ... ok
+test_unsupported (test_current_food.TestCurrent.test_unsupported) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK

@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/Users/kevinmannion/HESI-R25-CleanRepro/venv/lib/python3.13/site-packages/pandas/io/pickle.py", line 202, in read_pickle
+    return pickle.load(handles.handle)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy._core.numeric'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kevinmannion/HESI-Pilot/core_r24/src/run_joint.py", line 101, in <module>
+    a=p.parse_args();run(a.housing_zip,a.food_cache,a.composition_cache,a.geography,a.out)
+                     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kevinmannion/HESI-Pilot/core_r24/src/run_joint.py", line 18, in run
+    food=pd.read_pickle(food_cache)[['thrifty_2026sep','n_person','n_infant']]
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/kevinmannion/HESI-R25-CleanRepro/venv/lib/python3.13/site-packages/pandas/io/pickle.py", line 207, in read_pickle
+    return pc.load(handles.handle, encoding=None)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kevinmannion/HESI-R25-CleanRepro/venv/lib/python3.13/site-packages/pandas/compat/pickle_compat.py", line 231, in load
+    return up.load()
+           ~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pickle.py", line 1256, in load
+    dispatch[key[0]](self)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pickle.py", line 1581, in load_stack_global
+    self.append(self.find_class(module, name))
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/kevinmannion/HESI-R25-CleanRepro/venv/lib/python3.13/site-packages/pandas/compat/pickle_compat.py", line 162, in find_class
+    return super().find_class(module, name)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pickle.py", line 1622, in find_class
+    __import__(module, level=0)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy._core.numeric'

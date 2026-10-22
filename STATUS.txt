@@ -1,9 +1,11 @@
 HESI STATUS — Core R2.5 integration working tree
 ================================================
 Date: 2026-10-21
-Branch: hesi/core-r25-integration (local only; not committed, not pushed)
+Branch: hesi/core-r25-integration
+Integration baseline commit: d658c08cf425873b5dea6c0cf6fdbb537446db6a
 Based on GitHub origin/main: 125500b Update README.md
 Local main left unchanged at: d06b9ef Publish verified 2024 Census audit and source manifest
+Clean-environment national evidence: core_r24/reproduction_runs/2026-10-21_clean_env/
 
 TWO SEPARATE RESEARCH OBJECTS
 -----------------------------
@@ -33,7 +35,7 @@ FOUR-WAY STATUS (must not be promoted by implication)
 -----------------------------------------------------
 Track B — Core R2.4 joint national scenario
   EXECUTED_BY_AUTHOR:                         YES (author-run 2026-10-21; see core_r24/README.md)
-  CLEAN_ENVIRONMENT_REPRODUCED:               NO  (unit/synthetic/package regression PASS; full ACS national rerun not executed on this branch)
+  CLEAN_ENVIRONMENT_REPRODUCED:               YES (2026-10-21 fresh venv numpy 1.26.4 / pandas 2.3.3; hash-verified Census ZIPs; person caches rebuilt; national results matched national_R22 at atol=1e-7). This is the same operator, not a third party.
   EXTERNALLY_INDEPENDENTLY_REPRODUCED:        NO
   SCIENTIFICALLY_VALIDATED:                   NO
 
@@ -54,3 +56,5 @@ WHAT THIS WORKING TREE IS NOT
 - Not independent third-party replication
 - Not a reconstruction of puma_fmr_screened.csv from HUD xlsx
 - Not a reconstruction of source_2024_2026.csv from USDA workbooks
+- Upstream source-to-result reproducibility is incomplete until those HUD and USDA rebuilds pass
+- Scientific validation is not complete

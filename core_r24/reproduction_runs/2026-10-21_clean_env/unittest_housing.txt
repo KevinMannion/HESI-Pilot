@@ -1,0 +1,26 @@
+test_adult_child (test_adequacy.TestAdequacy.test_adult_child) ... ok
+test_couple (test_adequacy.TestAdequacy.test_couple) ... ok
+test_couple_three_children (test_adequacy.TestAdequacy.test_couple_three_children) ... ok
+test_couple_two_children (test_adequacy.TestAdequacy.test_couple_two_children) ... ok
+test_five_bedrooms (test_adequacy.TestAdequacy.test_five_bedrooms) ... ok
+test_no_couple_overlap (test_adequacy.TestAdequacy.test_no_couple_overlap) ... ok
+test_no_floating_counts (test_adequacy.TestAdequacy.test_no_floating_counts) ... ok
+test_no_infant_exclusion (test_adequacy.TestAdequacy.test_no_infant_exclusion) ... ok
+test_single (test_adequacy.TestAdequacy.test_single) ... ok
+test_unrelated_adults (test_adequacy.TestAdequacy.test_unrelated_adults) ... ok
+test_zero_adults (test_adequacy.TestAdequacy.test_zero_adults) ... ok
+test_bedrooms_outside (test_reference.TestHUDReference.test_bedrooms_outside) ... ok
+test_capacity_excess (test_reference.TestHUDReference.test_capacity_excess) ... ok
+test_capacity_scenario (test_reference.TestHUDReference.test_capacity_scenario) ... ok
+test_exact_price (test_reference.TestHUDReference.test_exact_price) ... ok
+test_no_extra_utilities (test_reference.TestHUDReference.test_no_extra_utilities) ... ok
+test_no_missing_hud_area (test_reference.TestHUDReference.test_no_missing_hud_area) ... ok
+test_no_puma (test_reference.TestHUDReference.test_no_puma) ... ok
+test_not_actual_unit (test_reference.TestHUDReference.test_not_actual_unit) ... ok
+test_source_positive (test_reference.TestHUDReference.test_source_positive) ... ok
+test_zip_hud_key (test_reference.TestHUDReference.test_zip_hud_key) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.061s
+
+OK

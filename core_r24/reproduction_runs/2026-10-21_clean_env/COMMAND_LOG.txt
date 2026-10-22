@@ -1,0 +1,53 @@
+HESI Core R2.5 clean-environment national reproduction command log
+start_local: Wed Oct 21 20:28:12 EDT 2026
+start_utc: 2026-10-22T00:28:12Z
+cwd: /Users/kevinmannion/HESI-Pilot/core_r24
+python: /Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python
+housing: /Users/kevinmannion/Downloads/csv_hus.zip
+person_a: /Users/kevinmannion/Downloads/HESI_Person_Part_1.zip
+person_b: /Users/kevinmannion/Downloads/HESI_Person_Part_2.zip
+output: /Users/kevinmannion/HESI-R25-CleanRepro/output
+command:
+/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python reproduce_from_raw.py --housing "/Users/kevinmannion/Downloads/csv_hus.zip" --person-a "/Users/kevinmannion/Downloads/HESI_Person_Part_1.zip" --person-b "/Users/kevinmannion/Downloads/HESI_Person_Part_2.zip" --output "/Users/kevinmannion/HESI-R25-CleanRepro/output"
+---- stdout/stderr ----
+SOURCE VERIFIED: housing csv_hus.zip
+SOURCE VERIFIED: person_a HESI_Person_Part_1.zip
+SOURCE VERIFIED: person_b HESI_Person_Part_2.zip
+SOURCE VERIFIED: geography puma_fmr_screened.csv
+SOURCE VERIFIED: prices source_2024_2026.csv
+Checkpoint /Users/kevinmannion/Downloads/HESI_Person_Part_1.zip persons: 1743751
+Checkpoint /Users/kevinmannion/Downloads/HESI_Person_Part_2.zip persons: 3422888
+SUMMARY {"person_rows": 3422888, "households_food": 1531614, "households_composition": 1531614}
+processed psam_husa.csv eligible so far 608978
+processed psam_husb.csv eligible so far 1235731
+                                    metric        mean       se_sdr    ci90_low   ci90_high
+                                food_month  653.522289 3.385365e-01  652.965396  654.079181
+                             housing_month 1635.994098 6.816116e-01 1634.872847 1637.115349
+             one_vehicle_month_PROVISIONAL  605.391667 4.107542e-12  605.391667  605.391667
+                   total_month_PROVISIONAL 2894.908053 9.593203e-01 2893.329971 2896.486135
+                 income_month_2024_vintage 9325.244238 1.154011e+01 9306.260765 9344.227711
+share_income_below_three_costs_PROVISIONAL    0.189918 5.409435e-04    0.189028    0.190808
+       share_below_cost_NO_CAR_sensitivity    0.140322 5.101792e-04    0.139483    0.141161
+{
+  "status": "PASS",
+  "metrics_compared": 6,
+  "replicates_compared": 80,
+  "frame_exact": true,
+  "raw_source_hashes": {
+    "housing": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "person_a": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "person_b": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+    "geography": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "prices": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c"
+  },
+  "generated_cache_sha256": {
+    "acs2024_food_person_aggregates.pkl": "9ca1e3d2c31b5121459386e437af0352732956b3d54791d7a5363eb7ffc0ed61",
+    "acs2024_person_composition.pkl": "4e7c8dbbbf6decb65bb5de0d0bb72260fd812f5c8e8f0604eefb00ffc2bf7e7d"
+  }
+}
+---- end ----
+note: wrapper shell hit PIPESTATUS under set -u after Python PASS; Python pipeline printed status PASS
+end_local: Wed Oct 21 20:29:25 EDT 2026
+end_utc: 2026-10-22T00:29:25Z
+python_status: PASS
+wrapper_exit_code: 1 (PIPESTATUS parameter not set; not a model failure)

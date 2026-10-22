@@ -1,0 +1,32 @@
+{
+  "housing_zip": {
+    "path": "/Users/kevinmannion/Downloads/csv_hus.zip",
+    "sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "required": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "match": true
+  },
+  "person_a": {
+    "path": "/Users/kevinmannion/Downloads/HESI_Person_Part_1.zip",
+    "sha256": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "required": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "match": true
+  },
+  "person_b": {
+    "path": "/Users/kevinmannion/Downloads/HESI_Person_Part_2.zip",
+    "sha256": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+    "required": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+    "match": true
+  },
+  "geography": {
+    "path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/puma_fmr_screened.csv",
+    "sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "required": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "match": true
+  },
+  "prices": {
+    "path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/source_2024_2026.csv",
+    "sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+    "required": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+    "match": true
+  }
+}

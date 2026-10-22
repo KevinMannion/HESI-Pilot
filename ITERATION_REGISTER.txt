@@ -52,8 +52,16 @@ Core R2.5 — this working tree (2026-10-21)
 What changed: imported Core R2.4 into core_r24/; imported September 2026 pillars into research/september2026_core_r2/; restored synthetic fixtures from the R2.4 ZIP; added STATUS.txt, ITERATION_NOTES.txt, ITERATION_REGISTER.txt; copied untracked split-ZIP manifests into historical/2024_pilot_pre_csv_pus/ without deleting the originals; extended .gitignore so Census ZIPs and derived caches cannot be committed; added a two-track warning to README.md without removing 2024 pilot text.
 What did not change: scientific formulas; published R2.4 numerical baselines; published 2024 pilot results; local main branch (left at d06b9ef).
 Demonstrated: local layout and package-hash integrity of the imported R2.4 files (34/34 RELEASE_FILE_HASHES.json matches after fixture restore).
-Not demonstrated: clean-environment national rerun; independent external reproduction; scientific validation; HUD/USDA upstream reconstruction.
-Git: branch hesi/core-r25-integration created from origin/main 125500b. NO COMMIT. NO PUSH. NO PR.
+Git: local commit d658c08 Integrate Core R2.4 research and September 2026 pillar references. Not pushed. No PR.
+
+Core R2.5 — clean-environment national reproduction (2026-10-21, after d658c08)
+-------------------------------------------------------------------------------
+What changed: no formula or baseline edits. Ran a fresh venv (numpy 1.26.4, pandas 2.3.3) and reproduce_from_raw.py from hash-verified Census ZIPs, rebuilding person caches in an empty output directory.
+Demonstrated: national means, SEs, 90% CIs, 80 SDR replicates, and exclusion frame matched core_r24/results/national_R22 within atol=1e-7; no-car share and frame also matched rebuilt_from_raw. CLEAN_ENVIRONMENT_REPRODUCED=true for this operator.
+Failed / remaining: packaged synthetic pickle fixtures do not load on NumPy 1.26.4; pickle SHA-256 of rebuilt caches differs from author-run caches; HUD/USDA upstream reconstruction still absent; EXTERNALLY_INDEPENDENTLY_REPRODUCED=false; SCIENTIFICALLY_VALIDATED=false.
+Evidence: core_r24/reproduction_runs/2026-10-21_clean_env/. Caches remain outside git: /Users/kevinmannion/HESI-R25-CleanRepro/output/.
+Upstream source-to-result (HUD FMR/SAFMR workbooks; USDA plan workbooks) and scientific validation remain incomplete.
+Git: local evidence commit on hesi/core-r25-integration after d658c08. Not pushed. No PR.
 
 Mandatory per-release evidence (starting with the next committed release)
 ------------------------------------------------------------------------

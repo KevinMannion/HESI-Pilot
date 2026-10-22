@@ -1,0 +1,27 @@
+test_adult_child (test_adequacy.TestAdequacy.test_adult_child) ... ok
+test_couple (test_adequacy.TestAdequacy.test_couple) ... ok
+test_couple_three_children (test_adequacy.TestAdequacy.test_couple_three_children) ... ok
+test_couple_two_children (test_adequacy.TestAdequacy.test_couple_two_children) ... ok
+test_five_bedrooms (test_adequacy.TestAdequacy.test_five_bedrooms) ... ok
+test_no_couple_overlap (test_adequacy.TestAdequacy.test_no_couple_overlap) ... ok
+test_no_floating_counts (test_adequacy.TestAdequacy.test_no_floating_counts) ... ok
+test_no_infant_exclusion (test_adequacy.TestAdequacy.test_no_infant_exclusion) ... ok
+test_single (test_adequacy.TestAdequacy.test_single) ... ok
+test_unrelated_adults (test_adequacy.TestAdequacy.test_unrelated_adults) ... ok
+test_zero_adults (test_adequacy.TestAdequacy.test_zero_adults) ... ok
+test_2024_full_year_all_plans (test_food_model.TestFood.test_2024_full_year_all_plans) ... ok
+test_age_boundary_distinction (test_food_model.TestFood.test_age_boundary_distinction) ... ok
+test_age_zero_rejected (test_food_model.TestFood.test_age_zero_rejected) ... ok
+test_duplicate_months_rejected (test_food_model.TestFood.test_duplicate_months_rejected) ... ok
+test_household_adjustment (test_food_model.TestFood.test_household_adjustment) ... ok
+test_missing_2026_december_rejected (test_food_model.TestFood.test_missing_2026_december_rejected) ... ok
+test_reference_family_september_2026 (test_food_model.TestFood.test_reference_family_september_2026) ... ok
+test_coverage_and_arithmetic (test_joint_fixture.SyntheticEndToEnd.test_coverage_and_arithmetic) ... ok
+test_nonempty (test_reference.TestHousingMapping.test_nonempty) ... ok
+test_required_columns (test_reference.TestHousingMapping.test_required_columns) ... ok
+test_unambiguous_price_nonnegative (test_reference.TestHousingMapping.test_unambiguous_price_nonnegative) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.027s
+
+OK

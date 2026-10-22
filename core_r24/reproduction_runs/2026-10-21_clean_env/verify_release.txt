@@ -1,0 +1,6 @@
+{
+  "food": true,
+  "housing": true,
+  "transportation": true,
+  "release_register": true
+}

@@ -1,99 +1,142 @@
-HESI iteration note — Core R2.5 integration (local working tree)
+HESI iteration note — Core R2.5 clean-environment national reproduction
 
-- Release date (UTC): 2026-10-21
-- Previous version: GitHub HESI-Pilot origin/main 125500b (2024 observed-housing food pilot)
-  plus portable Core R2.4 source-to-result package and September 2026 Core R2 pillar lock
-- Git commit/tag: NONE. Local branch hesi/core-r25-integration created from origin/main.
-  Not committed, not pushed, not merged.
-- Research question or defect being addressed:
-  Place the September 2026 three-component engine and locked pillar specifications in the
-  GitHub HESI-Pilot repository without destroying the published 2024 pilot, and record
-  reproduction status honestly.
-- Scope: file layout, documentation, hash verification, existing unit/synthetic tests.
-  No formula changes. No alteration of published R2.4 or 2024 pilot result files.
-- Classification: integration / documentation / not nationally re-executed on this machine
+- Release date (UTC): 2026-10-22
+- Previous version: local commit d658c08 (Integrate Core R2.4 research and September 2026 pillar references)
+- Git branch: hesi/core-r25-integration
+- Classification: clean-environment computational reproduction of published Core R2.4
+  NOT independent external replication
+  NOT scientific validation
+  NOT HUD/USDA upstream source-to-result reconstruction
+- Scope: isolated venv; hash-gated national reproduce_from_raw.py; evidence files; status docs.
+  No change to economic formulas, benchmark assumptions, or published baseline outputs.
 
-Precisely what changed
-----------------------
-File or dataset | Before | After | Why | Impact on published results
-GitHub run.py, results.csv, audit.json, manifest.json, tests/, historical/2019/ | present on origin/main | unchanged | preserve 2024 pilot | none
-manifest_before_upgrade.json, results_before_upgrade.csv | untracked at repo root | still at repo root; copies also in historical/2024_pilot_pre_csv_pus/ | preserve split-person ZIP hashes | none
-core_r24/ | absent | imported byte-identical Core R2.4 package including restored synthetic fixtures | canonical joint engine | none; reference CSVs copied, not recomputed
-research/september2026_core_r2/ | absent | imported Core R2 pillar lock | preserve Food/Housing/Transportation specs | none
-ITERATION_NOTES.txt, ITERATION_REGISTER.txt, STATUS.txt | absent | added | required iteration governance | none
-.gitignore | ignored input_data/ and venv | also ignore Census ZIPs and derived person caches | prevent accidental GitHub upload | none
-README.md | 2024-pilot-only | 2024 text retained; added two-track warning | prevent mixing 10.301% with 18.9918% | none
-
-Results comparison
-------------------
-Metric / population | Previous | New | Difference | Explanation
-2024 pilot thrifty national share | 10.301% | 10.301% | 0 | root results.csv not modified
-R2.4 share below three costs | 18.9918% | 18.9918% | 0 | core_r24/results copied, not regenerated
-R2.4 included weighted households | 121,036,726 | 121,036,726 | 0 | same
-R2.4 food / housing / transport / combined | 653.522289 / 1635.994098 / 605.391667 / 2894.908053 | identical | 0 | same
-
-Verification actually executed
-------------------------------
-Test / command | Status | Notes
-Census SHA-256 csv_hus.zip and csv_hus (2).zip vs 8281008e... | PASS |
-Census SHA-256 HESI_Person_Part_1.zip vs 05a4bdcb... | PASS | filename lacks "(1)" vs R2.4 README
-Census SHA-256 HESI_Person_Part_2.zip vs 2a891e40... | PASS |
-Census SHA-256 csv_pus.zip vs GitHub afdc6d90... | PASS | GitHub packaging only; not R2.4 split archives
-core_r24 RELEASE_FILE_HASHES.json 34 files | PASS | after restoring three synthetic fixtures
-python -m unittest discover -s core_r24/tests -v | PASS | 22 tests
-python core_r24/verify_package.py | PASS | 34 hashes; 22 tests; check-existing vs national_R22: 6 metrics, 80 replicates, frame_exact
-run_joint.py on synthetic fixtures vs results/synthetic/ | PASS | executed this session; 80-replicate match atol 1e-7
-pytest tests/test_hesi.py tests/test_synthetic_pipeline.py -v | PASS | 5 tests (2024 pilot)
-python3 research/september2026_core_r2/verify_release.py | PASS | food, housing, transportation, release_register
-food tests from food/ directory | PASS | 7 tests (fails if invoked from parent without cwd)
-housing tests | PASS | 21 tests
-transportation tests | PASS | 4 tests
-full reproduce_from_raw.py national rerun | SKIP | not run; would write large person caches; hashes already verified
-
-NOT executed: clean-environment full ACS national source-to-result rerun.
-
-Provenance
-----------
-- GitHub: https://github.com/KevinMannion/HESI-Pilot.git origin/main 125500b
-- Core R2.4 package: HESI_Core_R24_Source_to_Result_Reproduction.zip
-- Pillars: HESI_September2026_Core_R2_Food_Housing_Transportation.zip
-- Governance templates: HESI_Iteration_Governance_TXT.zip
-- Census ZIPs remain outside git (Downloads / HESI-Pilot/input_data symlinks)
-
-Sensitivity and scientific interpretation
------------------------------------------
-- R2.4 costs are September 2026; income is 2024 ACS gross household income.
-- Joint housing is replacement rent, not observed ACS housing cost.
-- One car is assigned to all included households; that is a scenario, not a mobility standard.
-- 90% intervals are ACS sampling-only.
-- Infant households and >4-bedroom-need households are excluded from the joint cohort.
-- PUMA-HUD mapping and USDA source_2024_2026.csv are frozen research products, not rebuilt here.
-
-Defects / unresolved blockers
------------------------------
-- CLEAN_ENVIRONMENT_REPRODUCED remains false until a clean venv national run matches national_R22.
-- EXTERNALLY_INDEPENDENTLY_REPRODUCED remains false.
-- SCIENTIFICALLY_VALIDATED remains false.
-- test_joint_fixture.py currently asserts saved synthetic CSVs; it does not invoke run_joint.py.
-- No code regenerates puma_fmr_screened.csv from FY26_FMRs_revised.xlsx.
-- No code regenerates source_2024_2026.csv from USDA workbooks.
-- R2.4 README names HESI_Person_Part_1(1).zip; on disk the matching bytes are HESI_Person_Part_1.zip.
-- GitHub csv_pus.zip hash afdc6d90... is a different packaging from the R2.4 split person ZIPs.
-
-Gate decisions
---------------
-- Unit tests: PASS (R2.4 22; GitHub pilot 5; pillars 7+21+4)
-- Synthetic end-to-end: PASS (saved CSV checks and live run_joint on fixtures)
-- Raw Census fingerprints: PASS on local Downloads copies
-- Full source derivation (HUD xlsx / USDA workbooks): NOT DONE
-- Author national execution: YES in R2.4 package; NOT re-run here
-- Clean-environment national rerun: NOT RUN
-- External replication: NOT_CONFIRMED
-- Scientific validation: NOT_CONFIRMED
-
-Decision and next iteration
+Distinction of status flags
 ---------------------------
-- Local import accepted for review. No git commit, push, merge, or pull request.
-- Next: after Kevin reviews test results, optionally commit on hesi/core-r25-integration,
-  then a clean-environment national reproduce_from_raw.py using the hash-verified Census ZIPs
-  with output written outside the git tree.
+CLEAN_ENVIRONMENT_REPRODUCED = true
+  Same operator, fresh Python venv, documented requirements, SHA-256-verified inputs,
+  person caches rebuilt from raw ACS person ZIPs, national outputs matched published
+  R2.4 results within atol=1e-7.
+
+EXTERNALLY_INDEPENDENTLY_REPRODUCED = false
+  No separate person, institution, or machine outside this operator's environment
+  has executed the pipeline and filed an independent report.
+
+SCIENTIFICALLY_VALIDATED = false
+  Matching published numbers does not approve the 18.9918% figure as a September 2026
+  hardship rate, a six-pillar HESI, or a complete adequacy standard.
+
+EXECUTED_BY_AUTHOR remains true for the original R2.4 package.
+
+Dependency versions (isolated venv, used for the national run)
+--------------------------------------------------------------
+Python: 3.13.2
+Platform: macOS-14.5-arm64
+Venv: /Users/kevinmannion/HESI-R25-CleanRepro/venv  (not repository .venv)
+Installed from HESI-Pilot/requirements.txt:
+  numpy==1.26.4
+  pandas==2.3.3
+  python-dateutil==3.0.0
+  pytz==2026.5
+  six==1.17.0
+  tzdata==2026.5
+Thread limits set by reproduce_from_raw.py: OPENBLAS_NUM_THREADS=1, OMP_NUM_THREADS=1,
+MKL_NUM_THREADS=1, PYTHONDONTWRITEBYTECODE=1
+pytest==8.4.2 was installed AFTER the national run, only to execute 2024-pilot tests.
+
+Source hashes (all required national inputs)
+--------------------------------------------
+housing  csv_hus.zip
+  8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0  PASS
+person_a  HESI_Person_Part_1.zip
+  05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8  PASS
+person_b  HESI_Person_Part_2.zip
+  2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c  PASS
+geography  core_r24/inputs/puma_fmr_screened.csv
+  210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee  PASS
+prices  core_r24/inputs/source_2024_2026.csv
+  90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c  PASS
+
+National command
+----------------
+python reproduce_from_raw.py \
+  --housing "/Users/kevinmannion/Downloads/csv_hus.zip" \
+  --person-a "/Users/kevinmannion/Downloads/HESI_Person_Part_1.zip" \
+  --person-b "/Users/kevinmannion/Downloads/HESI_Person_Part_2.zip" \
+  --output "/Users/kevinmannion/HESI-R25-CleanRepro/output"
+
+Person caches rebuilt in an empty output directory (not reused).
+Person rows processed: 3,422,888. Households in food and composition caches: 1,531,614.
+
+PASS/FAIL matrix
+----------------
+Gate | Status | Notes
+Isolated venv from documented requirements | PASS | numpy 1.26.4, pandas 2.3.3
+Five required input SHA-256 checks | PASS |
+Rebuild person caches from raw PUMS | PASS | 3,422,888 rows
+Published metrics vs results/national_R22 | PASS | atol=1e-7
+No-car sensitivity vs results/rebuilt_from_raw | PASS |
+All 80 SDR replicate columns | PASS |
+Household exclusion frame exact match | PASS | included weight 121,036,726
+core_r24 unit tests | PASS | 22 tests
+core_r24 verify_package.py | PASS | 34 package hashes + saved-result regression
+Pillar verify_release.py | PASS |
+Food / housing / transportation unit tests | PASS | 7 / 21 / 4
+2024 pilot pytest | PASS | 5 tests
+Live run_joint on packaged synthetic *.pkl under NumPy 1.26.4 | FAIL | fixtures pickled with NumPy 2 (numpy._core.numeric)
+Synthetic CSV fixture assertions (test_joint_fixture.py) | PASS | reads saved CSVs only
+HUD xlsx -> puma_fmr_screened.csv | FAIL / not reproduced | frozen table hash-checked only
+USDA workbooks -> source_2024_2026.csv | FAIL / not reproduced | frozen table hash-checked only
+Person-cache pickle SHA-256 vs author-run caches | FAIL (bytes) | numerical results still PASS; serialization differs
+External independent reproduction | FAIL / not done |
+Scientific validation | FAIL / not claimed |
+Wrapper shell PIPESTATUS under set -u | FAIL (shell) | Python process printed status PASS; not a model failure
+
+Reproduced national estimates (new run; matched published R2.4)
+---------------------------------------------------------------
+food_month                                 653.5222885549634     PASS
+housing_month                             1635.9940981865968     PASS
+one_vehicle_month_PROVISIONAL              605.3916666666664     PASS
+total_month_PROVISIONAL                   2894.90805340822       PASS
+income_month_2024_vintage                 9325.244238086181      PASS
+share_income_below_three_costs_PROVISIONAL 0.18991790144753254   PASS (18.9918%)
+share_below_cost_NO_CAR_sensitivity        0.14032179786488938   PASS
+included_rows                              1235731               PASS
+included_weight                            121036726.0           PASS
+
+Exclusion frame (exact match to published audits)
+raw_rows 1631969; occupied_rows 1348408; occupied_weight 132737145
+geography_excluded_rows 64079 / weight 6271320
+composition_excluded_rows 113 / weight 17463
+over4_excluded_rows 23486 / weight 2591711
+infant_excluded_rows 24999 / weight 2819925
+
+Known limitations
+-----------------
+- 18.9918% is a September 2026 modeled cost versus 2024 ACS gross income scenario.
+  Do not publish it as a measured September 2026 hardship prevalence.
+- Housing is HUD replacement rent, not observed ACS rent/owner cost.
+- Transport assigns one $7,264.70/year vehicle to every included household.
+- 90% intervals are ACS sampling-only.
+- Infant-containing households and households needing >4 bedrooms are excluded.
+- puma_fmr_screened.csv is a frozen research product. Original HUD FY2026 FMR and
+  SAFMR workbooks were not used to regenerate it in this run.
+- source_2024_2026.csv is a frozen curated USDA table. Original USDA plan workbooks
+  were not used to regenerate it in this run.
+- Therefore upstream source-to-result reproducibility is NOT complete.
+- Scientific validation is NOT complete.
+
+Evidence included in this commit
+--------------------------------
+core_r24/reproduction_runs/2026-10-21_clean_env/
+STATUS.txt, ITERATION_REGISTER.txt, this file.
+
+Excluded from git
+-----------------
+Census microdata ZIPs; derived person caches under /Users/kevinmannion/HESI-R25-CleanRepro/output/;
+virtual environments; compiled files; root untracked manifest_before_upgrade.json and
+results_before_upgrade.csv.
+
+Formulas and published baselines
+--------------------------------
+Unchanged. core_r24/src/* and core_r24/results/national_R22/ plus rebuilt_from_raw/ were
+not modified.

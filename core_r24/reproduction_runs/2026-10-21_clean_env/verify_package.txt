@@ -1,0 +1,12 @@
+----------------------------------------------------------------------
+Ran 22 tests in 0.021s
+
+OK
+{
+  "status": "PASS",
+  "metrics_compared": 6,
+  "replicates_compared": 80,
+  "frame_exact": true
+}
+PASS: all 34 source/result package files match release hashes
+PASS: regression tests and reproduced national results

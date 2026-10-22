@@ -1,0 +1,75 @@
+{
+  "title": "HESI Core R2.5 clean-environment national reproduction",
+  "captured_utc": "2026-10-22T00:29:30+00:00",
+  "git_branch": "hesi/core-r25-integration",
+  "git_baseline_commit": "d658c08cf425873b5dea6c0cf6fdbb537446db6a",
+  "formulas_changed": false,
+  "published_baselines_changed": false,
+  "committed": false,
+  "pushed": false,
+  "environment": {
+    "isolated_venv": "/Users/kevinmannion/HESI-R25-CleanRepro/venv",
+    "not_repository_dotvenv": true,
+    "python": "3.13.2",
+    "platform": "macOS-14.5-arm64",
+    "packages": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    },
+    "requirements_source": "HESI-Pilot/requirements.txt (numpy>=1.22,<2; pandas>=1.4,<3)",
+    "numpy_built_from_source_on_cpython_313": true
+  },
+  "inputs_verified": {
+    "housing": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "person_a": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "person_b": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+    "geography": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "prices": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+    "all_match_required": true
+  },
+  "person_rebuild": {
+    "reused_prior_caches": false,
+    "person_rows": 3422888,
+    "households_food": 1531614,
+    "households_composition": 1531614,
+    "generated_food_cache_sha256": "9ca1e3d2c31b5121459386e437af0352732956b3d54791d7a5363eb7ffc0ed61",
+    "generated_composition_cache_sha256": "4e7c8dbbbf6decb65bb5de0d0bb72260fd812f5c8e8f0604eefb00ffc2bf7e7d",
+    "author_run_food_cache_sha256": "3166e998c8836cdb924c81818836774463796b1106a824ebc2777c806c3bc0b2",
+    "author_run_composition_cache_sha256": "b7e4a85ee9c9e2885c24ae1f65290ce0d82be897e8db8354e86c5bf2f79c2418",
+    "pickle_bytes_match_author_run": false,
+    "pickle_difference_interpretation": "Not a numerical failure. Pickle serialization can differ across pandas/numpy versions while grouped household aggregates remain equal within 1e-7."
+  },
+  "national_results_vs_R24": {
+    "tolerance": {"atol": 1e-7, "rtol": 0},
+    "python_script_status": "PASS",
+    "extended_comparison_status": "PASS",
+    "included_weighted_households": 121036726.0,
+    "food_month": 653.5222885549634,
+    "housing_month": 1635.9940981865968,
+    "transport_month_PROVISIONAL": 605.3916666666664,
+    "total_month_PROVISIONAL": 2894.90805340822,
+    "share_income_below_three_costs_PROVISIONAL": 0.18991790144753254,
+    "share_below_cost_NO_CAR_sensitivity": 0.14032179786488938,
+    "metrics_compared_to_national_R22": 6,
+    "no_car_also_compared_to_rebuilt_from_raw": true,
+    "replicates_compared": 80,
+    "exclusion_frame_exact": true
+  },
+  "status_flags": {
+    "EXECUTED_BY_AUTHOR": true,
+    "CLEAN_ENVIRONMENT_REPRODUCED": true,
+    "EXTERNALLY_INDEPENDENTLY_REPRODUCED": false,
+    "SCIENTIFICALLY_VALIDATED": false
+  },
+  "caveats": [
+    "CLEAN_ENVIRONMENT_REPRODUCED applies to this operator rerunning Core R2.4 in a fresh venv with hash-verified inputs. It is not third-party independent reproduction.",
+    "18.9918% remains a September 2026 cost / 2024 income scenario, not a validated hardship rate.",
+    "HUD PUMA mapping and USDA source table were not rebuilt from upstream xlsx/pdf files.",
+    "Packaged synthetic pickle fixtures do not load under NumPy 1.26.4 (they require NumPy 2 pickle module layout). National reproduction does not use those fixtures.",
+    "Large Census ZIPs and derived person caches were written outside git under /Users/kevinmannion/HESI-R25-CleanRepro/output."
+  ]
+}
