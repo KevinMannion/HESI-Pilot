@@ -1,0 +1,36 @@
+{
+  "run_class": "official",
+  "engine": "matched_year_2024",
+  "model_vintage": "matched2024_provisional_repro",
+  "scientific_publication": "NO-GO",
+  "share_metric": "share_income_below_three_costs_2024matched_MODELED",
+  "expected_headline": {
+    "share_mean": 0.17683956520767094,
+    "public_lock_percent": "17.6839565%",
+    "status": "PROVISIONAL_RESULT_NOT_A_PUBLICATION",
+    "externally_independently_reproduced": false
+  },
+  "required_input_sha256": {
+    "housing_zip": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "person_official_zip": "afdc6d90c6e2f0bab365ed32d95ba4c4d8ac651162f46ac7861295b2dc469894",
+    "usda_prices_source_2024_2026": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c"
+  },
+  "inner_csv_sha256": {
+    "psam_husa.csv": "bd0f4ce01e0c7c5636696af8ecc12cf20dc2da8e4390b3f29e2653700e27ead5",
+    "psam_husb.csv": "1fb715e8eb2eb1ec6698b485032c5fec572e79357c9ef6288c99086dd6a630eb",
+    "psam_pusa.csv": "b1c2ba439cb7a65f85aa36821d18c1888ae4df77cfeec0facadc1c2cff74680c",
+    "psam_pusb.csv": "b0ee65a88f8acf7e768ef94da2794bc7af2be81bfae8d2742b130f4fded13c88"
+  },
+  "transport_annual_usd": 6870.67,
+  "forbidden_output_paths": [
+    "core_r24/results/national_R22",
+    "core_r24/results/rebuilt_from_raw",
+    "core_r24/results/synthetic",
+    "research/historical_matched_baseline/results/matched2024_provisional"
+  ],
+  "census_inputs": {
+    "housing": "operator-supplied authenticated Census csv_hus.zip (CLI --housing; never committed)",
+    "person": "operator-supplied authenticated Census csv_pus.zip (CLI --person-official; never committed)"
+  },
+  "notes": "Example official matched-year configuration. Requires --out, --cache, --model-vintage, and --config. Do not use --exploratory. Do not write matched2024_provisional. Scientific publication remains NO-GO."
+}

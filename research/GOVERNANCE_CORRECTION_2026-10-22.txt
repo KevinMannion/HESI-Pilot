@@ -24,6 +24,10 @@ branch content without a separate, explicit formal-publication decision.
 The 2734062 bytes remain the historical record. They are not restated
 here as an approved national estimate.
 
+Do not retroactively describe that execution or GitHub push as an authorized
+formal publication or as scientific approval. The execution happened; the
+authorization for public-estimate release did not.
+
 Corrective decision (this review)
 ---------------------------------
 The 17.6839565% (about 17.7%) 2024 matched-year figure is:

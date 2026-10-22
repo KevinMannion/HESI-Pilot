@@ -18,7 +18,7 @@ class IntegrityVersioning(unittest.TestCase):
         self.assertIn("verify_release.py", files)
 
     def test_v1_against_historical_overlay_passes(self):
-        overlay = BASE / "historical_release_e45eb87"
+        overlay = BASE / "historical_release_fb58ddc"
         report = check_manifest(BASE / "INTEGRITY_MANIFEST.json", overlay=overlay, root=BASE)
         self.assertEqual(report["status"], "PASS", report["failed"])
 

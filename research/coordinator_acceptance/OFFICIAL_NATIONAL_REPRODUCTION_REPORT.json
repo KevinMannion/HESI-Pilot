@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "metrics_compared": 6,
+  "replicates_compared": 80,
+  "frame_exact": true,
+  "raw_source_hashes": {
+    "housing": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "person_a": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "person_b": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+    "geography": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "prices": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c"
+  },
+  "generated_cache_sha256": {
+    "acs2024_food_person_aggregates.pkl": "9ca1e3d2c31b5121459386e437af0352732956b3d54791d7a5363eb7ffc0ed61",
+    "acs2024_person_composition.pkl": "4e7c8dbbbf6decb65bb5de0d0bb72260fd812f5c8e8f0604eefb00ffc2bf7e7d"
+  },
+  "run_class": "official",
+  "model_vintage": "r24_sep2026_costs_on_acs2024_income",
+  "exploratory_defaults_documented": false,
+  "config_sha256": "206ad5e884ae8efb5a08fa049f7718898054f32d5ff816fd5a1bf7a2ec69fa45",
+  "config_path": "/Users/kevinmannion/HESI-Pilot/core_r24/configs/official_r24_sep2026_on_acs2024.json",
+  "scientific_publication": "NO-GO"
+}

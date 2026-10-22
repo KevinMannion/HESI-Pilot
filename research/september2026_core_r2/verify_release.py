@@ -6,7 +6,7 @@ print(integrity.stdout)
 if integrity.returncode:
  print('FAILED integrity manifests',integrity.stderr,file=sys.stderr)
  sys.exit(1)
-checks=[('integrity_versioning',['-m','unittest','-v','test_integrity_versioning.py']),('food', ['-m','unittest','-v','test_current_food.py']),('housing',['-m','unittest','-v','test_adequacy.py','test_reference.py']),('transportation',['-m','unittest','discover','-s','.','-p','test_*.py','-v'])]
+checks=[('integrity_versioning',['-m','unittest','-v','test_integrity_versioning.py','test_manifest_fail_closed.py']),('food', ['-m','unittest','-v','test_current_food.py']),('housing',['-m','unittest','-v','test_adequacy.py','test_reference.py']),('transportation',['-m','unittest','discover','-s','.','-p','test_*.py','-v'])]
 results={'integrity_manifests':{'passed':True}}
 for pillar,cmd in checks:
  cwd=BASE if pillar=='integrity_versioning' else BASE/pillar

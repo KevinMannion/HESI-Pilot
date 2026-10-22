@@ -1,7 +1,13 @@
 {
   "title": "Core R2.4 package hash-lock versions",
-  "note": "Never rewrite historical_release_e45eb87/RELEASE_FILE_HASHES.json to match later src/run_joint.py.",
+  "note": "Never rewrite historical RELEASE_FILE_HASHES.json snapshots to match later src/run_joint.py. Proposed historical v1 baseline is fb58ddc.",
   "locks": [
+    {
+      "id": "release_file_hashes_fb58ddc",
+      "path": "historical_release_fb58ddc/RELEASE_FILE_HASHES.json",
+      "authenticates": "Public research checkpoint fb58ddc045976d844c6da1fca99ed1f9f108bb85 core_r24 package, including src/run_joint.py sha 030cb0ae0baed16770e198a0c9f2353180ad3ccb55e6483d37b1c11dd3a24034. Frozen results/inputs keys are the R2.4 scientific lock.",
+      "snapshot_script": "historical_release_fb58ddc/src/run_joint.py"
+    },
     {
       "id": "release_file_hashes_e45eb87",
       "path": "historical_release_e45eb87/RELEASE_FILE_HASHES.json",

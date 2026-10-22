@@ -1,0 +1,69 @@
+HESI R2.5 — acceptance-criteria map (engineering)
+=================================================
+Audit Lead reported 86 tests. The Research Coordinator's finalized
+acceptance-test file was NOT present in this environment as a transferred
+artifact. This map is the implemented coverage against the written
+coordinator phases. Unexecuted coordinator items are BLOCKED, not PASS.
+
+A. Historical integrity
+   A1 fb58ddc is v1 baseline, overlay hashes match fb58ddc scripts
+      -> verify_integrity registered pillar_integrity_v1_fb58ddc; test_integrity_versioning
+   A2 v1 evidence preserved; history not rewritten
+      -> INTEGRITY_MANIFEST.json unmodified vs 2734062/fb58ddc
+   A3 separate v2 manifests for modified scripts
+      -> INTEGRITY_MANIFEST.v2.json and sibling *.v2.json
+   A4 missing/empty/malformed/mismatch FAIL
+      -> test_manifest_fail_closed.py
+   A5 release verifier checks every registered core and pillar manifest
+      -> verify_release.py then verify_package.py
+   A6 no validation bypass PASS
+      -> HESI_SKIP_INTEGRITY rejected
+   A7 never refresh historical hashes in place
+      -> historical_release_fb58ddc / e45eb87 snapshots
+
+B. Input/output safety
+   B1 housing and person inner+ZIP verification
+      -> pums_archive.verify_housing_zip always inner CSVs; split person inner+ZIP
+   B2 official combined and split person archives
+      -> person_zip_args
+   B3 missing/duplicate/unexpected/bad hash rejected
+      -> test_pums_archive.py
+   B4 failed runs leave no reusable contaminated caches
+      -> reproduce staging tempfile; rebuild --resume off by default
+   B5 protected paths before mkdir
+      -> test_protected_outputs.py
+   B6 run_matched_national cannot default-write matched2024_provisional
+      -> test_official_run_contract.py
+   B7 official runs require explicit output, vintage, config
+      -> reproduce_from_raw.py / run_matched_national.py --exploratory vs official
+   B8 exploratory defaults documented and cannot modify frozen outputs
+      -> run_class in reports; protected_paths
+
+C. Scientific governance
+   C1 18.9918% and 80 replicates frozen
+   C2 10.301% frozen
+   C3 17.6839565% preserved
+   C4 nowcast NO-GO and VALIDATION_GATES.json unchanged
+   C5 Track E additive dated correction, not retroactive authorization
+      -> GOVERNANCE_CORRECTION_2026-10-22.txt
+   C6 EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO
+   C7 scientific publication NO-GO
+   C8 FY2025 April 27/28 documentation correction
+      -> ERRATA E14; HISTORICAL_ALIGNMENT_PROTOCOL.md
+   C9 Westchester alternatives documented, none selected
+      -> WESTCHESTER_FMR_ALTERNATIVES.md
+
+D. Reproduction
+   D1 national official Census from-raw, 6 metrics + 80 replicates
+   D2 matched-year + 80 replicates
+   D3 14 matched-year ARTIFACT_LOCK files unchanged
+      -> test_artifact_lock asserts len==14 and hashes
+   D4 frozen dirs byte-identical after failed protected run
+   D5 BLS source-hash tests
+
+BLOCKED
+-------
+Coordinator "finalized acceptance tests" file: not transferred into this
+workspace. Cannot claim a 1:1 PASS against an unseen 86-row spec. Implemented
+unittest functions in-repo exceed 86 if overlay copies are counted; unique
+application tests are mapped above rather than by count.

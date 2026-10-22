@@ -1,29 +1,69 @@
 """Verify versioned integrity manifests against the tree they authenticate.
 
 Never checks a historical manifest against current modified files.
-A mismatch is an explicit FAIL.
+A mismatch, missing/empty/malformed manifest, or empty register is FAIL.
+No environment variable can skip these checks.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import os
+import re
 import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
 REGISTER = BASE / "MANIFEST_REGISTER.json"
+HASH_RE = re.compile(r"^[0-9a-f]{64}$")
+BYPASS_ENV = ("HESI_SKIP_INTEGRITY", "HESI_SKIP_HASH", "HESI_ALLOW_MANIFEST_BYPASS")
 
 
 def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def resolve_file(rel, overlay, root):
-    """Historical overlays supply drifted files. Unchanged files may come from root.
+def refuse_bypass():
+    hits = [k for k in BYPASS_ENV if os.environ.get(k)]
+    if hits:
+        raise SystemExit("INTEGRITY FAIL: unauthorized bypass environment set: " + ",".join(hits))
 
-    Never hash a drifted working-tree file under a historical expected hash.
-    """
+
+def load_json_object(path, label):
+    path = Path(path)
+    if not path.is_file():
+        raise ValueError(f"MISSING {label}: {path}")
+    raw = path.read_text()
+    if not raw.strip():
+        raise ValueError(f"EMPTY {label}: {path}")
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"MALFORMED {label}: {path}: {exc}") from exc
+    if not isinstance(data, dict) or not data:
+        raise ValueError(f"EMPTY OR NON-OBJECT {label}: {path}")
+    return data
+
+
+def file_map(man):
+    files = man["files"] if "files" in man else man
+    if not isinstance(files, dict) or not files:
+        raise ValueError("manifest files map is empty")
+    skip_keys = {"authenticates", "manifest_id", "historical_predecessor", "note", "title", "original_packages"}
+    out = {}
+    for rel, want in files.items():
+        if rel in skip_keys or not isinstance(want, str):
+            continue
+        if not HASH_RE.match(want):
+            raise ValueError(f"malformed hash for {rel}: {want!r}")
+        out[rel] = want
+    if not out:
+        raise ValueError("manifest contains no file hashes")
+    return out
+
+
+def resolve_file(rel, overlay, root):
     tree = Path(root) / rel
     if overlay:
         snapped = Path(overlay) / rel
@@ -39,9 +79,19 @@ def resolve_file(rel, overlay, root):
 
 def check_manifest(manifest_path, overlay=None, root=None):
     root = Path(root) if root else BASE
-    man = json.loads(Path(manifest_path).read_text())
-    files = man["files"] if "files" in man else man
     failed = []
+    try:
+        man = load_json_object(manifest_path, "manifest")
+        files = file_map(man)
+    except ValueError as exc:
+        return {
+            "manifest": str(Path(manifest_path).name),
+            "overlay": str(overlay) if overlay else "working_tree",
+            "root": str(root),
+            "checked": 0,
+            "failed": [{"file": str(manifest_path), "error": str(exc)}],
+            "status": "FAIL",
+        }
     checked = 0
     for rel, want in files.items():
         path, source = resolve_file(rel, overlay, root)
@@ -74,20 +124,26 @@ def check_manifest(manifest_path, overlay=None, root=None):
 
 
 def load_register():
-    return json.loads(REGISTER.read_text())
+    return load_json_object(REGISTER, "MANIFEST_REGISTER.json")
 
 
 def check_registered():
-    reg = load_register()
+    try:
+        reg = load_register()
+    except ValueError as exc:
+        return {"status": "FAIL", "reports": [{"id": "register", "status": "FAIL", "failed": [{"error": str(exc)}]}]}
+    manifests = reg.get("manifests")
+    if not isinstance(manifests, list) or not manifests:
+        return {"status": "FAIL", "reports": [{"id": "register", "status": "FAIL", "failed": [{"error": "manifests list missing or empty"}]}]}
     reports = []
-    for entry in reg["manifests"]:
+    for entry in manifests:
         overlay = (BASE / entry["overlay"]).resolve() if entry.get("overlay") else None
         root = (BASE / entry["root"]).resolve() if entry.get("root") else BASE
         reports.append(
             {
                 **check_manifest(BASE / entry["path"], overlay, root),
-                "id": entry["id"],
-                "authenticates": entry["authenticates"],
+                "id": entry.get("id"),
+                "authenticates": entry.get("authenticates"),
             }
         )
     status = "PASS" if all(r["status"] == "PASS" for r in reports) else "FAIL"
@@ -95,11 +151,13 @@ def check_registered():
 
 
 def check_unapproved_locked_script_edits():
-    """FAIL if a v1-locked file changed on disk without a v2 hash and register note."""
-    reg = load_register()
+    try:
+        reg = load_register()
+        v1 = file_map(load_json_object(BASE / "INTEGRITY_MANIFEST.json", "INTEGRITY_MANIFEST.json"))
+        v2 = file_map(load_json_object(BASE / "INTEGRITY_MANIFEST.v2.json", "INTEGRITY_MANIFEST.v2.json"))
+    except ValueError as exc:
+        return {"status": "FAIL", "problems": [{"error": str(exc)}]}
     documented = {c["file"]: c for c in reg.get("documented_working_tree_changes", [])}
-    v1 = json.loads((BASE / "INTEGRITY_MANIFEST.json").read_text())["files"]
-    v2 = json.loads((BASE / "INTEGRITY_MANIFEST.v2.json").read_text())["files"]
     problems = []
     for rel, old in v1.items():
         current = sha256(BASE / rel)
@@ -114,6 +172,7 @@ def check_unapproved_locked_script_edits():
 
 
 def main():
+    refuse_bypass()
     p = argparse.ArgumentParser()
     p.add_argument("--all", action="store_true")
     a = p.parse_args()

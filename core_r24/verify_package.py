@@ -15,13 +15,14 @@ for rel,want in files.items():
  if got!=want:raise SystemExit('HASH MISMATCH '+rel+' (current package lock)')
 print('PASS: all',len(files),'source/result package files match current RELEASE_FILE_HASHES.json')
 
-historical=json.loads((ROOT/'historical_release_e45eb87/RELEASE_FILE_HASHES.json').read_text())
-frozen_keys=[k for k in historical if k.startswith('results/') or k.startswith('inputs/')]
-for rel in frozen_keys:
- want=historical[rel]
- got=digest(ROOT/rel)
- if got!=want:raise SystemExit('FROZEN SCIENTIFIC HASH DRIFT '+rel+' vs historical e45eb87 lock')
-print('PASS: frozen inputs/results still match historical e45eb87 RELEASE_FILE_HASHES.json')
+for label,hist_path in (('fb58ddc',ROOT/'historical_release_fb58ddc/RELEASE_FILE_HASHES.json'),('e45eb87',ROOT/'historical_release_e45eb87/RELEASE_FILE_HASHES.json')):
+ historical=json.loads(hist_path.read_text())
+ frozen_keys=[k for k in historical if k.startswith('results/') or k.startswith('inputs/')]
+ for rel in frozen_keys:
+  want=historical[rel]
+  got=digest(ROOT/rel)
+  if got!=want:raise SystemExit('FROZEN SCIENTIFIC HASH DRIFT '+rel+' vs historical '+label+' lock')
+print('PASS: frozen inputs/results still match historical fb58ddc and e45eb87 RELEASE_FILE_HASHES.json')
 
 env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1')
 integrity=subprocess.run([sys.executable,str(REPO/'research/september2026_core_r2/verify_integrity.py'),'--all'],cwd=REPO/'research/september2026_core_r2',env=env,capture_output=True,text=True)

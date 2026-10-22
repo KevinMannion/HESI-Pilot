@@ -1,14 +1,14 @@
 HESI STATUS — Core R2.5 integration working tree
 ================================================
 Date: 2026-10-22
-Branch: hesi/core-r25-integration
-Public research branch (push this branch only; no merge to main, no PR, not a scientific release).
+Branch: review/r25-release-integrity (engineering review only; do not overwrite hesi/core-r25-integration; no merge to main; not a scientific release).
+Published integration checkpoint remains origin/hesi/core-r25-integration = 273406208abe439cbad960567f32822b870c43b5.
 COMPUTATIONALLY_REPRODUCED: YES, for the specified R2.4 calculations
 EXTERNALLY_INDEPENDENTLY_REPRODUCED: NO
 SCIENTIFICALLY_VALIDATED: NO
 SEPTEMBER_2026_INCOME_NOWCAST: NO-GO
 METHODS_REVIEW_REMEDIATION_R1: CLOSED and published as e45eb87
-RELEASE_INTEGRITY_REMEDIATION: candidate on review/r25-release-integrity (do not treat as overwrite of origin/hesi/core-r25-integration)
+RELEASE_INTEGRITY_REMEDIATION: review/r25-release-integrity candidate after official configured runs. Coordinator ACCEPTANCE_TESTS.md transferred; named pytest suite largely unimplemented (see research/coordinator_acceptance/EVIDENCE_MAP.md). Sign-off INCOMPLETE. Scientific publication NO-GO.
 MATCHED_YEAR_2024_NATIONAL: PROVISIONAL — NOT SCIENTIFICALLY VALIDATED. Computational 17.6839565% (about 17.7%) of 121,036,726. External computational reproduction pending. Not a measured hardship rate.
 Pushing to GitHub does not constitute scientific validation.
 Recovery points (do not rewrite): d658c08, 55b61ea

@@ -72,7 +72,7 @@ class ProtectedOutputs(unittest.TestCase):
         )
         self.assertNotEqual(proc.returncode, 0)
         combined = proc.stderr + proc.stdout
-        self.assertTrue("PROTECTED OUTPUT PATH" in combined or "INPUT HASH MISMATCH" in combined or "SOURCE" in combined)
+        self.assertIn("PROTECTED OUTPUT PATH", combined)
         self.assertEqual(listing(target), before)
         self.assertFalse((target / "derived_person_caches").exists())
 

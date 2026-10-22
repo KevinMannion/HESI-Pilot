@@ -19,7 +19,7 @@ Leap year 2024 has 366 days.
    - 2024-01-01 through 2024-03-10 (70 days): FY2024 original county FMR (effective 2023-10-01).
    - 2024-03-11 through 2024-09-30 (204 days): FY2024 revised county FMR (Honolulu revision, 89 FR 9169, effective 2024-03-11). For every county except Honolulu County these two files are identical.
    - 2024-10-01 through 2024-12-31 (92 days): FY2025 original county FMR (effective 2024-10-01).
-   - FY2025 **revised** (effective 2025-04-27) is after calendar 2024 and is **not** in the default.
+   - FY2025 **revised** Federal Register notice (90 FR 14158) is **effective 2025-04-28**. HUD USER labels the corresponding county/SAFMR workbooks “Effective April 27, 2025”. That April 27/28 labeling difference is a documentation error if treated as a single date; **neither date falls inside calendar 2024**, so the default day-weight does **not** use FY2025 revised. Frozen results are unchanged. See ERRATA E14.
 
 2. **Alternate fiscal-year table:** FY2024 revised for all 12 months (labeled; not a calendar-year mix).
 

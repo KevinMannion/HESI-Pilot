@@ -105,6 +105,7 @@ class Protocol(unittest.TestCase):
         lock = json.loads((OUT / "ARTIFACT_LOCK.json").read_text())
         self.assertTrue(lock["national_R22_untouched"])
         self.assertEqual(lock["national_R22_sha256"], R22)
+        self.assertEqual(len(lock["files"]), 14)
         for rel, meta in lock["files"].items():
             self.assertEqual(sha256(OUT / rel), meta["sha256"], rel)
 

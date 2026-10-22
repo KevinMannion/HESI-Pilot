@@ -16,6 +16,9 @@ def load_lock(path=LOCK_PATH):
 
 
 def sha256_file(path):
+    path = Path(path)
+    if not path.is_file():
+        raise RuntimeError(f"INPUT MISSING: {path}")
     h = hashlib.sha256()
     with open(path, "rb") as f:
         for chunk in iter(lambda: f.read(8 * 1024 * 1024), b""):
@@ -33,12 +36,34 @@ def sha256_zip_member(zip_path, member):
 
 
 def csv_members(zip_path, prefix):
-    with zipfile.ZipFile(zip_path) as z:
+    path = Path(zip_path)
+    if not path.is_file():
+        raise RuntimeError(f"INPUT MISSING: {path}")
+    with zipfile.ZipFile(path) as z:
         names = [n for n in z.namelist() if Path(n).name.lower().startswith(prefix) and n.lower().endswith(".csv")]
     bases = [Path(n).name.lower() for n in names]
     if len(bases) != len(set(bases)):
         raise RuntimeError(f"Duplicate inner CSV members for prefix {prefix}: {names}")
     return names
+
+
+def _inner_csv_report(zip_path, required, prefix, lock):
+    members = csv_members(zip_path, prefix)
+    bases = {Path(n).name.lower(): n for n in members}
+    missing = [n for n in required if n not in bases]
+    if missing:
+        raise RuntimeError(f"Archive missing inner CSV {missing}")
+    unexpected = sorted(set(bases) - set(required))
+    if unexpected:
+        raise RuntimeError(f"Archive unexpected inner CSV members: {unexpected}")
+    inner = {}
+    for name in required:
+        digest = sha256_zip_member(zip_path, bases[name])
+        expected = lock["inner_csv_sha256"][name]
+        if digest != expected:
+            raise RuntimeError(f"INNER CSV HASH MISMATCH {name}: {digest} != {expected}")
+        inner[name] = digest
+    return inner
 
 
 def verify_split_person_zips(part1, part2, lock=None):
@@ -47,26 +72,15 @@ def verify_split_person_zips(part1, part2, lock=None):
     exp = lock["r24_locked_zip_sha256"]
     if got["person_part_1"] != exp["person_part_1"] or got["person_part_2"] != exp["person_part_2"]:
         raise RuntimeError(f"INPUT HASH MISMATCH split person ZIPs: {got} != {exp['person_part_1']}/{exp['person_part_2']}")
-    return {"mode": "split_zips", "zip_sha256": got, "status": "PASS"}
+    inner_a = _inner_csv_report(part1, ("psam_pusa.csv",), "psam_pus", lock)
+    inner_b = _inner_csv_report(part2, ("psam_pusb.csv",), "psam_pus", lock)
+    return {"mode": "split_zips", "zip_sha256": got, "inner_csv_sha256": {**inner_a, **inner_b}, "status": "PASS"}
 
 
 def verify_official_person_zip(path, lock=None):
     lock = lock or load_lock()
-    members = csv_members(path, "psam_pus")
-    bases = {Path(n).name.lower(): n for n in members}
-    missing = [n for n in REQUIRED_PERSON_CSV if n not in bases]
-    if missing:
-        raise RuntimeError(f"Official person ZIP missing inner CSV {missing}")
-    unexpected = sorted(set(bases) - set(REQUIRED_PERSON_CSV))
-    if unexpected:
-        raise RuntimeError(f"Official person ZIP unexpected inner CSV members: {unexpected}")
-    inner = {}
-    for name in REQUIRED_PERSON_CSV:
-        digest = sha256_zip_member(path, bases[name])
-        expected = lock["inner_csv_sha256"][name]
-        if digest != expected:
-            raise RuntimeError(f"INNER CSV HASH MISMATCH {name}: {digest} != {expected}")
-        inner[name] = digest
+    sha256_file(path)
+    inner = _inner_csv_report(path, REQUIRED_PERSON_CSV, "psam_pus", lock)
     return {
         "mode": "official_combined_zip",
         "zip_sha256": sha256_file(path),
@@ -77,26 +91,19 @@ def verify_official_person_zip(path, lock=None):
 
 
 def verify_housing_zip(path, lock=None):
+    """Always verify required inner housing CSVs. ZIP SHA-256 is an additional lock, not a bypass."""
     lock = lock or load_lock()
     digest = sha256_file(path)
     expected = lock["r24_locked_zip_sha256"]["housing_csv_hus.zip"]
-    if digest == expected:
-        return {"mode": "housing_zip_sha256", "zip_sha256": digest, "status": "PASS"}
-    members = csv_members(path, "psam_hus")
-    bases = {Path(n).name.lower(): n for n in members}
-    unexpected = sorted(set(bases) - set(REQUIRED_HOUSING_CSV))
-    if unexpected:
-        raise RuntimeError(f"Housing ZIP unexpected inner CSV members: {unexpected}")
-    inner = {}
-    for name in REQUIRED_HOUSING_CSV:
-        if name not in bases:
-            raise RuntimeError(f"Housing ZIP missing {name} and ZIP SHA-256 mismatch: {digest} != {expected}")
-        got = sha256_zip_member(path, bases[name])
-        exp = lock["inner_csv_sha256"][name]
-        if got != exp:
-            raise RuntimeError(f"INNER CSV HASH MISMATCH {name}: {got} != {exp}")
-        inner[name] = got
-    return {"mode": "housing_inner_csv", "zip_sha256": digest, "inner_csv_sha256": inner, "status": "PASS"}
+    inner = _inner_csv_report(path, REQUIRED_HOUSING_CSV, "psam_hus", lock)
+    zip_ok = digest == expected
+    return {
+        "mode": "housing_zip_and_inner" if zip_ok else "housing_inner_csv",
+        "zip_sha256": digest,
+        "zip_sha256_matches_r24_lock": zip_ok,
+        "inner_csv_sha256": inner,
+        "status": "PASS",
+    }
 
 
 def person_zip_args(official=None, part1=None, part2=None, lock=None):

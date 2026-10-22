@@ -1,7 +1,7 @@
 {
   "manifest_id": "INTEGRITY_MANIFEST.v2",
   "authenticates": "Working tree of hesi/core-r25-integration after release-integrity remediation (unpublished until committed). Does not authenticate e45eb87 or 2734062 as identical trees.",
-  "historical_predecessor": "INTEGRITY_MANIFEST.json + historical_release_e45eb87 overlay authenticate Methods Review Remediation Round 1 close-out e45eb8766263eed52f6d7894e3464f8ffea76094",
+  "historical_predecessor": "INTEGRITY_MANIFEST.json + historical_release_fb58ddc overlay authenticate proposed v1 baseline fb58ddc045976d844c6da1fca99ed1f9f108bb85",
   "files": {
     "LOCK_REGISTER.json": "be3388d7596d564cd9d383908bc391655332215cd80f7450c188d256d70d148b",
     "README.md": "163cf8ff422c1c82092d7617e87aaff75df11e9d8b8cdef92687b8e61f31bb46",
@@ -42,8 +42,9 @@
     "transportation/september_2026_cpi_transport.csv": "a8c630993283db886620b63d7051349700a062748e25bf30be4fa0bc4b9a77ca",
     "transportation/test_standard.py": "95302c98bf9d78326f59fd09c3ad6cf8f0dd7c2d1b0e5f7e53310678820038ed",
     "transportation/transport_reference_2026_09.csv": "19cc412e1d13662782ee57315f148f0a2187e1fd1613052c3aebd3397a687af6",
-    "verify_release.py": "8b086a2e9db68dae4b5da67df88bead981aa43dac6338ab552ef99c413bf2a62",
-    "verify_integrity.py": "678f9c7e8788947e5c6eb039fc836cbbdb37207d13f14e095cc91e07bf442a33",
-    "test_integrity_versioning.py": "5e34a2c329b42f00c539bbdbc5cbc789d753e4ee1e7ee2cc0c39e080e88695f7"
+    "verify_release.py": "be11cdb5681dbbef46485b6c6a62937742339abe6f54a6a7b67552d63e025150",
+    "verify_integrity.py": "92000e868872a19ebd77dbcfe4915a33aec19eb537045917d4c79cd60ab5a8f1",
+    "test_integrity_versioning.py": "51c1f7bb95cfe057f9dc695f9cdea2e3641e1bb2acbd72f3689c0b5fc6a1ae26",
+    "test_manifest_fail_closed.py": "04838b5b49261caa7eac15870ed24736a0b5af82fab0baaa4825461fe5534581"
   }
 }

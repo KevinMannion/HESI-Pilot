@@ -1,0 +1,8 @@
+# Kevin Mannion: HUD contact authorized (message t35u)
+Recorded: 2026-10-22T05:47:37Z. Base 273406208abe.
+
+Kevin authorized contacting HUD for a narrowly scoped technical clarification of Westchester County's applicable FMR for 2024-10-01 to 2024-12-31: A = Westchester's separately published FY2024 FMR ($2,352, 2BR) or B = New York HUD Metro FY2024 FMR ($2,752, 2BR). The inquiry states that this concerns historical FMR applicability during the transition to FY2025 geography, including the New York Metro FY2025 reevaluation. It asks HUD to identify the controlling notice, effective-date rule, historical dataset or other authoritative documentation. Use the appropriate official HUD channel. Send only a professional research inquiry: no private data, no claimed HUD affiliation. Retain the exact question, date, recipient, response and source links in the provenance record. If direct contact is unavailable, prepare the inquiry and identify the submission channel; do not claim it was sent.
+
+In parallel: finish the NY FY2024 sensitivity with 80 replicates; preserve 17.6839565% unchanged; record the original, Reading A, Reading B and NY FY2024 cases separately; correct the April 27/28 documentation without altering historical numerical results; do not choose an interpretation by preferred result. FMR methodology stays unapproved until the evidence is sufficient. One consolidated report when the sensitivity and authoritative-source investigation are complete. Escalate any HUD response that materially changes methodology.
+
+Coordinator note: per standing rules, the outgoing message is shown to Kevin as a draft before sending (Kevin presses Send).

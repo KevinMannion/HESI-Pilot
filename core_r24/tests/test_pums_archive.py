@@ -109,7 +109,35 @@ class InnerHashLock(unittest.TestCase):
             with self.assertRaises(RuntimeError) as ctx:
                 verify_housing_zip(p, lock)
             msg = str(ctx.exception)
-            self.assertTrue("SHA-256 mismatch" in msg or "HASH MISMATCH" in msg)
+            self.assertTrue(
+                "missing inner CSV" in msg
+                or "HASH MISMATCH" in msg
+                or "INPUT MISSING" in msg
+            )
+
+    def test_missing_archive_is_rejected(self):
+        lock = json.loads((P / "PUMS_ARCHIVE_LOCK.json").read_text())
+        with self.assertRaises(RuntimeError) as ctx:
+            verify_housing_zip("/tmp/hesi_missing_housing_does_not_exist.zip", lock)
+        self.assertIn("INPUT MISSING", str(ctx.exception))
+
+    def test_housing_inner_hashes_required_even_if_operator_supplies_matching_zip_digest(self):
+        a, b = b"husa\n", b"husb\n"
+        payload = _zip_with("psam_husa.csv", a)
+        # incomplete zip: matching a fake zip digest must not skip the missing husb CSV
+        lock = {
+            "r24_locked_zip_sha256": {"housing_csv_hus.zip": hashlib.sha256(payload).hexdigest()},
+            "inner_csv_sha256": {
+                "psam_husa.csv": hashlib.sha256(a).hexdigest(),
+                "psam_husb.csv": hashlib.sha256(b).hexdigest(),
+            },
+        }
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "csv_hus.zip"
+            p.write_bytes(payload)
+            with self.assertRaises(RuntimeError) as ctx:
+                verify_housing_zip(p, lock)
+            self.assertIn("missing inner CSV", str(ctx.exception))
 
 
 if __name__ == "__main__":

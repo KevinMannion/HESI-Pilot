@@ -1,27 +1,27 @@
 {
   "title": "Versioned integrity manifest register",
-  "note": "INTEGRITY_MANIFEST.json is historical. Never rewrite its hashes to match later scripts.",
+  "note": "INTEGRITY_MANIFEST.json is historical. Never rewrite its hashes to match later scripts. Proposed historical v1 baseline is fb58ddc.",
   "manifests": [
     {
-      "id": "pillar_integrity_v1_e45eb87",
+      "id": "pillar_integrity_v1_fb58ddc",
       "path": "INTEGRITY_MANIFEST.json",
-      "overlay": "historical_release_e45eb87",
+      "overlay": "historical_release_fb58ddc",
       "root": ".",
-      "authenticates": "Methods Review Remediation Round 1 close-out commit e45eb8766263eed52f6d7894a4ffea76094 (pillar files as of that commit). Overlay supplies drifted scripts; unchanged files are hashed from the working tree only when they still match the v1 digest."
+      "authenticates": "Proposed historical v1 baseline fb58ddc045976d844c6da1fca99ed1f9f108bb85. INTEGRITY_MANIFEST.json bytes are unchanged from fb58ddc through e45eb87 and 2734062. Overlay supplies fb58ddc bytes of later-drifted scripts."
     },
     {
       "id": "pillar_integrity_v2_working_tree",
       "path": "INTEGRITY_MANIFEST.v2.json",
       "overlay": null,
       "root": ".",
-      "authenticates": "Current working tree of research/september2026_core_r2 after release-integrity remediation. Not a substitute for the e45eb87 historical lock."
+      "authenticates": "Current working tree of research/september2026_core_r2 after release-integrity remediation. Not a substitute for the fb58ddc historical lock."
     },
     {
-      "id": "source_hashes_v1_e45eb87",
+      "id": "source_hashes_v1_fb58ddc",
       "path": "SOURCE_HASHES.json",
-      "overlay": "historical_release_e45eb87",
+      "overlay": "historical_release_fb58ddc",
       "root": ".",
-      "authenticates": "e45eb87 SOURCE_HASHES.json (housing/verify.py as of that commit)."
+      "authenticates": "fb58ddc SOURCE_HASHES.json. Identical at e45eb87; housing/verify.py later drifted by 2734062."
     },
     {
       "id": "source_hashes_v2_working_tree",
@@ -31,11 +31,11 @@
       "authenticates": "Working-tree files listed in SOURCE_HASHES.v2.json."
     },
     {
-      "id": "housing_package_v1_e45eb87",
+      "id": "housing_package_v1_fb58ddc",
       "path": "housing/PACKAGE_MANIFEST.json",
-      "overlay": "historical_release_e45eb87/housing",
+      "overlay": "historical_release_fb58ddc/housing",
       "root": "housing",
-      "authenticates": "e45eb87 housing/PACKAGE_MANIFEST.json."
+      "authenticates": "fb58ddc housing/PACKAGE_MANIFEST.json (bytes identical at e45eb87)."
     },
     {
       "id": "housing_package_v2_working_tree",
@@ -45,11 +45,11 @@
       "authenticates": "Working-tree housing package files."
     },
     {
-      "id": "transport_source_v1_e45eb87",
+      "id": "transport_source_v1_fb58ddc",
       "path": "transportation/SOURCE_HASHES.json",
-      "overlay": "historical_release_e45eb87/transportation",
+      "overlay": "historical_release_fb58ddc/transportation",
       "root": "transportation",
-      "authenticates": "e45eb87 transportation/SOURCE_HASHES.json."
+      "authenticates": "fb58ddc transportation/SOURCE_HASHES.json (bytes identical at e45eb87)."
     },
     {
       "id": "transport_source_v2_working_tree",
@@ -64,24 +64,24 @@
       "file": "housing/verify.py",
       "v1": "25fcc7fd7104bbb7df90bcfc585ffd81fa984590b9e6f971542f10b1d1ec146e",
       "v2": "7145ea9147618caaf2a20ef39a7dd574608c19c2b8f6a25cd4af6f247764c561",
-      "introduced": "between e45eb87 and published checkpoint 2734062; inner-CSV / methods-review edits. Historical bytes preserved under historical_release_e45eb87/housing/verify.py"
+      "introduced": "after fb58ddc/e45eb87 (identical) and by 2734062. Historical bytes preserved under historical_release_fb58ddc/housing/verify.py"
     },
     {
       "file": "transportation/run_standard.py",
       "v1": "d9f4c2aadd999accd17b558f1de30e4935a4606a5b718722ef249a291b349b74",
       "v2": "70a5262c6bdd2d1a3fcc48c19dc94eeef95a7d606b5d65e1b72e237888ee4d8e",
-      "introduced": "between e45eb87 and 2734062"
+      "introduced": "after fb58ddc/e45eb87 (identical) and by 2734062"
     },
     {
       "file": "transportation/test_standard.py",
       "v1": "acdcd54297ac22edbc2eac14210233faebcc3ddfed9ed6464aa944832b68e9d6",
       "v2": "95302c98bf9d78326f59fd09c3ad6cf8f0dd7c2d1b0e5f7e53310678820038ed",
-      "introduced": "between e45eb87 and 2734062"
+      "introduced": "after fb58ddc/e45eb87 (identical) and by 2734062"
     },
     {
       "file": "verify_release.py",
       "v1": "5d1227ce709bb5bb709d4677ecde12b52da53858f65c39418ac4dd49064e4814",
-      "v2": "8b086a2e9db68dae4b5da67df88bead981aa43dac6338ab552ef99c413bf2a62",
+      "v2": "be11cdb5681dbbef46485b6c6a62937742339abe6f54a6a7b67552d63e025150",
       "introduced": "release-integrity remediation: now invokes verify_integrity.py --all"
     }
   ]

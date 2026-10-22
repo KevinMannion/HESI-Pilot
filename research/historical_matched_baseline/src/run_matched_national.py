@@ -43,14 +43,40 @@ def main():
     p.add_argument("--person-official")
     p.add_argument("--person-a")
     p.add_argument("--person-b")
-    p.add_argument("--out", default=str(PIPE / "local_runs/matched2024"))
-    p.add_argument("--cache", default=str(PIPE / "local_caches"))
+    p.add_argument("--out", help="Scratch output. Required for official runs. Never matched2024_provisional.")
+    p.add_argument("--cache", help="Scratch cache. Required for official runs.")
+    p.add_argument("--exploratory", action="store_true", help="Permit local_runs/local_caches defaults; cannot write frozen artifacts")
+    p.add_argument("--model-vintage", help="Required for official runs, e.g. matched2024_provisional_repro")
+    p.add_argument("--config", help="Required JSON configuration for official runs")
     a = p.parse_args()
+    if a.exploratory:
+        if not a.out:
+            a.out = str(PIPE / "local_runs/matched2024")
+        if not a.cache:
+            a.cache = str(PIPE / "local_caches")
+        run_class = "exploratory"
+        cfg = None
+    else:
+        if not a.out:
+            p.error("Official matched-year run requires --out scratch path (or pass --exploratory)")
+        if not a.cache:
+            p.error("Official matched-year run requires --cache scratch path")
+        if not a.model_vintage:
+            p.error("Official matched-year run requires --model-vintage")
+        if not a.config:
+            p.error("Official matched-year run requires --config")
+        run_class = "official"
+        sys.path.insert(0, str(ROOT / "core_r24" / "tools"))
+        from official_config import load_official_config
+        cfg = load_official_config(a.config, engine="matched_year_2024", model_vintage=a.model_vintage)
     sys.path.insert(0, str(ROOT / "core_r24" / "tools"))
     from protected_paths import assert_output_allowed
 
     out = assert_output_allowed(a.out, "matched-year --out")
     assert_output_allowed(Path(a.cache), "matched-year --cache")
+    frozen_matched = (PIPE / "results/matched2024_provisional").resolve()
+    if out == frozen_matched or frozen_matched in out.parents:
+        raise SystemExit("Refusing to write matched2024_provisional")
     validation = validate(a.housing, a.person_official, a.person_a, a.person_b)
     if validation["status"] != "PASS":
         raise SystemExit("Input validation FAIL: " + ",".join(validation["failed"]))
@@ -149,6 +175,12 @@ def main():
         "gates": gates,
         "failed_gates": failed,
         "python": sys.version,
+        "run_class": run_class,
+        "model_vintage": a.model_vintage,
+        "exploratory_defaults_documented": bool(a.exploratory),
+        "config_path": str(Path(a.config).resolve()) if a.config else None,
+        "config_sha256": sha256(a.config) if a.config else None,
+        "scientific_publication": cfg["scientific_publication"] if cfg else None,
         "operator_note": "EXECUTED_BY_AUTHOR; CLEAN_ENVIRONMENT_REPRODUCED not re-run for this object; EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO",
     }
     (out / "EXECUTION_REPORT.json").write_text(json.dumps(report, indent=2, default=str) + "\n")

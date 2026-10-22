@@ -101,6 +101,19 @@ schedule, not the October 2025 original. FY2024 revised (Honolulu, 2024-03-11)
 and FY2025 original (2024-10-01) belong to the matched-year cost inputs, not
 to the frozen R2.4 geography file.
 
+E14. FY2025 revised FMR: April 27 vs April 28
+---------------------------------------------
+The Federal Register revised FY2025 FMR notice (90 FR 14158, published
+2025-03-28) is effective **2025-04-28**. HUD USER posts the revised county
+and Small Area FMR workbooks under the heading “Effective April 27, 2025”.
+Prior HESI protocol text used 2025-04-27. That is a documentation discrepancy,
+not a change to the calendar-2024 day-weight (FY2025 revised is after
+2024-12-31 in either reading). Historical matched-year CSVs are not rewritten.
+
+Westchester County FMR mapping alternatives are listed in
+research/historical_matched_baseline/WESTCHESTER_FMR_ALTERNATIVES.md.
+No alternative is selected in this repair.
+
 E12. Release-integrity versioning (engineering, not a scientific restatement)
 -----------------------------------------------------------------------------
 INTEGRITY_MANIFEST.json, SOURCE_HASHES.json, housing/PACKAGE_MANIFEST.json, and

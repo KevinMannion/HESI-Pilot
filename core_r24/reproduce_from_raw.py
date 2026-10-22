@@ -6,6 +6,7 @@ P=Path(__file__).resolve().parent
 sys.path.insert(0,str(P/'tools'))
 from pums_archive import person_zip_args, verify_housing_zip
 from protected_paths import assert_output_allowed
+from official_config import load_official_config
 HASHES={
  'housing':'8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0',
  'person_a':'05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8',
@@ -33,18 +34,43 @@ def main():
  ap=argparse.ArgumentParser()
  ap.add_argument('--housing',type=Path);ap.add_argument('--person-a',type=Path);ap.add_argument('--person-b',type=Path)
  ap.add_argument('--person-official',type=Path,help='Census csv_pus.zip; verified by inner CSV SHA-256, not by pretending it matches the split ZIP hashes')
- ap.add_argument('--output',type=Path,default=P/'local_reproduction')
+ ap.add_argument('--output',type=Path,help='Scratch output directory. Required for official runs.')
+ ap.add_argument('--exploratory',action='store_true',help='Permit documented local_reproduction default; cannot write frozen scientific directories')
+ ap.add_argument('--model-vintage',help='Required for official runs, e.g. r24_sep2026_costs_on_acs2024_income')
+ ap.add_argument('--config',type=Path,help='Required JSON configuration for official runs')
  ap.add_argument('--check-existing',type=Path,help='Validate completed run without reprocessing inputs')
  x=ap.parse_args();env=dict(os.environ,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1')
  if x.check_existing:
   verdict=check_results(x.check_existing);print(json.dumps(verdict,indent=2));return
  if x.output:
   assert_output_allowed(x.output.resolve(),'--output')
+ if x.exploratory:
+  if not x.output: x.output=P/'local_reproduction'
+  run_class='exploratory'
+  cfg=None
+ else:
+  if not x.output:ap.error('Official research run requires --output scratch path (or pass --exploratory)')
+  if not x.model_vintage:ap.error('Official research run requires --model-vintage')
+  if not x.config:ap.error('Official research run requires --config JSON')
+  run_class='official'
+  cfg=load_official_config(x.config,engine='national_r24',model_vintage=x.model_vintage)
+  for key,lock in (('geography_puma_fmr_screened','geography'),('usda_prices_source_2024_2026','prices'),('housing_zip','housing')):
+   if cfg['required_input_sha256'].get(key) and cfg['required_input_sha256'][key]!=HASHES[lock]:
+    raise RuntimeError('official config hash disagrees with engine lock: '+key)
+ assert_output_allowed(x.output.resolve(),'--output')
  if not x.housing:ap.error('Provide --housing')
  if x.person_official and (x.person_a or x.person_b):ap.error('Use either --person-official or both --person-a and --person-b')
  if not x.person_official and not all([x.person_a,x.person_b]):ap.error('Provide --person-official csv_pus.zip or both split person ZIPs')
  person_zips=person_zip_args(official=x.person_official, part1=x.person_a, part2=x.person_b)
  housing_report=verify_housing_zip(x.housing)
+ if cfg:
+  want_h=cfg['required_input_sha256'].get('housing_zip')
+  got_h=housing_report.get('zip_sha256') or digest(x.housing)
+  if want_h and got_h!=want_h:raise RuntimeError('housing ZIP sha256 != official config')
+  want_p=cfg['required_input_sha256'].get('person_official_zip')
+  if x.person_official and want_p:
+   got_p=digest(x.person_official)
+   if got_p!=want_p:raise RuntimeError('person official ZIP sha256 != official config')
  print('SOURCE VERIFIED: housing', housing_report, flush=True)
  sources={'geography':P/'inputs/puma_fmr_screened.csv','prices':P/'inputs/source_2024_2026.csv'}
  for key,f in sources.items():
@@ -63,6 +89,13 @@ def main():
   verdict=check_results(national)
   verdict['raw_source_hashes']=HASHES
   verdict['generated_cache_sha256']={n:digest(cache/n) for n in ('acs2024_food_person_aggregates.pkl','acs2024_person_composition.pkl')}
+  verdict['run_class']=run_class
+  verdict['model_vintage']=x.model_vintage
+  verdict['exploratory_defaults_documented']=bool(x.exploratory)
+  if x.config:
+   verdict['config_sha256']=digest(x.config)
+   verdict['config_path']=str(Path(x.config).resolve())
+   verdict['scientific_publication']=cfg['scientific_publication'] if cfg else None
   if output.exists():
    shutil.rmtree(output)
   shutil.copytree(staging,output)
