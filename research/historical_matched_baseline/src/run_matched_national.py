@@ -43,19 +43,19 @@ def main():
     p.add_argument("--person-official")
     p.add_argument("--person-a")
     p.add_argument("--person-b")
-    p.add_argument("--out", default=str(PIPE / "results/matched2024_provisional"))
+    p.add_argument("--out", default=str(PIPE / "local_runs/matched2024"))
     p.add_argument("--cache", default=str(PIPE / "local_caches"))
     a = p.parse_args()
-    out = Path(a.out).resolve()
-    forbidden = (ROOT / "core_r24/results/national_R22").resolve()
-    if out == forbidden or forbidden in out.parents:
-        raise SystemExit("Refusing to write national_R22")
-    out.mkdir(parents=True, exist_ok=True)
+    sys.path.insert(0, str(ROOT / "core_r24" / "tools"))
+    from protected_paths import assert_output_allowed
 
+    out = assert_output_allowed(a.out, "matched-year --out")
+    assert_output_allowed(Path(a.cache), "matched-year --cache")
     validation = validate(a.housing, a.person_official, a.person_a, a.person_b)
-    (out / "INPUT_VALIDATION.json").write_text(json.dumps(validation, indent=2, default=str) + "\n")
     if validation["status"] != "PASS":
         raise SystemExit("Input validation FAIL: " + ",".join(validation["failed"]))
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "INPUT_VALIDATION.json").write_text(json.dumps(validation, indent=2, default=str) + "\n")
 
     cache = Path(a.cache)
     food_pkl = cache / "acs2024_food_person_aggregates.pkl"

@@ -5,7 +5,7 @@ import sys
 
 P = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(P / "tools"))
-from pums_archive import verify_official_person_zip, verify_split_person_zips, load_lock
+from pums_archive import verify_official_person_zip, verify_housing_zip, verify_split_person_zips, load_lock, csv_members
 
 
 def _zip_with(member, payload):
@@ -69,6 +69,47 @@ class InnerHashLock(unittest.TestCase):
             with self.assertRaises(RuntimeError) as ctx:
                 verify_split_person_zips(a, b, lock)
             self.assertIn("INPUT HASH MISMATCH", str(ctx.exception))
+
+    def test_duplicate_inner_csv_members_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "dup.zip"
+            buf = io.BytesIO()
+            with zipfile.ZipFile(buf, "w") as z:
+                z.writestr("folder/psam_pusa.csv", b"A")
+                z.writestr("other/psam_pusa.csv", b"A2")
+            p.write_bytes(buf.getvalue())
+            with self.assertRaises(RuntimeError) as ctx:
+                csv_members(p, "psam_pus")
+            self.assertIn("Duplicate inner CSV members", str(ctx.exception))
+
+    def test_unexpected_inner_csv_rejected(self):
+        lock = {
+            "inner_csv_sha256": {
+                "psam_pusa.csv": hashlib.sha256(b"A").hexdigest(),
+                "psam_pusb.csv": hashlib.sha256(b"B").hexdigest(),
+            }
+        }
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "csv_pus.zip"
+            buf = io.BytesIO()
+            with zipfile.ZipFile(buf, "w") as z:
+                z.writestr("psam_pusa.csv", b"A")
+                z.writestr("psam_pusb.csv", b"B")
+                z.writestr("psam_pusc.csv", b"C")
+            p.write_bytes(buf.getvalue())
+            with self.assertRaises(RuntimeError) as ctx:
+                verify_official_person_zip(p, lock)
+            self.assertIn("unexpected inner CSV", str(ctx.exception))
+
+    def test_housing_zip_bad_hash_without_matching_inner_csvs_rejected(self):
+        lock = json.loads((P / "PUMS_ARCHIVE_LOCK.json").read_text())
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "csv_hus.zip"
+            p.write_bytes(_zip_with("not_housing.txt", b"nope"))
+            with self.assertRaises(RuntimeError) as ctx:
+                verify_housing_zip(p, lock)
+            msg = str(ctx.exception)
+            self.assertTrue("SHA-256 mismatch" in msg or "HASH MISMATCH" in msg)
 
 
 if __name__ == "__main__":

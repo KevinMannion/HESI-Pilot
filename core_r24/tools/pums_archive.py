@@ -35,6 +35,9 @@ def sha256_zip_member(zip_path, member):
 def csv_members(zip_path, prefix):
     with zipfile.ZipFile(zip_path) as z:
         names = [n for n in z.namelist() if Path(n).name.lower().startswith(prefix) and n.lower().endswith(".csv")]
+    bases = [Path(n).name.lower() for n in names]
+    if len(bases) != len(set(bases)):
+        raise RuntimeError(f"Duplicate inner CSV members for prefix {prefix}: {names}")
     return names
 
 
@@ -54,6 +57,9 @@ def verify_official_person_zip(path, lock=None):
     missing = [n for n in REQUIRED_PERSON_CSV if n not in bases]
     if missing:
         raise RuntimeError(f"Official person ZIP missing inner CSV {missing}")
+    unexpected = sorted(set(bases) - set(REQUIRED_PERSON_CSV))
+    if unexpected:
+        raise RuntimeError(f"Official person ZIP unexpected inner CSV members: {unexpected}")
     inner = {}
     for name in REQUIRED_PERSON_CSV:
         digest = sha256_zip_member(path, bases[name])
@@ -78,6 +84,9 @@ def verify_housing_zip(path, lock=None):
         return {"mode": "housing_zip_sha256", "zip_sha256": digest, "status": "PASS"}
     members = csv_members(path, "psam_hus")
     bases = {Path(n).name.lower(): n for n in members}
+    unexpected = sorted(set(bases) - set(REQUIRED_HOUSING_CSV))
+    if unexpected:
+        raise RuntimeError(f"Housing ZIP unexpected inner CSV members: {unexpected}")
     inner = {}
     for name in REQUIRED_HOUSING_CSV:
         if name not in bases:

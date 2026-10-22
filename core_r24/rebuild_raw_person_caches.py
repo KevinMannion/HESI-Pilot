@@ -4,11 +4,13 @@ from pathlib import Path
 import numpy as np,pandas as pd
 ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT/'src'))
+sys.path.insert(0,str(ROOT/'tools'))
 from food_model import load_prices,age_key
+from protected_paths import assert_output_allowed
 
 def main():
- a=argparse.ArgumentParser();a.add_argument('--person-zips',nargs='+',required=True);a.add_argument('--prices',default=str(ROOT/'inputs/source_2024_2026.csv'));a.add_argument('--out',default=str(ROOT/'data'));x=a.parse_args()
- out=Path(x.out);out.mkdir(parents=True,exist_ok=True)
+ a=argparse.ArgumentParser();a.add_argument('--person-zips',nargs='+',required=True);a.add_argument('--prices',default=str(ROOT/'inputs/source_2024_2026.csv'));a.add_argument('--out',default=str(ROOT/'data'));a.add_argument('--resume',action='store_true',help='Reuse existing part pickles; default is fail-closed rebuild');x=a.parse_args()
+ out=assert_output_allowed(x.out,'rebuild --out');out.mkdir(parents=True,exist_ok=True)
  catalog,issues=load_prices(x.prices)
  for s in ('Male','Female'):
   old=(2026,9,'thrifty',s,'14-18 years');new=(2026,9,'thrifty',s,'14-19 years')
@@ -23,8 +25,10 @@ def main():
  for file in x.person_zips:
   tag=hashlib.sha256(str(Path(file).resolve()).encode()).hexdigest()[:12]
   fp=out/('food_part_'+tag+'.pkl'); cp=out/('composition_part_'+tag+'.pkl')
-  if fp.exists() and cp.exists():
+  if x.resume and fp.exists() and cp.exists():
    foods.append(pd.read_pickle(fp));comps.append(pd.read_pickle(cp));print('Resumed',file,flush=True);continue
+  if (not x.resume) and (fp.exists() or cp.exists()):
+   print('Ignoring stale part cache',fp.name,cp.name,flush=True)
   filefoods=[];filecomps=[]
   with zipfile.ZipFile(file) as z:
    members=[n for n in z.namelist() if Path(n).name.lower().startswith('psam_pus') and n.lower().endswith('.csv')]

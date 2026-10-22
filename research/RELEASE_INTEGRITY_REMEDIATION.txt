@@ -1,0 +1,207 @@
+HESI R2.5 — RELEASE-INTEGRITY REMEDIATION REPORT
+================================================
+Date: 2026-10-22
+Branch: hesi/core-r25-integration
+Published checkpoint this repair starts from: 273406208abe439cbad960567f32822b870c43b5
+This working tree is NOT committed, pushed, merged, or published.
+Classification: engineering repair of release integrity and output safety.
+NOT scientific validation. NOT a new national estimate.
+
+PHASE 1 — Independent confirmation
+----------------------------------
+1. CONFIRMED. INTEGRITY_MANIFEST.json (v1) mismatches the working tree on
+   exactly three originally reported pillar scripts, plus verify_release.py
+   which this repair also changed:
+     housing/verify.py
+       v1 25fcc7fd7104bbb7df90bcfc585ffd81fa984590b9e6f971542f10b1d1ec146e
+       disk 7145ea9147618caaf2a20ef39a7dd574608c19c2b8f6a25cd4af6f247764c561
+     transportation/run_standard.py
+       v1 d9f4c2aadd999accd17b558f1de30e4935a4606a5b718722ef249a291b349b74
+       disk 70a5262c6bdd2d1a3fcc48c19dc94eeef95a7d606b5d65e1b72e237888ee4d8e
+     transportation/test_standard.py
+       v1 acdcd54297ac22edbc2eac14210233faebcc3ddfed9ed6464aa944832b68e9d6
+       disk 95302c98bf9d78326f59fd09c3ad6cf8f0dd7c2d1b0e5f7e53310678820038ed
+   After this repair, v1 vs working tree also FAILs verify_release.py (expected).
+   Other v1-locked files still match.
+
+2. CONFIRMED. core_r24/RELEASE_FILE_HASHES.json replaced src/run_joint.py
+   in place rather than versioning:
+     e45eb87  030cb0ae0baed16770e198a0c9f2353180ad3ccb55e6483d37b1c11dd3a24034
+     2734062  a34951b135936ddf539f0c33d7f3a331e10a4e59dc204889bde14f31792cce0e
+     this repair (protected-path guard)
+              4da1cf63178e6f0fff85bd4164650817f0264dd9d442492f38f4a69dc533a79a
+   Frozen national_R22 common_cohort_results.csv remained
+              6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7
+
+3. CONFIRMED. verify_release.py at 2734062 ran pillar unittests and
+   LOCK_REGISTER assertions only. hashlib was unused. INTEGRITY_MANIFEST
+   was not checked, so the verifier could PASS while three pillar scripts
+   mismatched v1.
+
+4. CONFIRMED at 2734062. reproduce_from_raw.py created
+   output/derived_person_caches before run_joint rejected national_R22.
+   Now assert_output_allowed runs before any mkdir/cache, including on
+   --output national_R22 (no derived_person_caches created).
+
+5. UNCONFIRMED as a stale factor hash. BLS_ANNUAL_FACTORS.json
+   source_sha256 bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231
+   is the operator API bundle bls_api_v1_bundle.json. The derived JSON file
+   sha256 is 9349e525b9264f62f99a163e56a023ba78cbd21dc981612a7f760e817e0e299d.
+   Kind field: "observation of BLS Public API JSON; annual means are computed
+   transforms". Factor file was not rewritten. tests/test_bls_source_hash.py PASS.
+
+6. PARTIAL, then declared.
+   openpyxl and xlrd are in requirements.txt (HUD/USDA workbook rebuild
+   runtime). They are not required for reproduce_from_raw / run_joint.
+   pytest was not declared; the project uses unittest. This repair adds
+   requirements-dev.txt with pytest>=7.0.0 as an optional extra.
+
+PHASE 2 — Versioned manifests (history not rewritten)
+-----------------------------------------------------
+OLD (still present, hashes unchanged):
+  research/september2026_core_r2/INTEGRITY_MANIFEST.json
+    authenticates e45eb8766263eed52f6d7894e3464f8ffea76094 pillar files
+  research/september2026_core_r2/SOURCE_HASHES.json
+  research/september2026_core_r2/housing/PACKAGE_MANIFEST.json
+  research/september2026_core_r2/transportation/SOURCE_HASHES.json
+  core_r24/historical_release_e45eb87/RELEASE_FILE_HASHES.json
+    authenticates the e45eb87 core_r24 package, including run_joint 030cb0ae…
+
+NEW:
+  MANIFEST_REGISTER.json — which manifest authenticates which tree
+  INTEGRITY_MANIFEST.v2.json — working-tree pillar files after this repair
+  SOURCE_HASHES.v2.json
+  housing/PACKAGE_MANIFEST.v2.json
+  transportation/SOURCE_HASHES.v2.json
+  core_r24/RELEASE_FILE_HASHES.json — current package lock only
+  core_r24/RELEASE_LOCK_REGISTER.json
+  historical_release_e45eb87 overlays for drifted scripts
+
+verify_integrity.py --all checks every registered manifest. A mismatch is
+FAIL. Historical checks use the overlay; a drifted file missing from the
+overlay cannot be passed by hashing the current file under the old digest.
+check_unapproved_locked_script_edits FAILs if a v1-locked file changes
+without a MANIFEST_REGISTER note and a matching v2 digest.
+verify_release.py and verify_package.py both invoke this check first.
+
+PHASE 3 — Fail-closed outputs
+-----------------------------
+protected_paths.py refuses:
+  core_r24/results/{national_R22, rebuilt_from_raw, synthetic}
+  research/historical_matched_baseline/results/matched2024_provisional
+  root results.csv / audit.json / manifest.json
+Guards run in reproduce_from_raw.py, rebuild_raw_person_caches.py,
+src/run_joint.py, run_matched_national.py BEFORE mkdir.
+reproduce_from_raw stages in a temporary directory and promotes to --output
+only after check_results PASS; failures leave no reusable cache under --output.
+rebuild ignores stale part pickles unless --resume.
+Official Census ZIP ingestion still requires inner CSV SHA-256.
+Negative tests: duplicate ZIP members, unexpected inner CSVs, bad hashes,
+stale part caches, protected output paths.
+
+PHASE 4 — Commands, versions, results
+-------------------------------------
+Environment: /Users/kevinmannion/HESI-R25-CleanRepro/venv
+  Python 3.13.2
+  numpy 1.26.4
+  pandas 2.3.3
+  OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1
+
+1. Unit / negative
+   python -m unittest discover -s core_r24/tests -q
+     37 tests OK (includes test_pums_archive negatives, test_protected_outputs)
+   python research/september2026_core_r2/verify_release.py
+     PASS integrity_manifests, integrity_versioning, food, housing,
+     transportation, release_register
+   python -m unittest tests.test_engineering_stabilization tests.test_remediation_r1 tests.test_synthetic_pipeline tests.test_hesi -q
+     10 OK
+   python -m unittest tests.test_bls_source_hash -q
+     (from research/september2026_income_nowcast) 2 OK
+
+2. Original R2.4 package
+   python core_r24/verify_package.py
+     PASS 43 current package hashes
+     PASS frozen inputs/results vs e45eb87 lock (15 keys)
+     PASS pillar integrity
+     PASS unittest + --check-existing results/rebuilt_from_raw vs national_R22
+       metrics_compared 6, replicates_compared 80, frame_exact true
+
+3. Full national from official Census
+   python core_r24/reproduce_from_raw.py \
+     --housing /Users/kevinmannion/Downloads/csv_hus.zip \
+     --person-official /Users/kevinmannion/Downloads/csv_pus.zip \
+     --output /Users/kevinmannion/HESI-R25-CleanRepro/output_integrity_r25
+     housing ZIP sha256 8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0 PASS
+     persons 3,422,888
+     STATUS PASS vs national_R22
+     metric_maxdiff 7.821654435247183e-11
+     replicate_maxdiff 3.956301952712238e-11
+     (both << atol 1e-7)
+     Six headline metrics compared: food_month, housing_month,
+     one_vehicle_month_PROVISIONAL, total_month_PROVISIONAL,
+     income_month_2024_vintage, share_income_below_three_costs_PROVISIONAL
+     Share remains 0.18991790144753254 (18.9918%).
+     Official combined-ZIP food pickle sha 9ca1e3d2… differs from a prior
+     split-ZIP pickle 911ef1f7…; composition pickle 4e7c8dbb… matches.
+     Numerical results still match. Not a scientific change.
+
+4. Matched-year 2024
+   python research/historical_matched_baseline/src/run_matched_national.py \
+     --housing /Users/kevinmannion/Downloads/csv_hus.zip \
+     --person-official /Users/kevinmannion/Downloads/csv_pus.zip \
+     --out research/historical_matched_baseline/local_runs/matched2024_integrity_repro \
+     --cache research/historical_matched_baseline/local_caches
+     STATUS PASS default_share 0.17683956520767094
+     calendar_2024_dayweight / fy24_revised_only / fy25_original_from_2024_10_01:
+       metric_maxdiff 0, replicate_maxdiff 0, 80 rows, frame identity True
+     Household frame 1,235,731 / 121,036,726 unchanged.
+
+5. Manifest verification
+   v1 vs working tree: FAIL
+     housing/verify.py, transportation/run_standard.py,
+     transportation/test_standard.py, verify_release.py
+   v1 vs historical_release_e45eb87 overlay: PASS (40 files)
+   v2 vs working tree: PASS (42 files)
+   e45eb87 run_joint overlay hash 030cb0ae… ; current 4da1cf63…
+
+6. Failed protected run
+   reproduce_from_raw.py --output core_r24/results/national_R22
+     RuntimeError PROTECTED OUTPUT PATH before ZIP hashing / mkdir
+     national_R22 directory still only audit.json,
+     common_cohort_results.csv, replicate_results.csv
+     sha 6778c312… unchanged
+
+GOVERNANCE PRESERVED
+--------------------
+18.9918% R2.4 reference — unchanged
+10.301% original pilot — unchanged
+17.6839565% 2024 matched-year provisional — unchanged as a computational lock;
+  NOT approved for formal publication (research/GOVERNANCE_CORRECTION_2026-10-22.txt)
+September 2026 income-nowcast GO_NOGO.json — NO-GO
+VALIDATION_GATES.json — not rewritten
+Computational reproduction is not scientific validation.
+EXTERNALLY_INDEPENDENTLY_REPRODUCED = NO
+SCIENTIFICALLY_VALIDATED = NO
+
+UNRESOLVED RISKS
+----------------
+- Historical overlays contain only drifted scripts, not a full e45eb87 tree.
+  Unchanged files are hashed from the working tree when they still match v1.
+  An undocumented edit of a previously matching file FAILs the unapproved-edit
+  policy and the overlay check (DRIFTED FILE NOT IN HISTORICAL OVERLAY).
+- Official combined person ZIP produces a different food pickle digest than
+  split ZIPs; joint numerical lock still holds. Operators should not treat
+  pickle SHA-256 as interchangeable across ZIP layouts.
+- pytest is declared in requirements-dev.txt but unused; tests remain unittest.
+- openpyxl/xlrd are declared for workbook rebuilds and were not installed in
+  the national-only clean venv used here.
+- Matched-year non-fuel transport dollars remain hypothetical.
+- This repair does not make 18.9918% or 17.6839565% scientifically validated.
+
+GO / NO-GO
+----------
+Commit this engineering repair to review/r25-release-integrity: GO for independent inspection
+Overwrite origin/hesi/core-r25-integration or merge to main: NO-GO
+Publish 17.6839565% as a formal scientific result: NO-GO
+Label computational reproduction as scientific validation: NO-GO
+Rewrite historical INTEGRITY_MANIFEST.json hashes: NO-GO (not done)

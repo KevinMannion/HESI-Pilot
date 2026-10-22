@@ -814,3 +814,39 @@ HESI iteration note — publish matched-year models on integration branch
 - Staged: matched-year engine, provisional results + 80 replicates, ARTIFACT_LOCK, REPRODUCER_HANDOFF, readiness, engineering write-protection, requirements, tests, iteration docs.
 - Excluded: Census ZIPs, workbooks, person caches, venvs, credentials.
 - GitHub copy is not scientific validation. External computational reproduction remains pending.
+
+================================================================================
+HESI iteration note — release-integrity remediation (no commit)
+================================================================================
+- Date: 2026-10-22
+- Branch: hesi/core-r25-integration starting from 2734062
+- Scope: versioning, verifiers, fail-closed outputs. No new economic modeling.
+
+Confirmed defects: (1) v1 INTEGRITY mismatch on housing/verify.py,
+transportation/run_standard.py, transportation/test_standard.py;
+(2) in-place run_joint hash replacement in RELEASE_FILE_HASHES.json;
+(3) verify_release PASS without checking INTEGRITY_MANIFEST;
+(4) reproduce_from_raw could mkdir caches under national_R22 before reject.
+Unconfirmed: BLS source_sha256 is the API bundle bb68500e…, not a stale
+derived-JSON hash (derived file 9349e525…).
+Partial: pytest undeclared (now requirements-dev.txt); openpyxl/xlrd already
+in requirements.txt.
+
+Repair: historical manifests preserved; v2 + overlays; unapproved-edit FAIL;
+protected_paths before mkdir; staging/promote; ZIP duplicate/unexpected
+member rejection.
+
+Tests (venv Python 3.13.2 numpy 1.26.4 pandas 2.3.3):
+- core_r24 unittest 37 OK
+- verify_release.py PASS (including integrity_versioning)
+- verify_package.py 43 PASS + rebuilt_from_raw vs R22
+- v1 overlay PASS; v1 working tree FAIL (4 files); v2 PASS
+- national reproduce_from_raw official csv_hus/csv_pus PASS
+  6 metrics + 80 replicates vs national_R22; maxdiff 7.82e-11
+- matched-year local_runs vs ARTIFACT_LOCK maxdiff 0; share 0.17683956520767094
+- --output national_R22 rejected with directory still 3 frozen files
+
+18.9918% / 10.301% / 17.6839565% / nowcast NO-GO unchanged.
+17.6839565% is not approved for formal publication
+(research/GOVERNANCE_CORRECTION_2026-10-22.txt). 2734062 is not rewritten.
+Candidate commit: review/r25-release-integrity only.

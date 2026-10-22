@@ -1,0 +1,23 @@
+{
+  "title": "Core R2.4 package hash-lock versions",
+  "note": "Never rewrite historical_release_e45eb87/RELEASE_FILE_HASHES.json to match later src/run_joint.py.",
+  "locks": [
+    {
+      "id": "release_file_hashes_e45eb87",
+      "path": "historical_release_e45eb87/RELEASE_FILE_HASHES.json",
+      "authenticates": "Methods Review Remediation Round 1 close-out e45eb8766263eed52f6d7894e3464f8ffea76094 core_r24 package, including src/run_joint.py sha 030cb0ae0baed16770e198a0c9f2353180ad3ccb55e6483d37b1c11dd3a24034. Frozen results/inputs keys remain the R2.4 scientific lock.",
+      "snapshot_script": "historical_release_e45eb87/src/run_joint.py"
+    },
+    {
+      "id": "release_file_hashes_working_tree",
+      "path": "RELEASE_FILE_HASHES.json",
+      "authenticates": "Current working tree after release-integrity remediation. src/run_joint.py hash is the post-guard file, not the e45eb87 file. Frozen results/* hashes are unchanged from e45eb87."
+    }
+  ],
+  "in_place_hash_replacement_defect": {
+    "file": "src/run_joint.py",
+    "e45eb87": "030cb0ae0baed16770e198a0c9f2353180ad3ccb55e6483d37b1c11dd3a24034",
+    "published_2734062": "a34951b135936ddf539f0c33d7f3a331e10a4e59dc204889bde14f31792cce0e",
+    "repair": "Historical digest kept in historical_release_e45eb87/RELEASE_FILE_HASHES.json. Current digest recorded only in RELEASE_FILE_HASHES.json after this remediation."
+  }
+}

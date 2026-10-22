@@ -1,0 +1,43 @@
+HESI — governance correction (2026-10-22)
+=========================================
+This file records a process correction. It does not rewrite commit
+273406208abe439cbad960567f32822b870c43b5, ARTIFACT_LOCK.json,
+matched-year result CSVs, national_R22, VALIDATION_GATES.json, or v1
+integrity manifests.
+
+Historical governance deviation (preserved)
+------------------------------------------
+Commit 2734062 pushed the provisional 2024 matched-year calculation
+(computational share 0.17683956520767094, displayed 17.6839565%) and
+its hashed artifacts onto origin/hesi/core-r25-integration.
+
+At that time RESEARCH_READINESS.json already recorded:
+  provisional_public_research_release = NO-GO
+  publish_17_7_percent = NO-GO
+  scientific_validation = NO-GO
+
+Placing those artifacts on a public GitHub research branch can be
+misread as formal publication approval. That reading is incorrect.
+The deviation is that a NO-GO public-release object was published as
+branch content without a separate, explicit formal-publication decision.
+
+The 2734062 bytes remain the historical record. They are not restated
+here as an approved national estimate.
+
+Corrective decision (this review)
+---------------------------------
+The 17.6839565% (about 17.7%) 2024 matched-year figure is:
+
+  NOT approved for formal publication
+  NOT a measured hardship rate
+  NOT scientific validation
+  NOT a replacement for 18.9918%
+  NOT a September 2026 nowcast
+
+Independent computational reproduction remains allowed as labeled
+research (REPRODUCER_HANDOFF.md). GitHub presence of 2734062 or of this
+integrity-repair review branch is inspection access, not publication
+approval.
+
+18.9918%, 10.301%, nowcast NO-GO, and locked VALIDATION_GATES.json
+thresholds are unchanged.

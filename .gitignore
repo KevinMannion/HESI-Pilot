@@ -18,6 +18,7 @@ HESI_Person_Part_*.zip
 *.xls
 core_r24/local_reproduction/
 research/historical_matched_baseline/local_caches/
+research/historical_matched_baseline/local_runs/
 **/acs2024_food_person_aggregates.pkl
 **/acs2024_person_composition.pkl
 **/food_part_*.pkl

@@ -163,6 +163,16 @@ Demonstrated: preservation hashes; verify_package 38 PASS; matched 22 OK as reco
 Remaining: EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO; public hardship publication NO-GO.
 Git: commit and push hesi/core-r25-integration only. No merge to main. No force-push. No PR.
 
+Core R2.5 — release-integrity remediation (2026-10-22, uncommitted)
+-------------------------------------------------------------------
+What changed: versioned v2 integrity manifests and overlays; fail-closed protected outputs; verify_release/verify_package check every registered manifest; negative ZIP/cache/path tests; requirements-dev.txt (pytest). Historical v1 manifests and frozen scientific CSVs were not rewritten.
+What did not change: 18.9918%; national_R22 bytes; 10.301%; 17.6839565%; nowcast NO-GO; VALIDATION_GATES.json; economic formulas.
+Demonstrated: v1 overlay PASS / v1 working-tree FAIL / v2 PASS; core_r24 37 OK; verify_package 43 PASS; national from official Census PASS atol 1e-7 (maxdiff 7.82e-11); matched-year exact 0 vs ARTIFACT_LOCK; protected --output national_R22 creates no caches.
+Remaining: not committed; EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO.
+Git: candidate commit on review/r25-release-integrity only. Do not merge to main. Do not overwrite origin/hesi/core-r25-integration. No PR required for inspection.
+
+Governance correction (separate from 2734062): 17.6839565% is not approved for formal publication. Historical GitHub placement of those artifacts is preserved; see research/GOVERNANCE_CORRECTION_2026-10-22.txt.
+
 Mandatory per-release evidence (starting with the next committed release)
 ------------------------------------------------------------------------
 1. ITERATION_NOTES.txt

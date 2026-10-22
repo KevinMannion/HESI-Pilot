@@ -1,10 +1,12 @@
 """HESI September 2026 three-cost scenario on a common ACS 2024 PUMS household frame.
 NOT an approved nationally representative six-pillar HESI. The 12,000-mi one-car input is provisional.
 """
-import argparse, json, zipfile, hashlib
+import argparse, json, zipfile, hashlib, sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
+from protected_paths import assert_output_allowed
 
 def sha256_file(path):
     digest=hashlib.sha256()
@@ -24,10 +26,7 @@ def load_person_table(path):
     return pd.read_pickle(path)
 
 def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=7264.70,food_column='thrifty_2026sep',cost_labels=None,share_metric='share_income_below_three_costs_PROVISIONAL',scenario_label=None,audit_status='RESEARCH_ONLY'):
-    out=Path(out).resolve()
-    frozen_r22=(Path(__file__).resolve().parents[1]/'results'/'national_R22').resolve()
-    if out==frozen_r22 or frozen_r22 in out.parents:
-        raise RuntimeError('Refusing to write core_r24/results/national_R22/')
+    out=assert_output_allowed(out,'run_joint --out')
     out.mkdir(parents=True,exist_ok=True)
     food=load_person_table(food_cache)[[food_column,'n_person','n_infant']].rename(columns={food_column:'food_cost'})
     comp=load_person_table(composition_cache)

@@ -100,3 +100,37 @@ effective 2026-05-21. September 2026 therefore uses the revised FY2026
 schedule, not the October 2025 original. FY2024 revised (Honolulu, 2024-03-11)
 and FY2025 original (2024-10-01) belong to the matched-year cost inputs, not
 to the frozen R2.4 geography file.
+
+E12. Release-integrity versioning (engineering, not a scientific restatement)
+-----------------------------------------------------------------------------
+INTEGRITY_MANIFEST.json, SOURCE_HASHES.json, housing/PACKAGE_MANIFEST.json, and
+transportation/SOURCE_HASHES.json authenticate Methods Review Remediation
+Round 1 close-out e45eb8766263eed52f6d7894e3464f8ffea76094. They are NOT
+rewritten. Three pillar scripts later diverged on disk (housing/verify.py,
+transportation/run_standard.py, transportation/test_standard.py). Historical
+bytes are stored under research/september2026_core_r2/historical_release_e45eb87/.
+Working-tree hashes are recorded only in *.v2.json manifests.
+
+core_r24/RELEASE_FILE_HASHES.json at published checkpoint 2734062 replaced
+src/run_joint.py in place (e45eb87 030cb0ae… → 2734062 a34951b1…). The e45eb87
+lock is preserved as core_r24/historical_release_e45eb87/RELEASE_FILE_HASHES.json.
+Current engineering hashes after protected-path guards are a new current lock,
+not a silent rewrite of the historical digest.
+
+BLS_ANNUAL_FACTORS.json source_sha256 bb68500e… is the operator API bundle
+bls_api_v1_bundle.json, not the derived JSON file (9349e525…). Not a stale
+factor hash. Factor file was not rewritten.
+
+verify_release.py previously reported PASS without checking INTEGRITY_MANIFEST.
+It now fails closed via verify_integrity.py --all.
+
+This erratum does not change 18.9918%, 10.301%, 17.6839565%, or nowcast NO-GO.
+
+E13. 17.6839565% is not approved for formal publication
+-------------------------------------------------------
+See research/GOVERNANCE_CORRECTION_2026-10-22.txt. Commit 2734062 placed
+provisional matched-year artifacts on the public research branch while
+RESEARCH_READINESS already recorded public-release NO-GO. That historical
+deviation is preserved; 2734062 is not rewritten. The corrective decision
+is: 17.6839565% remains provisional computational output only. Independent
+review of this integrity repair is not formal scientific release.

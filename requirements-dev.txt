@@ -1,0 +1,4 @@
+# Development and operator test extras. National reproduction uses the
+# standard library unittest runner; pytest is optional.
+-r requirements.txt
+pytest>=7.0.0

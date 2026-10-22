@@ -1,10 +1,11 @@
 """HESI three-component source-to-result reproduction. Requires original Census PUMS ZIPs."""
-import argparse,hashlib,json,os,subprocess,sys
+import argparse,hashlib,json,os,shutil,subprocess,sys,tempfile
 from pathlib import Path
 import numpy as np,pandas as pd
 P=Path(__file__).resolve().parent
 sys.path.insert(0,str(P/'tools'))
 from pums_archive import person_zip_args, verify_housing_zip
+from protected_paths import assert_output_allowed
 HASHES={
  'housing':'8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0',
  'person_a':'05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8',
@@ -37,6 +38,8 @@ def main():
  x=ap.parse_args();env=dict(os.environ,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1')
  if x.check_existing:
   verdict=check_results(x.check_existing);print(json.dumps(verdict,indent=2));return
+ if x.output:
+  assert_output_allowed(x.output.resolve(),'--output')
  if not x.housing:ap.error('Provide --housing')
  if x.person_official and (x.person_a or x.person_b):ap.error('Use either --person-official or both --person-a and --person-b')
  if not x.person_official and not all([x.person_a,x.person_b]):ap.error('Provide --person-official csv_pus.zip or both split person ZIPs')
@@ -49,13 +52,22 @@ def main():
   value=digest(f)
   if value!=HASHES[key]:raise RuntimeError(f'INPUT HASH MISMATCH {key}: {value} != {HASHES[key]}')
   print('SOURCE VERIFIED:',key,f.name,flush=True)
- output=x.output.resolve();cache=output/'derived_person_caches';cache.mkdir(parents=True,exist_ok=True)
- subprocess.run([sys.executable,str(P/'rebuild_raw_person_caches.py'),'--person-zips',*person_zips,'--prices',str(sources['prices']),'--out',str(cache)],env=env,check=True,cwd=P)
- national=output/'national'
- subprocess.run([sys.executable,str(P/'src/run_joint.py'),'--housing-zip',str(x.housing.resolve()),'--food-cache',str(cache/'acs2024_food_person_aggregates.pkl'),'--composition-cache',str(cache/'acs2024_person_composition.pkl'),'--geography',str(sources['geography']),'--out',str(national)],env=env,check=True,cwd=P)
- verdict=check_results(national)
- verdict['raw_source_hashes']=HASHES
- verdict['generated_cache_sha256']={n:digest(cache/n) for n in ('acs2024_food_person_aggregates.pkl','acs2024_person_composition.pkl')}
- (output/'REPRODUCTION_REPORT.json').write_text(json.dumps(verdict,indent=2)+'\n')
- print(json.dumps(verdict,indent=2),flush=True)
+ output=assert_output_allowed(x.output.resolve(),'--output')
+ staging=Path(tempfile.mkdtemp(prefix='hesi_repro_'))
+ try:
+  cache=staging/'derived_person_caches'
+  national=staging/'national'
+  cache.mkdir(parents=True,exist_ok=True)
+  subprocess.run([sys.executable,str(P/'rebuild_raw_person_caches.py'),'--person-zips',*person_zips,'--prices',str(sources['prices']),'--out',str(cache)],env=env,check=True,cwd=P)
+  subprocess.run([sys.executable,str(P/'src/run_joint.py'),'--housing-zip',str(x.housing.resolve()),'--food-cache',str(cache/'acs2024_food_person_aggregates.pkl'),'--composition-cache',str(cache/'acs2024_person_composition.pkl'),'--geography',str(sources['geography']),'--out',str(national)],env=env,check=True,cwd=P)
+  verdict=check_results(national)
+  verdict['raw_source_hashes']=HASHES
+  verdict['generated_cache_sha256']={n:digest(cache/n) for n in ('acs2024_food_person_aggregates.pkl','acs2024_person_composition.pkl')}
+  if output.exists():
+   shutil.rmtree(output)
+  shutil.copytree(staging,output)
+  (output/'REPRODUCTION_REPORT.json').write_text(json.dumps(verdict,indent=2)+'\n')
+  print(json.dumps(verdict,indent=2),flush=True)
+ finally:
+  shutil.rmtree(staging,ignore_errors=True)
 if __name__=='__main__':main()

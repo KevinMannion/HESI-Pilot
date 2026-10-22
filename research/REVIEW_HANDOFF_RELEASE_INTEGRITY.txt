@@ -1,0 +1,25 @@
+HESI — independent-review handoff (release integrity)
+=====================================================
+Status: inspection candidate. NOT formal scientific release.
+NOT a merge to main. NOT an overwrite of origin/hesi/core-r25-integration.
+NOT approval to publish 17.6839565%.
+
+Base: 273406208abe439cbad960567f32822b870c43b5
+Review branch: review/r25-release-integrity
+Candidate commit SHA: (this branch tip; filled in chat after commit)
+URL: https://github.com/KevinMannion/HESI-Pilot/tree/review/r25-release-integrity
+
+What to inspect
+---------------
+Versioned v1/v2 integrity manifests, fail-closed protected outputs,
+verifiers, negative tests, and documentation including
+GOVERNANCE_CORRECTION_2026-10-22.txt.
+
+What not to conclude
+--------------------
+Computational PASS is not scientific validation.
+GitHub presence is not formal publication of 17.6839565% or 18.9918%.
+
+See RELEASE_INTEGRITY_REMEDIATION.txt for commands and numerical diffs
+recorded at repair time; the same battery was re-run immediately before
+this candidate commit.
