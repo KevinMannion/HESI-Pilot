@@ -1,0 +1,36 @@
+{
+  "housing_zip": {
+    "path": "csv_hus.zip (operator local; SHA-256 locked)",
+    "sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0"
+  },
+  "person": {
+    "official": "csv_pus.zip (operator local; inner CSV SHA-256 locked)",
+    "person_a": null,
+    "person_b": null
+  },
+  "usda_prices": {
+    "path": "core_r24/inputs/source_2024_2026.csv",
+    "sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c"
+  },
+  "food_cache_sha256": "911ef1f77071ecb026400e714b5ffeb8a7b5ec4677c19d950770274e3c3e1f72",
+  "composition_cache_sha256": "4e7c8dbbbf6decb65bb5de0d0bb72260fd812f5c8e8f0604eefb00ffc2bf7e7d",
+  "geography": {
+    "calendar_2024_dayweight": {
+      "path": "outputs/puma_fmr_calendar_2024.csv",
+      "sha256": "1555b558629be1f730d4fb1a1d732120fdba2abd8e5ba9e860fc55c10e4ae9b0"
+    },
+    "fy24_revised_only": {
+      "path": "outputs/puma_fmr_fy24_revised.csv",
+      "sha256": "263d08a2c5b1140dfe88499d553c73851945eb80b4c7836ba47b43c84a344787"
+    },
+    "fy25_original_from_2024_10_01": {
+      "path": "outputs/puma_fmr_fy25_original.csv",
+      "sha256": "60c429d77a0acefc163e425088ba6148da3c5f7b97b3c6d0bc5dd0d19dea3c50"
+    }
+  },
+  "transport_table": {
+    "path": "outputs/transport_reference_2024.csv",
+    "sha256": "6db488816c775bb4cc8b8bfff097a683dea4b3c5f2a5d24b98d4ff56e0b08b55"
+  },
+  "numpy": "see execution python"
+}

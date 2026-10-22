@@ -1,0 +1,174 @@
+{
+  "object": "2024 ACS observed income vs 2024 modeled household-specific costs",
+  "uniform_g3_threshold_used": false,
+  "income_nowcast_used": false,
+  "gates": [
+    {
+      "name": "frozen_national_R22",
+      "status": "PASS",
+      "detail": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7"
+    },
+    {
+      "name": "frozen_puma_fmr_screened",
+      "status": "PASS",
+      "detail": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee"
+    },
+    {
+      "name": "frozen_source_2024_2026",
+      "status": "PASS",
+      "detail": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c"
+    },
+    {
+      "name": "frozen_pilot_results",
+      "status": "PASS",
+      "detail": "d1928ccb0febb927675368bb900e41980a467d2c72dc86c7b696705bff3d9fd3"
+    },
+    {
+      "name": "nowcast_remains_nogo",
+      "status": "PASS",
+      "detail": "NO-GO"
+    },
+    {
+      "name": "housing_zip",
+      "status": "PASS",
+      "detail": {
+        "mode": "housing_zip_sha256",
+        "zip_sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "person_archives",
+      "status": "PASS",
+      "detail": {
+        "mode": "official_combined_zip",
+        "zip_sha256": "afdc6d90c6e2f0bab365ed32d95ba4c4d8ac651162f46ac7861295b2dc469894",
+        "inner_csv_sha256": {
+          "psam_pusa.csv": "b1c2ba439cb7a65f85aa36821d18c1888ae4df77cfeec0facadc1c2cff74680c",
+          "psam_pusb.csv": "b0ee65a88f8acf7e768ef94da2794bc7af2be81bfae8d2742b130f4fded13c88"
+        },
+        "status": "PASS",
+        "note": "ZIP-level hash may differ from split archives; inner CSV hashes are the content lock."
+      }
+    },
+    {
+      "name": "usda_2024_twelve_thrifty_months",
+      "status": "PASS",
+      "detail": {
+        "n_cells": 180,
+        "months": [
+          "April",
+          "August",
+          "December",
+          "February",
+          "January",
+          "July",
+          "June",
+          "March",
+          "May",
+          "November",
+          "October",
+          "September"
+        ],
+        "complete": true
+      }
+    },
+    {
+      "name": "puma_complete_set_calendar_2024_dayweight",
+      "status": "PASS",
+      "detail": {
+        "path": "outputs/puma_fmr_calendar_2024.csv",
+        "complete": 2350,
+        "r24_complete": 2350,
+        "intersection": 2350,
+        "only_matched": [],
+        "only_r24": [],
+        "n_partial": 112,
+        "do_not_force_sample": true
+      }
+    },
+    {
+      "name": "puma_complete_set_fy24_revised",
+      "status": "PASS",
+      "detail": {
+        "path": "outputs/puma_fmr_fy24_revised.csv",
+        "complete": 2350,
+        "r24_complete": 2350,
+        "intersection": 2350,
+        "only_matched": [],
+        "only_r24": [],
+        "n_partial": 112,
+        "do_not_force_sample": true
+      }
+    },
+    {
+      "name": "puma_complete_set_fy25_original",
+      "status": "PASS",
+      "detail": {
+        "path": "outputs/puma_fmr_fy25_original.csv",
+        "complete": 2350,
+        "r24_complete": 2350,
+        "intersection": 2350,
+        "only_matched": [],
+        "only_r24": [],
+        "n_partial": 112,
+        "do_not_force_sample": true
+      }
+    },
+    {
+      "name": "transport_gasoline_observed_nonfuel_held",
+      "status": "PASS",
+      "detail": {
+        "scenario": "calendar_2024_eia_annual",
+        "gas_usd_per_gallon": "3.304",
+        "annual_miles": "12000",
+        "mpg": "32",
+        "fuel_annual": "1239.0",
+        "nonfuel_annual_HELD_NOT_2024_VALIDATED": "5631.67",
+        "transport_annual": "6870.67",
+        "status": "gasoline_observed_nonfuel_hypothetical"
+      }
+    },
+    {
+      "name": "output_dir_not_national_R22",
+      "status": "PASS",
+      "detail": "core_r24/results/national_R22"
+    }
+  ],
+  "failed": [],
+  "status": "PASS",
+  "coverage": {
+    "calendar_2024_dayweight": {
+      "path": "outputs/puma_fmr_calendar_2024.csv",
+      "complete": 2350,
+      "r24_complete": 2350,
+      "intersection": 2350,
+      "only_matched": [],
+      "only_r24": [],
+      "n_partial": 112,
+      "do_not_force_sample": true
+    },
+    "fy24_revised": {
+      "path": "outputs/puma_fmr_fy24_revised.csv",
+      "complete": 2350,
+      "r24_complete": 2350,
+      "intersection": 2350,
+      "only_matched": [],
+      "only_r24": [],
+      "n_partial": 112,
+      "do_not_force_sample": true
+    },
+    "fy25_original": {
+      "path": "outputs/puma_fmr_fy25_original.csv",
+      "complete": 2350,
+      "r24_complete": 2350,
+      "intersection": 2350,
+      "only_matched": [],
+      "only_r24": [],
+      "n_partial": 112,
+      "do_not_force_sample": true
+    }
+  },
+  "transport_default_annual": 6870.67,
+  "transport_limitation": "Non-fuel dollars 5631.67 are inherited R2.4 hypothetical assumptions, not 2024 prices."
+}

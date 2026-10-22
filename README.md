@@ -22,7 +22,7 @@ A GitHub copy does not change those flags.
 | 2024 observed-housing pilot (`run.py`, `results.csv`) | ACS GRNTP / SMOCP | December 2024 USDA | none | 2024 ACS | 130,550,444 | 10.301% Thrifty |
 | Core R2.4 three-pillar scenario (`core_r24/`) | FY2026 HUD FMR replacement rent | September 2026 Thrifty | one-car $7,264.70/year | 2024 ACS | 121,036,726 | **18.9918%** |
 | September 2026 income nowcast | — | — | — | experimental | — | **not computed (NO-GO)** |
-| 2024 matched-year costs vs 2024 income | 2024 HUD mix (prepared) | 2024 Thrifty (prepared) | 2024 gasoline + held non-fuel | 2024 ACS | — | **not computed** |
+| 2024 matched-year three-component scenario (`research/historical_matched_baseline/`) | 2024 HUD calendar day-weight | 2024 Thrifty annual mean | 2024 EIA gasoline + **inherited hypothetical non-fuel $5,631.67**; one car per eligible HH | 2024 ACS observed | 121,036,726 | **17.6839565% (about 17.7%) — PROVISIONAL, NOT SCIENTIFICALLY VALIDATED** |
 
 18.9918% is a **cross-vintage modeled scenario** (2026 costs / 2024 gross income). It is not a measured September 2026 hardship rate.
 
@@ -35,7 +35,7 @@ Dated methods errata: `ERRATA.txt`. Official Census `csv_pus.zip` is accepted on
 1. **2024 observed-housing food pilot** (repository root; also on `main`).
 2. **Core R2.4 joint engine** — `core_r24/reproduce_from_raw.py` → person-cache rebuild → `core_r24/src/run_joint.py`. Locked Food / Housing / Transportation specs: `research/september2026_core_r2/`.
 3. **Income-nowcast research (Phases 1–4)** — `research/september2026_income_nowcast/`. Locked gates **fail**. Decision **NO-GO**. No September 2026 national adequacy estimate.
-4. **Matched-year 2024 cost-input preparation** — `research/historical_matched_baseline/`. Input gates PASS; no new national percentage.
+4. **Matched-year 2024 national engine** — `research/historical_matched_baseline/`. **PROVISIONAL — NOT SCIENTIFICALLY VALIDATED.** Computational share `0.17683956520767094` (**17.6839565%**; about **17.7%**). Observed ACS 2024 income vs modeled 2024 USDA food, HUD housing, EIA gasoline, and inherited non-fuel transport. Sampling intervals are ACS SDR only; housing-year and no-car alternatives are model sensitivity. External computational reproduction is **pending**. Reproduction: `results/matched2024_provisional/REPRODUCER_HANDOFF.md`. This is **not** a measured national hardship rate.
 
 Iteration history: `STATUS.txt`, `ITERATION_NOTES.txt`, `ITERATION_REGISTER.txt`.
 

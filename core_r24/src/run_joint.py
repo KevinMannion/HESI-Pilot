@@ -23,9 +23,13 @@ def load_person_table(path):
         return df
     return pd.read_pickle(path)
 
-def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=7264.70):
-    out=Path(out);out.mkdir(parents=True,exist_ok=True)
-    food=load_person_table(food_cache)[['thrifty_2026sep','n_person','n_infant']]
+def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=7264.70,food_column='thrifty_2026sep',cost_labels=None,share_metric='share_income_below_three_costs_PROVISIONAL',scenario_label=None,audit_status='RESEARCH_ONLY'):
+    out=Path(out).resolve()
+    frozen_r22=(Path(__file__).resolve().parents[1]/'results'/'national_R22').resolve()
+    if out==frozen_r22 or frozen_r22 in out.parents:
+        raise RuntimeError('Refusing to write core_r24/results/national_R22/')
+    out.mkdir(parents=True,exist_ok=True)
+    food=load_person_table(food_cache)[[food_column,'n_person','n_infant']].rename(columns={food_column:'food_cost'})
     comp=load_person_table(composition_cache)
     geo=pd.read_csv(geography,dtype={'puma_geoid':str});geo=geo.loc[geo.status.eq('COMPLETE_UNAMBIGUOUS')].set_index('puma_geoid')
     if not food.index.is_unique or not comp.index.is_unique or not geo.index.is_unique:raise ValueError('Duplicate key in a lookup')
@@ -50,7 +54,7 @@ def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=
         h=h.loc[good].copy()
         if h.empty:continue
         c=comp.reindex(h.SERIALNO);f=food.reindex(h.SERIALNO)
-        valid=c[['adult','child','partner']].notna().all(axis=1).to_numpy() & f[['n_person','n_infant','thrifty_2026sep']].notna().all(axis=1).to_numpy()
+        valid=c[['adult','child','partner']].notna().all(axis=1).to_numpy() & f[['n_person','n_infant','food_cost']].notna().all(axis=1).to_numpy()
         ad=c.adult.to_numpy(); ch=c.child.to_numpy(); pt=c.partner.to_numpy()
         valid &= ((ad+ch)==h.NP.to_numpy()) & (f.n_person.to_numpy()==h.NP.to_numpy()) & (pt<=ad) & (ad>=1)
         totals['composition_excluded_rows']+=int((~valid).sum());totals['composition_excluded_weight']+=float(h.loc[~valid,'WGTP'].sum())
@@ -68,7 +72,7 @@ def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=
         r=fmrs.reindex(h.puma_geoid).to_numpy(dtype=float)
         rent=r[np.arange(len(h)),br]
         n=h.NP.to_numpy();factor=np.select([n==1,n==2,n==3,n==4,n<=6],[1.2,1.1,1.05,1.,.95],default=.9)
-        meal=np.round(f.thrifty_2026sep.to_numpy(dtype=float)*factor,2)
+        meal=np.round(f.food_cost.to_numpy(dtype=float)*factor,2)
         car=float(transport_annual)/12
         inc=h.HINCP.to_numpy(dtype=float)*h.ADJINC.to_numpy(dtype=float)/1e6/12
         eligible=np.isfinite(rent)&np.isfinite(meal)&np.isfinite(inc)
@@ -90,17 +94,20 @@ def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=
     m=vals[:5]/totals['included_weight'];p=vals[5]/totals['included_weight']
     mr=num80/den80[:,None];pr=rep_below/den80
     se=np.sqrt((4/80)*((mr-m)**2).sum(axis=0));pse=np.sqrt((4/80)*((pr-p)**2).sum())
-    labels=['food_month','housing_month','one_vehicle_month_PROVISIONAL','total_month_PROVISIONAL','income_month_2024_vintage']
+    labels=list(cost_labels) if cost_labels is not None else ['food_month','housing_month','one_vehicle_month_PROVISIONAL','total_month_PROVISIONAL','income_month_2024_vintage']
+    if len(labels)!=5:raise ValueError('cost_labels must have 5 names')
     result=[]
     for i,label in enumerate(labels):result.append({'metric':label,'mean':m[i],'se_sdr':se[i],'ci90_low':m[i]-1.645*se[i],'ci90_high':m[i]+1.645*se[i]})
-    result.append({'metric':'share_income_below_three_costs_PROVISIONAL','mean':p,'se_sdr':pse,'ci90_low':p-1.645*pse,'ci90_high':p+1.645*pse})
+    result.append({'metric':share_metric,'mean':p,'se_sdr':pse,'ci90_low':p-1.645*pse,'ci90_high':p+1.645*pse})
     no_car=no_car_below/totals['included_weight']; no_car_replicates=no_car_rep/den80
     no_car_se=np.sqrt((4/80)*((no_car_replicates-no_car)**2).sum())
     result.append({'metric':'share_below_cost_NO_CAR_sensitivity','mean':no_car,'se_sdr':no_car_se,'ci90_low':no_car-1.645*no_car_se,'ci90_high':no_car+1.645*no_car_se})
     pd.DataFrame(result).to_csv(out/'common_cohort_results.csv',index=False)
     pd.DataFrame({'replicate':range(1,81),**{labels[j]:mr[:,j] for j in range(5)},'share_below':pr,'share_below_no_car':no_car_replicates}).to_csv(out/'replicate_results.csv',index=False)
     input_paths={'acs_housing_zip':housing_zip,'food_person_cache':food_cache,'composition_person_cache':composition_cache,'puma_fmr_table':geography}
-    audit={'input_sha256':{key:{'sha256':sha256_file(path),'size_bytes':Path(path).stat().st_size,'basename':Path(path).name} for key,path in input_paths.items()},'frame':totals,'tenure_groups':wgroups,'status':'RESEARCH_ONLY','reference':'September 2026 USDA and HUD costs; 2024 ACS composition AND 2024 income; one assumed 12000-mile vehicle','limitations':['One vehicle per included household is a sensitivity scenario, not supported mobility allocation','Income is 2024, not a 2026 nowcast','PUMA rent is modeled area mean not actual household location','Infant-containing households excluded','Households needing >4 bedrooms excluded','No healthcare, childcare, essentials or taxes','Replicate intervals capture ACS survey sampling only, not price, geographical, household-mobility, or model uncertainty']}
+    if scenario_label is None:
+        scenario_label='September 2026 USDA and HUD costs; 2024 ACS composition AND 2024 income; one assumed 12000-mile vehicle'
+    audit={'input_sha256':{key:{'sha256':sha256_file(path),'size_bytes':Path(path).stat().st_size,'basename':Path(path).name} for key,path in input_paths.items()},'frame':totals,'tenure_groups':wgroups,'status':audit_status,'reference':scenario_label,'food_column':food_column,'transport_annual':float(transport_annual),'share_metric':share_metric,'limitations':['One vehicle per included household is a sensitivity scenario, not supported mobility allocation','Income is 2024, not a 2026 nowcast','PUMA rent is modeled area mean not actual household location','Infant-containing households excluded','Households needing >4 bedrooms excluded','No healthcare, childcare, essentials or taxes','Replicate intervals capture ACS survey sampling only, not price, geographical, household-mobility, or model uncertainty']}
     assert abs(sum(z[0] for z in wgroups.values())-totals['included_weight'])<2, 'Tenure groups fail weighted reconciliation'
     audit['execution_status']='EXECUTED_BY_AUTHOR_NOT_INDEPENDENTLY_REPRODUCED'
     (out/'audit.json').write_text(json.dumps(audit,indent=2));print(pd.DataFrame(result).to_string(index=False));return audit

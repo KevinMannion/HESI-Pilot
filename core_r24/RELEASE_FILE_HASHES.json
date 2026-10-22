@@ -27,7 +27,7 @@
   "src/fast_national_food.py": "38a91110856e5c3c05be8af6477aaedefb16531d362649911d36c9e542ab17f4",
   "src/food_model.py": "1148fa915920ed6c0f5cf98c304f4831b764906cd983f65b8c287ed770e63cc3",
   "src/run_food_sdr.py": "d573eef7e042b3efd4bf134f3faf59c011694dda69b924e8f22efed17775bb9c",
-  "src/run_joint.py": "030cb0ae0baed16770e198a0c9f2353180ad3ccb55e6483d37b1c11dd3a24034",
+  "src/run_joint.py": "a34951b135936ddf539f0c33d7f3a331e10a4e59dc204889bde14f31792cce0e",
   "tests/test_adequacy.py": "b672bfa1b5e880738078f26fcbfe34d2d1ef3513851500df009a334bbd25c09c",
   "tests/test_food_model.py": "4bfe4a62faac3b07ef1a84991e7bb71fde64b7091db377df4b868dc66e5b8aee",
   "tests/test_joint_fixture.py": "43e8ee226fd4422c50a1498c4302567ec09b898ffa56de09e7bb5996146c6601",

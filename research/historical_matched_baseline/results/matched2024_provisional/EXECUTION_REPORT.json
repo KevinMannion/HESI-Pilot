@@ -1,0 +1,170 @@
+{
+  "decision": "PROVISIONAL_RESULT_NOT_A_PUBLICATION",
+  "scientifically_validated": false,
+  "externally_independently_reproduced": false,
+  "september_2026_income_nowcast": "NO-GO",
+  "r24_share_untouched": "18.9918%",
+  "r24_share_numeric": 0.18991790144753254,
+  "pilot_share_untouched": "10.301%",
+  "default_scenario": {
+    "name": "calendar_2024_dayweight housing; USDA 2024 Thrifty annual mean; EIA 2024 gasoline $3.304; nonfuel held $5631.67",
+    "share_income_below_three_costs_2024matched_MODELED": 0.17683956520767094,
+    "public_rounding_suggestion": 17.7,
+    "share": 0.17683956520767094,
+    "share_se": 0.0005312962315728786,
+    "share_ci90": [
+      0.17596558290673356,
+      0.17771354750860832
+    ],
+    "no_car": 0.13055577858244446,
+    "food_month": 625.4254550293268,
+    "housing_month": 1528.922176309657,
+    "transport_month": 572.5558333333369,
+    "income_month": 9325.244238086181,
+    "included_rows": 1235731,
+    "included_weight": 121036726.0,
+    "geography_excluded_rows": 64079,
+    "geography_excluded_weight": 6271320.0,
+    "frame_matches_r24": true,
+    "output": "results/matched2024_provisional/calendar_2024_dayweight"
+  },
+  "sensitivities": {
+    "transport_no_car_on_default_housing": 0.13055577858244446,
+    "housing_fy24_revised_only": {
+      "default": false,
+      "share": 0.1754958656102446,
+      "share_se": 0.0005283913403752466,
+      "share_ci90": [
+        0.17462666185532733,
+        0.1763650693651619
+      ],
+      "no_car": 0.12924921647335372,
+      "food_month": 625.4254550293268,
+      "housing_month": 1511.0385643998184,
+      "transport_month": 572.5558333333369,
+      "income_month": 9325.244238086181,
+      "included_rows": 1235731,
+      "included_weight": 121036726.0,
+      "geography_excluded_rows": 64079,
+      "geography_excluded_weight": 6271320.0,
+      "frame_matches_r24": true,
+      "output": "results/matched2024_provisional/fy24_revised_only"
+    },
+    "housing_fy25_original": {
+      "default": false,
+      "share": 0.18120423217660397,
+      "share_se": 0.0005361979346302616,
+      "share_ci90": [
+        0.1803221865741372,
+        0.18208627777907074
+      ],
+      "no_car": 0.13454000730323787,
+      "food_month": 625.4254550293268,
+      "housing_month": 1582.442684414357,
+      "transport_month": 572.5558333333369,
+      "income_month": 9325.244238086181,
+      "included_rows": 1235731,
+      "included_weight": 121036726.0,
+      "geography_excluded_rows": 64079,
+      "geography_excluded_weight": 6271320.0,
+      "frame_matches_r24": true,
+      "output": "results/matched2024_provisional/fy25_original_from_2024_10_01"
+    },
+    "geographic_coverage": {
+      "calendar_2024_dayweight": {
+        "path": "outputs/puma_fmr_calendar_2024.csv",
+        "complete": 2350,
+        "r24_complete": 2350,
+        "intersection": 2350,
+        "only_matched": [],
+        "only_r24": [],
+        "n_partial": 112,
+        "do_not_force_sample": true
+      },
+      "fy24_revised": {
+        "path": "outputs/puma_fmr_fy24_revised.csv",
+        "complete": 2350,
+        "r24_complete": 2350,
+        "intersection": 2350,
+        "only_matched": [],
+        "only_r24": [],
+        "n_partial": 112,
+        "do_not_force_sample": true
+      },
+      "fy25_original": {
+        "path": "outputs/puma_fmr_fy25_original.csv",
+        "complete": 2350,
+        "r24_complete": 2350,
+        "intersection": 2350,
+        "only_matched": [],
+        "only_r24": [],
+        "n_partial": 112,
+        "do_not_force_sample": true
+      }
+    }
+  },
+  "limitations": [
+    "Non-fuel transport is an inherited R2.4 hypothetical, not a 2024 insurance/depreciation/maintenance observation.",
+    "One car assigned to every included household.",
+    "HUD FMR is replacement rent, not observed household rent.",
+    "USDA mainland Thrifty cells are used for all states including AK/HI.",
+    "Infant households excluded; >4 bedroom compositions excluded.",
+    "ACS income is a rolling 12-month amount, not a December cash-flow snapshot.",
+    "SDR intervals are sampling-only.",
+    "Not a September 2026 hardship rate and not a nowcast."
+  ],
+  "gates": [
+    {
+      "name": "input_validation",
+      "status": "PASS"
+    },
+    {
+      "name": "frozen_national_R22_untouched",
+      "status": "PASS"
+    },
+    {
+      "name": "nowcast_nogo",
+      "status": "PASS"
+    },
+    {
+      "name": "household_specific_not_g3_uniform",
+      "status": "PASS"
+    },
+    {
+      "name": "default_frame_matches_r24_eligibility_count",
+      "status": "PASS",
+      "detail": {
+        "default": true,
+        "share": 0.17683956520767094,
+        "share_se": 0.0005312962315728786,
+        "share_ci90": [
+          0.17596558290673356,
+          0.17771354750860832
+        ],
+        "no_car": 0.13055577858244446,
+        "food_month": 625.4254550293268,
+        "housing_month": 1528.922176309657,
+        "transport_month": 572.5558333333369,
+        "income_month": 9325.244238086181,
+        "included_rows": 1235731,
+        "included_weight": 121036726.0,
+        "geography_excluded_rows": 64079,
+        "geography_excluded_weight": 6271320.0,
+        "frame_matches_r24": true,
+        "output": "results/matched2024_provisional/calendar_2024_dayweight"
+      }
+    },
+    {
+      "name": "did_not_write_national_R22",
+      "status": "PASS"
+    },
+    {
+      "name": "share_not_claimed_scientifically_validated",
+      "status": "PASS",
+      "detail": "PROVISIONAL / NOT SCIENTIFICALLY VALIDATED"
+    }
+  ],
+  "failed_gates": [],
+  "python": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "operator_note": "EXECUTED_BY_AUTHOR; CLEAN_ENVIRONMENT_REPRODUCED not re-run for this object; EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO"
+}

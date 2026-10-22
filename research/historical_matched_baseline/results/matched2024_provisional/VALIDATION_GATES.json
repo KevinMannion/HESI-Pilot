@@ -1,0 +1,55 @@
+{
+  "gates": [
+    {
+      "name": "input_validation",
+      "status": "PASS"
+    },
+    {
+      "name": "frozen_national_R22_untouched",
+      "status": "PASS"
+    },
+    {
+      "name": "nowcast_nogo",
+      "status": "PASS"
+    },
+    {
+      "name": "household_specific_not_g3_uniform",
+      "status": "PASS"
+    },
+    {
+      "name": "default_frame_matches_r24_eligibility_count",
+      "status": "PASS",
+      "detail": {
+        "default": true,
+        "share": 0.17683956520767094,
+        "share_se": 0.0005312962315728786,
+        "share_ci90": [
+          0.17596558290673356,
+          0.17771354750860832
+        ],
+        "no_car": 0.13055577858244446,
+        "food_month": 625.4254550293268,
+        "housing_month": 1528.922176309657,
+        "transport_month": 572.5558333333369,
+        "income_month": 9325.244238086181,
+        "included_rows": 1235731,
+        "included_weight": 121036726.0,
+        "geography_excluded_rows": 64079,
+        "geography_excluded_weight": 6271320.0,
+        "frame_matches_r24": true,
+        "output": "results/matched2024_provisional/calendar_2024_dayweight"
+      }
+    },
+    {
+      "name": "did_not_write_national_R22",
+      "status": "PASS"
+    },
+    {
+      "name": "share_not_claimed_scientifically_validated",
+      "status": "PASS",
+      "detail": "PROVISIONAL / NOT SCIENTIFICALLY VALIDATED"
+    }
+  ],
+  "failed": [],
+  "status": "PASS"
+}

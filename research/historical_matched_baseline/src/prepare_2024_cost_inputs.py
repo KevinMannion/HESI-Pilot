@@ -367,6 +367,11 @@ def coverage_report(puma_new, puma_r24):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--write-tracked-docs",
+        action="store_true",
+        help="Overwrite SOURCE_REGISTER.json and MATCHED_YEAR_READINESS.json in the research folder. Default writes those reports only under --out.",
+    )
     parser.add_argument("--out", default=str(DEFAULT_OUT))
     args = parser.parse_args()
     out = Path(args.out)
@@ -560,8 +565,9 @@ def main():
             "transport": eia,
         },
     }
-    (PIPE / "SOURCE_REGISTER.json").write_text(json.dumps(source_register, indent=2, default=str) + "\n")
-    (PIPE / "MATCHED_YEAR_READINESS.json").write_text(json.dumps(readiness, indent=2, default=str) + "\n")
+    docs_dir = PIPE if args.write_tracked_docs else out
+    (docs_dir / "SOURCE_REGISTER.json").write_text(json.dumps(source_register, indent=2, default=str) + "\n")
+    (docs_dir / "MATCHED_YEAR_READINESS.json").write_text(json.dumps(readiness, indent=2, default=str) + "\n")
     print(json.dumps({"input_preparation": recommendation["input_preparation"], "execute": recommendation["execute_2024_matched_year_national_percentage_this_round"], "gates": [(g["name"], g["status"]) for g in gates]}, indent=2))
     if not input_prep_pass:
         raise SystemExit(1)

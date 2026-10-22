@@ -1,0 +1,71 @@
+{
+  "object": "2024 matched-year provisional execution freeze",
+  "label": "PROVISIONAL_NOT_SCIENTIFICALLY_VALIDATED",
+  "do_not_publish_without_approval": true,
+  "national_R22_untouched": true,
+  "national_R22_sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
+  "acceptance": {
+    "metric_atol": 1e-07,
+    "frame_exact": true,
+    "n_sdr_replicates": 80,
+    "sdr_formula": "se = sqrt((4/80) * sum_r (x_r - x)^2)"
+  },
+  "files": {
+    "EXECUTION_REPORT.json": {
+      "sha256": "56651d528fa77497a74792dd84f63ba62f6ee7baccea643a6c9924aff8446e02",
+      "size_bytes": 5773
+    },
+    "INPUT_VALIDATION.json": {
+      "sha256": "10199db0465f113a676542a556e23bfd38c38480d1cf8729214640f4573c9fe1",
+      "size_bytes": 4886
+    },
+    "MATCHED_YEAR_NATIONAL_REPORT.md": {
+      "sha256": "9648044f50bd13f8c36fdff70c0c73d67bd4d05f4c733bbf02e31d7f23fa5ad8",
+      "size_bytes": 2946
+    },
+    "SOURCE_MANIFEST.json": {
+      "sha256": "6963f708c8bec7485e5926c92b0f9492e689dbf9d812e0ba8ef037bc446e0f21",
+      "size_bytes": 1391
+    },
+    "VALIDATION_GATES.json": {
+      "sha256": "53decbd9706166421359cbd985ace076f8ec60f0acc698216ca6c4a853b4878d",
+      "size_bytes": 1414
+    },
+    "calendar_2024_dayweight/audit.json": {
+      "sha256": "6eef2d4190cde8a2e92b2d65285cd9aa3873b036f01cd0ffa2895435b927eb29",
+      "size_bytes": 2669
+    },
+    "calendar_2024_dayweight/common_cohort_results.csv": {
+      "sha256": "7a6c375ff284cf983119ad016725029a7d4061ff90bceb73c46ba8bfd4e834b0",
+      "size_bytes": 786
+    },
+    "calendar_2024_dayweight/replicate_results.csv": {
+      "sha256": "475ffb3af0efeee324fc4af26f6142499c05d8cba6f9d5731b1214782f29f165",
+      "size_bytes": 10787
+    },
+    "fy24_revised_only/audit.json": {
+      "sha256": "532069ced4bcac095b0d3b680e9d948f7da96f64d9ce698b7aba8cb22f842b91",
+      "size_bytes": 2671
+    },
+    "fy24_revised_only/common_cohort_results.csv": {
+      "sha256": "881ecb31d7f461336fcd15b9d2419100d7b13b8d5a0d89bc0772479d2d4c1be0",
+      "size_bytes": 786
+    },
+    "fy24_revised_only/replicate_results.csv": {
+      "sha256": "a891a28b94ee2b7bfa2d7efb63721d1397e5a6d04fc433b800ecc37f8190c2bb",
+      "size_bytes": 10791
+    },
+    "fy25_original_from_2024_10_01/audit.json": {
+      "sha256": "7f1c3e47f8a091fb652cfb97641defb1eac6cb2aa6dc2c235af9c2930e538d01",
+      "size_bytes": 2672
+    },
+    "fy25_original_from_2024_10_01/common_cohort_results.csv": {
+      "sha256": "b2bd4626fe9abe2aa79ad718e684bf183c137f3a888cf11cb2eb1a884a5b5940",
+      "size_bytes": 786
+    },
+    "fy25_original_from_2024_10_01/replicate_results.csv": {
+      "sha256": "003ecc94b27b90a76ff56e3f5835af5f1c2a165ebb41c9712b6fac5fd2d6db9d",
+      "size_bytes": 10811
+    }
+  }
+}

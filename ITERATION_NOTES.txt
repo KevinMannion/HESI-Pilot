@@ -762,3 +762,55 @@ Tests (close-out, HESI-R25-CleanRepro venv numpy 1.26.4 / pandas 2.3.3)
 Staged for local commit: documentation, official inner-CSV ingestion, focused tests. Excluded: Census ZIPs, workbooks, caches, venvs, credentials, __pycache__.
 
 Not done: push; national nowcast; household-specific ACS backtest; changing 10.301% or R2.4 costs.
+
+================================================================================
+HESI iteration note — engineering stabilization + 2024 matched-year engine
+================================================================================
+- Date: 2026-10-22
+- Branch: hesi/core-r25-integration (working tree; no commit)
+- Nowcast remains NO-GO. national_R22 6778c312… / 18.9918% unchanged. Pilot 10.301% unchanged.
+
+Phase 1 vs Grok Reproducer (checked against e45eb87)
+1. BLS_ANNUAL_FACTORS.json source_sha256 bb68500e… MATCHES the operator API bundle. Not outdated on this vintage. The JSON file’s own SHA-256 is a different object (test asserts they differ). No rewrite of factor values.
+2. Confirmed: housing/verify.py, transportation/run_standard.py, and prepare_2024_cost_inputs.py could overwrite tracked files. Default is now compare-only / write under --out. Golden CSVs unchanged.
+3. Confirmed: requirements.txt lacked openpyxl and xlrd. Added. National matched-year run used already-prepared CSVs.
+
+Phase 2
+- Input validation PASS, then sibling engine on official csv_hus.zip + csv_pus.zip.
+- Default 2024 matched-year share 0.17683956520767094 (17.68396%) on 121,036,726; frame identity vs R2.4 PASS.
+- No-car 13.05558%. FY24-revised housing 17.54959%. FY25-original housing 18.12042%.
+- Household-specific costs; G3 uniform threshold not used.
+- Label: PROVISIONAL / NOT SCIENTIFICALLY VALIDATED. Not committed/pushed.
+
+Tests: core_r24 28 OK; verify_package 38 PASS + national regression; engineering 8 OK; BLS hash tests; matched wiring 10 OK; housing verify compare-only; transport tests 4 OK.
+Not done: commit/push/PR; publish 17.68396%; 2022–2023 series; independent reproduction.
+
+================================================================================
+HESI iteration note — matched-year 2024 review checkpoint (no commit)
+================================================================================
+- Date: 2026-10-22
+- Frozen 2024 execution in research/historical_matched_baseline/results/matched2024_provisional/ (ARTIFACT_LOCK.json). national_R22 untouched.
+
+Verified
+- Household-specific food (thrifty_2024annual) + PUMA/bedroom rent + one-car; share is inc < household joint, not G3 $2,894.91. Combined mean $2,726.90.
+- Eligibility/weights identical to R2.4 frame (1,235,731 / 121,036,726; geography excluded 64,079). 80 SDR replicates; se reconstructed with 4/80.
+- Housing mix 70+204+92=366 days. USDA unweighted mean of 12 monthly 2024 Thrifty cells.
+- Non-fuel $5,631.67 inherited; transport se_sdr ~1e-10 (constant). Housing/food sampling SEs nonzero. Model sensitivities (FY tables, no-car) outside the SDR interval.
+
+Regression: core_r24 verify_package 38 PASS; matched tests 22 OK; engineering 8; remediation 4. 18.9918% / 10.301% / nowcast NO-GO unchanged.
+
+External computational reproduction: GO (REPRODUCER_HANDOFF.md, atol 1e-7).
+Provisional public release of 17.7%: NO-GO (RESEARCH_READINESS.md).
+Not done: commit/push; publish.
+
+================================================================================
+HESI iteration note — publish matched-year models on integration branch
+================================================================================
+- Date: 2026-10-22
+- Branch: hesi/core-r25-integration only. No merge to main. No force-push. No PR.
+- Label: PROVISIONAL — NOT SCIENTIFICALLY VALIDATED. Share 0.17683956520767094 (17.6839565%; about 17.7%).
+- Operator home paths stripped from SOURCE_MANIFEST / EXECUTION_REPORT / INPUT_VALIDATION / VALIDATION_GATES before freeze.
+- Pre-push: matched 22 OK; verify_package 38 PASS; engineering+remediation 10 OK; nowcast 8 OK; national_R22 6778c312…; pilot 10.301%; nowcast NO-GO.
+- Staged: matched-year engine, provisional results + 80 replicates, ARTIFACT_LOCK, REPRODUCER_HANDOFF, readiness, engineering write-protection, requirements, tests, iteration docs.
+- Excluded: Census ZIPs, workbooks, person caches, venvs, credentials.
+- GitHub copy is not scientific validation. External computational reproduction remains pending.

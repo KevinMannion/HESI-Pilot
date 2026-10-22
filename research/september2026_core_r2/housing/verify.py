@@ -1,4 +1,4 @@
-import json,csv,math,pathlib
+import json,csv,math,pathlib,argparse,io
 root=pathlib.Path(__file__).resolve().parent
 parts=[json.loads((root/f'part_{p}.json').read_text()) for p in ('a','b')]
 assert sum(x['allrows'] for x in parts)==1631969
@@ -22,8 +22,25 @@ rows=[]
 for i,name in enumerate(['two_people_per_room','adult_individual_partner_share_children_pooled','adult_individual_partner_share_children_by_sex','two_people_recheck']):
  j=[0,2,1,3][i]
  rows.append({'scenario':name,'weighted_households_covered':round(wts[j]),'coverage_pct_canonical':round(wts[j]/allwt*100,4),'monthly_mean_variable_population':round(sums[j]/wts[j],6),'monthly_mean_paired_population':round(paired[j]/paired_w,6),'annual_paired':round(12*paired[j]/paired_w,6)})
-with (root/'executed_results.csv').open('w',newline='') as f:
- w=csv.DictWriter(f,fieldnames=rows[0]);w.writeheader();w.writerows(rows)
 audit={'canonical_occupied_unweighted':sum(x['occupied'] for x in parts),'canonical_occupied_weighted':allwt,'screened_geo_unweighted':bygeo,'screened_geography_unweighted_excluded':sum(x['occupied']-x['bygeo'] for x in parts),'composition_mismatch_after_geo':sum(x['person_mismatch'] for x in parts),'paired_unweighted':sum(x['paired_n'] for x in parts),'paired_weighted':paired_w,'paired_pct_canonical':round(paired_w/allwt*100,4),'over_four_composition_sex_unweighted':sum(x['over4'] for x in parts),'sampling_uncertainty_new_composition':'NOT_RUN','new_price_vintage':'HUD FY2026 revised applicable September 2026','population_vintage':'ACS PUMS 2024','methodology_status':'RESEARCH ONLY, bedroom baseline user-defined not independently validated'}
-(root/'audit.json').write_text(json.dumps(audit,indent=2))
-print('PASS: 11 integrity assertions; national composition calculations verified');print(json.dumps(audit,indent=2));print(rows)
+
+def csv_text(records):
+ buf=io.StringIO()
+ w=csv.DictWriter(buf,fieldnames=records[0]);w.writeheader();w.writerows(records)
+ return buf.getvalue()
+
+if __name__=='__main__':
+ p=argparse.ArgumentParser()
+ p.add_argument('--write-tracked',action='store_true',help='Overwrite executed_results.csv and audit.json; default is compare-only')
+ a=p.parse_args()
+ with (root/'executed_results.csv').open() as f:
+  golden_rows=list(csv.DictReader(f))
+ computed_rows=list(csv.DictReader(io.StringIO(csv_text(rows))))
+ if computed_rows!=golden_rows:
+  raise SystemExit('computed executed_results.csv differs from tracked golden file')
+ if json.loads((root/'audit.json').read_text())!=audit:
+  raise SystemExit('computed audit.json differs from tracked golden file')
+ if a.write_tracked:
+  (root/'executed_results.csv').write_text(csv_text(rows))
+  (root/'audit.json').write_text(json.dumps(audit,indent=2))
+ print('PASS: 11 integrity assertions; national composition calculations verified');print(json.dumps(audit,indent=2));print(rows)

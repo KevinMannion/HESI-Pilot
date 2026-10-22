@@ -2,12 +2,13 @@ HESI STATUS — Core R2.5 integration working tree
 ================================================
 Date: 2026-10-22
 Branch: hesi/core-r25-integration
-Public research branch (no merge to main, no PR, not a scientific release).
+Public research branch (push this branch only; no merge to main, no PR, not a scientific release).
 COMPUTATIONALLY_REPRODUCED: YES, for the specified R2.4 calculations
 EXTERNALLY_INDEPENDENTLY_REPRODUCED: NO
 SCIENTIFICALLY_VALIDATED: NO
 SEPTEMBER_2026_INCOME_NOWCAST: NO-GO
-METHODS_REVIEW_REMEDIATION_R1: CLOSED locally (see ERRATA.txt); not pushed
+METHODS_REVIEW_REMEDIATION_R1: CLOSED and published as e45eb87
+MATCHED_YEAR_2024_NATIONAL: PROVISIONAL — NOT SCIENTIFICALLY VALIDATED. Computational 17.6839565% (about 17.7%) of 121,036,726. External computational reproduction pending. Not a measured hardship rate.
 Pushing to GitHub does not constitute scientific validation.
 Recovery points (do not rewrite): d658c08, 55b61ea
 Based on GitHub origin/main: 125500b Update README.md
@@ -86,11 +87,13 @@ Track E — historical matched-year baseline (research/historical_matched_baseli
   DESIGN_AUDITED:                             YES (2026-10-21)
   2024_COST_INPUTS_PREPARED:                  YES (2026-10-22; MATCHED_YEAR_READINESS.json)
   INPUT_PREPARATION_GATES:                    PASS
-  NATIONAL_SHARE_COMPUTED:                    NO
-  EXECUTE_NATIONAL_PERCENTAGE_THIS_ROUND:     NO-GO
-  PROCEED_TO_SIBLING_ENGINE:                  GO
+  SIBLING_ENGINE_EXECUTED:                    YES (2026-10-22; results/matched2024_provisional/)
+  NATIONAL_SHARE_COMPUTED:                    YES, PROVISIONAL 17.68396% (0.17683956520767094) on the R2.4 frame
+  PUBLICATION_STATUS:                         NOT A PUBLIC ESTIMATE; awaiting approval
+  EXECUTE_NATIONAL_PERCENTAGE_THIS_ROUND:     executed as labeled provisional only
   BUILD_2022_2024_SERIES:                     NO-GO until USDA 2022-23 extract, FY2022-23 FMR, year-specific transport
   SCIENTIFICALLY_VALIDATED:                   NO
+  EXTERNALLY_INDEPENDENTLY_REPRODUCED:        NO
 
 WHAT THIS WORKING TREE IS NOT
 -----------------------------

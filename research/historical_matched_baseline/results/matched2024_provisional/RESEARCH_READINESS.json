@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-22",
+  "object": "2024 ACS observed income vs 2024 modeled three-component costs",
+  "computational_reproduction_attempt": "GO",
+  "provisional_public_research_release": "NO-GO",
+  "scientific_validation": "NO-GO",
+  "publish_17_7_percent": "NO-GO",
+  "overwrite_18_9918": "FORBIDDEN",
+  "income_nowcast": "NO-GO",
+  "must_resolve_before_provisional_public_release": [
+    "Independent computational reproduction (this handoff) with hashed outputs.",
+    "Explicit public labeling: modeled replacement costs vs rolling ACS income; not measured hardship.",
+    "Transportation: either historically price non-fuel components or keep them permanently labeled hypothetical in every public sentence.",
+    "One-car assignment: keep as a named sensitivity or replace with a household vehicle/transit rule.",
+    "Confirm HUD county inner-join of FY24 orig/rev/FY25 orig dropped zero counties (4764=4764 on this run) in the published methods note.",
+    "Do not imply G3/nowcast validation; this object is household-specific and nowcast remains NO-GO.",
+    "Round public prose to about 17.7% only after the computational 17.68396% lock is cited."
+  ],
+  "already_in_place_for_a_reproduction_attempt": [
+    "Separate output directory; national_R22 untouched.",
+    "Household-specific food+housing+transport vs observed income.",
+    "R2.4 eligibility frame identity (1,235,731 / 121,036,726).",
+    "80 SDR replicates; se reconstructed.",
+    "Calendar-2024 70/204/92 day-weight and 12-month USDA mean.",
+    "Input validation gates PASS before the national run."
+  ]
+}
