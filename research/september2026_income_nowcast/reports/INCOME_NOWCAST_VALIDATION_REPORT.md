@@ -4,9 +4,11 @@
 
 Computational reproduction of these backtests: yes (hashed ACS 2022–2024 PUMS + hashed BLS API JSON). Scientific validation: no.
 
-## Predeclared gates (not relaxed)
+**Errata (2026-10-22):** The gates were not publicly preregistered. See `GATE_CHRONOLOGY.md`. Phase 3 **scored M4 froze SEMP/INTP**; the gate-file M4 text includes BEA terms that were tested later as M5. G3 uses a **uniform** $2,894.91/mo threshold, not household-specific HESI costs. Numeric tables below are unchanged.
 
-File: `VALIDATION_GATES.json` (timestamp 2026-10-21T21:26:00-04:00, before model comparisons).
+## Gates used for scoring (not relaxed; not a public preregistration)
+
+File: `VALIDATION_GATES.json` (self-attested timestamp 2026-10-21T21:26:00-04:00, before Phase 3 comparison code in this working tree).
 
 | Gate | Result | Detail |
 | --- | --- | --- |

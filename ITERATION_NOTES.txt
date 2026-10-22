@@ -718,3 +718,47 @@ HESI iteration note — public research-branch checkpoint (no PR)
 - Local operator paths remain in previously committed clean-env logs (not rewritten; no force-push)
 - GitHub publication is not scientific validation
 Not done: merge to main; pull request; formal research release.
+
+================================================================================
+HESI iteration note — methods-review remediation round 1 (investigation)
+================================================================================
+- Date: 2026-10-22
+- Paused new features and national calculations. Nowcast remains NO-GO.
+- national_R22 sha 6778c312… / 18.9918% unchanged.
+
+Confirmed
+1. Official csv_pus.zip ZIP hash differs from split person ZIPs; inner CSV SHA-256 identical. Added inner-hash official ingestion (--person-official). Checksums not skipped.
+2. VALIDATION_GATES.json not publicly preregistered (first git appearance fb58ddc). Chronology documented; gates not rewritten.
+3. Scored M4 freezes SEMP/INTP; gate text includes BEA; M5 later; results not recalculated.
+4. G3 is a uniform $2,894.91 proxy. Household-specific backtest designed + fixture-tested, not run nationally.
+5. Public rounding ~19.0%; no-car ~14.0% lives in rebuilt_from_raw, not national_R22 CSV.
+6. Pilot unsupported_tenure 206820 = 183206 GQ + 23614 rent-free; TYPEHUGQ unused in run.py.
+7. CES M4 uses all-employee SA AWE CES0500000011, not AHE×hours.
+8. ERRATA.txt E1–E11.
+
+================================================================================
+HESI iteration note — close methods remediation round 1 (local checkpoint)
+================================================================================
+- Date: 2026-10-22
+- Branch: hesi/core-r25-integration
+- Close-out only. No push, merge, or PR. Pause before household-specific ACS validation.
+
+Frozen identity (working tree == HEAD for these files)
+- national_R22 common_cohort_results.csv sha256 6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7
+- computational share 0.18991790144753254 (18.9918%)
+- VALIDATION_GATES.json git blob 0cccaa881eae1884f2d969b63a4beb79accd5fb2
+- results.csv 10.301% of 130,550,444; git blob 95cdb39f34eedfd21612f4b0ba09639d622e0f8a
+- core_r24/inputs puma_fmr_screened / source_2024_2026 / transport / usda hashes match RELEASE_FILE_HASHES.json
+
+Package lock now includes PUMS_ARCHIVE_LOCK.json, tools/pums_archive.py, tests/test_pums_archive.py (38 files).
+
+Tests (close-out, HESI-R25-CleanRepro venv numpy 1.26.4 / pandas 2.3.3)
+- core_r24 unittest: 28 OK (includes 4 inner-CSV lock tests)
+- verify_package: PASS 38 hashes; national regression PASS (6 metrics, 80 replicates, frame_exact)
+- nowcast tests: 6 OK
+- tests/test_remediation_r1.py: 4 OK
+- live /Users/kevinmannion/Downloads/csv_pus.zip inner CSV SHA-256 PASS; altered expected hashes REJECT
+
+Staged for local commit: documentation, official inner-CSV ingestion, focused tests. Excluded: Census ZIPs, workbooks, caches, venvs, credentials, __pycache__.
+
+Not done: push; national nowcast; household-specific ACS backtest; changing 10.301% or R2.4 costs.

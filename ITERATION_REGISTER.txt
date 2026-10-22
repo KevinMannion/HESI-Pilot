@@ -131,6 +131,14 @@ Demonstrated: pre-push unittest/verify_package/pilot/matched-year gates as recor
 Remaining: EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO; nowcast NO-GO; matched-year national share not computed.
 Git: checkpoint commit on hesi/core-r25-integration only. No merge to main. No force-push. No PR.
 
+Core R2.5 — methods-review remediation round 1 closed (2026-10-22, local checkpoint)
+-----------------------------------------------------------------------------------
+What changed: official PUMS inner-CSV ingestion path; PUMS files added to RELEASE_FILE_HASHES; gate chronology and M4 spec notes; G3 household-specific design (fixture only); ERRATA.txt; tenure decomposition; CES series note; public-rounding language. Frozen national_R22 and VALIDATION_GATES thresholds not rewritten.
+What did not change: 18.9918%; nowcast NO-GO; no new national percentage; pilot results.csv 10.301%.
+Demonstrated: close-out unittests and verify_package as recorded in ITERATION_NOTES.
+Remaining: household-specific adequacy not executed on ACS; EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO.
+Git: local checkpoint on hesi/core-r25-integration only. No push. No merge. No PR.
+
 Mandatory per-release evidence (starting with the next committed release)
 ------------------------------------------------------------------------
 1. ITERATION_NOTES.txt

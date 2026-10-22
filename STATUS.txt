@@ -7,6 +7,7 @@ COMPUTATIONALLY_REPRODUCED: YES, for the specified R2.4 calculations
 EXTERNALLY_INDEPENDENTLY_REPRODUCED: NO
 SCIENTIFICALLY_VALIDATED: NO
 SEPTEMBER_2026_INCOME_NOWCAST: NO-GO
+METHODS_REVIEW_REMEDIATION_R1: CLOSED locally (see ERRATA.txt); not pushed
 Pushing to GitHub does not constitute scientific validation.
 Recovery points (do not rewrite): d658c08, 55b61ea
 Based on GitHub origin/main: 125500b Update README.md
@@ -75,7 +76,7 @@ Track D — September 2026 household-income nowcast
   DESIGN_DOCUMENTED:                          YES
   SOURCE_RECONCILIATION_EXECUTED:             YES (2024 ACS vs HINCP on R2.4 frame)
   HISTORICAL_BACKTESTS_EXECUTED:              YES (Phase 4 enriched ACS 2021–2024; locked eval 2022–2024)
-  PREDECLARED_GATES:                          FAIL (locked G2, G3). GO/NO-GO = NO-GO
+  LOCKED_GATES:                               FAIL (locked G2, G3). GO/NO-GO = NO-GO. Not a public preregistration (GATE_CHRONOLOGY.md).
   NATIONAL_NOWCAST_EXECUTED:                  NO
   SEPTEMBER_2026_RUN_RATE_IDENTIFIABLE:       NO (BEA monthly through 2026-08 only; gates fail)
   SCIENTIFICALLY_VALIDATED:                   NO

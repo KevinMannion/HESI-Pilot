@@ -1,0 +1,25 @@
+{
+  "source": "2024 ACS 1-year housing PUMS csv_hus.zip",
+  "housing_zip_sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+  "housing_records": 1631969,
+  "finding": "Root-pilot audit.json labels 206820 records unsupported_tenure. That bucket is not tenure-only.",
+  "decomposition_unweighted": {
+    "np_gt_0": 1531614,
+    "np_gt_0_and_TYPEHUGQ_not_1_group_quarters_TEN_missing": 183206,
+    "np_gt_0_and_TYPEHUGQ_1_and_TEN_eq_4_rent_free": 23614,
+    "sum_equals_unsupported_tenure": 206820
+  },
+  "run_py": {
+    "occupied_gate": "NP>0 only; TYPEHUGQ is not read",
+    "tenure_gate": "TEN in {1,2,3} (owned with mortgage, owned free and clear, rented for cash)",
+    "rent_free_TEN_4": "Fails TEN in {1,2,3}; counted as unsupported_tenure",
+    "group_quarters": "TYPEHUGQ 2/3 with NP>0 have missing TEN; also counted as unsupported_tenure"
+  },
+  "r24_joint": {
+    "occupied_gate": "TYPEHUGQ==1 and NP>0 and WGTP>0",
+    "occupied_rows": 1348408,
+    "occupied_weight": 132737145.0,
+    "rent_free": "TEN==4 housing units can remain in the occupied frame if other filters pass; replacement rent is still assigned"
+  },
+  "do_not_change": "Published pilot results.csv 10.301% and audit.json counts. This file only labels the 206820."
+}

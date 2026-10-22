@@ -1,0 +1,32 @@
+{
+  "acs_year": 2024,
+  "why_zip_sha256_differs_from_split_archives": "The Census Bureau csv_pus.zip is one container with psam_pusa.csv, psam_pusb.csv, and ACS2024_PUMS_README.pdf. HESI_Person_Part_1.zip / HESI_Person_Part_2.zip are the same two CSVs re-compressed as separate ZIPs without the README. ZIP-level SHA-256 therefore differs; uncompressed CSV SHA-256 and ZIP CRC-32 of those two members are identical.",
+  "r24_locked_zip_sha256": {
+    "housing_csv_hus.zip": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "person_part_1": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "person_part_2": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c"
+  },
+  "official_census_zip_sha256_not_a_substitute_for_inner_hashes": {
+    "csv_pus.zip": "afdc6d90c6e2f0bab365ed32d95ba4c4d8ac651162f46ac7861295b2dc469894",
+    "csv_hus.zip": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0"
+  },
+  "inner_csv_sha256": {
+    "psam_pusa.csv": "b1c2ba439cb7a65f85aa36821d18c1888ae4df77cfeec0facadc1c2cff74680c",
+    "psam_pusb.csv": "b0ee65a88f8acf7e768ef94da2794bc7af2be81bfae8d2742b130f4fded13c88",
+    "psam_husa.csv": "bd0f4ce01e0c7c5636696af8ecc12cf20dc2da8e4390b3f29e2653700e27ead5",
+    "psam_husb.csv": "1fb715e8eb2eb1ec6698b485032c5fec572e79357c9ef6288c99086dd6a630eb"
+  },
+  "inner_csv_crc32": {
+    "psam_pusa.csv": 523033229,
+    "psam_pusb.csv": 1346462570,
+    "psam_husa.csv": 34889928,
+    "psam_husb.csv": 1745382359
+  },
+  "inner_csv_uncompressed_bytes": {
+    "psam_pusa.csv": 1226543489,
+    "psam_pusb.csv": 1178924624,
+    "psam_husa.csv": 495752055,
+    "psam_husb.csv": 481732465
+  },
+  "verification_policy": "Never accept an archive because its filename looks official. Accept split ZIPs only if ZIP SHA-256 matches the R2.4 lock. Accept a combined Census ZIP only if each required inner CSV SHA-256 matches inner_csv_sha256. Do not skip checksums."
+}

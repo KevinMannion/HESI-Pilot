@@ -26,7 +26,9 @@ A GitHub copy does not change those flags.
 
 18.9918% is a **cross-vintage modeled scenario** (2026 costs / 2024 gross income). It is not a measured September 2026 hardship rate.
 
-Frozen R2.4 files (do not edit): `core_r24/results/national_R22/`. SHA-256 of `common_cohort_results.csv`: `6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7`.
+Frozen R2.4 files (do not edit): `core_r24/results/national_R22/`. SHA-256 of `common_cohort_results.csv`: `6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7`. Computational share `0.18991790144753254`. For public prose, report **about 19.0%** (90% ACS sampling-only interval about 18.9% to 19.1%). One-car assignment is provisional; the **no-car sensitivity** on the same households is in `core_r24/results/rebuilt_from_raw/common_cohort_results.csv` (`0.14032179786488938`, **about 14.0%**). The frozen `national_R22` table does not include that row. See `ERRATA.txt` E5.
+
+Dated methods errata: `ERRATA.txt`. Official Census `csv_pus.zip` is accepted only after **inner CSV** SHA-256 verification (`core_r24/PUMS_ARCHIVE_LOCK.json`).
 
 ## What is in this branch
 

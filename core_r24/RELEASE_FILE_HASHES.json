@@ -10,8 +10,8 @@
   "inputs/source_2024_2026.csv": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
   "inputs/transport_reference_2026_09.csv": "19cc412e1d13662782ee57315f148f0a2187e1fd1613052c3aebd3397a687af6",
   "inputs/usda_september_2026.csv": "904ec9db0528d7f48663f023393b56f3bca7b23c39ba22d29f1549a4ed823ed7",
-  "rebuild_raw_person_caches.py": "d9a20f2e0fb0e99f5437c15af76dd78fa65dd5610d676f3baca134d3e16128e5",
-  "reproduce_from_raw.py": "c6783be3d70798b2d253e75e3941098d01d7e48fe94bdf42c352c566283ea481",
+  "rebuild_raw_person_caches.py": "97d51efa6d6b2cf762dc84e7fcd74f0fbecdfed82e8510e3c67ab1e238640769",
+  "reproduce_from_raw.py": "6b41f2e01dfc1e959ddc3bfcc8e6776a3c3ab1bcfcee500d935d4644e3c5755e",
   "results/national_R22/audit.json": "975cc72d08172b502b34ee75b60b5124514201271be7bb3a6d1b6188d112061f",
   "results/national_R22/common_cohort_results.csv": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
   "results/national_R22/replicate_results.csv": "6d42ff336ef74f30c9318b7b687d06870bb7864282ca0fa17e57fa28263745fc",
@@ -33,5 +33,8 @@
   "tests/test_joint_fixture.py": "43e8ee226fd4422c50a1498c4302567ec09b898ffa56de09e7bb5996146c6601",
   "tests/test_reference.py": "f3fa13aaca1c799adc37d397b8287bf583182293af63d98369c07bdab5582323",
   "tests/test_run_joint_synthetic.py": "e784a14814513cf195dda168db81b2bd8712f20c84102a3f8a7974cf3e981317",
-  "verify_package.py": "1a414de8fe17d17b8958e60d75dcca057c7e4860018f8ebfbd837e2e309e3668"
+  "verify_package.py": "1a414de8fe17d17b8958e60d75dcca057c7e4860018f8ebfbd837e2e309e3668",
+  "PUMS_ARCHIVE_LOCK.json": "998c85b167857a1e9d5c6df780e089ef6e22acbb0cdb0d143d10095385b0b96d",
+  "tools/pums_archive.py": "c34d790642ddad19ab5000a015aa40b2febaf8f233853142b86a7b045f0ba053",
+  "tests/test_pums_archive.py": "fb3597fad615f8fa4d6e58318ce430be6c9cbe5ac413f5ac87f000236f318b1e"
 }

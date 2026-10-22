@@ -47,5 +47,13 @@ def main():
  food=pd.concat(foods).groupby(level=0).sum();comp=pd.concat(comps).groupby(level=0).sum()
  food.to_pickle(out/'acs2024_food_person_aggregates.pkl');comp.to_pickle(out/'acs2024_person_composition.pkl')
  print('SUMMARY',json.dumps({'person_rows':count,'households_food':len(food),'households_composition':len(comp)}),flush=True)
- if len(x.person_zips)!=2:raise RuntimeError('Need both Census person archives')
+ seen=set()
+ for file in x.person_zips:
+  with zipfile.ZipFile(file) as z:
+   for n in z.namelist():
+    name=Path(n).name.lower()
+    if name.startswith('psam_pus') and name.endswith('.csv'):
+     seen.add(name)
+ if seen!={'psam_pusa.csv','psam_pusb.csv'}:
+  raise RuntimeError('Need both ACS person CSVs psam_pusa.csv and psam_pusb.csv; found '+str(sorted(seen)))
 if __name__=='__main__':main()

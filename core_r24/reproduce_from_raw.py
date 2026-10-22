@@ -3,6 +3,8 @@ import argparse,hashlib,json,os,subprocess,sys
 from pathlib import Path
 import numpy as np,pandas as pd
 P=Path(__file__).resolve().parent
+sys.path.insert(0,str(P/'tools'))
+from pums_archive import person_zip_args, verify_housing_zip
 HASHES={
  'housing':'8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0',
  'person_a':'05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8',
@@ -29,20 +31,26 @@ def check_results(generated):
 def main():
  ap=argparse.ArgumentParser()
  ap.add_argument('--housing',type=Path);ap.add_argument('--person-a',type=Path);ap.add_argument('--person-b',type=Path)
+ ap.add_argument('--person-official',type=Path,help='Census csv_pus.zip; verified by inner CSV SHA-256, not by pretending it matches the split ZIP hashes')
  ap.add_argument('--output',type=Path,default=P/'local_reproduction')
  ap.add_argument('--check-existing',type=Path,help='Validate completed run without reprocessing inputs')
  x=ap.parse_args();env=dict(os.environ,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1')
  if x.check_existing:
   verdict=check_results(x.check_existing);print(json.dumps(verdict,indent=2));return
- if not all([x.housing,x.person_a,x.person_b]):ap.error('Provide --housing, --person-a and --person-b original Census ZIPs')
- sources={'housing':x.housing,'person_a':x.person_a,'person_b':x.person_b,'geography':P/'inputs/puma_fmr_screened.csv','prices':P/'inputs/source_2024_2026.csv'}
+ if not x.housing:ap.error('Provide --housing')
+ if x.person_official and (x.person_a or x.person_b):ap.error('Use either --person-official or both --person-a and --person-b')
+ if not x.person_official and not all([x.person_a,x.person_b]):ap.error('Provide --person-official csv_pus.zip or both split person ZIPs')
+ person_zips=person_zip_args(official=x.person_official, part1=x.person_a, part2=x.person_b)
+ housing_report=verify_housing_zip(x.housing)
+ print('SOURCE VERIFIED: housing', housing_report, flush=True)
+ sources={'geography':P/'inputs/puma_fmr_screened.csv','prices':P/'inputs/source_2024_2026.csv'}
  for key,f in sources.items():
   if not f.is_file():raise FileNotFoundError(f)
   value=digest(f)
   if value!=HASHES[key]:raise RuntimeError(f'INPUT HASH MISMATCH {key}: {value} != {HASHES[key]}')
   print('SOURCE VERIFIED:',key,f.name,flush=True)
  output=x.output.resolve();cache=output/'derived_person_caches';cache.mkdir(parents=True,exist_ok=True)
- subprocess.run([sys.executable,str(P/'rebuild_raw_person_caches.py'),'--person-zips',str(x.person_a.resolve()),str(x.person_b.resolve()),'--prices',str(sources['prices']),'--out',str(cache)],env=env,check=True,cwd=P)
+ subprocess.run([sys.executable,str(P/'rebuild_raw_person_caches.py'),'--person-zips',*person_zips,'--prices',str(sources['prices']),'--out',str(cache)],env=env,check=True,cwd=P)
  national=output/'national'
  subprocess.run([sys.executable,str(P/'src/run_joint.py'),'--housing-zip',str(x.housing.resolve()),'--food-cache',str(cache/'acs2024_food_person_aggregates.pkl'),'--composition-cache',str(cache/'acs2024_person_composition.pkl'),'--geography',str(sources['geography']),'--out',str(national)],env=env,check=True,cwd=P)
  verdict=check_results(national)
