@@ -1,0 +1,17 @@
+{
+  "reference": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/county_model_ready.csv",
+  "candidate": "/Users/kevinmannion/HESI-R25-CleanRepro/upstream_verify/county_model_ready.candidate.csv",
+  "reference_sha256": "f121cf328b3c71d7e84fe2073c50d3efe413b07ae2f335623ee5a4a20491dc8e",
+  "candidate_sha256": "f121cf328b3c71d7e84fe2073c50d3efe413b07ae2f335623ee5a4a20491dc8e",
+  "hash_match": true,
+  "row_count_reference": 4764,
+  "row_count_candidate": 4764,
+  "key_mismatches": [],
+  "value_mismatches": [],
+  "status": "PASS",
+  "keys_only_in_reference": 0,
+  "keys_only_in_candidate": 0,
+  "hash_mismatch_without_semantic_diff": false,
+  "rows_written": 4764,
+  "workbook_sha256": "0b130fd046c7bedbee5d206ab55654d390d27da423ff22e307e0698fbb56ad9c"
+}

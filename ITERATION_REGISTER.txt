@@ -61,7 +61,14 @@ Demonstrated: national means, SEs, 90% CIs, 80 SDR replicates, and exclusion fra
 Failed / remaining: packaged synthetic pickle fixtures do not load on NumPy 1.26.4; pickle SHA-256 of rebuilt caches differs from author-run caches; HUD/USDA upstream reconstruction still absent; EXTERNALLY_INDEPENDENTLY_REPRODUCED=false; SCIENTIFICALLY_VALIDATED=false.
 Evidence: core_r24/reproduction_runs/2026-10-21_clean_env/. Caches remain outside git: /Users/kevinmannion/HESI-R25-CleanRepro/output/.
 Upstream source-to-result (HUD FMR/SAFMR workbooks; USDA plan workbooks) and scientific validation remain incomplete.
-Git: local evidence commit on hesi/core-r25-integration after d658c08. Not pushed. No PR.
+Git: local evidence commit 55b61ea on hesi/core-r25-integration after d658c08. Not pushed. No PR.
+
+Core R2.5 — portability and HUD/USDA rebuilds (2026-10-21, uncommitted on 55b61ea)
+---------------------------------------------------------------------------------
+What changed: replaced NumPy-2 pickle fixtures with CSV; added load_person_table I/O in run_joint.py; added live run_joint tests under NumPy 1.26.4 and 2.5.4; added HUD county/PUMA builders and USDA workbook-to-CSV builder with SHA-256 plus key-sorted semantic compare. Formulas, eligibility, and published R2.4 result files unchanged.
+Demonstrated: verify_package.py PASS (35 hashes); live synthetic run_joint PASS on both NumPy majors; HUD county_model_ready and puma_fmr_screened rebuilt byte-identical to frozen inputs; USDA extract semantically identical (1323 rows, 0 value diffs) with hash-only row-order mismatch; post-repair national reproduce_from_raw PASS vs national_R22 (6 metrics, 80 replicates, exact exclusion frame).
+Failed / remaining: USDA candidate CSV SHA-256 still differs from frozen file (order, not numbers); person-cache pickle SHA-256 still differs from author caches; EXTERNALLY_INDEPENDENTLY_REPRODUCED=false; SCIENTIFICALLY_VALIDATED=false; SAFMR workbook not in the puma_fmr_screened path.
+Git: local commit on hesi/core-r25-integration with message Rebuild HUD and USDA sources and repair portable fixtures. Recovery points d658c08 and 55b61ea preserved. Not pushed. No PR.
 
 Mandatory per-release evidence (starting with the next committed release)
 ------------------------------------------------------------------------

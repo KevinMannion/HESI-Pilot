@@ -2,10 +2,13 @@ HESI STATUS — Core R2.5 integration working tree
 ================================================
 Date: 2026-10-21
 Branch: hesi/core-r25-integration
-Integration baseline commit: d658c08cf425873b5dea6c0cf6fdbb537446db6a
+HEAD parent before this commit: 55b61ea Record Core R2.5 clean-environment national reproduction evidence
+Recovery points (do not rewrite): d658c08, 55b61ea
 Based on GitHub origin/main: 125500b Update README.md
 Local main left unchanged at: d06b9ef Publish verified 2024 Census audit and source manifest
 Clean-environment national evidence: core_r24/reproduction_runs/2026-10-21_clean_env/
+Upstream rebuild evidence: core_r24/reproduction_runs/2026-10-21_upstream_rebuild/
+Post-repair national output (gitignored caches): /Users/kevinmannion/HESI-R25-CleanRepro/output_r25_repairs/
 
 TWO SEPARATE RESEARCH OBJECTS
 -----------------------------
@@ -35,7 +38,8 @@ FOUR-WAY STATUS (must not be promoted by implication)
 -----------------------------------------------------
 Track B — Core R2.4 joint national scenario
   EXECUTED_BY_AUTHOR:                         YES (author-run 2026-10-21; see core_r24/README.md)
-  CLEAN_ENVIRONMENT_REPRODUCED:               YES (2026-10-21 fresh venv numpy 1.26.4 / pandas 2.3.3; hash-verified Census ZIPs; person caches rebuilt; national results matched national_R22 at atol=1e-7). This is the same operator, not a third party.
+  CLEAN_ENVIRONMENT_REPRODUCED:               YES (2026-10-21 fresh venv numpy 1.26.4 / pandas 2.3.3; hash-verified Census ZIPs; person caches rebuilt; national results matched national_R22 at atol=1e-7). Reconfirmed after R2.5 repairs on an empty output directory. Same operator, not a third party.
+  HUD_USDA_UPSTREAM_TABLES_REBUILT:           YES vs frozen core_r24/inputs tables (this operator). county_model_ready.csv and puma_fmr_screened.csv SHA-256 identical. source_2024_2026.csv semantic match (same 1323 keys/values); SHA-256 differs by row order only.
   EXTERNALLY_INDEPENDENTLY_REPRODUCED:        NO
   SCIENTIFICALLY_VALIDATED:                   NO
 
@@ -54,7 +58,21 @@ WHAT THIS WORKING TREE IS NOT
 - Not a six-pillar HESI
 - Not a matched-year 2026 hardship prevalence
 - Not independent third-party replication
-- Not a reconstruction of puma_fmr_screened.csv from HUD xlsx
-- Not a reconstruction of source_2024_2026.csv from USDA workbooks
-- Upstream source-to-result reproducibility is incomplete until those HUD and USDA rebuilds pass
-- Scientific validation is not complete
+- Not scientific validation of adequacy or hardship claims
+- Not a claim that SHA-256 identity of a CSV equals scientific correctness of HUD FMR methodology
+- Frozen national_R22 / rebuilt_from_raw result files were not rewritten
+
+HUD / USDA reconstruction (this operator, 2026-10-21)
+-----------------------------------------------------
+PASS: FY26_FMRs_revised.xlsx (0b130fd0…) -> county_model_ready.csv; SHA-256 and semantic match vs frozen file.
+PASS: ACS 2020-2024 tract occupancy (37616004…) + tract_to_puma (4093277e…) + county_model_ready (f121cf32…) -> puma_fmr_screened.csv; SHA-256 and semantic match vs frozen file. Occupancy weights were observed ACS B25003 occupied counts, not invented.
+PASS (semantic): six USDA workbooks -> source_2024_2026.csv; 1323 rows; zero key/value mismatches. SHA-256 mismatch is sort-order only (candidate 179294e0… vs frozen 90bc39d1…). Acceptance gate: no material numerical or coverage difference.
+NOT USED for puma_fmr_screened: fy2026_safmrs_revised.xlsx (inspected; county FMR path only).
+NOT USED for source_2024_2026: usda-thriftyplan-march2007-june2021.xlsx (pre-2021; outside the 2024/2026 monthly extract).
+
+Git
+---
+Local commit on hesi/core-r25-integration: Rebuild HUD and USDA sources and repair portable fixtures
+Recovery points remain in history: d658c08, 55b61ea
+Not pushed. No merge. No pull request.
+Excluded from git: root manifest_before_upgrade.json, results_before_upgrade.csv; Census ZIPs; person caches; venvs.

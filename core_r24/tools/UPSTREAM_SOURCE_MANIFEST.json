@@ -1,0 +1,34 @@
+{
+  "hud_fmr_workbook": {
+    "file": "FY26_FMRs_revised.xlsx",
+    "sha256": "0b130fd046c7bedbee5d206ab55654d390d27da423ff22e307e0698fbb56ad9c",
+    "used_for": "county_model_ready.csv"
+  },
+  "hud_safmr_workbook": {
+    "file": "fy2026_safmrs_revised.xlsx",
+    "sha256": "35e26f33181adcfd2b5b457f7824fe2880e65be18aec2805766e39b5eaf3e28f",
+    "used_for": "not used by puma_fmr_screened.csv (county FMR path only)"
+  },
+  "acs_tract_occupancy": {
+    "file": "tract_tenure_acs2024.csv",
+    "sha256": "376160041b18b0fd4a002bedac8bd5f55c4ed1cbf9f38f257c0c36a2f3b7ed02",
+    "vintage": "ACS 2020-2024 5-year B25003",
+    "used_for": "occupied_acs2024_observed weights; not invented"
+  },
+  "tract_to_puma": {
+    "file": "tract_to_puma_50states_dc.csv",
+    "sha256": "4093277e44c88f3506483a3eea988846b5992140f82ca4cc1b4e04b2cb9befb9",
+    "used_for": "2020 tract to PUMA crosswalk"
+  },
+  "usda_workbooks": {
+    "usda-alaska-june2023-sept2026.xlsx": "d8961448541b65e982a886b08d847f34a8d6929c278922a04e765bc20329de53",
+    "usda-hawaii-june2023-sept2026.xlsx": "5b1d3a2117e0b5d693f7a11b182bf8726b6a0444436aff8f61e75af64fbb50ca",
+    "usda-liberalplan-sept2007-sept2026.xlsx": "46981fa32031112303b399d821270886905e810f98c4c1332034a457aafc40d1",
+    "usda-lowcostplan-sept2007-sept2026.xlsx": "78b963a5ba18052d7f8e29d5ebe9db8f340451dc2ee2e38fce597eb3e3405b03",
+    "usda-moderatecostplan-sept2007-sept2026.xlsx": "3dea00a2eecbeab389f02ed2dff8015116c53c6db4cc7ed2421b53bdc8911bd6",
+    "usda-thriftyplan-june2021-sept2026.xlsx": "70b1d3b67d2d86e5b7f945fe95901211299facd10ff04028fb8704b8fa526c74"
+  },
+  "not_used": [
+    "usda-thriftyplan-march2007-june2021.xlsx (pre-2021 Thrifty; not in frozen 2024/2026 monthly extract)"
+  ]
+}

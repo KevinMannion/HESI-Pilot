@@ -1,0 +1,16 @@
+{
+  "reference": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/source_2024_2026.csv",
+  "candidate": "/Users/kevinmannion/HESI-R25-CleanRepro/upstream_verify/source_2024_2026.candidate.csv",
+  "reference_sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+  "candidate_sha256": "179294e0aa15a67bce308ecd62baa4d164593c7fb11fca34c8e4945c6cc17a76",
+  "hash_match": false,
+  "row_count_reference": 1323,
+  "row_count_candidate": 1323,
+  "key_mismatches": [],
+  "value_mismatches": [],
+  "status": "PASS",
+  "keys_only_in_reference": 0,
+  "keys_only_in_candidate": 0,
+  "hash_mismatch_without_semantic_diff": true,
+  "rows_written": 1323
+}

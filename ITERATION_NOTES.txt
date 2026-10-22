@@ -140,3 +140,118 @@ Formulas and published baselines
 --------------------------------
 Unchanged. core_r24/src/* and core_r24/results/national_R22/ plus rebuilt_from_raw/ were
 not modified.
+
+================================================================================
+HESI iteration note — Core R2.5 portability, HUD/USDA rebuilds, post-repair national
+================================================================================
+- Date: 2026-10-21
+- Previous committed version: 55b61ea (clean-environment national evidence)
+- Recovery points preserved: d658c08, 55b61ea
+- Git branch: hesi/core-r25-integration
+- Local commit message: Rebuild HUD and USDA sources and repair portable fixtures
+- Classification: internal reproducibility repairs + reconfirmation of published Core R2.4
+  NOT independent external replication
+  NOT scientific validation
+
+Executed commands
+-----------------
+# package hashes + packaged regression (numpy 1.26.4)
+/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python verify_package.py
+
+# live synthetic run_joint on both NumPy majors
+/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python tools/run_synthetic_across_numpy.py
+
+# HUD FY2026 county FMR table (sanitized openpyxl load of FY26_FMRs_revised.xlsx)
+python core_r24/tools/build_county_model_ready.py
+
+# PUMA mapping from ACS occupancy + Census tract-to-PUMA + county_model_ready
+python core_r24/tools/build_puma_fmr_screened.py
+
+# USDA 2024+2026 Monthly extract from six plan workbooks
+python core_r24/tools/build_source_2024_2026.py
+
+# post-repair national, empty output dir, hash-gated Census ZIPs
+/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python reproduce_from_raw.py \
+  --housing "/Users/kevinmannion/Downloads/csv_hus.zip" \
+  --person-a "/Users/kevinmannion/Downloads/HESI_Person_Part_1.zip" \
+  --person-b "/Users/kevinmannion/Downloads/HESI_Person_Part_2.zip" \
+  --output "/Users/kevinmannion/HESI-R25-CleanRepro/output_r25_repairs"
+
+Code / fixture changes (formulas untouched)
+-------------------------------------------
+- Deleted fixtures/synthetic_food.pkl and synthetic_composition.pkl (NumPy 2 pickle).
+- Added fixtures/synthetic_food.csv and synthetic_composition.csv (same SERIALNO A–G values).
+- src/run_joint.py: load_person_table() CSV or pickle I/O only.
+- tests/test_run_joint_synthetic.py executes src/run_joint.py vs results/synthetic/ (atol=1e-7).
+- tools/: xlsx_io.py, compare_tables.py, build_county_model_ready.py,
+  build_puma_fmr_screened.py, build_source_2024_2026.py, run_synthetic_across_numpy.py,
+  refresh_release_hashes.py, UPSTREAM_SOURCE_MANIFEST.json
+- RELEASE_FILE_HASHES.json refreshed to 35 files (CSV fixtures + new test; pickle hashes dropped).
+- Frozen inputs/puma_fmr_screened.csv, inputs/source_2024_2026.csv, and results/national_R22
+  were not overwritten.
+
+Workstream 1 — portable fixtures + live tests
+--------------------------------------------
+PASS: unittest discover 24 tests on NumPy 1.26.4.
+PASS: live run_joint synthetic vs saved synthetic results on NumPy 1.26.4.
+PASS: same live test on repo .venv NumPy 2.5.4.
+PASS: verify_package.py 35/35 hashes + saved national regression.
+
+Workstream 2 — HUD FY2026 source-to-PUMA
+----------------------------------------
+Required sources found (hashes verified; occupancy weights not invented):
+  FY26_FMRs_revised.xlsx                         0b130fd046c7bedbee5d206ab55654d390d27da423ff22e307e0698fbb56ad9c
+  tract_tenure_acs2024.csv (ACS 2020-2024 B25003) 376160041b18b0fd4a002bedac8bd5f55c4ed1cbf9f38f257c0c36a2f3b7ed02
+  tract_to_puma_50states_dc.csv                  4093277e44c88f3506483a3eea988846b5992140f82ca4cc1b4e04b2cb9befb9
+  county_model_ready.csv (frozen / rebuilt)      f121cf328b3c71d7e84fe2073c50d3efe413b07ae2f335623ee5a4a20491dc8e
+FY26 xlsx required stripping invalid dcterms created/modified in docProps/core.xml so openpyxl can load it.
+county_model_ready candidate: 4764 rows; SHA-256 match; semantic PASS; 0 key/value diffs.
+puma_fmr_screened candidate: 2462 rows (2350 COMPLETE_UNAMBIGUOUS); SHA-256 match; semantic PASS; 0 diffs.
+SAFMR fy2026_safmrs_revised.xlsx (35e26f33…) inspected and not used by this county-FMR PUMA path.
+
+Workstream 3 — USDA workbook-to-CSV
+-----------------------------------
+Six workbooks hashed per inventory; extract filter year in {2024,2026} Monthly.
+Candidate vs frozen source_2024_2026.csv:
+  rows 1323 vs 1323
+  keys_only_in_reference 0; keys_only_in_candidate 0
+  key_mismatches []; value_mismatches []
+  semantic status PASS
+  SHA-256 mismatch: candidate 179294e0aa15a67bce308ecd62baa4d164593c7fb11fca34c8e4945c6cc17a76
+                    frozen    90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c
+  hash_mismatch_without_semantic_diff true (row order). Not a numerical or coverage discrepancy.
+Acceptance: PASS (material numerical/coverage gate). Byte-hash identity: FAIL (order only).
+
+Post-repair national vs published R2.4
+--------------------------------------
+reproduce_from_raw.py status PASS; metrics_compared 6; replicates_compared 80; frame_exact true.
+food_month                                 653.5222885549634     PASS
+housing_month                             1635.9940981865968     PASS
+one_vehicle_month_PROVISIONAL              605.3916666666664     PASS
+total_month_PROVISIONAL                   2894.90805340822       PASS
+income_month_2024_vintage                 9325.244238086181      PASS
+share_income_below_three_costs_PROVISIONAL 0.18991790144753254   PASS (18.9918%)
+share_below_cost_NO_CAR_sensitivity        0.14032179786488938   PASS
+included_rows 1235731; included_weight 121036726.0               PASS
+Exclusion frame unchanged vs published audits.
+Person caches rebuilt (pickle SHA-256 still not author-cache bytes):
+  acs2024_food_person_aggregates.pkl  9ca1e3d2c31b5121459386e437af0352732956b3d54791d7a5363eb7ffc0ed61
+  acs2024_person_composition.pkl      4e7c8dbbbf6decb65bb5de0d0bb72260fd812f5c8e8f0604eefb00ffc2bf7e7d
+Evidence JSON: core_r24/reproduction_runs/2026-10-21_upstream_rebuild/
+
+Four-way status after this round
+--------------------------------
+EXECUTED_BY_AUTHOR: YES
+CLEAN_ENVIRONMENT_REPRODUCED: YES (same operator)
+HUD/USDA frozen-table reconstruction: YES for this operator (USDA hash-only order mismatch documented)
+EXTERNALLY_INDEPENDENTLY_REPRODUCED: NO
+SCIENTIFICALLY_VALIDATED: NO
+
+Outstanding limitations
+-----------------------
+- USDA candidate CSV is not byte-identical to the frozen file; values match after key sort.
+- Person-cache pickle hashes differ from author-run caches; numbers match.
+- SAFMR is not part of the regenerated puma_fmr_screened construction.
+- ACS occupancy and tract-to-PUMA are required Census products, not HUD workbooks.
+- 18.9918% remains a September 2026 modeled cost versus 2024 income scenario.
+- Local commit only; no push, merge, or PR.

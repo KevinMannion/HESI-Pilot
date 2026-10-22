@@ -13,10 +13,20 @@ def sha256_file(path):
             digest.update(block)
     return digest.hexdigest()
 
+def load_person_table(path):
+    """Load household-keyed person aggregates from CSV or pickle. I/O only; does not change joint formulas."""
+    path=Path(path)
+    if path.suffix.lower()=='.csv':
+        df=pd.read_csv(path,dtype={'SERIALNO':str})
+        if 'SERIALNO' in df.columns:
+            df=df.set_index('SERIALNO')
+        return df
+    return pd.read_pickle(path)
+
 def run(housing_zip,food_cache,composition_cache,geography,out,transport_annual=7264.70):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
-    food=pd.read_pickle(food_cache)[['thrifty_2026sep','n_person','n_infant']]
-    comp=pd.read_pickle(composition_cache)
+    food=load_person_table(food_cache)[['thrifty_2026sep','n_person','n_infant']]
+    comp=load_person_table(composition_cache)
     geo=pd.read_csv(geography,dtype={'puma_geoid':str});geo=geo.loc[geo.status.eq('COMPLETE_UNAMBIGUOUS')].set_index('puma_geoid')
     if not food.index.is_unique or not comp.index.is_unique or not geo.index.is_unique:raise ValueError('Duplicate key in a lookup')
     fmrs=geo[[f'monthly_{i}br_benchmark' for i in range(5)]]

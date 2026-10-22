@@ -1,0 +1,24 @@
+{
+  "reference": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/puma_fmr_screened.csv",
+  "candidate": "/Users/kevinmannion/HESI-R25-CleanRepro/upstream_verify/puma_fmr_screened.candidate.csv",
+  "reference_sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+  "candidate_sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+  "hash_match": true,
+  "row_count_reference": 2462,
+  "row_count_candidate": 2462,
+  "key_mismatches": [],
+  "value_mismatches": [],
+  "status": "PASS",
+  "keys_only_in_reference": 0,
+  "keys_only_in_candidate": 0,
+  "hash_mismatch_without_semantic_diff": false,
+  "build_summary": {
+    "pumas": 2462,
+    "complete": 2350
+  },
+  "source_hashes_verified": {
+    "acs_occupancy": "376160041b18b0fd4a002bedac8bd5f55c4ed1cbf9f38f257c0c36a2f3b7ed02",
+    "tract_to_puma": "4093277e44c88f3506483a3eea988846b5992140f82ca4cc1b4e04b2cb9befb9",
+    "county_model_ready": "f121cf328b3c71d7e84fe2073c50d3efe413b07ae2f335623ee5a4a20491dc8e"
+  }
+}
