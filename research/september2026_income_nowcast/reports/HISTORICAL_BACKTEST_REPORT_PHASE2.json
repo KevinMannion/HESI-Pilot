@@ -1,0 +1,230 @@
+{
+  "national_2026_adequacy_share_published": false,
+  "core_r24_18_9918_modified": false,
+  "b1_2024_identity": "executed in prior reconciliation round on R2.4 frame",
+  "b2_acs_to_acs": [
+    {
+      "label": "ACS2022_sources_x_COLA2023_vs_ACS2023_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109238.7179114002,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 129870877.0,
+        "rows": 1323938,
+        "hincp_adj": 106387.07156544396,
+        "WAGP": 78720.44971989398,
+        "SEMP": 5107.145358058574,
+        "RETP": 7573.331616857834,
+        "SSP": 7549.685255276299,
+        "SSIP": 592.4860682312313,
+        "INTP": 5333.60121123516,
+        "PAP": 99.70592166116296,
+        "OIP": 1410.6663895746606,
+        "residual": 2.465509860682892e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -2851.646345956251,
+        "WAGP": -3181.0081285718334,
+        "SEMP": -8.78827880688823,
+        "RETP": -76.50803081510912,
+        "SSP": 196.80536121748537,
+        "SSIP": 49.99306797383906,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284
+      },
+      "pct_error": {
+        "hincp_adj": -0.026104721846599517,
+        "WAGP": -0.03883945673418096,
+        "SEMP": -0.0017178250209423781,
+        "RETP": -0.01000125941703662,
+        "SSP": 0.026765752202277327,
+        "SSIP": 0.09215430973324863,
+        "INTP": 0.017296190984253456,
+        "PAP": 0.1617200723556056,
+        "OIP": 0.046978479344349414
+      },
+      "diagnostic_share_below_frozen_r24_three_cost_mean": {
+        "note": "NOT the published 18.9918% HESI share. Occupied households, frozen $2,894.91/mo cost.",
+        "actual_share": 0.21890402596350148,
+        "actual_sampling_se_sdr": 0.0005211613571427248,
+        "projected_share": 0.22590582028640646,
+        "projected_sampling_se_sdr_factors_fixed": 0.000598401140808576,
+        "share_error_projected_minus_actual": 0.007001794322904986,
+        "freeze_all_sources_share": 0.23135347734658018,
+        "nowcast_model_delta_cola_minus_freeze": -0.005447657060173722,
+        "freeze_sampling_se_sdr_factors_fixed": 0.0005978898527622475
+      },
+      "factor_roles": {
+        "SSP_SSIP": {
+          "kind": "projection",
+          "rule": "multiply by (1+January COLA of T+1)",
+          "cola": 0.087
+        },
+        "WAGP_SEMP_RETP_INTP_PAP_OIP_residual": {
+          "kind": "assumption",
+          "rule": "frozen factor=1 because CES/ECI/BEA series were not acquired"
+        }
+      }
+    },
+    {
+      "label": "ACS2023_sources_x_COLA2024_vs_ACS2024_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 132737145.0,
+        "rows": 1348408,
+        "hincp_adj": 114375.08686983486,
+        "WAGP": 85275.3166395996,
+        "SEMP": 5248.815916658851,
+        "RETP": 7897.643947368927,
+        "SSP": 7898.101842111036,
+        "SSIP": 556.9561751339463,
+        "INTP": 5957.901889298696,
+        "PAP": 89.750191135684,
+        "OIP": 1450.6002420181749,
+        "residual": 2.6509960735239417e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109491.36984401832,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7588.172050668692,
+        "SSIP": 559.8527762656287,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -4883.717025816542,
+        "WAGP": -3373.858791133782,
+        "SEMP": -132.882279793389,
+        "RETP": -247.8042996959839,
+        "SSP": -309.92979144234414,
+        "SSIP": 2.8966011316823597,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714
+      },
+      "pct_error": {
+        "hincp_adj": -0.04269913282229443,
+        "WAGP": -0.03956430681333936,
+        "SEMP": -0.02531662033938801,
+        "RETP": -0.031376990574326795,
+        "SSP": -0.03924104774008648,
+        "SSIP": 0.005200770295770104,
+        "INTP": -0.12000587023685128,
+        "PAP": -0.04372219279356906,
+        "OIP": -0.07116447254814655
+      },
+      "diagnostic_share_below_frozen_r24_three_cost_mean": {
+        "note": "NOT the published 18.9918% HESI share. Occupied households, frozen $2,894.91/mo cost.",
+        "actual_share": 0.2057753464563367,
+        "actual_sampling_se_sdr": 0.0004826584460524243,
+        "projected_share": 0.21677733004773544,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005123818070077765,
+        "share_error_projected_minus_actual": 0.011001983591398756,
+        "freeze_all_sources_share": 0.21890402596350148,
+        "nowcast_model_delta_cola_minus_freeze": -0.0021266959157660303,
+        "freeze_sampling_se_sdr_factors_fixed": 0.0005211613571427248
+      },
+      "factor_roles": {
+        "SSP_SSIP": {
+          "kind": "projection",
+          "rule": "multiply by (1+January COLA of T+1)",
+          "cola": 0.032
+        },
+        "WAGP_SEMP_RETP_INTP_PAP_OIP_residual": {
+          "kind": "assumption",
+          "rule": "frozen factor=1 because CES/ECI/BEA series were not acquired"
+        }
+      }
+    }
+  ],
+  "reconstruction_meta": {
+    "2022": {
+      "reused": true,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/backtest_cache/occupied_sources_2022.pkl"
+    },
+    "2023": {
+      "reused": true,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/backtest_cache/occupied_sources_2023.pkl"
+    },
+    "2024": {
+      "reused": true,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/backtest_cache/occupied_sources_2024.pkl"
+    }
+  },
+  "limitations": [
+    "Occupied-household universe, not the R2.4 geography/bedroom/infant frame.",
+    "CES/ECI time series: HTTP 403 from download.bls.gov; wage factors frozen.",
+    "BEA Table 2.6 monthly series file not acquired (landing HTML stubs); SEMP frozen.",
+    "January COLA is a coarse calendar overlay on ACS rolling 12-month income; labeled assumption.",
+    "Diagnostic share uses frozen R2.4 mean three-cost, not household-specific FY2026 rents.",
+    "ACS 2019-2021 PUMS not downloaded this round."
+  ],
+  "b3_asec_2026_calendar_2025": {
+    "status": "ASEC_NATIONAL_TOTALS_OBSERVED_CALIBRATION_NOT_COMPLETED",
+    "reason": "Hashed ASEC 2026 household microdata (calendar-year 2025) were summarized. ACS-to-ASEC factor calibration requires 2024->2025 CES/BEA wage and proprietors factors that were not acquired.",
+    "observation": {
+      "file_in_zip": "hhpub26.csv",
+      "rows": 88026,
+      "weight_sum_after_div100": 137123796.5,
+      "weight_convention": "HSUP_WGT / 100 as Census ASEC household supplement weight",
+      "kind": "observation_asec_calendar_2025",
+      "means": {
+        "total": 126664.21667458574,
+        "wages": 91140.00164923794,
+        "self_employment": 4366.019504793175,
+        "social_security": 9802.57146349649,
+        "ssi": 437.1852387869089,
+        "pension": 3857.6594161289863,
+        "annuity": 572.2318955543941,
+        "interest": 6822.320229371347,
+        "dividends": 2093.6301456063466,
+        "rent": 1419.9760328594023,
+        "public_assistance": 41.72565855329129,
+        "other": 224.79845823368808
+      },
+      "columns_present": {
+        "HTOTVAL": true,
+        "HWSVAL": true,
+        "HSEVAL": true,
+        "HSSVAL": true,
+        "HSSIVAL": true,
+        "HPENVAL": true,
+        "HANNVAL": true,
+        "HINTVAL": true,
+        "HDIVVAL": true,
+        "HRNTVAL": true,
+        "HPAWVAL": true,
+        "HOIVAL": true
+      }
+    },
+    "kind": "observation_asec; not ACS; not a 2026 nowcast"
+  },
+  "predefined_gates": {
+    "B1_2024_identity": "PASS (prior round on R2.4 frame)",
+    "B2_ACS_2022_2023_and_2023_2024_hashed_PUMS": "EXECUTED_WITH_FROZEN_WAGE_FACTORS \u2014 FAIL as a production nowcast gate. CES/ECI series were not acquired, so the B2 specification (source factors from CES/ECI/BEA) was not met. COLA-only plus freeze understated next-year occupied ACS mean HINCP by 2.6105% (2022->2023) and 4.2699% (2023->2024).",
+    "B3_ASEC_2025_calibration": "INCOMPLETE \u2014 microdata hashed and national means computed; factor calibration not run",
+    "B4_employment_vs_rate_path": "NOT_RUN (CES time series HTTP 403)",
+    "B5_uniform_CPI_control": "NOT_RUN (CPI series HTTP 403; control forbidden for production regardless)",
+    "factor_file_hashes_frozen": "PARTIAL (ACS PUMS, ASEC CSV, SSA GovInfo COLA HTML, BEA PI PDF). FAIL for CES/ECI/BEA Table 2.6 machine series.",
+    "sampling_vs_model_uncertainty_documented": "YES on B2 diagnostic shares; intervals not added",
+    "national_R22_bytes_unchanged": "YES sha256 6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
+    "publish_september_2026_household_adequacy": false
+  }
+}

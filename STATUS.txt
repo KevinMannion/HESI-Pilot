@@ -1,8 +1,13 @@
 HESI STATUS — Core R2.5 integration working tree
 ================================================
-Date: 2026-10-21
+Date: 2026-10-22
 Branch: hesi/core-r25-integration
-HEAD parent before this commit: 55b61ea Record Core R2.5 clean-environment national reproduction evidence
+Public research branch (no merge to main, no PR, not a scientific release).
+COMPUTATIONALLY_REPRODUCED: YES, for the specified R2.4 calculations
+EXTERNALLY_INDEPENDENTLY_REPRODUCED: NO
+SCIENTIFICALLY_VALIDATED: NO
+SEPTEMBER_2026_INCOME_NOWCAST: NO-GO
+Pushing to GitHub does not constitute scientific validation.
 Recovery points (do not rewrite): d658c08, 55b61ea
 Based on GitHub origin/main: 125500b Update README.md
 Local main left unchanged at: d06b9ef Publish verified 2024 Census audit and source manifest
@@ -34,6 +39,19 @@ C. September 2026 locked pillar specifications (research/september2026_core_r2/)
    Housing-only candidate mean $1,641.53 on 123,872,733 households is NOT the joint housing mean
    These modules are not the national joint calculator
 
+D. September 2026 household-income nowcast (research/september2026_income_nowcast/)
+   2024 ACS source reconciliation executed on the R2.4 frame (1,235,731 HH / 121,036,726 weight).
+   Phase 4: BEA NipaDataM.txt acquired (sha bd202765…, through 2026M08). Kitagawa audit: 2023→2024 miss is within-cell, not composition.
+   Locked Phase 3 gates still fail. Decision remains NO-GO. No new affordability share.
+   Must remain a separate object from Track B’s 2024-income scenario (18.9918%).
+   Labels: income_month_2026sep_NOWCAST — never “measured 2026 household income”.
+
+E. Historical matched-year three-cost baseline (research/historical_matched_baseline/)
+   2024 cost-input preparation executed 2026-10-22. Input gates PASS. No national share computed.
+   Default 2024 costs: USDA Thrifty 12-month mean; HUD calendar-2024 day-weight (FY24 orig/rev + FY25 orig);
+   EIA gasoline $3.304/gal with non-fuel $5,631.67 held (not historically validated).
+   Separate from Track B (18.9918%) and Track D (nowcast NO-GO).
+
 FOUR-WAY STATUS (must not be promoted by implication)
 -----------------------------------------------------
 Track B — Core R2.4 joint national scenario
@@ -52,6 +70,26 @@ Track A — 2024 observed-housing pilot
 Track C — pillar specification locks
   SPECIFICATION_LOCKED:                       YES (see research/september2026_core_r2/LOCK_REGISTER.json)
   FULL_NATIONAL_SCIENTIFIC_APPROVAL:          NO
+
+Track D — September 2026 household-income nowcast
+  DESIGN_DOCUMENTED:                          YES
+  SOURCE_RECONCILIATION_EXECUTED:             YES (2024 ACS vs HINCP on R2.4 frame)
+  HISTORICAL_BACKTESTS_EXECUTED:              YES (Phase 4 enriched ACS 2021–2024; locked eval 2022–2024)
+  PREDECLARED_GATES:                          FAIL (locked G2, G3). GO/NO-GO = NO-GO
+  NATIONAL_NOWCAST_EXECUTED:                  NO
+  SEPTEMBER_2026_RUN_RATE_IDENTIFIABLE:       NO (BEA monthly through 2026-08 only; gates fail)
+  SCIENTIFICALLY_VALIDATED:                   NO
+  ROLE:                                       experimental; do not feed into matched-year baseline
+
+Track E — historical matched-year baseline (research/historical_matched_baseline/)
+  DESIGN_AUDITED:                             YES (2026-10-21)
+  2024_COST_INPUTS_PREPARED:                  YES (2026-10-22; MATCHED_YEAR_READINESS.json)
+  INPUT_PREPARATION_GATES:                    PASS
+  NATIONAL_SHARE_COMPUTED:                    NO
+  EXECUTE_NATIONAL_PERCENTAGE_THIS_ROUND:     NO-GO
+  PROCEED_TO_SIBLING_ENGINE:                  GO
+  BUILD_2022_2024_SERIES:                     NO-GO until USDA 2022-23 extract, FY2022-23 FMR, year-specific transport
+  SCIENTIFICALLY_VALIDATED:                   NO
 
 WHAT THIS WORKING TREE IS NOT
 -----------------------------
@@ -72,7 +110,7 @@ NOT USED for source_2024_2026: usda-thriftyplan-march2007-june2021.xlsx (pre-202
 
 Git
 ---
-Local commit on hesi/core-r25-integration: Rebuild HUD and USDA sources and repair portable fixtures
+Intended public remote: origin/hesi/core-r25-integration only.
+Do not merge to main. Do not force-push. Do not open a pull request.
 Recovery points remain in history: d658c08, 55b61ea
-Not pushed. No merge. No pull request.
-Excluded from git: root manifest_before_upgrade.json, results_before_upgrade.csv; Census ZIPs; person caches; venvs.
+Excluded from git: root manifest_before_upgrade.json, results_before_upgrade.csv; Census ZIPs; HUD/USDA/EIA workbooks; person caches; venvs; __pycache__.

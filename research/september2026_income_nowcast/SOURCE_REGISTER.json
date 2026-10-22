@@ -1,0 +1,101 @@
+{
+  "as_of": "2026-10-21",
+  "hashes": "phase-3 BLS API CES/ECI/CPI frozen; BEA Table 2.6 still not acquired",
+  "phase3_acquired_hashes": {
+    "bls_api_v1_bundle.json": "bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231",
+    "BLS_ANNUAL_FACTORS.json": "01eee5531665e0448a616914c396aa94c75b813ba6bfc5d579ac19eca6180d8b"
+  },
+  "phase4_acquired_hashes": {
+    "NipaDataM.txt": "bd202765789e4b378ad632cc1836287de7454ae1b86cfa1481c22bc49eabbffd",
+    "2021_csv_hus.zip": "e1f4fb85a089d6bd662ad1bd3f3f3696f6849140971fb81fae6600dceaac50ee",
+    "2021_csv_pus.zip": "e1e64f81718e7d478cf2bf4ad8d1ae1fa03c690f6c86afa3984d1a6bd38dc8f2"
+  },
+  "phase2_acquired_hashes": {
+    "asecpub26csv.zip": "fe819d0d2fc4470c282e76c247b8aa8b6054811619730307e9f2fe6186707d93",
+    "2022_csv_hus.zip": "1f4da07a86d149bc85f786346e86730e0c7b73512ce7e1299d77ec15befd12a7",
+    "2022_csv_pus.zip": "687a97773d0fdfec6c624ea6bf48466f12059d3ee80283a2ad8604ea7a66231e",
+    "2023_csv_hus.zip": "32c4331bd0fa969c11a056a854a87bcc167a1f95e7bcd51ab2dce596d81d1bb0",
+    "2023_csv_pus.zip": "98b6ecb14b4830d1f2b54c265a5bd997828415c2dab14e17369c40e98b78d9d4",
+    "pi0826.pdf": "b00e0ab232a97032083bb402fee930c68fd556bc066f9b423d1f6588945b2e29",
+    "cola2023_govinfo.htm": "6ae609e9cbf555898486ae81b282c1d543a4444aeb02895e3944f0834bcdf185",
+    "cola2024_govinfo.htm": "237457cc5aff32d00effb1a9b859601b9c4962267d6fbd388c8c92eed62bd952",
+    "cola2025_govinfo.htm": "24f611c781a6e5799bb8d0b05b7be66185a085dcbd6883b33702e009b29a413c",
+    "cola2026_govinfo.htm": "48f2b220ff8ad647772f10f3c029237ff3c70c3e0df492aaa60383ac44a66433"
+  },
+  "acs_microdata_in_use": {
+    "housing": {
+      "file": "csv_hus.zip",
+      "sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+      "income_fields_used_today": ["HINCP", "ADJINC"]
+    },
+    "person_a": {
+      "file": "HESI_Person_Part_1.zip",
+      "sha256": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+      "income_fields_used_today": []
+    },
+    "person_b": {
+      "file": "HESI_Person_Part_2.zip",
+      "sha256": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c"
+    }
+  },
+  "required_before_national_nowcast": [
+    {
+      "id": "ACS2024_PUMS_DICTIONARY",
+      "url": "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2024.txt",
+      "vintage": "2024 ACS 1-year PUMS dictionary dated 2025-10-16"
+    },
+    {
+      "id": "CPS_ASEC_2026_MICRODATA",
+      "url": "https://www.census.gov/data/datasets/2026/demo/cps/cps-asec-2026.html",
+      "income_year": 2025,
+      "survey_window": "February–April 2026",
+      "report": "Income in the United States: 2025, released 2026-09-15",
+      "report_url": "https://www.census.gov/library/publications/2026/demo/p60-286.html"
+    },
+    {
+      "id": "BLS_CES_EMPSIT_2026M09",
+      "url": "https://www.bls.gov/news.release/empsit.htm",
+      "release": "USDL-26-1549, 2026-10-02",
+      "note": "September 2026 CES employment, hours, and earnings are first-print preliminary and will revise."
+    },
+    {
+      "id": "BLS_CES_AHE_AWE_INDUSTRY",
+      "url": "https://www.bls.gov/ces/data/",
+      "use": "Average hourly and weekly earnings and weekly hours by industry, not a household-income index"
+    },
+    {
+      "id": "BLS_CPS_MONTHLY_LF",
+      "url": "https://www.bls.gov/cps/",
+      "use": "September 2026 unemployment, employment-population, and hours from the household survey; distinct from CES jobs"
+    },
+    {
+      "id": "BLS_ECI_LATEST",
+      "url": "https://www.bls.gov/eci/",
+      "use": "Quarterly compensation by sector as a wage-rate cross-check; do not apply to non-earnings income"
+    },
+    {
+      "id": "SSA_COLA_2025_2026",
+      "cola_2026": "2.8 percent, payable January 2026",
+      "urls": [
+        "https://www.ssa.gov/news/en/press/releases/2025-10-24.html",
+        "https://www.federalregister.gov/documents/2025/11/03/2025-19763/cost-of-living-increase-and-other-determinations-for-2026"
+      ]
+    },
+    {
+      "id": "BEA_PERSONAL_INCOME_BY_SOURCE",
+      "url": "https://www.bea.gov/data/income-saving/personal-income",
+      "use": "Monthly NIPA wages, proprietors' income, personal interest, dividends, and transfer receipts through the latest month available at freeze"
+    },
+    {
+      "id": "ACS_2025_1YEAR_TABLES",
+      "public_release": "2026-10-29",
+      "pums_release": "TBD as of 2026-10-21",
+      "use": "Calendar-2025 ACS income tables for national/state calibration only until 2025 PUMS exists"
+    }
+  ],
+  "not_sufficient_as_household_income": [
+    "CES average hourly earnings",
+    "CPI-U or CPI-W applied uniformly to HINCP",
+    "SSA COLA applied to total household income"
+  ]
+}

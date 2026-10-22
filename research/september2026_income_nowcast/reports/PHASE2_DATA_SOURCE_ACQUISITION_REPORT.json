@@ -1,0 +1,256 @@
+{
+  "acquired_at": "2026-10-21",
+  "phase": 2,
+  "uniform_cpi_applied_to_hincp": false,
+  "national_nowcast_executed": false,
+  "national_2026_adequacy_share_published": false,
+  "core_r24_18_9918_modified": false,
+  "storage_outside_git": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/",
+  "units_and_definitions": {
+    "ACS_PUMS_money_income": {
+      "unit": "inflation-adjusted annual dollars",
+      "transform": "raw amount * ADJINC / 1e6; person sources summed for AGEP>=15; residual = HINCP*ADJINC/1e6 - sum of eight sources",
+      "universe_this_backtest": "occupied housing units TYPEHUGQ==1, NP>0, WGTP>0 (not the R2.4 geography/bedroom/infant frame)",
+      "kind": "observation"
+    },
+    "CPS_ASEC_2026": {
+      "unit": "calendar-year 2025 household money income, current dollars",
+      "weight_transform": "HSUP_WGT / 100",
+      "kind": "observation_asec; not ACS; not September 2026"
+    },
+    "SSA_COLA": {
+      "unit": "statutory percent increase payable in January of the stated year",
+      "transform_used_in_backtest": "SSP and SSIP multiplied by (1+January COLA of T+1); coarse calendar overlay on ACS rolling 12-month income",
+      "kind": "observation of Federal Register text; application to ACS sources is a projection/assumption"
+    },
+    "BLS_CES_AHE": {
+      "unit": "dollars per hour, private industry jobs (Table B-3 extract only)",
+      "kind": "job earnings observation; not household WAGP; full CES time series not acquired"
+    },
+    "BEA_personal_income": {
+      "unit": "NIPA personal income, billions of dollars (PDF publication through August 2026)",
+      "kind": "observation of PDF; machine-readable Table 2.6 monthly series not acquired"
+    }
+  },
+  "acquired": [
+    {
+      "id": "CPS_ASEC_2026_CSV",
+      "local": "phase2/asec/asecpub26csv.zip",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/march/asecpub26csv.zip",
+      "bytes": 139103894,
+      "sha256": "fe819d0d2fc4470c282e76c247b8aa8b6054811619730307e9f2fe6186707d93",
+      "vintage": "CPS ASEC 2026 public-use CSV; Census FTP last-modified 2026-09-15; income year calendar 2025",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    },
+    {
+      "id": "CPS_ASEC_2026_HHLDFMT",
+      "local": "phase2/asec/hhldfmt.txt",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/march/hhldfmt.txt",
+      "bytes": 5594,
+      "sha256": "1b309c97c817ee6000c34642ecad1c78742dbf19adf28c663cb16f491ef3a235",
+      "status": "ACQUIRED",
+      "kind": "observation_codebook"
+    },
+    {
+      "id": "CPS_ASEC_2026_PERSFMT",
+      "local": "phase2/asec/persfmt.txt",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/march/persfmt.txt",
+      "bytes": 30057,
+      "sha256": "a8e2e4b0170e553406c311dd0010a993b917b4579ec6200333d635a7c3d31016",
+      "status": "ACQUIRED",
+      "kind": "observation_codebook"
+    },
+    {
+      "id": "ACS_2022_1YEAR_HUS",
+      "local": "phase2/acs_pums/2022_csv_hus.zip",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_hus.zip",
+      "bytes": 248018621,
+      "sha256": "1f4da07a86d149bc85f786346e86730e0c7b73512ce7e1299d77ec15befd12a7",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    },
+    {
+      "id": "ACS_2022_1YEAR_PUS",
+      "local": "phase2/acs_pums/2022_csv_pus.zip",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pus.zip",
+      "bytes": 591122084,
+      "sha256": "687a97773d0fdfec6c624ea6bf48466f12059d3ee80283a2ad8604ea7a66231e",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    },
+    {
+      "id": "ACS_2023_1YEAR_HUS",
+      "local": "phase2/acs_pums/2023_csv_hus.zip",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2023/1-Year/csv_hus.zip",
+      "bytes": 250285521,
+      "sha256": "32c4331bd0fa969c11a056a854a87bcc167a1f95e7bcd51ab2dce596d81d1bb0",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    },
+    {
+      "id": "ACS_2023_1YEAR_PUS",
+      "local": "phase2/acs_pums/2023_csv_pus.zip",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2023/1-Year/csv_pus.zip",
+      "bytes": 597292173,
+      "sha256": "98b6ecb14b4830d1f2b54c265a5bd997828415c2dab14e17369c40e98b78d9d4",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    },
+    {
+      "id": "ACS_2024_1YEAR_HUS_EXISTING",
+      "local": "$HESI_OPERATOR_HOME/Downloads/csv_hus.zip",
+      "bytes_note": "already hashed in R2.4",
+      "sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+      "status": "ACQUIRED_PRIOR",
+      "kind": "observation"
+    },
+    {
+      "id": "ACS_2024_1YEAR_PUS_EXISTING",
+      "local": "$HESI_OPERATOR_HOME/Downloads/HESI_Person_Part_1.zip + HESI_Person_Part_2.zip",
+      "sha256_part1": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+      "sha256_part2": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+      "status": "ACQUIRED_PRIOR",
+      "kind": "observation"
+    },
+    {
+      "id": "BEA_PI_AUGUST_2026_PDF",
+      "local": "phase2/bea/pi0826.pdf",
+      "url": "https://www.bea.gov/sites/default/files/2026-08/pi0826.pdf",
+      "bytes": 403481,
+      "sha256": "b00e0ab232a97032083bb402fee930c68fd556bc066f9b423d1f6588945b2e29",
+      "vintage": "Official Personal Income and Outlays, August 2026 PDF. September 2026 PI scheduled 2026-10-29.",
+      "status": "ACQUIRED",
+      "kind": "observation_pdf; Table 2.6 machine series not extracted"
+    },
+    {
+      "id": "SSA_COLA_2023_GOVINFO",
+      "local": "phase2/ssa/cola2023_govinfo.htm",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2022-10-24/html/2022-23073.htm",
+      "bytes": 40348,
+      "sha256": "6ae609e9cbf555898486ae81b282c1d543a4444aeb02895e3944f0834bcdf185",
+      "cola": 0.087,
+      "status": "ACQUIRED",
+      "kind": "observation_statute"
+    },
+    {
+      "id": "SSA_COLA_2024_GOVINFO",
+      "local": "phase2/ssa/cola2024_govinfo.htm",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2023-10-23/html/2023-23317.htm",
+      "bytes": 40378,
+      "sha256": "237457cc5aff32d00effb1a9b859601b9c4962267d6fbd388c8c92eed62bd952",
+      "cola": 0.032,
+      "status": "ACQUIRED",
+      "kind": "observation_statute"
+    },
+    {
+      "id": "SSA_COLA_2025_GOVINFO",
+      "local": "phase2/ssa/cola2025_govinfo.htm",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2024-10-28/html/2024-24871.htm",
+      "bytes": 40372,
+      "sha256": "24f611c781a6e5799bb8d0b05b7be66185a085dcbd6883b33702e009b29a413c",
+      "cola": 0.025,
+      "status": "ACQUIRED",
+      "kind": "observation_statute"
+    },
+    {
+      "id": "SSA_COLA_2026_GOVINFO",
+      "local": "phase2/ssa/cola2026_govinfo.htm",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2025-11-03/html/2025-19763.htm",
+      "bytes": 40152,
+      "sha256": "48f2b220ff8ad647772f10f3c029237ff3c70c3e0df492aaa60383ac44a66433",
+      "cola": 0.028,
+      "status": "ACQUIRED",
+      "kind": "observation_statute"
+    },
+    {
+      "id": "BLS_EMPSIT_2026M09_TABLE_B3_EXTRACT",
+      "local": "research/september2026_income_nowcast/factor_sources/bls_empsit_2026m09_table_b3_extracted.csv",
+      "source_url": "https://www.bls.gov/news.release/empsit.t19.htm",
+      "sha256": "3b1fdf49a770b6908fba2b936f2711aa4485a6c8a5fa18996d93cc12550aa46c",
+      "bytes": 1554,
+      "status": "ACQUIRED_AS_EXTRACT",
+      "kind": "observation of first-print CES Table B-3; not a full time series; preliminary (p)",
+      "not_applied_to_acs": true
+    }
+  ],
+  "failed_do_not_substitute": [
+    {
+      "id": "CPSMAR26_PDF",
+      "url": "https://www2.census.gov/programs-surveys/cps/techdocs/cpsmar26.pdf",
+      "local": "phase2/asec/cpsmar26.pdf",
+      "bytes": 247,
+      "sha256": "ab4af0134b089970b45ae108652db0af4d07b0fb9f01c9933e70c10ff4e8b793",
+      "status": "FAILED",
+      "issue": "HTTP 200 returned a 247-byte WAF/reject HTML page, not the ASEC technical documentation PDF"
+    },
+    {
+      "id": "BLS_CES_TIME_SERIES",
+      "urls": [
+        "https://download.bls.gov/pub/time.series/ce/ce.data.05b.TotalPrivate.AllEmployeeHoursAndEarnings",
+        "https://download.bls.gov/pub/time.series/ce/ce.series",
+        "https://download.bls.gov/pub/time.series/ce/ce.txt"
+      ],
+      "status": "FAILED",
+      "issue": "HTTP 403 Akamai from download.bls.gov; no CES monthly machine file on disk"
+    },
+    {
+      "id": "BLS_ECI_TIME_SERIES",
+      "urls": [
+        "https://download.bls.gov/pub/time.series/ci/ci.data.1.AllData",
+        "https://download.bls.gov/pub/time.series/ci/ci.series",
+        "https://download.bls.gov/pub/time.series/ci/ci.txt"
+      ],
+      "status": "FAILED",
+      "issue": "HTTP 403 Akamai from download.bls.gov; no ECI machine file on disk"
+    },
+    {
+      "id": "BLS_CPI_AND_CPS_LN_TIME_SERIES",
+      "urls": [
+        "https://download.bls.gov/pub/time.series/cu/cu.data.1.AllItems",
+        "https://download.bls.gov/pub/time.series/ln/ln.data.1.AllData"
+      ],
+      "status": "FAILED",
+      "issue": "HTTP 403 Akamai"
+    },
+    {
+      "id": "SSA_OACT_COLA_SERIES",
+      "url": "https://www.ssa.gov/oact/COLA/colaseries.html",
+      "status": "FAILED",
+      "issue": "HTTP 403; GovInfo Federal Register HTML used instead (independently verifiable)"
+    },
+    {
+      "id": "BEA_NIPA_MACHINE_TABLES",
+      "urls": [
+        "https://apps.bea.gov/national/Release/TXT/NipaDataM.zip",
+        "https://apps.bea.gov/national/Release/TXT/Section2All_xls.zip",
+        "https://apps.bea.gov/national/Release/XLS/Survey/Section2All_Hist.xls"
+      ],
+      "local_bytes": 28185,
+      "sha256": "9578ca8e36ee33fe10a8164b936120a1ef9bb3f3cd36d48db19144543a49a9af",
+      "status": "FAILED",
+      "issue": "HTTP 200 returned identical 28185-byte HTML stubs, not NIPA zip/xls payloads. Not used as personal-income-by-source series."
+    },
+    {
+      "id": "FEDERALREGISTER_JS_SHELLS",
+      "local_bytes": 10596,
+      "status": "FAILED_AS_COLA_TEXT",
+      "issue": "federalregister.gov HTML shells (10596 bytes) do not contain COLA body text; GovInfo copies used"
+    },
+    {
+      "id": "FRED_GRAPH_CSV",
+      "status": "FAILED",
+      "issue": "FRED graph CSV timeout/maintenance in prior acquisition round; not silently filled"
+    },
+    {
+      "id": "ACS_PUMS_2019_2021",
+      "status": "NOT_DOWNLOADED",
+      "issue": "2019-2021 ACS 1-year PUMS housing/person ZIPs not obtained this round; B2 therefore starts at 2022"
+    },
+    {
+      "id": "ACS_2025_TABLES_AND_PUMS",
+      "status": "NOT_RELEASED",
+      "issue": "ACS 2025 1-year tables scheduled 2026-10-29; PUMS TBD"
+    }
+  ]
+}

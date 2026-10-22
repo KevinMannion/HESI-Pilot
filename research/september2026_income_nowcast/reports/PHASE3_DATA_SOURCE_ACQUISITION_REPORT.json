@@ -1,0 +1,84 @@
+{
+  "acquired_at_utc": "2026-10-22T01:27:10Z",
+  "phase": 3,
+  "did_not_retry": [
+    "https://download.bls.gov/pub/time.series/ce/*",
+    "https://download.bls.gov/pub/time.series/ci/*",
+    "https://apps.bea.gov/national/Release/TXT/NipaDataM.zip"
+  ],
+  "national_nowcast_executed": false,
+  "national_2026_adequacy_share_published": false,
+  "acquired": [
+    {
+      "id": "BLS_PUBLIC_API_V1_BUNDLE",
+      "endpoint": "https://api.bls.gov/publicAPI/v1/timeseries/data/",
+      "method": "POST JSON seriesid list, startyear=2019, endyear=2026",
+      "local": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase3/bls_api/bls_api_v1_bundle.json",
+      "bytes": 54996,
+      "sha256": "bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231",
+      "status": "ACQUIRED",
+      "bls_status": "REQUEST_SUCCEEDED",
+      "kind": "observation of BLS Public API current vintage",
+      "series": [
+        {"id": "CES0500000003", "title": "AHE total private SA", "unit": "USD/hour", "sa": true, "last": "2026-09 preliminary 37.81"},
+        {"id": "CES0500000011", "title": "AWE total private SA", "unit": "USD/week", "sa": true, "last": "2026-09 preliminary 1300.66"},
+        {"id": "CES0500000007", "title": "Average weekly hours total private SA", "unit": "hours", "sa": true, "last": "2026-09 preliminary 33.8"},
+        {"id": "CES0500000001", "title": "All employees total private SA", "unit": "thousands of jobs", "sa": true, "last": "2026-09 preliminary 135717"},
+        {"id": "CIS2020000000000I", "title": "ECI wages and salaries civilian SA", "unit": "index", "sa": true, "last": "2026 Q2 179.01"},
+        {"id": "CIS1010000000000I", "title": "ECI total compensation civilian SA", "unit": "index", "sa": true, "last": "2026 Q2 177.178"},
+        {"id": "CUUR0000SA0", "title": "CPI-U all items NSA", "unit": "index 1982-84=100", "sa": false},
+        {"id": "CUSR0000SA0", "title": "CPI-U all items SA", "unit": "index 1982-84=100", "sa": true}
+      ]
+    },
+    {
+      "id": "BLS_ANNUAL_FACTORS_TRANSFORM",
+      "local": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase3/BLS_ANNUAL_FACTORS.json",
+      "sha256": "01eee5531665e0448a616914c396aa94c75b813ba6bfc5d579ac19eca6180d8b",
+      "kind": "computed annual means and T+1/T ratios from the API JSON; not a new survey"
+    }
+  ],
+  "failed_do_not_substitute": [
+    {
+      "id": "FRED_AND_ALFRED",
+      "urls": ["https://fred.stlouisfed.org/data/*", "https://fred.stlouisfed.org/graph/fredgraph.csv", "https://alfred.stlouisfed.org/graph/alfredgraph.csv"],
+      "status": "FAILED",
+      "issue": "St. Louis Fed site maintenance page; HTTP/2 INTERNAL_ERROR; HTTP/1.1 graph CSV timed out after 60s with 0 bytes. Not retried as a loop."
+    },
+    {
+      "id": "BEA_NIPA_MACHINE_TABLES",
+      "urls": [
+        "https://apps.bea.gov/national/Release/TXT/NipaDataA.zip",
+        "https://apps.bea.gov/national/Release/TXT/NipaDataQ.zip",
+        "https://apps.bea.gov/national/Release/TXT/Section2All_csv.csv",
+        "https://www.bea.gov/sites/default/files/2026-08/pi0826.xlsx"
+      ],
+      "status": "FAILED",
+      "issue": "NIPA zip/csv HTTP 200 bodies are 28185-byte HTML (sha256 prefix 9578ca8e), same stub class as Phase 2. xlsx HTTP 404. Not used as proprietors or interest/dividends series."
+    },
+    {
+      "id": "ACS_2025_1YEAR_TABLES",
+      "status": "NOT_RELEASED",
+      "scheduled": "2026-10-29"
+    }
+  ],
+  "derived_calendar_year_ratios_current_bls_vintage": {
+    "2022_to_2023": {
+      "ahe": 1.044562128648928,
+      "awe": 1.0395293389809868,
+      "hours": 0.9946091644204851,
+      "employment": 1.0210837018937549,
+      "eci_wages": 1.046196091099984,
+      "cpi_u_nsa": 1.041163383837449,
+      "cola_jan_2023": 0.087
+    },
+    "2023_to_2024": {
+      "ahe": 1.0404105354272288,
+      "awe": 1.0366447252094837,
+      "hours": 0.9967972406996799,
+      "employment": 1.0092263017218548,
+      "eci_wages": 1.0393700787401574,
+      "cpi_u_nsa": 1.0294952520485208,
+      "cola_jan_2024": 0.032
+    }
+  }
+}

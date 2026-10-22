@@ -1,0 +1,544 @@
+{
+  "source_file": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase3/bls_api/bls_api_v1_bundle.json",
+  "source_sha256": "bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231",
+  "bls_api_status": "REQUEST_SUCCEEDED",
+  "endpoint": "https://api.bls.gov/publicAPI/v1/timeseries/data/",
+  "download_timestamp_utc": "download_timestamp_utc=2026-10-22T01:27:10Z",
+  "kind": "observation of BLS Public API JSON; annual means are computed transforms",
+  "series": {
+    "CES0500000003": {
+      "title": "CES average hourly earnings, total private, SA",
+      "unit": "dollars per hour",
+      "sa": true,
+      "agency": "BLS CES",
+      "annual": {
+        "2019": {
+          "n_months": 12,
+          "mean": 27.998333333333335,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2020": {
+          "n_months": 12,
+          "mean": 29.36,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2021": {
+          "n_months": 12,
+          "mean": 30.613333333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2022": {
+          "n_months": 12,
+          "mean": 32.25833333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2023": {
+          "n_months": 12,
+          "mean": 33.69583333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2024": {
+          "n_months": 12,
+          "mean": 35.0575,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2025": {
+          "n_months": 12,
+          "mean": 36.4425,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2026": {
+          "n_months": 9,
+          "mean": 37.49666666666667,
+          "complete_calendar_year": false,
+          "notes": [
+            {
+              "month": 9,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            },
+            {
+              "month": 8,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "CES0500000011": {
+      "title": "CES average weekly earnings, total private, SA",
+      "unit": "dollars per week",
+      "sa": true,
+      "agency": "BLS CES",
+      "annual": {
+        "2019": {
+          "n_months": 12,
+          "mean": 963.1325,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2020": {
+          "n_months": 12,
+          "mean": 1014.7025,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2021": {
+          "n_months": 12,
+          "mean": 1066.0991666666666,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2022": {
+          "n_months": 12,
+          "mean": 1115.3108333333332,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2023": {
+          "n_months": 12,
+          "mean": 1159.3983333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2024": {
+          "n_months": 12,
+          "mean": 1201.8841666666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2025": {
+          "n_months": 12,
+          "mean": 1246.6433333333334,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2026": {
+          "n_months": 9,
+          "mean": 1286.5600000000002,
+          "complete_calendar_year": false,
+          "notes": [
+            {
+              "month": 9,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            },
+            {
+              "month": 8,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "CES0500000007": {
+      "title": "CES average weekly hours, total private, SA",
+      "unit": "hours",
+      "sa": true,
+      "agency": "BLS CES",
+      "annual": {
+        "2019": {
+          "n_months": 12,
+          "mean": 33.61666666666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2020": {
+          "n_months": 12,
+          "mean": 33.93333333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2021": {
+          "n_months": 12,
+          "mean": 34.266666666666666,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2022": {
+          "n_months": 12,
+          "mean": 34.00833333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2023": {
+          "n_months": 12,
+          "mean": 33.824999999999996,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2024": {
+          "n_months": 12,
+          "mean": 33.71666666666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2025": {
+          "n_months": 12,
+          "mean": 33.675000000000004,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2026": {
+          "n_months": 9,
+          "mean": 33.8,
+          "complete_calendar_year": false,
+          "notes": [
+            {
+              "month": 9,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            },
+            {
+              "month": 8,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "CES0500000001": {
+      "title": "CES all employees, total private, SA",
+      "unit": "thousands of jobs",
+      "sa": true,
+      "agency": "BLS CES",
+      "annual": {
+        "2019": {
+          "n_months": 12,
+          "mean": 128293.25,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2020": {
+          "n_months": 12,
+          "mean": 120179.58333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2021": {
+          "n_months": 12,
+          "mean": 124317.33333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2022": {
+          "n_months": 12,
+          "mean": 130349.5,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2023": {
+          "n_months": 12,
+          "mean": 133097.75,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2024": {
+          "n_months": 12,
+          "mean": 134325.75,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2025": {
+          "n_months": 12,
+          "mean": 134926.33333333334,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2026": {
+          "n_months": 9,
+          "mean": 135468.22222222222,
+          "complete_calendar_year": false,
+          "notes": [
+            {
+              "month": 9,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            },
+            {
+              "month": 8,
+              "footnote": {
+                "code": "P",
+                "text": "preliminary"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "CIS2020000000000I": {
+      "title": "ECI wages and salaries, civilian workers, SA index",
+      "unit": "index",
+      "sa": true,
+      "agency": "BLS ECI",
+      "annual": {
+        "2019": {
+          "n_quarters": 4,
+          "mean": 137.35000000000002,
+          "complete": true
+        },
+        "2020": {
+          "n_quarters": 4,
+          "mean": 141.375,
+          "complete": true
+        },
+        "2021": {
+          "n_quarters": 4,
+          "mean": 147.05,
+          "complete": true
+        },
+        "2022": {
+          "n_quarters": 4,
+          "mean": 154.775,
+          "complete": true
+        },
+        "2023": {
+          "n_quarters": 4,
+          "mean": 161.925,
+          "complete": true
+        },
+        "2024": {
+          "n_quarters": 4,
+          "mean": 168.3,
+          "complete": true
+        },
+        "2025": {
+          "n_quarters": 4,
+          "mean": 174.136,
+          "complete": true
+        },
+        "2026": {
+          "n_quarters": 2,
+          "mean": 178.254,
+          "complete": false
+        }
+      }
+    },
+    "CIS1010000000000I": {
+      "title": "ECI total compensation, civilian workers, SA index",
+      "unit": "index",
+      "sa": true,
+      "agency": "BLS ECI",
+      "annual": {
+        "2019": {
+          "n_quarters": 4,
+          "mean": 137.5,
+          "complete": true
+        },
+        "2020": {
+          "n_quarters": 4,
+          "mean": 141.15,
+          "complete": true
+        },
+        "2021": {
+          "n_quarters": 4,
+          "mean": 145.77499999999998,
+          "complete": true
+        },
+        "2022": {
+          "n_quarters": 4,
+          "mean": 152.95,
+          "complete": true
+        },
+        "2023": {
+          "n_quarters": 4,
+          "mean": 159.8,
+          "complete": true
+        },
+        "2024": {
+          "n_quarters": 4,
+          "mean": 166.10000000000002,
+          "complete": true
+        },
+        "2025": {
+          "n_quarters": 4,
+          "mean": 171.99475,
+          "complete": true
+        },
+        "2026": {
+          "n_quarters": 2,
+          "mean": 176.398,
+          "complete": false
+        }
+      }
+    },
+    "CUUR0000SA0": {
+      "title": "CPI-U all items, NSA",
+      "unit": "index 1982-84=100",
+      "sa": false,
+      "agency": "BLS CPI",
+      "annual": {
+        "2019": {
+          "n_months": 12,
+          "mean": 255.65741666666668,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2020": {
+          "n_months": 12,
+          "mean": 258.8111666666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2021": {
+          "n_months": 12,
+          "mean": 270.96975000000003,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2022": {
+          "n_months": 12,
+          "mean": 292.6549166666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2023": {
+          "n_months": 12,
+          "mean": 304.7015833333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2024": {
+          "n_months": 12,
+          "mean": 313.6888333333333,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2025": {
+          "n_months": 11,
+          "mean": 321.943,
+          "complete_calendar_year": false,
+          "notes": [
+            {
+              "month": 10,
+              "status": "missing"
+            }
+          ]
+        },
+        "2026": {
+          "n_months": 9,
+          "mean": 332.24255555555555,
+          "complete_calendar_year": false,
+          "notes": []
+        }
+      }
+    },
+    "CUSR0000SA0": {
+      "title": "CPI-U all items, SA",
+      "unit": "index 1982-84=100",
+      "sa": true,
+      "agency": "BLS CPI",
+      "annual": {
+        "2019": {
+          "n_months": 12,
+          "mean": 255.65258333333335,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2020": {
+          "n_months": 12,
+          "mean": 258.85575,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2021": {
+          "n_months": 12,
+          "mean": 270.97341666666665,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2022": {
+          "n_months": 12,
+          "mean": 292.62641666666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2023": {
+          "n_months": 12,
+          "mean": 304.70300000000003,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2024": {
+          "n_months": 12,
+          "mean": 313.6981666666667,
+          "complete_calendar_year": true,
+          "notes": []
+        },
+        "2025": {
+          "n_months": 11,
+          "mean": 321.9619090909091,
+          "complete_calendar_year": false,
+          "notes": [
+            {
+              "month": 10,
+              "status": "missing"
+            }
+          ]
+        },
+        "2026": {
+          "n_months": 9,
+          "mean": 331.83744444444443,
+          "complete_calendar_year": false,
+          "notes": []
+        }
+      }
+    }
+  },
+  "factors": {
+    "2022_to_2023": {
+      "simulated_forecast_date": "2024-01-31",
+      "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print.",
+      "ahe_total_private": 1.044562128648928,
+      "awe_total_private": 1.0395293389809868,
+      "weekly_hours_total_private": 0.9946091644204851,
+      "employment_total_private": 1.0210837018937549,
+      "eci_wages_civilian": 1.046196091099984,
+      "eci_compensation_civilian": 1.044785877737823,
+      "cpi_u_nsa": 1.041163383837449,
+      "cola_january_tplus1": 0.087,
+      "bea_proprietors": null,
+      "bea_interest_dividends": null,
+      "bea_status": "NOT_ACQUIRED: FRED/ALFRED maintenance; BEA NIPA zip/csv endpoints returned 28185-byte HTML stubs (sha256 prefix 9578ca8e). Not substituted."
+    },
+    "2023_to_2024": {
+      "simulated_forecast_date": "2025-01-31",
+      "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print.",
+      "ahe_total_private": 1.0404105354272288,
+      "awe_total_private": 1.0366447252094837,
+      "weekly_hours_total_private": 0.9967972406996799,
+      "employment_total_private": 1.0092263017218548,
+      "eci_wages_civilian": 1.0393700787401574,
+      "eci_compensation_civilian": 1.039424280350438,
+      "cpi_u_nsa": 1.0294952520485208,
+      "cola_january_tplus1": 0.032,
+      "bea_proprietors": null,
+      "bea_interest_dividends": null,
+      "bea_status": "NOT_ACQUIRED: FRED/ALFRED maintenance; BEA NIPA zip/csv endpoints returned 28185-byte HTML stubs (sha256 prefix 9578ca8e). Not substituted."
+    }
+  }
+}

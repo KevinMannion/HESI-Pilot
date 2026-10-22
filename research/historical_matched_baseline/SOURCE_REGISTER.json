@@ -1,0 +1,244 @@
+{
+  "hud": {
+    "fy24_original": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/hud/FY24_FMRs.xlsx",
+      "basename": "FY24_FMRs.xlsx",
+      "size_bytes": 364591,
+      "sha256": "9f6b3d53b7d53bf3a0285caf0874bd6e61d0ed0a906e6e355776080eef1f1127",
+      "present": true,
+      "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2024/FY24_FMRs.xlsx",
+      "effective": "2023-10-01",
+      "sheet": "FY24_FMRs",
+      "page_listed_kb": 357,
+      "is_xlsx": true,
+      "n_rows": 4764,
+      "n_geo": 4764,
+      "bedrooms": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "fy24_revised": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/hud/FMR2024_final_revised.xlsx",
+      "basename": "FMR2024_final_revised.xlsx",
+      "size_bytes": 364595,
+      "sha256": "0a6634d5745e07f0638efe2aca65161b4b8d6982ebd4d257e8191ed18ecfbf98",
+      "present": true,
+      "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx",
+      "effective": "2024-03-11",
+      "sheet": "FY24_FMRs_rev",
+      "page_listed_kb": 1750,
+      "note": "HUD page lists 1750 KB; live official file is ~356 KB. Honolulu-only revision (89 FR 9169).",
+      "is_xlsx": true,
+      "n_rows": 4764,
+      "n_geo": 4764,
+      "bedrooms": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "fy25_original": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/hud/FY25_FMRs.xlsx",
+      "basename": "FY25_FMRs.xlsx",
+      "size_bytes": 362523,
+      "sha256": "21217df7d8c5c2bd6633fe8d3deb460d7114712ac809fe1644235980240f2ab5",
+      "present": true,
+      "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs.xlsx",
+      "effective": "2024-10-01",
+      "sheet": "FY25_FMRs",
+      "page_listed_kb": 355,
+      "is_xlsx": true,
+      "n_rows": 4764,
+      "n_geo": 4764,
+      "bedrooms": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "fy25_revised": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/hud/FY25_FMRs_revised.xlsx",
+      "basename": "FY25_FMRs_revised.xlsx",
+      "size_bytes": 362571,
+      "sha256": "10e70da5b4d8ce7d938e460730abda052e71255c4bc5e9a95bec601c2d49b5db",
+      "present": true,
+      "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx",
+      "effective": "2025-04-27",
+      "sheet": "FY25_FMRs_revised",
+      "page_listed_kb": 355,
+      "note": "After calendar 2024. Archived; not used in the default 2024 cost schedule.",
+      "is_xlsx": true,
+      "n_rows": 4764,
+      "n_geo": 4764,
+      "bedrooms": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "eia": {
+    "annual": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/eia/EMM_EPMR_PTE_NUS_DPGa.xls",
+      "basename": "EMM_EPMR_PTE_NUS_DPGa.xls",
+      "size_bytes": 29184,
+      "sha256": "32f143417e80bb2d926de0a8a1026a88828be172e38169f95ea453de339fedc3",
+      "present": true
+    },
+    "monthly": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/eia/EMM_EPMR_PTE_NUS_DPGm.xls",
+      "basename": "EMM_EPMR_PTE_NUS_DPGm.xls",
+      "size_bytes": 50176,
+      "sha256": "be0654a9c71dd97a35dc4e63a75789cddc8ce5febe6fec2a2242378f925e2c85",
+      "present": true
+    },
+    "weekly": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/eia/EMM_EPMR_PTE_NUS_DPGw.xls",
+      "basename": "EMM_EPMR_PTE_NUS_DPGw.xls",
+      "size_bytes": 128000,
+      "sha256": "28e286b42e8ac505a904906fea66660601e3626208b34eb16715abe44c6c5bf2",
+      "present": true
+    },
+    "pswrgvwall": {
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/eia/pswrgvwall.xls",
+      "basename": "pswrgvwall.xls",
+      "size_bytes": 7513088,
+      "sha256": "730abe0fd612f55a7f14a8684c0c7fca75a39bc62b750430800731c7bf4161ff",
+      "present": true
+    }
+  },
+  "usda_workbook": {
+    "path": "$HESI_OPERATOR_HOME/Downloads/usda-thriftyplan-june2021-sept2026.xlsx",
+    "basename": "usda-thriftyplan-june2021-sept2026.xlsx",
+    "size_bytes": 95817,
+    "sha256": "70b1d3b67d2d86e5b7f945fe95901211299facd10ff04028fb8704b8fa526c74",
+    "present": true,
+    "expected_sha256": "70b1d3b67d2d86e5b7f945fe95901211299facd10ff04028fb8704b8fa526c74",
+    "hash_match": true
+  },
+  "occupancy": {
+    "path": "$HESI_OPERATOR_HOME/Downloads/HESI_Housing_v15_ACS2024/downloaded_acs_2024/tract_tenure_acs2024.csv",
+    "basename": "tract_tenure_acs2024.csv",
+    "size_bytes": 3338872,
+    "sha256": "376160041b18b0fd4a002bedac8bd5f55c4ed1cbf9f38f257c0c36a2f3b7ed02",
+    "present": true,
+    "expected_sha256": "376160041b18b0fd4a002bedac8bd5f55c4ed1cbf9f38f257c0c36a2f3b7ed02",
+    "hash_match": true
+  },
+  "tract_to_puma": {
+    "path": "$HESI_OPERATOR_HOME/Downloads/HESI_Housing_v15_ACS2024/tract_to_puma_50states_dc.csv",
+    "basename": "tract_to_puma_50states_dc.csv",
+    "size_bytes": 3883113,
+    "sha256": "4093277e44c88f3506483a3eea988846b5992140f82ca4cc1b4e04b2cb9befb9",
+    "present": true,
+    "expected_sha256": "4093277e44c88f3506483a3eea988846b5992140f82ca4cc1b4e04b2cb9befb9",
+    "hash_match": true
+  },
+  "frozen_r24": {
+    "national_R22_common": {
+      "path": "$HESI_OPERATOR_HOME/HESI-Pilot/core_r24/results/national_R22/common_cohort_results.csv",
+      "basename": "common_cohort_results.csv",
+      "size_bytes": 636,
+      "sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
+      "present": true,
+      "expected_sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
+      "hash_match": true
+    },
+    "puma_fmr_screened": {
+      "path": "$HESI_OPERATOR_HOME/HESI-Pilot/core_r24/inputs/puma_fmr_screened.csv",
+      "basename": "puma_fmr_screened.csv",
+      "size_bytes": 219546,
+      "sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+      "present": true,
+      "expected_sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+      "hash_match": true
+    },
+    "source_2024_2026": {
+      "path": "$HESI_OPERATOR_HOME/HESI-Pilot/core_r24/inputs/source_2024_2026.csv",
+      "basename": "source_2024_2026.csv",
+      "size_bytes": 160764,
+      "sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+      "present": true,
+      "expected_sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+      "hash_match": true
+    }
+  },
+  "hud_geo_crosswalk_vs_fy2026": {
+    "fy24_and_fy26_row_count": [
+      4764,
+      4764
+    ],
+    "geo_id_intersection": 4594,
+    "only_fy24": 170,
+    "only_fy26": 170,
+    "note": "Connecticut town FIPS (090xx in FY2024) versus planning-region FIPS (091xx in FY2026) and at least one Maine town identifier. Do not recode to force the R2.4 sample."
+  },
+  "fy24_revision_diff": {
+    "n_changed_geo": 1,
+    "areas": [
+      {
+        "geo_id": "1500399999",
+        "hud_area_name_o": "Urban Honolulu, HI MSA"
+      }
+    ]
+  },
+  "eia_reconstruction": {
+    "series": "EMM_EPMR_PTE_NUS_DPG",
+    "units": "USD per gallon, U.S. regular all formulations retail including taxes",
+    "release_in_file": "2026-10-20",
+    "published_annual_2024": 3.304,
+    "unweighted_mean_of_12_monthly_2024": 3.306416666666667,
+    "unweighted_mean_of_weekly_2024": 3.3038490566037733,
+    "n_weekly_2024": 53,
+    "december_2024_monthly": 3.018,
+    "last_weekly_2024": 3.006,
+    "default_reference": "published_annual_2024",
+    "miles": 12000.0,
+    "mpg": 32.0,
+    "fuel_annual_using_published_annual": 1239.0,
+    "nonfuel_held_from_r24_sept2026_hypothetical": 5631.67,
+    "transport_annual_gasoline_updated_nonfuel_held": 6870.67,
+    "r24_transport_annual_untouched": 7264.7,
+    "limitation": "Updating gasoline does not make depreciation, insurance, maintenance, registration, or financing historically accurate."
+  },
+  "usda_extract": {
+    "rows_written": 192,
+    "frozen_2024_rows": 756,
+    "mainland_individual_thrifty_rows": 180,
+    "thrifty_months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "twelve_calendar_months": true,
+    "workbook_not_used_to_overwrite_frozen": true
+  },
+  "puma_coverage_vs_r24": {
+    "r24_complete": 2350,
+    "matched2024_complete": 2350,
+    "intersection": 2350,
+    "only_matched2024": [],
+    "only_r24": [],
+    "do_not_force_identical_sample": true,
+    "r24_included_weight_not_imposed": 121036726
+  }
+}

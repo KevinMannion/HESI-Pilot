@@ -1,0 +1,19 @@
+{
+  "declared_before_any_matched_year_national_share": true,
+  "do_not_compute_share_until": ["hashed FY-year FMR PUMA table for that T", "hashed USDA monthly TFP for all 12 months of T", "hashed transport gasoline series for T", "year-T ACS PUMS hashes", "separate output directory"],
+  "identity": "Income remains HINCP * ADJINC / 1e6 / 12. Residual person-source identity is not required for the baseline share but may be audited.",
+  "eligibility": "Same bedroom rule, 1-4 BR only, infant exclusion, COMPLETE_UNAMBIGUOUS PUMA filter. Year-T geography may change the included weight versus 121,036,726.",
+  "sampling": "80 SDR replicates, variance 4/80, atol 1e-7 vs a frozen matched-year result file once one exists.",
+  "model_uncertainty_not_in_sdr": ["food month vs annual mean", "HUD FY T vs FY T+1", "transport non-fuel assumptions", "one-car assignment"],
+  "forbidden": [
+    "Overwrite national_R22 or 18.9918%",
+    "Label matched-year share as September 2026 hardship",
+    "Use income-nowcast factors",
+    "Pass by changing Phase 3 nowcast gates",
+    "Join 2021 PUMS to 2020-PUMA FY2026 rents"
+  ],
+  "naming": {
+    "income": "income_month_ACS{T}_observed",
+    "share": "share_income_below_three_costs_{T}matched_MODELED"
+  }
+}

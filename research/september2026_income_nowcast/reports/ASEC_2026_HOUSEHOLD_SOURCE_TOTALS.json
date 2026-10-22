@@ -1,0 +1,35 @@
+{
+  "file_in_zip": "hhpub26.csv",
+  "rows": 88026,
+  "weight_sum_after_div100": 137123796.5,
+  "weight_convention": "HSUP_WGT / 100 as Census ASEC household supplement weight",
+  "kind": "observation_asec_calendar_2025",
+  "means": {
+    "total": 126664.21667458574,
+    "wages": 91140.00164923794,
+    "self_employment": 4366.019504793175,
+    "social_security": 9802.57146349649,
+    "ssi": 437.1852387869089,
+    "pension": 3857.6594161289863,
+    "annuity": 572.2318955543941,
+    "interest": 6822.320229371347,
+    "dividends": 2093.6301456063466,
+    "rent": 1419.9760328594023,
+    "public_assistance": 41.72565855329129,
+    "other": 224.79845823368808
+  },
+  "columns_present": {
+    "HTOTVAL": true,
+    "HWSVAL": true,
+    "HSEVAL": true,
+    "HSSVAL": true,
+    "HSSIVAL": true,
+    "HPENVAL": true,
+    "HANNVAL": true,
+    "HINTVAL": true,
+    "HDIVVAL": true,
+    "HRNTVAL": true,
+    "HPAWVAL": true,
+    "HOIVAL": true
+  }
+}

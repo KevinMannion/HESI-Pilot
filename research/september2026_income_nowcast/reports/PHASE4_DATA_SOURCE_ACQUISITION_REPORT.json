@@ -1,0 +1,53 @@
+{
+  "acquired_at_utc": "2026-10-22T01:39:12Z",
+  "phase": 4,
+  "national_2026_adequacy_share_published": false,
+  "acquired": [
+    {
+      "id": "BEA_NIPA_MONTHLY_TXT",
+      "url": "https://apps.bea.gov/national/Release/TXT/NipaDataM.txt",
+      "local": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase4/bea/NipaDataM.txt",
+      "bytes": 36806318,
+      "sha256": "bd202765789e4b378ad632cc1836287de7454ae1b86cfa1481c22bc49eabbffd",
+      "status": "ACQUIRED",
+      "units": "millions of dollars, seasonally adjusted annual rate",
+      "header": "%SeriesCode,Period,Value",
+      "last_period": "2026M08",
+      "kind": "observation of BEA monthly NIPA file",
+      "codes_used": ["A041RC", "A064RC", "B703RC", "A048RC", "A033RC", "A065RC"]
+    },
+    {
+      "id": "ACS_2021_1YEAR_HUS",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/csv_hus.zip",
+      "bytes": 241790917,
+      "sha256": "e1f4fb85a089d6bd662ad1bd3f3f3696f6849140971fb81fae6600dceaac50ee",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    },
+    {
+      "id": "ACS_2021_1YEAR_PUS",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/csv_pus.zip",
+      "bytes": 571180899,
+      "sha256": "e1e64f81718e7d478cf2bf4ad8d1ae1fa03c690f6c86afa3984d1a6bd38dc8f2",
+      "status": "ACQUIRED",
+      "kind": "observation"
+    }
+  ],
+  "failed": [
+    {
+      "id": "BEA_JSON_API_NO_KEY",
+      "url": "https://apps.bea.gov/api/data/?UserID=&method=GetDataSetList&ResultFormat=JSON",
+      "issue": "HTTP 200 JSON Error APIErrorCode 1 Invalid API UserId. Did not invent a key."
+    },
+    {
+      "id": "FRED_SERIES_PAGE",
+      "url": "https://fred.stlouisfed.org/series/A041RC1",
+      "issue": "15s timeout, 0 bytes. NipaDataM.txt used instead."
+    },
+    {
+      "id": "BEA_T20600_CSV",
+      "url": "https://apps.bea.gov/national/Release/CSV/NIPA/T20600.csv",
+      "issue": "28185-byte HTML stub, not used"
+    }
+  ]
+}

@@ -1,15 +1,106 @@
+# HESI Pilot — research development branch (`hesi/core-r25-integration`)
+
+The Household Economic Security Index (HESI) is a **research** program. This branch publishes Core R2.5 development so reviewers can read the methods, code, tests, and status flags. **Pushing this branch is not scientific validation.**
+
+The older public 2024 food-plus-observed-housing pilot remains on `main`. Do not merge this branch into `main` unless a separate review says to.
+
+## Scientific status (this branch)
+
+| Flag | Value |
+| --- | --- |
+| COMPUTATIONALLY_REPRODUCED | **YES**, for the specified Core R2.4 calculations on this operator’s clean environment |
+| EXTERNALLY_INDEPENDENTLY_REPRODUCED | **NO** |
+| SCIENTIFICALLY_VALIDATED | **NO** |
+| SEPTEMBER_2026_INCOME_NOWCAST | **NO-GO** |
+
+A GitHub copy does not change those flags.
+
+## Do not mix these numbers
+
+| Object | Housing | Food | Transport | Income | Eligible weighted HH | Share |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2024 observed-housing pilot (`run.py`, `results.csv`) | ACS GRNTP / SMOCP | December 2024 USDA | none | 2024 ACS | 130,550,444 | 10.301% Thrifty |
+| Core R2.4 three-pillar scenario (`core_r24/`) | FY2026 HUD FMR replacement rent | September 2026 Thrifty | one-car $7,264.70/year | 2024 ACS | 121,036,726 | **18.9918%** |
+| September 2026 income nowcast | — | — | — | experimental | — | **not computed (NO-GO)** |
+| 2024 matched-year costs vs 2024 income | 2024 HUD mix (prepared) | 2024 Thrifty (prepared) | 2024 gasoline + held non-fuel | 2024 ACS | — | **not computed** |
+
+18.9918% is a **cross-vintage modeled scenario** (2026 costs / 2024 gross income). It is not a measured September 2026 hardship rate.
+
+Frozen R2.4 files (do not edit): `core_r24/results/national_R22/`. SHA-256 of `common_cohort_results.csv`: `6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7`.
+
+## What is in this branch
+
+1. **2024 observed-housing food pilot** (repository root; also on `main`).
+2. **Core R2.4 joint engine** — `core_r24/reproduce_from_raw.py` → person-cache rebuild → `core_r24/src/run_joint.py`. Locked Food / Housing / Transportation specs: `research/september2026_core_r2/`.
+3. **Income-nowcast research (Phases 1–4)** — `research/september2026_income_nowcast/`. Locked gates **fail**. Decision **NO-GO**. No September 2026 national adequacy estimate.
+4. **Matched-year 2024 cost-input preparation** — `research/historical_matched_baseline/`. Input gates PASS; no new national percentage.
+
+Iteration history: `STATUS.txt`, `ITERATION_NOTES.txt`, `ITERATION_REGISTER.txt`.
+
+## Three-pillar reference calculation (R2.4)
+
+On a common 2024 ACS occupied-household frame, after geography, composition, >4-bedroom, and infant exclusions:
+
+- Food: USDA Thrifty, September 2026 mainland individual cells, USDA household-size factors.
+- Housing: HUD FY2026 revised FMR, occupancy-weighted to 2020 PUMAs, bedroom rule `adults − min(partners,1) + ceil(children/2)`, 1–4 BR only.
+- Transport: one assumed 12,000-mile / 32 mpg vehicle; September 2026 EIA gasoline plus **hypothetical** non-fuel dollars.
+- Income: `HINCP × ADJINC / 1e6 / 12` (rolling past-12-months ACS money income, not a September snapshot).
+
+Sampling uncertainty uses 80 ACS successive-difference replicates (4/80). That interval is **not** model, price, or geography uncertainty.
+
+## Income-modeling research
+
+See `research/september2026_income_nowcast/README.md` and `reports/GO_NOGO.json`.
+
+- 2024 ACS source identity on the R2.4 frame was reconstructed.
+- Historical backtests (M1–M6) vs locked gates: **G2 and G3 fail** on 2023→2024.
+- BEA monthly NIPA through **2026-08** only; September 2026 household run-rate is not identifiable from those files.
+- **Do not** apply a uniform CPI factor to `HINCP`. **Do not** treat CES wage growth as household-income growth.
+
+## Limitations (all tracks)
+
+- Not a six-pillar HESI (no childcare, health care, taxes, residual essentials, or assets).
+- Replacement rent is assigned to owners; it is not observed housing cost.
+- One car is assigned to every included household.
+- Mainland USDA prices are used nationally, including Alaska and Hawaii.
+- Infants and households needing more than four bedrooms are excluded.
+- Nowcast remains NO-GO; matched-year national share is not computed.
+- Operator local paths appear in some already-recorded reproduction logs. Those logs locate files on one machine; they are not Census microdata.
+
+## Third-party sources
+
+Census ACS PUMS, HUD FMR, USDA Food Plans, EIA gasoline, BLS, BEA, and SSA COLA are U.S. government publications. This repository **does not** redistribute raw ACS microdata or the original HUD/USDA/EIA workbooks. Derived small CSV extracts and SHA-256 manifests are included so reviewers can check tables against official files they download themselves.
+
+Code and original HESI documentation in this repository are copyright Kevin Mannion (see `LICENSE`). Government source data remain public U.S. government works.
+
+## Reproducibility (R2.4)
+
+Census microdata are **not** in git. Download 2024 ACS 1-year PUMS housing and person archives from the [Census PUMS page](https://www.census.gov/programs-surveys/acs/microdata/access/2024.html). Required SHA-256 values are in `core_r24/README.md` and `STATUS.txt`.
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python core_r24/verify_package.py          # packaged hashes + synthetic tests
+# National run (large; writes caches outside git):
+python core_r24/reproduce_from_raw.py \
+  --housing /path/to/csv_hus.zip \
+  --person-a /path/to/person_part_1.zip \
+  --person-b /path/to/person_part_2.zip \
+  --output /path/to/empty_output_dir
+```
+
+Matching `national_R22` within `atol=1e-7` is computational reproduction of the published scenario. It is not independent external replication and not scientific validation.
+
+### 2024 observed-housing pilot
+
+Create `input_data/`, place `csv_hus.zip` and `csv_pus.zip` there, then `python run.py`. See the household audit below.
+
+---
+
 # HESI Food-Cost Integration Pilot — 2024
 
 This release replaces arbitrary per-person food scenarios with published December 2024 **USDA Thrifty and Low-Cost Food Plan** estimates calibrated by individual age and sex. It applies USDA's official household-size adjustment to member costs and compares that annualized December 2024 food benchmark plus observed ACS rent/owner costs against gross ACS household income.
-
-## Two research tracks on this branch (do not mix headlines)
-
-This `hesi/core-r25-integration` working tree contains two separate calculations. They use different housing definitions, different food vintages, and different eligible populations. Do not add their percentages or replace one `results.csv` with the other.
-
-1. **2024 observed-housing food pilot (this README, `run.py`, `results.csv`, `audit.json`).** December 2024 USDA food plus ACS reported rent/owner costs. Published eligible weighted households: 130,550,444. Thrifty national share below housing-plus-food: 10.301%.
-2. **September 2026 three-component research.** Canonical joint engine: `core_r24/reproduce_from_raw.py` and `core_r24/src/run_joint.py`. Locked Food, Housing, and Transportation specifications: `research/september2026_core_r2/`. Published R2.4 common-cohort scenario: 121,036,726 weighted households; food $653.522289/mo; replacement rent $1,635.994098/mo; one-car transport $605.391667/mo; combined $2,894.908053/mo; share of 2024 gross income below those three September 2026 costs = 18.9918%. That figure is a cross-vintage modeled scenario, not a validated September 2026 hardship rate.
-
-Status flags, iteration notes, and the four-way reproduction taxonomy are in `STATUS.txt`, `ITERATION_NOTES.txt`, and `ITERATION_REGISTER.txt`.
 
 ## Research Status — Pilot Results (v0.1)
 

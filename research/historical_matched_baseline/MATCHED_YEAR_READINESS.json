@@ -1,0 +1,204 @@
+{
+  "object": "2024 ACS observed income vs 2024 modeled costs (not computed)",
+  "r24_share_untouched": "18.9918%",
+  "gates": [
+    {
+      "name": "frozen_national_R22_untouched",
+      "status": "PASS",
+      "detail": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7"
+    },
+    {
+      "name": "frozen_puma_fmr_screened_untouched",
+      "status": "PASS",
+      "detail": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee"
+    },
+    {
+      "name": "frozen_source_2024_2026_untouched",
+      "status": "PASS",
+      "detail": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c"
+    },
+    {
+      "name": "hud_fy24_original_acquired",
+      "status": "PASS",
+      "detail": {
+        "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/matched2024/hud/FY24_FMRs.xlsx",
+        "basename": "FY24_FMRs.xlsx",
+        "size_bytes": 364591,
+        "sha256": "9f6b3d53b7d53bf3a0285caf0874bd6e61d0ed0a906e6e355776080eef1f1127",
+        "present": true,
+        "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2024/FY24_FMRs.xlsx",
+        "effective": "2023-10-01",
+        "sheet": "FY24_FMRs",
+        "page_listed_kb": 357,
+        "is_xlsx": true,
+        "n_rows": 4764,
+        "n_geo": 4764,
+        "bedrooms": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "name": "hud_fy24_revised_acquired",
+      "status": "PASS",
+      "detail": {
+        "sha256": "0a6634d5745e07f0638efe2aca65161b4b8d6982ebd4d257e8191ed18ecfbf98",
+        "size_bytes": 364595,
+        "page_listed_kb": 1750,
+        "honolulu_revision": {
+          "n_changed_geo": 1,
+          "areas": [
+            {
+              "geo_id": "1500399999",
+              "hud_area_name_o": "Urban Honolulu, HI MSA"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "hud_fy25_original_oct2024_acquired",
+      "status": "PASS",
+      "detail": "21217df7d8c5c2bd6633fe8d3deb460d7114712ac809fe1644235980240f2ab5"
+    },
+    {
+      "name": "hud_bedrooms_0_to_4",
+      "status": "PASS",
+      "detail": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "usda_workbook_hash",
+      "status": "PASS",
+      "detail": "70b1d3b67d2d86e5b7f945fe95901211299facd10ff04028fb8704b8fa526c74"
+    },
+    {
+      "name": "usda_2024_twelve_thrifty_months",
+      "status": "PASS",
+      "detail": {
+        "rows_written": 192,
+        "frozen_2024_rows": 756,
+        "mainland_individual_thrifty_rows": 180,
+        "thrifty_months": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ],
+        "twelve_calendar_months": true,
+        "workbook_not_used_to_overwrite_frozen": true
+      }
+    },
+    {
+      "name": "eia_2024_annual_reconstructed",
+      "status": "PASS",
+      "detail": 3.304
+    },
+    {
+      "name": "eia_2024_twelve_months",
+      "status": "PASS",
+      "detail": 3.306416666666667
+    },
+    {
+      "name": "occupancy_crosswalk_hashes",
+      "status": "PASS",
+      "detail": {
+        "acs_occupancy": "376160041b18b0fd4a002bedac8bd5f55c4ed1cbf9f38f257c0c36a2f3b7ed02",
+        "tract_to_puma": "4093277e44c88f3506483a3eea988846b5992140f82ca4cc1b4e04b2cb9befb9"
+      }
+    },
+    {
+      "name": "puma_table_built_without_editing_r24_geography",
+      "status": "PASS",
+      "detail": {
+        "calendar_2024": "$HESI_OPERATOR_HOME/HESI-Pilot/research/historical_matched_baseline/outputs/puma_fmr_calendar_2024.csv",
+        "fy24_revised": "$HESI_OPERATOR_HOME/HESI-Pilot/research/historical_matched_baseline/outputs/puma_fmr_fy24_revised.csv",
+        "fy25_original": "$HESI_OPERATOR_HOME/HESI-Pilot/research/historical_matched_baseline/outputs/puma_fmr_fy25_original.csv"
+      }
+    },
+    {
+      "name": "coverage_difference_reported_not_forced",
+      "status": "PASS",
+      "detail": {
+        "r24_complete": 2350,
+        "matched2024_complete": 2350,
+        "intersection": 2350,
+        "only_matched2024": [],
+        "only_r24": [],
+        "do_not_force_identical_sample": true,
+        "r24_included_weight_not_imposed": 121036726
+      }
+    },
+    {
+      "name": "transport_nonfuel_limitation_documented",
+      "status": "PASS",
+      "detail": "Updating gasoline does not make depreciation, insurance, maintenance, registration, or financing historically accurate."
+    },
+    {
+      "name": "no_national_share_computed",
+      "status": "PASS",
+      "detail": "prepare pipeline writes cost inputs only"
+    },
+    {
+      "name": "r24_engine_unmodified",
+      "status": "PASS",
+      "detail": "core_r24/src/run_joint.py not used"
+    }
+  ],
+  "recommendation": {
+    "input_preparation": "PASS",
+    "execute_2024_matched_year_national_percentage_this_round": "NO-GO",
+    "reason_execute_nogo": [
+      "Sibling national engine is not run in this round.",
+      "Person food caches still price (2026,9) in the R2.4 engine.",
+      "Instruction: do not calculate a new national percentage in the preparation round."
+    ],
+    "proceed_to_sibling_engine_after_this_prep": "GO",
+    "september_2026_income_nowcast": "NO-GO",
+    "overwrite_18_9918": "FORBIDDEN"
+  },
+  "default_cost_schedule": {
+    "food": "USDA Thrifty 2024 annual mean of 12 published monthly mainland individual cells",
+    "housing": "calendar-2024 day-weighted mix: 70 days FY2024 original + 204 days FY2024 revised + 92 days FY2025 original",
+    "housing_alternates": [
+      "FY2024_revised_only",
+      "FY2025_original_point_in_time_from_2024-10-01"
+    ],
+    "transport": {
+      "series": "EMM_EPMR_PTE_NUS_DPG",
+      "units": "USD per gallon, U.S. regular all formulations retail including taxes",
+      "release_in_file": "2026-10-20",
+      "published_annual_2024": 3.304,
+      "unweighted_mean_of_12_monthly_2024": 3.306416666666667,
+      "unweighted_mean_of_weekly_2024": 3.3038490566037733,
+      "n_weekly_2024": 53,
+      "december_2024_monthly": 3.018,
+      "last_weekly_2024": 3.006,
+      "default_reference": "published_annual_2024",
+      "miles": 12000.0,
+      "mpg": 32.0,
+      "fuel_annual_using_published_annual": 1239.0,
+      "nonfuel_held_from_r24_sept2026_hypothetical": 5631.67,
+      "transport_annual_gasoline_updated_nonfuel_held": 6870.67,
+      "r24_transport_annual_untouched": 7264.7,
+      "limitation": "Updating gasoline does not make depreciation, insurance, maintenance, registration, or financing historically accurate."
+    }
+  }
+}

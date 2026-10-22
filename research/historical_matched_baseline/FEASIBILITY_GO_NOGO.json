@@ -1,0 +1,26 @@
+{
+  "september_2026_income_nowcast": "NO-GO",
+  "compute_matched_year_national_share_this_round": "NO-GO",
+  "2024_cost_input_preparation_2026_10_22": "PASS",
+  "execute_national_percentage_after_input_prep_this_round": "NO-GO",
+  "proceed_to_sibling_engine": "GO",
+  "publish_2022_2024_series_this_round": "NO-GO",
+  "design_and_later_build_2024_observed_income_2024_modeled_cost_scenario": "GO_INPUTS_READY",
+  "conditions_for_coding_the_2024_matched_scenario": [
+    "Acquire and hash HUD FY2024 FMR (and decide FY2024-only vs FY2024/FY2025 October switch).",
+    "Hash a 2024 EIA gasoline series; keep non-fuel transport dollars as labeled assumptions.",
+    "Build a year-2024 PUMA FMR table without editing puma_fmr_screened.csv used by R2.4.",
+    "Price food from 2024 monthly Thrifty already in source_2024_2026.csv (12 months present).",
+    "Write results only under research/historical_matched_baseline/results/.",
+    "Do not edit core_r24/results/national_R22/."
+  ],
+  "why_2022_2024_series_is_blocked": [
+    "Frozen USDA extract lacks 2022 and 2023 months (workbooks on disk could fill this later).",
+    "FY2022–FY2023 FMR workbooks are not on disk (FY2024 and FY2025 county files now hashed).",
+    "No hashed 2022 or 2023 transport gasoline series.",
+    "Each ACS year needs its own eligibility frame; 2024 included weight must not be imposed."
+  ],
+  "scientific_validation": false,
+  "new_national_share_computed": false,
+  "r24_18_9918_modified": false
+}

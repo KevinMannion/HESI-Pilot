@@ -1,0 +1,337 @@
+{
+  "label": "ACS_2024_household_money_income_source_reconciliation",
+  "not_a_2026_measurement": true,
+  "national_affordability_nowcast_executed": false,
+  "r24_frame_rows": 1235731,
+  "r24_frame_weight": 121036726.0,
+  "person_table_missing_rows": 0,
+  "person_table_missing_weight": 0.0,
+  "np_mismatch_rows": 0,
+  "hincp_negative_rows": 589,
+  "hincp_negative_weight": 53091.0,
+  "hincp_zero_rows": 14622,
+  "residual_vs_components": {
+    "mean_unweighted": 2.8755246920687745e-05,
+    "mean_weighted": 2.813318415623072e-05,
+    "max_abs": 1.015250000054948,
+    "exact_zero_rows": 1162842,
+    "abs_lt_1_rows": 1235696,
+    "abs_lt_10_rows": 1235731,
+    "abs_ge_1_rows": 35,
+    "abs_ge_1_weight": 3354.0,
+    "abs_ge_10_rows": 0,
+    "abs_ge_10_weight": 0.0,
+    "abs_ge_100_rows": 0,
+    "abs_ge_100_weight": 0.0
+  },
+  "residual_vs_pincp": {
+    "mean_weighted": 1.971168245665233e-06,
+    "max_abs": 1.01525,
+    "abs_ge_1_rows": 1
+  },
+  "pernp_vs_wagp_semp": {
+    "mean_weighted": 2.7269225292959326e-05,
+    "max_abs": 1.015250000054948,
+    "abs_ge_1_rows": 38
+  },
+  "source_weighted_means_annual": {
+    "wages": 82630.51982274388,
+    "self_employment": 5106.631471923605,
+    "retirement": 8052.5673657323905,
+    "social_security": 8035.796569712095,
+    "ssi": 540.6778266666354,
+    "investment": 6005.140602325347,
+    "public_assistance": 80.0325702661521,
+    "other": 1451.5645995308807
+  },
+  "source_negative_households": {
+    "wages": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "self_employment": {
+      "rows": 7076,
+      "weight": 619687.0
+    },
+    "retirement": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "social_security": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "ssi": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "investment": {
+      "rows": 13529,
+      "weight": 1175996.0
+    },
+    "public_assistance": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "other": {
+      "rows": 0,
+      "weight": 0.0
+    }
+  },
+  "source_missing_age15plus_households": {
+    "wages": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "self_employment": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "retirement": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "social_security": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "ssi": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "investment": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "public_assistance": {
+      "rows": 0,
+      "weight": 0.0
+    },
+    "other": {
+      "rows": 0,
+      "weight": 0.0
+    }
+  },
+  "source_zero_households": {
+    "wages": {
+      "rows": 373453,
+      "weight": 31352761.0
+    },
+    "self_employment": {
+      "rows": 1099205,
+      "weight": 107933207.0
+    },
+    "retirement": {
+      "rows": 858280,
+      "weight": 91028885.0
+    },
+    "social_security": {
+      "rows": 751280,
+      "weight": 82238487.0
+    },
+    "ssi": {
+      "rows": 1173534,
+      "weight": 115110568.0
+    },
+    "investment": {
+      "rows": 939626,
+      "weight": 96641670.0
+    },
+    "public_assistance": {
+      "rows": 1209638,
+      "weight": 118273212.0
+    },
+    "other": {
+      "rows": 1121972,
+      "weight": 110589858.0
+    }
+  },
+  "largest_abs_residuals": [
+    {
+      "SERIALNO": "2024HU0057237",
+      "WGTP": 51,
+      "hincp_adj_annual_2024": 578693.51525,
+      "component_sum_adj_annual": 578692.5,
+      "residual_hincp_minus_components": 1.0152500001
+    },
+    {
+      "SERIALNO": "2024HU1079379",
+      "WGTP": 41,
+      "hincp_adj_annual_2024": 622349.26525,
+      "component_sum_adj_annual": 622348.25,
+      "residual_hincp_minus_components": 1.0152500001
+    },
+    {
+      "SERIALNO": "2024HU1003696",
+      "WGTP": 47,
+      "hincp_adj_annual_2024": 29443.26525,
+      "component_sum_adj_annual": 29442.25,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0238007",
+      "WGTP": 40,
+      "hincp_adj_annual_2024": 32692.06525,
+      "component_sum_adj_annual": 32691.05,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU1407905",
+      "WGTP": 40,
+      "hincp_adj_annual_2024": 9848.94025,
+      "component_sum_adj_annual": 9847.925,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU1270094",
+      "WGTP": 60,
+      "hincp_adj_annual_2024": 8529.11525,
+      "component_sum_adj_annual": 8528.1,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0999234",
+      "WGTP": 63,
+      "hincp_adj_annual_2024": 8123.01525,
+      "component_sum_adj_annual": 8122.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0087462",
+      "WGTP": 7,
+      "hincp_adj_annual_2024": 9036.74025,
+      "component_sum_adj_annual": 9035.725,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0070342",
+      "WGTP": 23,
+      "hincp_adj_annual_2024": 681.23275,
+      "component_sum_adj_annual": 680.2175,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0094828",
+      "WGTP": 75,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0555951",
+      "WGTP": 184,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0924548",
+      "WGTP": 76,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0104419",
+      "WGTP": 235,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU1273152",
+      "WGTP": 240,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0968124",
+      "WGTP": 125,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU1348063",
+      "WGTP": 125,
+      "hincp_adj_annual_2024": 1.01525,
+      "component_sum_adj_annual": 0.0,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0530491",
+      "WGTP": 94,
+      "hincp_adj_annual_2024": -2029.48475,
+      "component_sum_adj_annual": -2030.5,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0397414",
+      "WGTP": 50,
+      "hincp_adj_annual_2024": 7107.76525,
+      "component_sum_adj_annual": 7106.75,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0588808",
+      "WGTP": 77,
+      "hincp_adj_annual_2024": -3856.93475,
+      "component_sum_adj_annual": -3857.95,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0534569",
+      "WGTP": 135,
+      "hincp_adj_annual_2024": -1115.75975,
+      "component_sum_adj_annual": -1116.775,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0207467",
+      "WGTP": 28,
+      "hincp_adj_annual_2024": 18884.66525,
+      "component_sum_adj_annual": 18883.65,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU1075300",
+      "WGTP": 64,
+      "hincp_adj_annual_2024": 71068.51525,
+      "component_sum_adj_annual": 71067.5,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0760328",
+      "WGTP": 140,
+      "hincp_adj_annual_2024": 152318.97275,
+      "component_sum_adj_annual": 152317.9575,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0625985",
+      "WGTP": 96,
+      "hincp_adj_annual_2024": 79190.51525,
+      "component_sum_adj_annual": 79189.5,
+      "residual_hincp_minus_components": 1.01525
+    },
+    {
+      "SERIALNO": "2024HU0986730",
+      "WGTP": 101,
+      "hincp_adj_annual_2024": 45687.26525,
+      "component_sum_adj_annual": 45686.25,
+      "residual_hincp_minus_components": 1.01525
+    }
+  ],
+  "component_share_of_hincp_weighted": {
+    "wages": 0.7384031896225303,
+    "self_employment": 0.04563390107171146,
+    "retirement": 0.07195938546994905,
+    "social_security": 0.07180951821387395,
+    "ssi": 0.004831607408803105,
+    "investment": 0.05366316204231708,
+    "public_assistance": 0.0007151873821559799,
+    "other": 0.012971477518670184,
+    "residual": 2.514038754658893e-10
+  }
+}

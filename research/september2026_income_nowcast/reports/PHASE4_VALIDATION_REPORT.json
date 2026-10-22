@@ -1,0 +1,917 @@
+{
+  "national_2026_adequacy_share_published": false,
+  "core_r24_18_9918_modified": false,
+  "scientific_validation": false,
+  "computational_reproduction": true,
+  "phase3_gates_locked": true,
+  "go_nogo": "NO-GO",
+  "go_nogo_reason": "Phase 3 locked evaluation gates G2 and G3 remain failed on 2023\u21922024. BEA NIPA was acquired and used only in labeled candidate models. Candidate improvements are not retroactive PASS. Cross-section nowcasts are not household trajectories.",
+  "locked_gates": {
+    "protocol": "Phase 3 VALIDATION_GATES.json locked. Not relaxed. Candidate models are not used to rewrite PASS.",
+    "G2_hincp_mean": {
+      "pass": false,
+      "detail": {
+        "2022_to_2023": 0.002381216117605213,
+        "2023_to_2024": 0.01645865948802087
+      }
+    },
+    "G3_share": {
+      "pass": false,
+      "detail": {
+        "2022_to_2023": 0.0032157569035996814,
+        "2023_to_2024": 0.006675799343880129
+      }
+    },
+    "G4_wagp": {
+      "pass": true,
+      "detail": {
+        "2022_to_2023": 0.0008454158042772673,
+        "2023_to_2024": 0.004369404755134402
+      }
+    },
+    "G5_beats_freeze": {
+      "pass": true,
+      "detail": {
+        "2022_to_2023": {
+          "hincp": 0.002381216117605213,
+          "share": 0.0032157569035996814,
+          "wagp": 0.0008454158042772673,
+          "freeze_hincp": 0.03207031113820102
+        },
+        "2023_to_2024": {
+          "hincp": 0.01645865948802087,
+          "share": 0.006675799343880129,
+          "wagp": 0.004369404755134402,
+          "freeze_hincp": 0.044908109790378806
+        }
+      }
+    },
+    "all_locked_eval_pass": false
+  },
+  "prospective_protocol_future_untouched_years": {
+    "do_not_apply_to_2022_2024": true,
+    "future_year_example": "ACS 2024\u21922025 after 2025 PUMS exists, or a later pair never used to choose factors",
+    "keep": [
+      "G2 |HINCP%|<=1.5% both designated eval years",
+      "G3 |share err|<=0.50pp",
+      "G4 |WAGP%|<=2%",
+      "G5 beat freeze",
+      "no CPI production",
+      "sampling SE separate"
+    ],
+    "add": [
+      "hashed BEA NipaDataM.txt or API vintage",
+      "report Kitagawa composition vs within-cell on the eval year",
+      "do not treat BEA INTP as household INTP without a predeclared mapping test"
+    ]
+  },
+  "cross_section_vs_trajectory": "ACS SERIALNO does not identify the same household across years. All scores compare two independent cross-sections. Kitagawa composition/rate splits describe cell-share vs cell-mean change, not individual income paths.",
+  "asec_retirement": {
+    "kind": "national_asec_cy2025_observation_not_a_household_split",
+    "HPENVAL_mean": 3857.6594161289863,
+    "HANNVAL_mean": 572.2318955543941,
+    "pension_share_of_pension_plus_annuity": 0.870824845285664,
+    "cannot_map_onto_ACS_RETP": "ACS RETP bundles DB, DC, and related receipts. Applying the ASEC national pension/annuity mix to each ACS household would invent a household-level split the PUMS does not contain."
+  },
+  "bea_file_sha256": "bd202765789e4b378ad632cc1836287de7454ae1b86cfa1481c22bc49eabbffd",
+  "bls_file_sha256": "bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231",
+  "national_R22_sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
+  "national_R22_ok": true,
+  "reconstruction_meta": {
+    "2021": {
+      "person_rows": 3252599,
+      "occupied_rows": 1281010,
+      "occupied_weight": 127544707.0,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase4/backtest_cache/occupied_enriched_2021.pkl"
+    },
+    "2022": {
+      "person_rows": 3373378,
+      "occupied_rows": 1323938,
+      "occupied_weight": 129870877.0,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase4/backtest_cache/occupied_enriched_2022.pkl"
+    },
+    "2023": {
+      "person_rows": 3405809,
+      "occupied_rows": 1343045,
+      "occupied_weight": 131332363.0,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase4/backtest_cache/occupied_enriched_2023.pkl"
+    },
+    "2024": {
+      "person_rows": 3422888,
+      "occupied_rows": 1348408,
+      "occupied_weight": 132737145.0,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase4/backtest_cache/occupied_enriched_2024.pkl"
+    }
+  },
+  "acs_2025_tables": {
+    "status": "NOT_RELEASED",
+    "scheduled": "2026-10-29"
+  },
+  "kitagawa_summary": {
+    "2021_to_2022": {
+      "note": "Independent ACS samples. SERIALNO is not a panel id. Composition is cell-share change; rate is within-cell mean change. Interaction is the remainder.",
+      "actual_minus_origin_mean_hincp": 7715.8860909853975,
+      "composition_using_origin_cell_means": 513.0462327769648,
+      "within_cell_using_origin_shares": 7177.559776385023,
+      "interaction": 25.280081823447816,
+      "n_cells": 8
+    },
+    "2022_to_2023": {
+      "note": "Independent ACS samples. SERIALNO is not a panel id. Composition is cell-share change; rate is within-cell mean change. Interaction is the remainder.",
+      "actual_minus_origin_mean_hincp": 3503.319671756777,
+      "composition_using_origin_cell_means": 295.34673162338464,
+      "within_cell_using_origin_shares": 3202.2922259445436,
+      "interaction": 5.680714188810658,
+      "n_cells": 8
+    },
+    "2023_to_2024": {
+      "note": "Independent ACS samples. SERIALNO is not a panel id. Composition is cell-share change; rate is within-cell mean change. Interaction is the remainder.",
+      "actual_minus_origin_mean_hincp": 5136.3689584346575,
+      "composition_using_origin_cell_means": 106.1410822957186,
+      "within_cell_using_origin_shares": 5029.542801422639,
+      "interaction": 0.685074716307946,
+      "n_cells": 8
+    }
+  },
+  "kitagawa": {
+    "2021_to_2022": {
+      "note": "Independent ACS samples. SERIALNO is not a panel id. Composition is cell-share change; rate is within-cell mean change. Interaction is the remainder.",
+      "actual_minus_origin_mean_hincp": 7715.8860909853975,
+      "composition_using_origin_cell_means": 513.0462327769648,
+      "within_cell_using_origin_shares": 7177.559776385023,
+      "interaction": 25.280081823447816,
+      "cells": [
+        {
+          "cell": 0,
+          "zero_wage": false,
+          "retirement_majority": false,
+          "any_age65plus": false,
+          "origin_weight_share": 0.6013862652881393,
+          "actual_weight_share": 0.6046020617847988,
+          "origin_mean_hincp": 114083.357185971,
+          "actual_mean_hincp": 122448.76357112269,
+          "within_cell_pct_change": 0.07332714071093614
+        },
+        {
+          "cell": 1,
+          "zero_wage": false,
+          "retirement_majority": false,
+          "any_age65plus": true,
+          "origin_weight_share": 0.09509041406163565,
+          "actual_weight_share": 0.09763541521321982,
+          "origin_mean_hincp": 135776.79074497186,
+          "actual_mean_hincp": 145015.3773351376,
+          "within_cell_pct_change": 0.06804245806279573
+        },
+        {
+          "cell": 2,
+          "zero_wage": false,
+          "retirement_majority": true,
+          "any_age65plus": false,
+          "origin_weight_share": 0.011542995665041592,
+          "actual_weight_share": 0.010624629877566778,
+          "origin_mean_hincp": 73351.31032834254,
+          "actual_mean_hincp": 74206.88150001981,
+          "within_cell_pct_change": 0.011664020286038107
+        },
+        {
+          "cell": 3,
+          "zero_wage": false,
+          "retirement_majority": true,
+          "any_age65plus": true,
+          "origin_weight_share": 0.0345344083937564,
+          "actual_weight_share": 0.035010967085407456,
+          "origin_mean_hincp": 81092.67196015004,
+          "actual_mean_hincp": 86027.43967189676,
+          "within_cell_pct_change": 0.06085343585881264
+        },
+        {
+          "cell": 4,
+          "zero_wage": true,
+          "retirement_majority": false,
+          "any_age65plus": false,
+          "origin_weight_share": 0.04198862599605956,
+          "actual_weight_share": 0.03760468176402628,
+          "origin_mean_hincp": 39007.71074526418,
+          "actual_mean_hincp": 45417.28388316728,
+          "within_cell_pct_change": 0.16431554211833022
+        },
+        {
+          "cell": 5,
+          "zero_wage": true,
+          "retirement_majority": false,
+          "any_age65plus": true,
+          "origin_weight_share": 0.02390629193260054,
+          "actual_weight_share": 0.023976430065995473,
+          "origin_mean_hincp": 112020.32298863855,
+          "actual_mean_hincp": 123095.57784540064,
+          "within_cell_pct_change": 0.09886826391212396
+        },
+        {
+          "cell": 6,
+          "zero_wage": true,
+          "retirement_majority": true,
+          "any_age65plus": false,
+          "origin_weight_share": 0.032337053391012144,
+          "actual_weight_share": 0.03050024063516565,
+          "origin_mean_hincp": 25975.150063346264,
+          "actual_mean_hincp": 27107.414412098857,
+          "within_cell_pct_change": 0.04359029095082457
+        },
+        {
+          "cell": 7,
+          "zero_wage": true,
+          "retirement_majority": true,
+          "any_age65plus": true,
+          "origin_weight_share": 0.15921394527175478,
+          "actual_weight_share": 0.1600455735738198,
+          "origin_mean_hincp": 48345.41930372191,
+          "actual_mean_hincp": 51595.20733007454,
+          "within_cell_pct_change": 0.067220184934924
+        }
+      ]
+    },
+    "2022_to_2023": {
+      "note": "Independent ACS samples. SERIALNO is not a panel id. Composition is cell-share change; rate is within-cell mean change. Interaction is the remainder.",
+      "actual_minus_origin_mean_hincp": 3503.319671756777,
+      "composition_using_origin_cell_means": 295.34673162338464,
+      "within_cell_using_origin_shares": 3202.2922259445436,
+      "interaction": 5.680714188810658,
+      "cells": [
+        {
+          "cell": 0,
+          "zero_wage": false,
+          "retirement_majority": false,
+          "any_age65plus": false,
+          "origin_weight_share": 0.6046020617847988,
+          "actual_weight_share": 0.6033268890471422,
+          "origin_mean_hincp": 122448.76357112269,
+          "actual_mean_hincp": 126816.86004598708,
+          "within_cell_pct_change": 0.0356728508110026
+        },
+        {
+          "cell": 1,
+          "zero_wage": false,
+          "retirement_majority": false,
+          "any_age65plus": true,
+          "origin_weight_share": 0.09763541521321982,
+          "actual_weight_share": 0.1008649482686914,
+          "origin_mean_hincp": 145015.3773351376,
+          "actual_mean_hincp": 147547.32314338014,
+          "within_cell_pct_change": 0.017459843602593197
+        },
+        {
+          "cell": 2,
+          "zero_wage": false,
+          "retirement_majority": true,
+          "any_age65plus": false,
+          "origin_weight_share": 0.010624629877566778,
+          "actual_weight_share": 0.010374701017143809,
+          "origin_mean_hincp": 74206.88150001981,
+          "actual_mean_hincp": 74596.09199290954,
+          "within_cell_pct_change": 0.005244938003352528
+        },
+        {
+          "cell": 3,
+          "zero_wage": false,
+          "retirement_majority": true,
+          "any_age65plus": true,
+          "origin_weight_share": 0.035010967085407456,
+          "actual_weight_share": 0.03654674971469142,
+          "origin_mean_hincp": 86027.43967189676,
+          "actual_mean_hincp": 87999.69152863527,
+          "within_cell_pct_change": 0.02292584626789495
+        },
+        {
+          "cell": 4,
+          "zero_wage": true,
+          "retirement_majority": false,
+          "any_age65plus": false,
+          "origin_weight_share": 0.03760468176402628,
+          "actual_weight_share": 0.035680816920959535,
+          "origin_mean_hincp": 45417.28388316728,
+          "actual_mean_hincp": 45697.84643039985,
+          "within_cell_pct_change": 0.006177440023808936
+        },
+        {
+          "cell": 5,
+          "zero_wage": true,
+          "retirement_majority": false,
+          "any_age65plus": true,
+          "origin_weight_share": 0.023976430065995473,
+          "actual_weight_share": 0.023653659532494667,
+          "origin_mean_hincp": 123095.57784540064,
+          "actual_mean_hincp": 123316.66112137302,
+          "within_cell_pct_change": 0.0017960293931115082
+        },
+        {
+          "cell": 6,
+          "zero_wage": true,
+          "retirement_majority": true,
+          "any_age65plus": false,
+          "origin_weight_share": 0.03050024063516565,
+          "actual_weight_share": 0.028541822551384384,
+          "origin_mean_hincp": 27107.414412098857,
+          "actual_mean_hincp": 27389.220214724024,
+          "within_cell_pct_change": 0.010395893844430584
+        },
+        {
+          "cell": 7,
+          "zero_wage": true,
+          "retirement_majority": true,
+          "any_age65plus": true,
+          "origin_weight_share": 0.1600455735738198,
+          "actual_weight_share": 0.1610104129474926,
+          "origin_mean_hincp": 51595.20733007454,
+          "actual_mean_hincp": 52947.89985367413,
+          "within_cell_pct_change": 0.026217406491767528
+        }
+      ]
+    },
+    "2023_to_2024": {
+      "note": "Independent ACS samples. SERIALNO is not a panel id. Composition is cell-share change; rate is within-cell mean change. Interaction is the remainder.",
+      "actual_minus_origin_mean_hincp": 5136.3689584346575,
+      "composition_using_origin_cell_means": 106.1410822957186,
+      "within_cell_using_origin_shares": 5029.542801422639,
+      "interaction": 0.685074716307946,
+      "cells": [
+        {
+          "cell": 0,
+          "zero_wage": false,
+          "retirement_majority": false,
+          "any_age65plus": false,
+          "origin_weight_share": 0.6033268890471422,
+          "actual_weight_share": 0.5987426729722114,
+          "origin_mean_hincp": 126816.86004598708,
+          "actual_mean_hincp": 132826.8181659201,
+          "within_cell_pct_change": 0.047390844701198614
+        },
+        {
+          "cell": 1,
+          "zero_wage": false,
+          "retirement_majority": false,
+          "any_age65plus": true,
+          "origin_weight_share": 0.1008649482686914,
+          "actual_weight_share": 0.104202037794319,
+          "origin_mean_hincp": 147547.32314338014,
+          "actual_mean_hincp": 153296.98829026558,
+          "within_cell_pct_change": 0.0389682782743416
+        },
+        {
+          "cell": 2,
+          "zero_wage": false,
+          "retirement_majority": true,
+          "any_age65plus": false,
+          "origin_weight_share": 0.010374701017143809,
+          "actual_weight_share": 0.009964769093082422,
+          "origin_mean_hincp": 74596.09199290954,
+          "actual_mean_hincp": 79598.98706165349,
+          "within_cell_pct_change": 0.06706644993171335
+        },
+        {
+          "cell": 3,
+          "zero_wage": false,
+          "retirement_majority": true,
+          "any_age65plus": true,
+          "origin_weight_share": 0.03654674971469142,
+          "actual_weight_share": 0.03723577149410589,
+          "origin_mean_hincp": 87999.69152863527,
+          "actual_mean_hincp": 91751.37923138014,
+          "within_cell_pct_change": 0.04263296424765373
+        },
+        {
+          "cell": 4,
+          "zero_wage": true,
+          "retirement_majority": false,
+          "any_age65plus": false,
+          "origin_weight_share": 0.035680816920959535,
+          "actual_weight_share": 0.03560669471985404,
+          "origin_mean_hincp": 45697.84643039985,
+          "actual_mean_hincp": 47026.064847312744,
+          "within_cell_pct_change": 0.0290652299980009
+        },
+        {
+          "cell": 5,
+          "zero_wage": true,
+          "retirement_majority": false,
+          "any_age65plus": true,
+          "origin_weight_share": 0.023653659532494667,
+          "actual_weight_share": 0.024830630491562856,
+          "origin_mean_hincp": 123316.66112137302,
+          "actual_mean_hincp": 129534.48155098854,
+          "within_cell_pct_change": 0.050421576233690736
+        },
+        {
+          "cell": 6,
+          "zero_wage": true,
+          "retirement_majority": true,
+          "any_age65plus": false,
+          "origin_weight_share": 0.028541822551384384,
+          "actual_weight_share": 0.027350482790631063,
+          "origin_mean_hincp": 27389.220214724024,
+          "actual_mean_hincp": 28544.887357021013,
+          "within_cell_pct_change": 0.04219423310473511
+        },
+        {
+          "cell": 7,
+          "zero_wage": true,
+          "retirement_majority": true,
+          "any_age65plus": true,
+          "origin_weight_share": 0.1610104129474926,
+          "actual_weight_share": 0.16206694064423338,
+          "origin_mean_hincp": 52947.89985367413,
+          "actual_mean_hincp": 55476.7256381675,
+          "within_cell_pct_change": 0.04776064379289818
+        }
+      ]
+    }
+  },
+  "comparison_rows": [
+    {
+      "year": "2021_to_2022",
+      "model": "M1_freeze",
+      "role": "additional_untouched_evaluation",
+      "hincp_pct_error": -0.07297353790163791,
+      "wagp_pct_error": -0.08219209855718713,
+      "semp_pct_error": -0.10349635143618793,
+      "retp_pct_error": -0.060991644196687456,
+      "ssp_pct_error": -0.051235392671875386,
+      "intp_pct_error": -0.10063644484026545,
+      "share_error": 0.01879197165272639,
+      "share_sampling_se_projected": 0.0005214831824848225,
+      "median_error": -4946.27274,
+      "zero_wage_hincp_pct": -0.08412019825125609,
+      "retirement_majority_hincp_pct": -0.060108555490840175,
+      "source_contribution": {
+        "WAGP": -6470.19896184362,
+        "SEMP": -528.570910813326,
+        "RETP": -461.9099473589167,
+        "SSP": -355.85196743619963,
+        "SSIP": -15.612913526183888,
+        "INTP": -536.7546640944402,
+        "PAP": 75.14717264758323,
+        "OIP": 577.866093600848,
+        "residual": 7.838840227516647e-06
+      }
+    },
+    {
+      "year": "2021_to_2022",
+      "model": "M2_uniform_cpi",
+      "role": "additional_untouched_evaluation",
+      "hincp_pct_error": 0.0012145341433537574,
+      "wagp_pct_error": -0.008741769467793257,
+      "semp_pct_error": -0.03175095905795721,
+      "retp_pct_error": 0.01415531481621764,
+      "ssp_pct_error": 0.024692339620547683,
+      "intp_pct_error": -0.02866217986211025,
+      "share_error": 0.0016626838023101331,
+      "share_sampling_se_projected": 0.0005052703731999869,
+      "median_error": 642.0118219867145,
+      "zero_wage_hincp_pct": -0.010824171120718108,
+      "retirement_majority_hincp_pct": 0.015058449339063626,
+      "source_contribution": {
+        "WAGP": -688.1560238523234,
+        "SEMP": -162.156763166754,
+        "RETP": 107.2028932442372,
+        "SSP": 171.49898100416158,
+        "SSIP": 26.7581075231343,
+        "INTP": -152.87263722919124,
+        "PAP": 89.14031576509927,
+        "OIP": 737.0043675954234,
+        "residual": 1.0439265106231929e-05
+      }
+    },
+    {
+      "year": "2021_to_2022",
+      "model": "M4_source_specific",
+      "role": "additional_untouched_evaluation",
+      "hincp_pct_error": -0.03745912691803111,
+      "wagp_pct_error": -0.03982563029414769,
+      "semp_pct_error": -0.10349635143618793,
+      "retp_pct_error": -0.060991644196687456,
+      "ssp_pct_error": 0.0047417191604836074,
+      "intp_pct_error": -0.10063644484026545,
+      "share_error": 0.010820625574052972,
+      "share_sampling_se_projected": 0.0005249085330646702,
+      "median_error": -2584.9019667382963,
+      "zero_wage_hincp_pct": -0.06600121709599065,
+      "retirement_majority_hincp_pct": -0.03616041901647496,
+      "source_contribution": {
+        "WAGP": -3135.09152713354,
+        "SEMP": -528.570910813326,
+        "RETP": -461.9099473589167,
+        "SSP": 32.93329092048225,
+        "SSIP": 15.624782005064958,
+        "INTP": -536.7546640944402,
+        "PAP": 75.14717264758323,
+        "OIP": 577.866093600848,
+        "residual": 7.838840227516647e-06
+      }
+    },
+    {
+      "year": "2021_to_2022",
+      "model": "M5_m4_plus_bea_semp_intp",
+      "role": "additional_untouched_evaluation",
+      "hincp_pct_error": -0.03199490613855572,
+      "wagp_pct_error": -0.03982563029414769,
+      "semp_pct_error": -0.07943626688542807,
+      "retp_pct_error": -0.060991644196687456,
+      "ssp_pct_error": 0.0047417191604836074,
+      "intp_pct_error": -0.015350126451666581,
+      "share_error": 0.010200105900116219,
+      "share_sampling_se_projected": 0.0005204017812269309,
+      "median_error": -2251.981092000002,
+      "zero_wage_hincp_pct": -0.04784874344331091,
+      "retirement_majority_hincp_pct": -0.03517786724242336,
+      "source_contribution": {
+        "WAGP": -3135.09152713354,
+        "SEMP": -405.69256168541597,
+        "RETP": -461.9099473589167,
+        "SSP": 32.93329092048225,
+        "SSIP": 15.624782005064958,
+        "INTP": -81.87145303522175,
+        "PAP": 75.14717264758323,
+        "OIP": 577.866093600848,
+        "residual": 7.838840227516647e-06
+      }
+    },
+    {
+      "year": "2021_to_2022",
+      "model": "M5b_m4_plus_bea_semp_only",
+      "role": "additional_untouched_evaluation",
+      "hincp_pct_error": -0.036296996248702945,
+      "wagp_pct_error": -0.03982563029414769,
+      "semp_pct_error": -0.07943626688542807,
+      "retp_pct_error": -0.060991644196687456,
+      "ssp_pct_error": 0.0047417191604836074,
+      "intp_pct_error": -0.10063644484026545,
+      "share_error": 0.010646898255051024,
+      "share_sampling_se_projected": 0.0005226297536014222,
+      "median_error": -2469.1673481688777,
+      "zero_wage_hincp_pct": -0.06323915868792332,
+      "retirement_majority_hincp_pct": -0.03608190833262804,
+      "source_contribution": {
+        "WAGP": -3135.09152713354,
+        "SEMP": -405.69256168541597,
+        "RETP": -461.9099473589167,
+        "SSP": 32.93329092048225,
+        "SSIP": 15.624782005064958,
+        "INTP": -536.7546640944402,
+        "PAP": 75.14717264758323,
+        "OIP": 577.866093600848,
+        "residual": 7.838840227516647e-06
+      }
+    },
+    {
+      "year": "2021_to_2022",
+      "model": "M6_m5_plus_cola_on_bundled_RETP",
+      "role": "additional_untouched_evaluation",
+      "hincp_pct_error": -0.02802675653600261,
+      "wagp_pct_error": -0.03982563029414769,
+      "semp_pct_error": -0.07943626688542807,
+      "retp_pct_error": -0.005590151204293115,
+      "ssp_pct_error": 0.0047417191604836074,
+      "intp_pct_error": -0.015350126451666581,
+      "share_error": 0.008723023828807686,
+      "share_sampling_se_projected": 0.0005175188514141663,
+      "median_error": -1598.6977616000077,
+      "zero_wage_hincp_pct": -0.0305299231370775,
+      "retirement_majority_hincp_pct": -0.004889279644134849,
+      "source_contribution": {
+        "WAGP": -3135.09152713354,
+        "SEMP": -405.69256168541597,
+        "RETP": -42.33606885848894,
+        "SSP": 32.93329092048225,
+        "SSIP": 15.624782005064958,
+        "INTP": -81.87145303522175,
+        "PAP": 75.14717264758323,
+        "OIP": 577.866093600848,
+        "residual": 7.838840227516647e-06
+      }
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M1_freeze",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.03207031113820102,
+      "wagp_pct_error": -0.03883945673418096,
+      "semp_pct_error": -0.0017178250209423781,
+      "retp_pct_error": -0.01000125941703662,
+      "ssp_pct_error": -0.05541329144224705,
+      "intp_pct_error": 0.017296190984253456,
+      "share_error": 0.012449451383078708,
+      "share_sampling_se_projected": 0.0005978898527622475,
+      "median_error": -2911.8804599999858,
+      "zero_wage_hincp_pct": -0.02073669645922564,
+      "retirement_majority_hincp_pct": -0.02980238176272185,
+      "source_contribution": {
+        "WAGP": -3181.0081285718334,
+        "SEMP": -8.78827880688823,
+        "RETP": -76.50803081510912,
+        "SSP": -407.44727650931964,
+        "SSIP": 2.5723799001339103,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284,
+        "residual": -1.4244716235484592e-05
+      }
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M2_uniform_cpi",
+      "role": "locked_evaluation",
+      "hincp_pct_error": 0.007772950172079718,
+      "wagp_pct_error": 0.0007251636376805125,
+      "semp_pct_error": 0.039374847325803715,
+      "retp_pct_error": 0.03075043874017048,
+      "ssp_pct_error": -0.01653090619013216,
+      "intp_pct_error": 0.05917154457011299,
+      "share_error": 0.004717956661594691,
+      "share_sampling_se_projected": 0.000602409999538296,
+      "median_error": 166.12766709121934,
+      "zero_wage_hincp_pct": 0.01957309478235124,
+      "retirement_majority_hincp_pct": 0.010130129495981112,
+      "source_contribution": {
+        "WAGP": 59.39195910473063,
+        "SEMP": 201.4391058805213,
+        "RETP": 235.23592545789415,
+        "SSP": -121.54976775599516,
+        "SSIP": 25.009115360063674,
+        "INTP": 310.2315968414896,
+        "PAP": 17.984038809778227,
+        "OIP": 121.3651507185723,
+        "residual": -1.3229828947981541e-05
+      }
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M4_source_specific",
+      "role": "locked_evaluation",
+      "hincp_pct_error": 0.002381216117605213,
+      "wagp_pct_error": -0.0008454158042772673,
+      "semp_pct_error": -0.0017178250209423781,
+      "retp_pct_error": -0.01000125941703662,
+      "ssp_pct_error": 0.026765752202277327,
+      "intp_pct_error": 0.017296190984253456,
+      "share_error": 0.0032157569035996814,
+      "share_sampling_se_projected": 0.0006029692256837696,
+      "median_error": -216.1017637532932,
+      "zero_wage_hincp_pct": 0.007350876877145092,
+      "retirement_majority_hincp_pct": 0.007232513320816607,
+      "source_contribution": {
+        "WAGP": -69.24078685844142,
+        "SEMP": -8.78827880688823,
+        "RETP": -76.50803081510912,
+        "SSP": 196.80536121748537,
+        "SSIP": 49.99306797383906,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284,
+        "residual": -1.4244716235484592e-05
+      }
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M5_m4_plus_bea_semp_intp",
+      "role": "locked_evaluation",
+      "hincp_pct_error": 0.00962929532363764,
+      "wagp_pct_error": -0.0008454158042772673,
+      "semp_pct_error": -0.01573703230456361,
+      "retp_pct_error": -0.01000125941703662,
+      "ssp_pct_error": 0.026765752202277327,
+      "intp_pct_error": 0.1819930450134283,
+      "share_error": 0.0025480090450863135,
+      "share_sampling_se_projected": 0.0006076869459338067,
+      "median_error": 91.1721638845047,
+      "zero_wage_hincp_pct": 0.03499659684704066,
+      "retirement_majority_hincp_pct": 0.008835210766470295,
+      "source_contribution": {
+        "WAGP": -69.24078685844142,
+        "SEMP": -80.50961291135536,
+        "RETP": -76.50803081510912,
+        "SSP": 196.80536121748537,
+        "SSIP": 49.99306797383906,
+        "INTP": 954.1747368392744,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284,
+        "residual": -1.4244716235484592e-05
+      }
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M5b_m4_plus_bea_semp_only",
+      "role": "locked_evaluation",
+      "hincp_pct_error": 0.001724660132001176,
+      "wagp_pct_error": -0.0008454158042772673,
+      "semp_pct_error": -0.01573703230456361,
+      "retp_pct_error": -0.01000125941703662,
+      "ssp_pct_error": 0.026765752202277327,
+      "intp_pct_error": 0.017296190984253456,
+      "share_error": 0.003290854571570301,
+      "share_sampling_se_projected": 0.0006034602422799386,
+      "median_error": -324.45305023755645,
+      "zero_wage_hincp_pct": 0.005748172864340264,
+      "retirement_majority_hincp_pct": 0.007173670220378895,
+      "source_contribution": {
+        "WAGP": -69.24078685844142,
+        "SEMP": -80.50961291135536,
+        "RETP": -76.50803081510912,
+        "SSP": 196.80536121748537,
+        "SSIP": 49.99306797383906,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284,
+        "residual": -1.4244716235484592e-05
+      }
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M6_m5_plus_cola_on_bundled_RETP",
+      "role": "locked_evaluation",
+      "hincp_pct_error": 0.01566085504224455,
+      "wagp_pct_error": -0.0008454158042772673,
+      "semp_pct_error": -0.01573703230456361,
+      "retp_pct_error": 0.07612863101368085,
+      "ssp_pct_error": 0.026765752202277327,
+      "intp_pct_error": 0.1819930450134283,
+      "share_error": 0.0006388589282360357,
+      "share_sampling_se_projected": 0.0006088586680413612,
+      "median_error": 512.4111202927306,
+      "zero_wage_hincp_pct": 0.06265482748851017,
+      "retirement_majority_hincp_pct": 0.05478627462868279,
+      "source_contribution": {
+        "WAGP": -69.24078685844142,
+        "SEMP": -80.50961291135536,
+        "RETP": 582.3718198515198,
+        "SSP": 196.80536121748537,
+        "SSIP": 49.99306797383906,
+        "INTP": 954.1747368392744,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284,
+        "residual": -1.4244716235484592e-05
+      }
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M1_freeze",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.044908109790378806,
+      "wagp_pct_error": -0.03956430681333936,
+      "semp_pct_error": -0.02531662033938801,
+      "retp_pct_error": -0.031376990574326795,
+      "ssp_pct_error": -0.06903202300395922,
+      "intp_pct_error": -0.12000587023685128,
+      "share_error": 0.013128679507164787,
+      "share_sampling_se_projected": 0.0005211613571427248,
+      "median_error": -3532.7284000000072,
+      "zero_wage_hincp_pct": -0.05144482102507086,
+      "retirement_majority_hincp_pct": -0.048368215309840104,
+      "source_contribution": {
+        "WAGP": -3373.858791133782,
+        "SEMP": -132.882279793389,
+        "RETP": -247.8042996959839,
+        "SSP": -545.2219480522217,
+        "SSIP": -14.463174876554035,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714,
+        "residual": 1.2389854107074094e-05
+      }
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M2_uniform_cpi",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.01673743375914819,
+      "wagp_pct_error": -0.011236013966402678,
+      "semp_pct_error": 0.003431911611206027,
+      "retp_pct_error": -0.0028072107713198588,
+      "ssp_pct_error": -0.0415728878733593,
+      "intp_pct_error": -0.09405022157826796,
+      "share_error": 0.007153457695310228,
+      "share_sampling_se_projected": 0.0005262626280758997,
+      "median_error": -1241.3227431961132,
+      "zero_wage_hincp_pct": -0.023466946939275545,
+      "retirement_majority_hincp_pct": -0.020426195713263737,
+      "source_contribution": {
+        "WAGP": -958.1546487519518,
+        "SEMP": 18.013472289464517,
+        "RETP": -22.17035115710314,
+        "SSP": -328.3469022944546,
+        "SSIP": 1.5377929005959459,
+        "INTP": -560.3419928301237,
+        "PAP": -1.3926122370483682,
+        "OIP": -63.49021163722364,
+        "residual": 1.3537213950488927e-05
+      }
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M4_source_specific",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.01645865948802087,
+      "wagp_pct_error": -0.004369404755134402,
+      "semp_pct_error": -0.02531662033938801,
+      "retp_pct_error": -0.031376990574326795,
+      "ssp_pct_error": -0.03924104774008648,
+      "intp_pct_error": -0.12000587023685128,
+      "share_error": 0.006675799343880129,
+      "share_sampling_se_projected": 0.0005224136794112811,
+      "median_error": -1155.642643510204,
+      "zero_wage_hincp_pct": -0.04106910773440278,
+      "retirement_majority_hincp_pct": -0.034737253167587086,
+      "source_contribution": {
+        "WAGP": -372.6023740206583,
+        "SEMP": -132.882279793389,
+        "RETP": -247.8042996959839,
+        "SSP": -309.92979144234414,
+        "SSIP": 2.8966011316823597,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714,
+        "residual": 1.2389854107074094e-05
+      }
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M5_m4_plus_bea_semp_intp",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.011691306658474914,
+      "wagp_pct_error": -0.004369404755134402,
+      "semp_pct_error": 0.013718410469450819,
+      "retp_pct_error": -0.031376990574326795,
+      "ssp_pct_error": -0.03924104774008648,
+      "intp_pct_error": -0.06287523778835007,
+      "share_error": 0.006107257072239136,
+      "share_sampling_se_projected": 0.0005242531178657464,
+      "median_error": -897.2752713346999,
+      "zero_wage_hincp_pct": -0.025655045056599633,
+      "retirement_majority_hincp_pct": -0.03437328749679498,
+      "source_contribution": {
+        "WAGP": -372.6023740206583,
+        "SEMP": 72.00541122331288,
+        "RETP": -247.8042996959839,
+        "SSP": -309.92979144234414,
+        "SSIP": 2.8966011316823597,
+        "INTP": -374.60449800931565,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714,
+        "residual": 1.2389854107074094e-05
+      }
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M5b_m4_plus_bea_semp_only",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.01466729305828577,
+      "wagp_pct_error": -0.004369404755134402,
+      "semp_pct_error": 0.013718410469450819,
+      "retp_pct_error": -0.031376990574326795,
+      "ssp_pct_error": -0.03924104774008648,
+      "intp_pct_error": -0.12000587023685128,
+      "share_error": 0.006345903505487277,
+      "share_sampling_se_projected": 0.0005214335782711858,
+      "median_error": -1011.2564824000146,
+      "zero_wage_hincp_pct": -0.036770383252972216,
+      "retirement_majority_hincp_pct": -0.034693955034636355,
+      "source_contribution": {
+        "WAGP": -372.6023740206583,
+        "SEMP": 72.00541122331288,
+        "RETP": -247.8042996959839,
+        "SSP": -309.92979144234414,
+        "SSIP": 2.8966011316823597,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714,
+        "residual": 1.2389854107074094e-05
+      }
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M6_m5_plus_cola_on_bundled_RETP",
+      "role": "locked_evaluation",
+      "hincp_pct_error": -0.009551025278806469,
+      "wagp_pct_error": -0.004369404755134402,
+      "semp_pct_error": 0.013718410469450819,
+      "retp_pct_error": -0.00038105427270517607,
+      "ssp_pct_error": -0.03924104774008648,
+      "intp_pct_error": -0.06287523778835007,
+      "share_error": 0.005490737288764286,
+      "share_sampling_se_projected": 0.0005236606346762213,
+      "median_error": -836.3071935999906,
+      "zero_wage_hincp_pct": -0.015888181601655463,
+      "retirement_majority_hincp_pct": -0.01817411131818793,
+      "source_contribution": {
+        "WAGP": -372.6023740206583,
+        "SEMP": 72.00541122331288,
+        "RETP": -3.0094309704491025,
+        "SSP": -309.92979144234414,
+        "SSIP": 2.8966011316823597,
+        "INTP": -374.60449800931565,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714,
+        "residual": 1.2389854107074094e-05
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "workstream": "HESI_R25_September2026_household_income_nowcast",
+  "status": "PHASE4_NONWAGE_AUDIT_NO_GO_NATIONAL_NOWCAST_NOT_CODED",
+  "reference_month": "2026-09",
+  "immutable_2024_income_scenario": {
+    "metric": "share_income_below_three_costs_PROVISIONAL",
+    "value": 0.18991790144753254,
+    "display": "18.9918%",
+    "income_vintage": "2024 ACS PUMS HINCP * ADJINC / 1e6, converted to monthly",
+    "cost_vintage": "September 2026 Food + HUD replacement rent + one-car transport",
+    "covered_weighted_households": 121036726,
+    "files_do_not_edit": [
+      "core_r24/results/national_R22/common_cohort_results.csv",
+      "core_r24/results/national_R22/replicate_results.csv",
+      "core_r24/results/national_R22/audit.json",
+      "core_r24/results/rebuilt_from_raw/common_cohort_results.csv",
+      "core_r24/results/rebuilt_from_raw/replicate_results.csv",
+      "core_r24/results/rebuilt_from_raw/audit.json"
+    ]
+  },
+  "labeling_rules": [
+    "Never label a nowcast as measured 2026 household income.",
+    "Never overwrite income_month_2024_vintage.",
+    "Proposed nowcast metric name: income_month_2026sep_NOWCAST.",
+    "Proposed share metric name: share_income_below_three_costs_2026sep_NOWCAST.",
+    "Do not apply a uniform CPI factor to HINCP.",
+    "Do not assume CES wage growth equals household-income growth."
+  ],
+  "pillars_untouched": ["food", "housing", "transportation"],
+  "scientific_validation": false,
+  "national_nowcast_executed": false,
+  "phase2_historical_gates_passed": false,
+  "phase3_go_nogo": "NO-GO",
+  "phase4_go_nogo": "NO-GO",
+  "september_2026_run_rate_identifiable": false,
+  "r24_income_identity_on_reconstructed_frame": {
+    "hincp_month_weighted_mean": 9325.244238086176,
+    "published_income_month_2024_vintage": 9325.244238086181,
+    "note": "Reconstruction matches published monthly mean within floating-point noise; 18.9918% files not rewritten"
+  }
+}

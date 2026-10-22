@@ -255,3 +255,466 @@ Outstanding limitations
 - ACS occupancy and tract-to-PUMA are required Census products, not HUD workbooks.
 - 18.9918% remains a September 2026 modeled cost versus 2024 income scenario.
 - Local commit only; no push, merge, or PR.
+
+================================================================================
+HESI iteration note — R2.5 September 2026 household-income nowcast (design only)
+================================================================================
+- Date: 2026-10-21
+- Branch: hesi/core-r25-integration
+- Parent commit: eec7c46 Rebuild HUD and USDA sources and repair portable fixtures
+- Classification: research design workstream. NATIONAL NOWCAST NOT CODED.
+  NOT a replacement for the 18.9918% 2024-income scenario.
+  NOT measured 2026 household income.
+- Scope: audit ACS income fields; identify latest CPS ASEC and September 2026 BLS
+  series; specify source-specific nowcasting, provenance, backtesting, and
+  labeling. No change to Food, Housing, Transportation, or published R2.4 files.
+
+Immutable 2024-income reference (unchanged)
+------------------------------------------
+share_income_below_three_costs_PROVISIONAL = 0.18991790144753254 (18.9918%)
+income_month_2024_vintage mean = 9325.244238086181
+included_weight = 121036726
+Construction: HINCP * ADJINC / 1e6 / 12 in core_r24/src/run_joint.py
+
+What R2.4 income uses versus what exists in PUMS
+------------------------------------------------
+Used today: household HINCP, ADJINC only.
+Person caches do not store income sources (only AGEP, SEX, RELSHIPP).
+Available on 2024 ACS person PUMS (dictionary 2025-10-16): WAGP wages;
+SEMP self-employment; RETP retirement (bundled); SSP Social Security;
+SSIP SSI; INTP interest/dividends/net rent; PAP public assistance; OIP other;
+PERNP earnings; PINCP person total; plus WKHP, WKWN, INDP, COW, allocation flags.
+ADJINC 1-year factor 1.015250. HINCP is rolling past-12-month money income,
+bottom-coded at -59999.
+
+External vintages identified 2026-10-21
+---------------------------------------
+CPS ASEC 2026 public-use files: calendar-year 2025 annual income.
+Census report Income in the United States: 2025 released 2026-09-15;
+real median household money income $87,460. Not a September 2026 snapshot.
+https://www.census.gov/data/datasets/2026/demo/cps/cps-asec-2026.html
+
+BLS Employment Situation September 2026, USDL-26-1549, 2026-10-02 (preliminary):
+unemployment 4.2%; CES AHE $37.81 (+3.0% y/y); weekly hours 34.4;
+AWE private $1,300.66. Job earnings and labor force, not household income.
+
+ACS 2025 1-year TABLES public 2026-10-29; 2025 PUMS TBD. Cannot replace 2024
+microdata yet.
+
+SSA COLA 2.8% payable January 2026 for OASDI/SSI only (2025 COLA was 2.5%).
+
+Proposed method (not implemented)
+---------------------------------
+Decompose 2024 HINCP into person sources; apply source-specific factors;
+hold 2024 household composition and R2.4 eligibility fixed.
+Wages: CES/ECI rate × hours × employment, industry-specific; two-stage via ASEC 2025
+then Jan–Sep 2026 CES.
+Self-employment: BEA proprietors' income, not CES.
+SS/SSI: statutory COLA path only.
+Retirement and capital: ASEC-informed split; freeze + sensitivity if unsplit.
+Public assistance / other / residual: freeze unless a documented program path exists.
+Forbidden: uniform CPI on HINCP; CES AHE on total household income.
+Output names must be income_month_2026sep_NOWCAST and
+share_income_below_three_costs_2026sep_NOWCAST.
+
+Validation required before any national nowcast share
+-----------------------------------------------------
+SHA-256 and series vintage (CES first print vs revision).
+Backtest ACS 2019–2023 → next ACS source totals.
+Calibrate to ASEC 2025 and, after 2026-10-29, ACS 2025 tables.
+Uncertainty: ACS SDR plus factor/employment/residual sensitivity.
+Sampling-only R2.4 intervals are not nowcast intervals.
+
+Exact sources still needed on disk (hash later)
+-----------------------------------------------
+CPS ASEC 2026 microdata + cpsmar26.pdf
+CES/CPS Sept 2026 tables B-2/B-3/B-8 and series IDs
+Latest ECI quarter; BEA monthly PI by source
+SSA COLA FR notices (identified)
+2024 person PUMS income columns (ZIPs already hashed)
+ACS 2025 1-year tables after 2026-10-29; PUMS if posted
+
+Artifacts written (uncommitted)
+-------------------------------
+research/september2026_income_nowcast/README.md
+research/september2026_income_nowcast/METHOD.md
+research/september2026_income_nowcast/SOURCE_REGISTER.json
+research/september2026_income_nowcast/LOCK_DECISION.json
+
+Not done
+--------
+No national nowcast code. No new income numbers. No commit. No push.
+SCIENTIFICALLY_VALIDATED remains false. EXTERNALLY_INDEPENDENTLY_REPRODUCED remains false.
+
+================================================================================
+HESI iteration note — R2.5 income reconciliation engineering (no national nowcast)
+================================================================================
+- Date: 2026-10-21
+- Branch: hesi/core-r25-integration
+- Parent commit: eec7c46
+- Classification: source-level 2024 ACS reconciliation + factor-source acquisition
+  NATIONAL SEPTEMBER 2026 INCOME NOWCAST NOT EXECUTED
+  NO NEW AFFORDABILITY SHARE
+  18.9918% files unchanged
+
+Executed
+--------
+/Users/kevinmannion/HESI-R25-CleanRepro/venv/bin/python \
+  research/september2026_income_nowcast/src/run_reconciliation.py \
+  --housing csv_hus.zip --person-a Part_1.zip --person-b Part_2.zip \
+  --food-cache and --composition-cache from output_r25_repairs \
+  --geography core_r24/inputs/puma_fmr_screened.csv \
+  --out /Users/kevinmannion/HESI-R25-CleanRepro/income_nowcast
+
+R2.4 frame exact: 1,235,731 households, weight 121,036,726.
+SERIALNO unique; WGTP and WGTP1–80 stored on household pickle (gitignored caches).
+Person rows 3,422,888; under-15 510,098; NP mismatches 0; person-table misses 0.
+
+Reconstructed HINCP-month weighted mean 9325.244238086176
+vs published income_month_2024_vintage 9325.244238086181.
+
+Eight-source residual vs HINCP×ADJINC/1e6:
+  exact zero 1,162,842 households
+  |r|>=$1 : 35 households, weight 3,354
+  |r|>=$10 : 0
+  max |r| $1.01525 (ADJINC factor × $1 rounding)
+Negative SEMP households 7,076; negative INTP 13,529; negative HINCP 589.
+No uniform CPI. CES factors not applied.
+
+Factor acquisition
+------------------
+ACQUIRED+hashed: 2024 PUMS dictionary 9a982822…; SSA COLA FR 76e47ef5…;
+ASEC 2026 dataset page c4569bed…; BEA landing 6ed5dd90…;
+CES Table B-3 extract 3b1fdf49… (empsit.t19.htm; full empsit.htm HTTP 403).
+FAILED/blocked: BLS and SSA press HTML 403; FRED series timeout/maintenance.
+NOT ON DISK: ASEC microdata; ECI; BEA Table 2.6 series; ACS 2019–2023 PUMS.
+
+Backtesting
+-----------
+Plan written: research/september2026_income_nowcast/HISTORICAL_BACKTESTING_PLAN.md
+B1 (2024 identity) executed. B2–B5 not executed (missing historical PUMS).
+Sampling vs model uncertainty specified; not numerically combined.
+
+Published baselines
+-------------------
+core_r24/results/national_R22/common_cohort_results.csv hash
+6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7 unchanged.
+Food/Housing/Transportation code not edited.
+
+Reports
+-------
+research/september2026_income_nowcast/reports/HOUSEHOLD_INCOME_RECONCILIATION_REPORT.md
+research/september2026_income_nowcast/reports/HOUSEHOLD_INCOME_RECONCILIATION_REPORT.json
+research/september2026_income_nowcast/reports/DATA_SOURCE_ACQUISITION_REPORT.json
+research/september2026_income_nowcast/HISTORICAL_BACKTESTING_PLAN.md
+
+Not done
+--------
+No commit. No push. National nowcast blocked pending backtests and remaining hashed series.
+
+================================================================================
+HESI iteration note — R2.5 income-nowcast Phase 2 (acquisition + historical backtests)
+================================================================================
+- Date: 2026-10-21
+- Branch: hesi/core-r25-integration
+- Parent commit: eec7c46
+- Classification: source acquisition and occupied ACS backtests
+  NATIONAL SEPTEMBER 2026 INCOME NOWCAST NOT EXECUTED
+  NO SEPTEMBER 2026 HOUSEHOLD ADEQUACY SHARE
+  18.9918% files unchanged (sha256 6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7)
+
+Acquired (outside git: /Users/kevinmannion/HESI-R25-CleanRepro/income_nowcast/phase2/)
+------------------------------------------------------------------------------------
+PASS asecpub26csv.zip 139103894 sha fe819d0d2fc4470c282e76c247b8aa8b6054811619730307e9f2fe6186707d93
+     URL https://www2.census.gov/programs-surveys/cps/datasets/2026/march/asecpub26csv.zip
+     vintage CPS ASEC 2026, income year calendar 2025; last-modified 2026-09-15
+PASS hhldfmt.txt sha 1b309c97…; persfmt.txt sha a8e2e4b0…
+PASS ACS 2022 csv_hus.zip sha 1f4da07a86d149bc85f786346e86730e0c7b73512ce7e1299d77ec15befd12a7
+PASS ACS 2022 csv_pus.zip sha 687a97773d0fdfec6c624ea6bf48466f12059d3ee80283a2ad8604ea7a66231e
+PASS ACS 2023 csv_hus.zip sha 32c4331bd0fa969c11a056a854a87bcc167a1f95e7bcd51ab2dce596d81d1bb0
+PASS ACS 2023 csv_pus.zip sha 98b6ecb14b4830d1f2b54c265a5bd997828415c2dab14e17369c40e98b78d9d4
+PASS BEA pi0826.pdf sha b00e0ab232a97032083bb402fee930c68fd556bc066f9b423d1f6588945b2e29
+     August 2026 Personal Income PDF; September 2026 PI scheduled 2026-10-29
+PASS SSA GovInfo COLA HTML:
+     2023 8.7% sha 6ae609e9… FR-2022-10-24/2022-23073
+     2024 3.2% sha 237457cc… 2023-23317
+     2025 2.5% sha 24f611c7… 2024-24871
+     2026 2.8% sha 48f2b220… 2025-19763
+PRIOR CES Table B-3 extract sha 3b1fdf49… (not applied to ACS)
+
+Failed (reported; not silently substituted)
+------------------------------------------
+FAIL cpsmar26.pdf 247 bytes sha ab4af013… — WAF/reject HTML, not the techdoc PDF
+FAIL download.bls.gov CES/ECI/CPI/LN — HTTP 403 Akamai
+FAIL ssa.gov/oact/COLA/colaseries.html — HTTP 403 (GovInfo used instead)
+FAIL apps.bea.gov NipaDataM.zip / Section2 xls — HTTP 200, 28185-byte HTML stub sha 9578ca8e…
+FAIL federalregister.gov HTML shells 10596 bytes without COLA body
+FAIL FRED graph CSV — timeout/maintenance (prior round)
+NOT DOWNLOADED ACS 2019–2021 PUMS
+NOT RELEASED ACS 2025 tables (2026-10-29) / PUMS TBD
+
+Units / transforms
+------------------
+ACS: amount * ADJINC / 1e6; AGEP>=15 sources; occupied TYPEHUGQ==1 NP>0 WGTP>0
+ASEC: HSUP_WGT/100; HTOTVAL and source fields as calendar-2025 money income
+SS/SSI backtest: SSP, SSIP * (1+January COLA of T+1) — projection overlay
+Wages/SEMP/other: frozen factor=1 — assumption because CES/BEA series missing
+No month interpolation.
+
+Historical backtests (occupied universe, not R2.4 frame)
+--------------------------------------------------------
+Code: research/september2026_income_nowcast/src/run_historical_backtests.py
+Caches reused: occupied_sources_{2022,2023,2024}.pkl
+  2022 rows 1,323,938 weight 129,870,877
+  2023 rows 1,343,045 weight 131,332,363
+  2024 rows 1,348,408 weight 132,737,145
+
+2022 sources × COLA 2023 vs ACS 2023:
+  HINCP mean actual 109238.72 projected 106387.07 pct_err -0.026105
+  WAGP pct_err -0.038839; SSP pct_err +0.026766
+  diagnostic share (frozen $2894.91/mo, NOT 18.9918%):
+    actual 0.218904 SE 0.000521; projected 0.225906 SE 0.000598; err +0.007002
+    origin-year COLA vs freeze model delta -0.005448
+
+2023 sources × COLA 2024 vs ACS 2024:
+  HINCP mean actual 114375.09 projected 109491.37 pct_err -0.042699
+  WAGP pct_err -0.039564; INTP pct_err -0.120006; SSP pct_err -0.039241
+  diagnostic share:
+    actual 0.205775 SE 0.000483; projected 0.216777 SE 0.000512; err +0.011002
+    origin-year COLA vs freeze model delta -0.002127
+
+Sampling SE and nowcast-model/composition error are reported separately and not added.
+
+ASEC 2026 household totals (observation, calendar 2025)
+-------------------------------------------------------
+rows 88026; weight_sum 137123796.5
+mean HTOTVAL 126664.22; wages 91140.00; SS 9802.57
+Not used as an ACS match. Factor calibration not run.
+
+Gates
+-----
+B1 PASS (prior).
+B2 EXECUTED with frozen wages — FAIL as production nowcast gate.
+B3 INCOMPLETE (microdata hashed; no CES/BEA 2024→2025 factors).
+B4 NOT RUN. B5 NOT RUN.
+Publish September 2026 household adequacy: NO.
+September 2026 annualized household money-income run rate identifiable: NO.
+
+Files touched (repo; no commit)
+-------------------------------
+research/september2026_income_nowcast/src/run_historical_backtests.py
+research/september2026_income_nowcast/src/reconstruct_year.py (prior)
+research/september2026_income_nowcast/src/asec_source_totals.py (prior)
+research/september2026_income_nowcast/SOURCE_REGISTER.json
+research/september2026_income_nowcast/LOCK_DECISION.json
+research/september2026_income_nowcast/HISTORICAL_BACKTESTING_PLAN.md
+research/september2026_income_nowcast/reports/PHASE2_DATA_SOURCE_ACQUISITION_REPORT.json
+research/september2026_income_nowcast/reports/HISTORICAL_BACKTEST_REPORT.json
+research/september2026_income_nowcast/reports/ASEC_2026_HOUSEHOLD_SOURCE_TOTALS.json
+research/september2026_income_nowcast/reports/IDENTIFIABILITY_ASSESSMENT.md
+ITERATION_NOTES.txt ITERATION_REGISTER.txt STATUS.txt
+
+Not done
+--------
+No commit. No push. No PR. No national nowcast. No formula/eligibility/18.9918% edits.
+
+================================================================================
+HESI iteration note — R2.5 income-nowcast Phase 3 (CES/ECI via BLS API + four-model backtests)
+================================================================================
+- Date: 2026-10-21 / download timestamp 2026-10-22T01:27:10Z
+- Branch: hesi/core-r25-integration
+- Parent commit: eec7c46
+- Classification: source-specific factor implementation and historical validation
+  GO/NO-GO = NO-GO
+  NATIONAL SEPTEMBER 2026 INCOME NOWCAST NOT EXECUTED
+  NO SEPTEMBER 2026 HOUSEHOLD ADEQUACY SHARE
+  18.9918% files unchanged (sha256 6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7)
+
+Gates (declared in reports/VALIDATION_GATES.json BEFORE comparisons; not relaxed)
+--------------------------------------------------------------------------------
+G1 FAIL BEA proprietors/interest-dividends and ALFRED vintages missing
+G2 FAIL M4 |HINCP %| 0.238% (2022→2023) and 1.646% (2023→2024); threshold 1.5% both years
+G3 FAIL M4 |share error| 0.322 pp and 0.668 pp; threshold 0.50 pp
+G4 PASS M4 |WAGP %| 0.085% and 0.437%
+G5 PASS M4 beats freeze (3.207% / 4.491%)
+G6 PASS M2 CPI not used for production
+G7 PASS SDR SE separate from share error
+G8 PASS national_R22 hash
+
+Acquisition
+-----------
+PASS BLS Public API v1 POST https://api.bls.gov/publicAPI/v1/timeseries/data/
+     bls_api_v1_bundle.json 54996 sha bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231
+     CES AHE/AWE/hours/employment monthly 2019-01 through 2026-09 (Sep preliminary);
+     ECI CIS202/CIS101 through 2026 Q2; CPI-U NSA/SA.
+     Did not call download.bls.gov.
+FAIL FRED/ALFRED: site maintenance; graph CSV timeout 0 bytes
+FAIL BEA NipaDataA.zip / NipaDataQ.zip / Section2All_csv.csv: 28185-byte HTML stub sha prefix 9578ca8e
+FAIL pi0826.xlsx HTTP 404
+NOT RELEASED ACS 2025 tables (2026-10-29)
+
+Factors (current BLS vintage; hindsight-revision limitation)
+------------------------------------------------------------
+2022→2023: AHE 1.04456; AWE 1.03953; hours 0.99461; emp 1.02108 (not applied);
+           ECI wages 1.04620; CPI-U NSA 1.04116; COLA 8.7%
+2023→2024: AHE 1.04041; AWE 1.03664; hours 0.99680; emp 1.00923 (not applied);
+           ECI wages 1.03937; CPI-U NSA 1.02950; COLA 3.2%
+SEMP/INTP: frozen (BEA missing). Negative SEMP/INTP kept.
+
+Occupied ACS results (HINCP % error / diagnostic share error pp)
+---------------------------------------------------------------
+2022→2023 M1 −3.207 / +1.245; M2 +0.777 / +0.472; M3 +0.004 / +0.616; M4 +0.238 / +0.322
+2023→2024 M1 −4.491 / +1.313; M2 −1.674 / +0.715; M3 −1.597 / +0.857; M4 −1.646 / +0.668
+M4 2023→2024 zero-wage HINCP −4.11%; retirement-majority −3.47%; bottom tercile share +2.00 pp
+M4 WAGP recovered; remaining miss is non-wage sources + composition, not CES AWE.
+
+ASEC 2026 CY2025: mean HTOTVAL 126664 vs ACS 2024 occupied HINCP 114375. Not equated.
+Wage share 72.0% ASEC vs 74.6% ACS.
+
+Files
+-----
+research/september2026_income_nowcast/src/extract_bls_factors.py
+research/september2026_income_nowcast/src/run_phase3_validation.py
+research/september2026_income_nowcast/INCOME_FACTOR_METHODOLOGY.md
+research/september2026_income_nowcast/reports/VALIDATION_GATES.json
+research/september2026_income_nowcast/reports/GO_NOGO.json
+research/september2026_income_nowcast/reports/INCOME_NOWCAST_VALIDATION_REPORT.md/.json
+research/september2026_income_nowcast/reports/HISTORICAL_BACKTEST_REPORT.md/.json
+research/september2026_income_nowcast/reports/PHASE3_DATA_SOURCE_ACQUISITION_REPORT.json
+ITERATION_NOTES.txt ITERATION_REGISTER.txt STATUS.txt
+
+Not done
+--------
+No commit. No push. No PR. No national nowcast. No 18.9918% edit.
+
+================================================================================
+HESI iteration note — R2.5 income-nowcast Phase 4 (non-wage audit, BEA NIPA, Kitagawa)
+================================================================================
+- Date: 2026-10-21 / download 2026-10-22T01:39:12Z
+- Branch: hesi/core-r25-integration
+- GO/NO-GO = NO-GO (Phase 3 locked gates not relaxed)
+- No September 2026 adequacy share. national_R22 sha 6778c312… unchanged.
+
+BEA
+---
+PASS NipaDataM.txt 36806318 sha bd202765789e4b378ad632cc1836287de7454ae1b86cfa1481c22bc49eabbffd
+     URL https://apps.bea.gov/national/Release/TXT/NipaDataM.txt
+     SAAR millions; last period 2026M08 (not September 2026)
+FAIL BEA API without UserID: Invalid API UserId
+FAIL FRED series page 15s timeout
+
+ACS 2021 extra eval (untouched; not used to pick a model)
+--------------------------------------------------------
+hus e1f4fb85… pus e1e64f81…
+
+Kitagawa 2023→2024 (cross-section, not a panel)
+----------------------------------------------
+Actual mean HINCP +$5136 = composition +$106 + within-cell +$5030 + interaction +$1.
+Zero-wage/retirement/65+ cell weight 16.10% → 16.21%. Cell mean +4.8%.
+
+Locked M4 2023→2024
+-------------------
+HINCP −1.646%; share +0.668 pp. Source $ errors: INTP −715, WAGP −373, SSP −310, RETP −248, SEMP −133.
+Zero-wage −4.11% / +1.27 pp; retirement-majority −3.47% / +1.34 pp.
+
+Candidates (not retroactive PASS)
+---------------------------------
+M5 BEA SEMP+INTP: 2022→2023 HINCP +0.963% (INTP overshoot); 2023→2024 −1.169% / share +0.611 pp (G3 fail).
+M6 COLA on bundled RETP: unsupported DB/DC; 2023→2024 share +0.549 pp still fails G3.
+ASEC CY2025 pension/annuity 87%/13% not mapped onto ACS RETP.
+
+2021→2022 extra: M4 −3.75%; M2 CPI +0.12%. CPI still forbidden.
+
+Prospective protocol only for future untouched years (e.g. 2024→2025 PUMS). Not applied to 2022–2024.
+
+Not done: commit/push/PR; national nowcast; 18.9918% edit.
+
+================================================================================
+HESI iteration note — matched-year historical baseline feasibility audit
+================================================================================
+- Date: 2026-10-21
+- Branch: hesi/core-r25-integration
+- No new national share. 18.9918% unchanged (sha 6778c312…).
+- Income nowcast remains NO-GO / experimental.
+
+Clocks
+------
+ACS 2024 income: rolling past-12-months, interviews in 2024, ADJINC to 2024 dollars (factor 1.015250). Not a September snapshot.
+R2.4 costs: USDA Thrifty 2026-09; HUD FY2026 (FY starts 2025-10-01, revised 2026-05-21); transport $7264.70 from Sept 2026 EIA $4.35475 plus hypothetical non-fuel.
+USDA extract source_2024_2026.csv: year 2024 (12 months) and 2026 (Jan-Sep only). Joint engine uses only 2026-09.
+HUD on disk: FY26_FMRs_revised.xlsx only. puma_fmr_screened 2350 COMPLETE / 112 PARTIAL; occupancy column occupied_acs2024_observed.
+Transport: no 2024 EIA series on disk.
+ACS 2022-2024 PUMS on disk, 2020 PUMAs. ACS 2021 on disk but 2010 PUMAs — out of series unless a separate crosswalk is built.
+Thrifty workbook june2021-sept2026.xlsx on disk contains 2022+ monthly TFP; not in frozen CSV.
+
+Decisions
+---------
+September 2026 nowcast: NO-GO.
+Compute matched-year national share this round: NO-GO.
+2022-2024 published series this round: NO-GO (missing FY2022-25 FMR, USDA 2022-23 in frozen extract, year-T gasoline).
+Later 2024-income / 2024-modeled-cost scenario: CONDITIONAL_GO after hashed FY2024 FMR and 2024 EIA gasoline; sibling engine; do not write national_R22.
+
+Files: research/historical_matched_baseline/*
+Not done: commit/push/PR; any new national percentage.
+
+================================================================================
+HESI iteration note — 2024 matched-year cost-input preparation
+================================================================================
+- Date: 2026-10-22
+- Branch: hesi/core-r25-integration
+- No new national share. 18.9918% unchanged (sha 6778c312…). Frozen puma_fmr_screened and source_2024_2026 unchanged.
+- Income nowcast remains NO-GO / experimental.
+- R2.4 engine not modified.
+
+Acquired official sources (outside git, hashed)
+-----------------------------------------------
+HUD FY24 original FY24_FMRs.xlsx
+  9f6b3d53b7d53bf3a0285caf0874bd6e61d0ed0a906e6e355776080eef1f1127  364591 bytes
+  https://www.huduser.gov/portal/datasets/fmr/fmr2024/FY24_FMRs.xlsx  effective 2023-10-01
+HUD FY24 revised FMR2024_final_revised.xlsx
+  0a6634d5745e07f0638efe2aca65161b4b8d6982ebd4d257e8191ed18ecfbf98  364595 bytes
+  https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx  effective 2024-03-11 (Honolulu 89 FR 9169)
+  Page listed 1750 KB; live file is 356 KB. One geo changed: 1500399999 Urban Honolulu, HI MSA.
+HUD FY25 original FY25_FMRs.xlsx
+  21217df7d8c5c2bd6633fe8d3deb460d7114712ac809fe1644235980240f2ab5  362523 bytes
+  https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs.xlsx  effective 2024-10-01
+HUD FY25 revised FY25_FMRs_revised.xlsx (archived; not in default 2024 schedule)
+  10e70da5b4d8ce7d938e460730abda052e71255c4bc5e9a95bec601c2d49b5db  362571 bytes
+  effective 2025-04-27
+EIA EMM_EPMR_PTE_NUS_DPG annual xls
+  32f143417e80bb2d926de0a8a1026a88828be172e38169f95ea453de339fedc3
+  published annual 2024 = $3.304/gal
+EIA monthly xls be0654a9… ; weekly xls 28e286b4… ; pswrgvwall.xls 730abe0f…
+USDA usda-thriftyplan-june2021-sept2026.xlsx 70b1d3b6… (already on disk)
+
+Alignment
+---------
+Default housing: 70/204/92 day-weight of FY24 original / FY24 revised / FY25 original (366-day 2024).
+Default food: 12 monthly 2024 mainland individual Thrifty cells (180 rows from the official workbook).
+Default gasoline: EIA published annual $3.304. Transport total $6,870.67 = $1,239.00 fuel + $5,631.67 held non-fuel (NOT 2024-validated).
+ACS income remains rolling 2024 HINCP×ADJINC.
+
+Geography
+---------
+FY24 vs FY26 county geo_id: 4594 shared, 170 only in each (Connecticut 090xx vs 091xx planning regions, plus Maine town codes).
+COMPLETE_UNAMBIGUOUS PUMA set still 2350 ∩ 2350 with R2.4; sample was not recoded. Eligibility rules unchanged; coverage differences reported.
+
+Tests: 6/6 PASS (unittest discover). No national percentage.
+
+Recommendation: input-prep PASS; execute national % this round NO-GO; sibling engine later GO.
+Not done: commit/push/PR; run_matched national share.
+
+================================================================================
+HESI iteration note — public research-branch checkpoint (no PR)
+================================================================================
+- Date: 2026-10-22
+- Branch: hesi/core-r25-integration (push this branch only)
+- 18.9918% / national_R22 sha 6778c312… unchanged
+- Income nowcast remains NO-GO; no September 2026 national adequacy estimate
+- COMPUTATIONALLY_REPRODUCED=YES for specified R2.4 calculations; EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO
+- Pre-push tests: core_r24 24 OK; verify_package 35 hashes PASS; pillars 7+21+4 OK; 2024 pilot 5 passed; matched-year prep 6 OK
+- Staged: income-nowcast Phases 1–4 docs/code/reports; matched-year cost-input pipeline and derived CSVs; README; status docs
+- Excluded: Census ZIPs, person caches, HUD/USDA/EIA xlsx/xls, venvs, root before_upgrade copies, __pycache__
+- Local operator paths remain in previously committed clean-env logs (not rewritten; no force-push)
+- GitHub publication is not scientific validation
+Not done: merge to main; pull request; formal research release.

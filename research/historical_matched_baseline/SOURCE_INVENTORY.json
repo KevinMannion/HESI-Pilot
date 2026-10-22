@@ -1,0 +1,98 @@
+{
+  "audit_date": "2026-10-21",
+  "purpose": "Feasibility of a historically aligned HESI baseline. No new national share computed.",
+  "published_r24_untouched": {
+    "metric": "share_income_below_three_costs_PROVISIONAL",
+    "display": "18.9918%",
+    "income": "2024 ACS HINCP * ADJINC / 1e6 / 12",
+    "costs": "September 2026 Thrifty + FY2026 HUD replacement rent + one-car $7,264.70/year",
+    "included_weight": 121036726,
+    "file": "core_r24/results/national_R22/common_cohort_results.csv",
+    "sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7"
+  },
+  "income_nowcast_workstream": {
+    "path": "research/september2026_income_nowcast/",
+    "status": "experimental",
+    "go_nogo": "NO-GO",
+    "do_not_use_for_this_baseline": true
+  },
+  "acs_income": {
+    "2024": {
+      "on_disk": true,
+      "files": ["csv_hus.zip", "HESI_Person_Part_1.zip", "HESI_Person_Part_2.zip"],
+      "hashes": {
+        "csv_hus.zip": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+        "HESI_Person_Part_1.zip": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+        "HESI_Person_Part_2.zip": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c"
+      },
+      "survey": "ACS 1-year 2024 PUMS",
+      "income_question": "money income in the past 12 months",
+      "dollar_adjustment": "ADJINC to 2024 dollars (published 1-year factor 1.015250)",
+      "interview_window": "calendar 2024",
+      "rolling_limitation": "A household interviewed in month m reports approximately m-12 through m-1. January 2024 interviews are mostly 2023 income; December 2024 interviews are mostly 2024 income. ADJINC does not convert the series into a September snapshot.",
+      "kind": "observed survey microdata, not a nowcast"
+    },
+    "2023": {
+      "on_disk": true,
+      "location": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/acs_pums/",
+      "sha256": {
+        "2023_csv_hus.zip": "32c4331bd0fa969c11a056a854a87bcc167a1f95e7bcd51ab2dce596d81d1bb0",
+        "2023_csv_pus.zip": "98b6ecb14b4830d1f2b54c265a5bd997828415c2dab14e17369c40e98b78d9d4"
+      },
+      "puma_vintage": "2020 PUMAs (same as 2022-2024 ACS)"
+    },
+    "2022": {
+      "on_disk": true,
+      "sha256": {
+        "2022_csv_hus.zip": "1f4da07a86d149bc85f786346e86730e0c7b73512ce7e1299d77ec15befd12a7",
+        "2022_csv_pus.zip": "687a97773d0fdfec6c624ea6bf48466f12059d3ee80283a2ad8604ea7a66231e"
+      },
+      "puma_vintage": "2020 PUMAs"
+    },
+    "2021": {
+      "on_disk": true,
+      "note": "2010 PUMA definitions. Must not be joined to 2020-PUMA FY2026 puma_fmr_screened.csv."
+    }
+  },
+  "usda_food": {
+    "frozen_extract": {
+      "file": "core_r24/inputs/source_2024_2026.csv",
+      "sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+      "years_in_extract": [2024, 2026],
+      "2024_months": 12,
+      "2026_months": ["January through September"],
+      "joint_engine_currently_uses": "only (2026, 9, thrifty) mainland individual cells"
+    },
+    "workbooks_on_disk_not_in_frozen_extract": {
+      "usda-thriftyplan-june2021-sept2026.xlsx": "Thrifty 21-Pres sheet starts June 2021; 2022-2023 monthly TFP extractable. Not in source_2024_2026.csv.",
+      "other_plans": "low/moderate/liberal sept2007-sept2026 workbooks on disk"
+    },
+    "kind": "modeled USDA Thrifty Food Plan prices, not observed grocery spending",
+    "gaps": ["2022 and 2023 months not in frozen CSV", "Alaska/Hawaii not used by joint engine (mainland applied nationally)"]
+  },
+  "hud_housing": {
+    "current_joint_table": {
+      "file": "core_r24/inputs/puma_fmr_screened.csv",
+      "sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+      "fmr_vintage": "revised FY2026 (effective 2026-05-21; FY starts 2025-10-01; covers September 2026)",
+      "occupancy_weights": "occupied_acs2024_observed",
+      "complete_pumas": 2350,
+      "partial_pumas": 112,
+      "kind": "modeled replacement rent, not ACS GRNTP/SMOCP"
+    },
+    "on_disk_workbooks": ["FY26_FMRs_revised.xlsx", "fy2026_safmrs_revised.xlsx"],
+    "missing_for_matched_years": ["FY2024 FMR workbook", "FY2025 FMR workbook", "FY2023 FMR workbook", "FY2022 FMR workbook"],
+    "fiscal_vs_calendar": "HUD FY2024 = 2023-10-01 to 2024-09-30. Calendar 2024 costs would need an explicit FY2024-only or Oct-switch FY2024/FY2025 rule."
+  },
+  "transportation": {
+    "current_joint_input": {
+      "annual_usd": 7264.70,
+      "monthly_usd": 605.391667,
+      "assignment": "constant one car on every included household",
+      "reference": "September 2026 EIA U.S. regular mean $4.35475/gal; 12,000 miles; 32 mpg; non-fuel items hypothetical"
+    },
+    "on_disk": ["research/september2026_core_r2/transportation/eia_us_regular_sept2026.csv"],
+    "missing_for_2024": ["EIA weekly U.S. regular gasoline for calendar 2024 or a named 2024 month", "2024 insurance/maintenance/registration if those are to be re-priced rather than held as labeled assumptions"],
+    "kind": "modeled scenario, not ACS vehicle ownership or expenditures"
+  }
+}

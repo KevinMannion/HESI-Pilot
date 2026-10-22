@@ -1,0 +1,2153 @@
+{
+  "source_url": "https://apps.bea.gov/national/Release/TXT/NipaDataM.txt",
+  "source_file": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase4/bea/NipaDataM.txt",
+  "source_sha256": "bd202765789e4b378ad632cc1836287de7454ae1b86cfa1481c22bc49eabbffd",
+  "bytes": 36806318,
+  "units": "millions of dollars, seasonally adjusted annual rate",
+  "coverage_note": "File ends 2026M08. September 2026 monthly PI is not in this vintage.",
+  "vintage_limitation": "Current BEA release vintage as of download, not a frozen historical vintage.",
+  "series": {
+    "A041RC": {
+      "title": "Proprietors' income with IVA and CCAdj",
+      "use": "SEMP_positive",
+      "annual": {
+        "1959": {
+          "n_months": 12,
+          "mean_saar_millions": 50345.75,
+          "complete_calendar_year": true
+        },
+        "1960": {
+          "n_months": 12,
+          "mean_saar_millions": 50588.25,
+          "complete_calendar_year": true
+        },
+        "1961": {
+          "n_months": 12,
+          "mean_saar_millions": 53198.083333333336,
+          "complete_calendar_year": true
+        },
+        "1962": {
+          "n_months": 12,
+          "mean_saar_millions": 55234.666666666664,
+          "complete_calendar_year": true
+        },
+        "1963": {
+          "n_months": 12,
+          "mean_saar_millions": 56397.916666666664,
+          "complete_calendar_year": true
+        },
+        "1964": {
+          "n_months": 12,
+          "mean_saar_millions": 59131.5,
+          "complete_calendar_year": true
+        },
+        "1965": {
+          "n_months": 12,
+          "mean_saar_millions": 63662.083333333336,
+          "complete_calendar_year": true
+        },
+        "1966": {
+          "n_months": 12,
+          "mean_saar_millions": 67934.0,
+          "complete_calendar_year": true
+        },
+        "1967": {
+          "n_months": 12,
+          "mean_saar_millions": 69474.0,
+          "complete_calendar_year": true
+        },
+        "1968": {
+          "n_months": 12,
+          "mean_saar_millions": 73828.66666666667,
+          "complete_calendar_year": true
+        },
+        "1969": {
+          "n_months": 12,
+          "mean_saar_millions": 77005.41666666667,
+          "complete_calendar_year": true
+        },
+        "1970": {
+          "n_months": 12,
+          "mean_saar_millions": 77802.25,
+          "complete_calendar_year": true
+        },
+        "1971": {
+          "n_months": 12,
+          "mean_saar_millions": 83904.16666666667,
+          "complete_calendar_year": true
+        },
+        "1972": {
+          "n_months": 12,
+          "mean_saar_millions": 95095.33333333333,
+          "complete_calendar_year": true
+        },
+        "1973": {
+          "n_months": 12,
+          "mean_saar_millions": 112520.58333333333,
+          "complete_calendar_year": true
+        },
+        "1974": {
+          "n_months": 12,
+          "mean_saar_millions": 112212.83333333333,
+          "complete_calendar_year": true
+        },
+        "1975": {
+          "n_months": 12,
+          "mean_saar_millions": 118238.75,
+          "complete_calendar_year": true
+        },
+        "1976": {
+          "n_months": 12,
+          "mean_saar_millions": 130974.5,
+          "complete_calendar_year": true
+        },
+        "1977": {
+          "n_months": 12,
+          "mean_saar_millions": 144491.33333333334,
+          "complete_calendar_year": true
+        },
+        "1978": {
+          "n_months": 12,
+          "mean_saar_millions": 165973.83333333334,
+          "complete_calendar_year": true
+        },
+        "1979": {
+          "n_months": 12,
+          "mean_saar_millions": 179437.25,
+          "complete_calendar_year": true
+        },
+        "1980": {
+          "n_months": 12,
+          "mean_saar_millions": 171569.91666666666,
+          "complete_calendar_year": true
+        },
+        "1981": {
+          "n_months": 12,
+          "mean_saar_millions": 179679.41666666666,
+          "complete_calendar_year": true
+        },
+        "1982": {
+          "n_months": 12,
+          "mean_saar_millions": 171190.83333333334,
+          "complete_calendar_year": true
+        },
+        "1983": {
+          "n_months": 12,
+          "mean_saar_millions": 186250.91666666666,
+          "complete_calendar_year": true
+        },
+        "1984": {
+          "n_months": 12,
+          "mean_saar_millions": 228248.91666666666,
+          "complete_calendar_year": true
+        },
+        "1985": {
+          "n_months": 12,
+          "mean_saar_millions": 241051.16666666666,
+          "complete_calendar_year": true
+        },
+        "1986": {
+          "n_months": 12,
+          "mean_saar_millions": 256478.91666666666,
+          "complete_calendar_year": true
+        },
+        "1987": {
+          "n_months": 12,
+          "mean_saar_millions": 286468.1666666667,
+          "complete_calendar_year": true
+        },
+        "1988": {
+          "n_months": 12,
+          "mean_saar_millions": 325524.25,
+          "complete_calendar_year": true
+        },
+        "1989": {
+          "n_months": 12,
+          "mean_saar_millions": 341129.1666666667,
+          "complete_calendar_year": true
+        },
+        "1990": {
+          "n_months": 12,
+          "mean_saar_millions": 353152.25,
+          "complete_calendar_year": true
+        },
+        "1991": {
+          "n_months": 12,
+          "mean_saar_millions": 354158.8333333333,
+          "complete_calendar_year": true
+        },
+        "1992": {
+          "n_months": 12,
+          "mean_saar_millions": 400148.9166666667,
+          "complete_calendar_year": true
+        },
+        "1993": {
+          "n_months": 12,
+          "mean_saar_millions": 427974.0833333333,
+          "complete_calendar_year": true
+        },
+        "1994": {
+          "n_months": 12,
+          "mean_saar_millions": 456632.25,
+          "complete_calendar_year": true
+        },
+        "1995": {
+          "n_months": 12,
+          "mean_saar_millions": 481171.5833333333,
+          "complete_calendar_year": true
+        },
+        "1996": {
+          "n_months": 12,
+          "mean_saar_millions": 543768.3333333334,
+          "complete_calendar_year": true
+        },
+        "1997": {
+          "n_months": 12,
+          "mean_saar_millions": 583942.8333333334,
+          "complete_calendar_year": true
+        },
+        "1998": {
+          "n_months": 12,
+          "mean_saar_millions": 640262.0,
+          "complete_calendar_year": true
+        },
+        "1999": {
+          "n_months": 12,
+          "mean_saar_millions": 696338.9166666666,
+          "complete_calendar_year": true
+        },
+        "2000": {
+          "n_months": 12,
+          "mean_saar_millions": 753547.1666666666,
+          "complete_calendar_year": true
+        },
+        "2001": {
+          "n_months": 12,
+          "mean_saar_millions": 831044.8333333334,
+          "complete_calendar_year": true
+        },
+        "2002": {
+          "n_months": 12,
+          "mean_saar_millions": 870132.0,
+          "complete_calendar_year": true
+        },
+        "2003": {
+          "n_months": 12,
+          "mean_saar_millions": 897509.5,
+          "complete_calendar_year": true
+        },
+        "2004": {
+          "n_months": 12,
+          "mean_saar_millions": 962894.75,
+          "complete_calendar_year": true
+        },
+        "2005": {
+          "n_months": 12,
+          "mean_saar_millions": 979141.3333333334,
+          "complete_calendar_year": true
+        },
+        "2006": {
+          "n_months": 12,
+          "mean_saar_millions": 1050869.9166666667,
+          "complete_calendar_year": true
+        },
+        "2007": {
+          "n_months": 12,
+          "mean_saar_millions": 995396.5833333334,
+          "complete_calendar_year": true
+        },
+        "2008": {
+          "n_months": 12,
+          "mean_saar_millions": 960304.25,
+          "complete_calendar_year": true
+        },
+        "2009": {
+          "n_months": 12,
+          "mean_saar_millions": 938126.25,
+          "complete_calendar_year": true
+        },
+        "2010": {
+          "n_months": 12,
+          "mean_saar_millions": 1108503.4166666667,
+          "complete_calendar_year": true
+        },
+        "2011": {
+          "n_months": 12,
+          "mean_saar_millions": 1228336.0833333333,
+          "complete_calendar_year": true
+        },
+        "2012": {
+          "n_months": 12,
+          "mean_saar_millions": 1299922.25,
+          "complete_calendar_year": true
+        },
+        "2013": {
+          "n_months": 12,
+          "mean_saar_millions": 1351738.8333333333,
+          "complete_calendar_year": true
+        },
+        "2014": {
+          "n_months": 12,
+          "mean_saar_millions": 1369965.1666666667,
+          "complete_calendar_year": true
+        },
+        "2015": {
+          "n_months": 12,
+          "mean_saar_millions": 1347722.4166666667,
+          "complete_calendar_year": true
+        },
+        "2016": {
+          "n_months": 12,
+          "mean_saar_millions": 1349213.8333333333,
+          "complete_calendar_year": true
+        },
+        "2017": {
+          "n_months": 12,
+          "mean_saar_millions": 1428634.1666666667,
+          "complete_calendar_year": true
+        },
+        "2018": {
+          "n_months": 12,
+          "mean_saar_millions": 1495330.75,
+          "complete_calendar_year": true
+        },
+        "2019": {
+          "n_months": 12,
+          "mean_saar_millions": 1555775.25,
+          "complete_calendar_year": true
+        },
+        "2020": {
+          "n_months": 12,
+          "mean_saar_millions": 1599507.3333333333,
+          "complete_calendar_year": true
+        },
+        "2021": {
+          "n_months": 12,
+          "mean_saar_millions": 1820122.0,
+          "complete_calendar_year": true
+        },
+        "2022": {
+          "n_months": 12,
+          "mean_saar_millions": 1868675.5833333333,
+          "complete_calendar_year": true
+        },
+        "2023": {
+          "n_months": 12,
+          "mean_saar_millions": 1842567.4166666667,
+          "complete_calendar_year": true
+        },
+        "2024": {
+          "n_months": 12,
+          "mean_saar_millions": 1915959.25,
+          "complete_calendar_year": true
+        },
+        "2025": {
+          "n_months": 12,
+          "mean_saar_millions": 2017031.75,
+          "complete_calendar_year": true
+        },
+        "2026": {
+          "n_months": 8,
+          "mean_saar_millions": 2115159.875,
+          "complete_calendar_year": false
+        }
+      },
+      "n_obs": 812,
+      "last": [
+        2026,
+        8,
+        2139178.0
+      ]
+    },
+    "A064RC": {
+      "title": "Personal interest income",
+      "use": "INTP_component",
+      "annual": {
+        "1959": {
+          "n_months": 12,
+          "mean_saar_millions": 28155.916666666668,
+          "complete_calendar_year": true
+        },
+        "1960": {
+          "n_months": 12,
+          "mean_saar_millions": 31143.0,
+          "complete_calendar_year": true
+        },
+        "1961": {
+          "n_months": 12,
+          "mean_saar_millions": 33410.333333333336,
+          "complete_calendar_year": true
+        },
+        "1962": {
+          "n_months": 12,
+          "mean_saar_millions": 37053.666666666664,
+          "complete_calendar_year": true
+        },
+        "1963": {
+          "n_months": 12,
+          "mean_saar_millions": 40464.0,
+          "complete_calendar_year": true
+        },
+        "1964": {
+          "n_months": 12,
+          "mean_saar_millions": 44944.083333333336,
+          "complete_calendar_year": true
+        },
+        "1965": {
+          "n_months": 12,
+          "mean_saar_millions": 49278.25,
+          "complete_calendar_year": true
+        },
+        "1966": {
+          "n_months": 12,
+          "mean_saar_millions": 54295.666666666664,
+          "complete_calendar_year": true
+        },
+        "1967": {
+          "n_months": 12,
+          "mean_saar_millions": 59456.083333333336,
+          "complete_calendar_year": true
+        },
+        "1968": {
+          "n_months": 12,
+          "mean_saar_millions": 65302.083333333336,
+          "complete_calendar_year": true
+        },
+        "1969": {
+          "n_months": 12,
+          "mean_saar_millions": 76109.58333333333,
+          "complete_calendar_year": true
+        },
+        "1970": {
+          "n_months": 12,
+          "mean_saar_millions": 90620.58333333333,
+          "complete_calendar_year": true
+        },
+        "1971": {
+          "n_months": 12,
+          "mean_saar_millions": 100099.33333333333,
+          "complete_calendar_year": true
+        },
+        "1972": {
+          "n_months": 12,
+          "mean_saar_millions": 109757.91666666667,
+          "complete_calendar_year": true
+        },
+        "1973": {
+          "n_months": 12,
+          "mean_saar_millions": 125508.5,
+          "complete_calendar_year": true
+        },
+        "1974": {
+          "n_months": 12,
+          "mean_saar_millions": 147410.0,
+          "complete_calendar_year": true
+        },
+        "1975": {
+          "n_months": 12,
+          "mean_saar_millions": 168038.16666666666,
+          "complete_calendar_year": true
+        },
+        "1976": {
+          "n_months": 12,
+          "mean_saar_millions": 181043.5,
+          "complete_calendar_year": true
+        },
+        "1977": {
+          "n_months": 12,
+          "mean_saar_millions": 206851.25,
+          "complete_calendar_year": true
+        },
+        "1978": {
+          "n_months": 12,
+          "mean_saar_millions": 235079.16666666666,
+          "complete_calendar_year": true
+        },
+        "1979": {
+          "n_months": 12,
+          "mean_saar_millions": 269480.8333333333,
+          "complete_calendar_year": true
+        },
+        "1980": {
+          "n_months": 12,
+          "mean_saar_millions": 333527.8333333333,
+          "complete_calendar_year": true
+        },
+        "1981": {
+          "n_months": 12,
+          "mean_saar_millions": 414197.0,
+          "complete_calendar_year": true
+        },
+        "1982": {
+          "n_months": 12,
+          "mean_saar_millions": 481759.4166666667,
+          "complete_calendar_year": true
+        },
+        "1983": {
+          "n_months": 12,
+          "mean_saar_millions": 518212.1666666667,
+          "complete_calendar_year": true
+        },
+        "1984": {
+          "n_months": 12,
+          "mean_saar_millions": 590928.0833333334,
+          "complete_calendar_year": true
+        },
+        "1985": {
+          "n_months": 12,
+          "mean_saar_millions": 630516.75,
+          "complete_calendar_year": true
+        },
+        "1986": {
+          "n_months": 12,
+          "mean_saar_millions": 663145.0,
+          "complete_calendar_year": true
+        },
+        "1987": {
+          "n_months": 12,
+          "mean_saar_millions": 674343.0,
+          "complete_calendar_year": true
+        },
+        "1988": {
+          "n_months": 12,
+          "mean_saar_millions": 720069.1666666666,
+          "complete_calendar_year": true
+        },
+        "1989": {
+          "n_months": 12,
+          "mean_saar_millions": 802260.5,
+          "complete_calendar_year": true
+        },
+        "1990": {
+          "n_months": 12,
+          "mean_saar_millions": 835130.75,
+          "complete_calendar_year": true
+        },
+        "1991": {
+          "n_months": 12,
+          "mean_saar_millions": 827688.75,
+          "complete_calendar_year": true
+        },
+        "1992": {
+          "n_months": 12,
+          "mean_saar_millions": 806165.6666666666,
+          "complete_calendar_year": true
+        },
+        "1993": {
+          "n_months": 12,
+          "mean_saar_millions": 796827.9166666666,
+          "complete_calendar_year": true
+        },
+        "1994": {
+          "n_months": 12,
+          "mean_saar_millions": 806304.0,
+          "complete_calendar_year": true
+        },
+        "1995": {
+          "n_months": 12,
+          "mean_saar_millions": 869355.0,
+          "complete_calendar_year": true
+        },
+        "1996": {
+          "n_months": 12,
+          "mean_saar_millions": 886403.25,
+          "complete_calendar_year": true
+        },
+        "1997": {
+          "n_months": 12,
+          "mean_saar_millions": 928762.8333333334,
+          "complete_calendar_year": true
+        },
+        "1998": {
+          "n_months": 12,
+          "mean_saar_millions": 994037.5833333334,
+          "complete_calendar_year": true
+        },
+        "1999": {
+          "n_months": 12,
+          "mean_saar_millions": 987716.6666666666,
+          "complete_calendar_year": true
+        },
+        "2000": {
+          "n_months": 12,
+          "mean_saar_millions": 1069277.6666666667,
+          "complete_calendar_year": true
+        },
+        "2001": {
+          "n_months": 12,
+          "mean_saar_millions": 1087524.3333333333,
+          "complete_calendar_year": true
+        },
+        "2002": {
+          "n_months": 12,
+          "mean_saar_millions": 1001155.25,
+          "complete_calendar_year": true
+        },
+        "2003": {
+          "n_months": 12,
+          "mean_saar_millions": 1004371.5,
+          "complete_calendar_year": true
+        },
+        "2004": {
+          "n_months": 12,
+          "mean_saar_millions": 939341.8333333334,
+          "complete_calendar_year": true
+        },
+        "2005": {
+          "n_months": 12,
+          "mean_saar_millions": 1081326.3333333333,
+          "complete_calendar_year": true
+        },
+        "2006": {
+          "n_months": 12,
+          "mean_saar_millions": 1215445.75,
+          "complete_calendar_year": true
+        },
+        "2007": {
+          "n_months": 12,
+          "mean_saar_millions": 1325248.3333333333,
+          "complete_calendar_year": true
+        },
+        "2008": {
+          "n_months": 12,
+          "mean_saar_millions": 1345849.25,
+          "complete_calendar_year": true
+        },
+        "2009": {
+          "n_months": 12,
+          "mean_saar_millions": 1272829.3333333333,
+          "complete_calendar_year": true
+        },
+        "2010": {
+          "n_months": 12,
+          "mean_saar_millions": 1211054.3333333333,
+          "complete_calendar_year": true
+        },
+        "2011": {
+          "n_months": 12,
+          "mean_saar_millions": 1216065.4166666667,
+          "complete_calendar_year": true
+        },
+        "2012": {
+          "n_months": 12,
+          "mean_saar_millions": 1271808.9166666667,
+          "complete_calendar_year": true
+        },
+        "2013": {
+          "n_months": 12,
+          "mean_saar_millions": 1201595.5,
+          "complete_calendar_year": true
+        },
+        "2014": {
+          "n_months": 12,
+          "mean_saar_millions": 1260373.75,
+          "complete_calendar_year": true
+        },
+        "2015": {
+          "n_months": 12,
+          "mean_saar_millions": 1347721.5,
+          "complete_calendar_year": true
+        },
+        "2016": {
+          "n_months": 12,
+          "mean_saar_millions": 1387973.0833333333,
+          "complete_calendar_year": true
+        },
+        "2017": {
+          "n_months": 12,
+          "mean_saar_millions": 1466672.4166666667,
+          "complete_calendar_year": true
+        },
+        "2018": {
+          "n_months": 12,
+          "mean_saar_millions": 1554473.0833333333,
+          "complete_calendar_year": true
+        },
+        "2019": {
+          "n_months": 12,
+          "mean_saar_millions": 1603518.1666666667,
+          "complete_calendar_year": true
+        },
+        "2020": {
+          "n_months": 12,
+          "mean_saar_millions": 1505907.4166666667,
+          "complete_calendar_year": true
+        },
+        "2021": {
+          "n_months": 12,
+          "mean_saar_millions": 1475273.5,
+          "complete_calendar_year": true
+        },
+        "2022": {
+          "n_months": 12,
+          "mean_saar_millions": 1572563.8333333333,
+          "complete_calendar_year": true
+        },
+        "2023": {
+          "n_months": 12,
+          "mean_saar_millions": 2079352.4166666667,
+          "complete_calendar_year": true
+        },
+        "2024": {
+          "n_months": 12,
+          "mean_saar_millions": 2241137.5,
+          "complete_calendar_year": true
+        },
+        "2025": {
+          "n_months": 12,
+          "mean_saar_millions": 2389593.25,
+          "complete_calendar_year": true
+        },
+        "2026": {
+          "n_months": 8,
+          "mean_saar_millions": 2473600.5,
+          "complete_calendar_year": false
+        }
+      },
+      "n_obs": 812,
+      "last": [
+        2026,
+        8,
+        2500624.0
+      ]
+    },
+    "B703RC": {
+      "title": "Personal dividend income",
+      "use": "INTP_component",
+      "annual": {
+        "1959": {
+          "n_months": 12,
+          "mean_saar_millions": 12570.0,
+          "complete_calendar_year": true
+        },
+        "1960": {
+          "n_months": 12,
+          "mean_saar_millions": 13366.0,
+          "complete_calendar_year": true
+        },
+        "1961": {
+          "n_months": 12,
+          "mean_saar_millions": 13901.0,
+          "complete_calendar_year": true
+        },
+        "1962": {
+          "n_months": 12,
+          "mean_saar_millions": 15027.0,
+          "complete_calendar_year": true
+        },
+        "1963": {
+          "n_months": 12,
+          "mean_saar_millions": 16236.0,
+          "complete_calendar_year": true
+        },
+        "1964": {
+          "n_months": 12,
+          "mean_saar_millions": 18194.0,
+          "complete_calendar_year": true
+        },
+        "1965": {
+          "n_months": 12,
+          "mean_saar_millions": 20205.0,
+          "complete_calendar_year": true
+        },
+        "1966": {
+          "n_months": 12,
+          "mean_saar_millions": 20670.0,
+          "complete_calendar_year": true
+        },
+        "1967": {
+          "n_months": 12,
+          "mean_saar_millions": 21510.0,
+          "complete_calendar_year": true
+        },
+        "1968": {
+          "n_months": 12,
+          "mean_saar_millions": 23535.0,
+          "complete_calendar_year": true
+        },
+        "1969": {
+          "n_months": 12,
+          "mean_saar_millions": 24239.0,
+          "complete_calendar_year": true
+        },
+        "1970": {
+          "n_months": 12,
+          "mean_saar_millions": 24307.0,
+          "complete_calendar_year": true
+        },
+        "1971": {
+          "n_months": 12,
+          "mean_saar_millions": 25027.0,
+          "complete_calendar_year": true
+        },
+        "1972": {
+          "n_months": 12,
+          "mean_saar_millions": 26836.0,
+          "complete_calendar_year": true
+        },
+        "1973": {
+          "n_months": 12,
+          "mean_saar_millions": 29880.0,
+          "complete_calendar_year": true
+        },
+        "1974": {
+          "n_months": 12,
+          "mean_saar_millions": 33187.0,
+          "complete_calendar_year": true
+        },
+        "1975": {
+          "n_months": 12,
+          "mean_saar_millions": 32922.0,
+          "complete_calendar_year": true
+        },
+        "1976": {
+          "n_months": 12,
+          "mean_saar_millions": 38971.0,
+          "complete_calendar_year": true
+        },
+        "1977": {
+          "n_months": 12,
+          "mean_saar_millions": 44723.0,
+          "complete_calendar_year": true
+        },
+        "1978": {
+          "n_months": 12,
+          "mean_saar_millions": 50728.0,
+          "complete_calendar_year": true
+        },
+        "1979": {
+          "n_months": 12,
+          "mean_saar_millions": 57657.083333333336,
+          "complete_calendar_year": true
+        },
+        "1980": {
+          "n_months": 12,
+          "mean_saar_millions": 64196.0,
+          "complete_calendar_year": true
+        },
+        "1981": {
+          "n_months": 12,
+          "mean_saar_millions": 69733.0,
+          "complete_calendar_year": true
+        },
+        "1982": {
+          "n_months": 12,
+          "mean_saar_millions": 73124.0,
+          "complete_calendar_year": true
+        },
+        "1983": {
+          "n_months": 12,
+          "mean_saar_millions": 81985.91666666667,
+          "complete_calendar_year": true
+        },
+        "1984": {
+          "n_months": 12,
+          "mean_saar_millions": 85809.91666666667,
+          "complete_calendar_year": true
+        },
+        "1985": {
+          "n_months": 12,
+          "mean_saar_millions": 93794.08333333333,
+          "complete_calendar_year": true
+        },
+        "1986": {
+          "n_months": 12,
+          "mean_saar_millions": 103121.0,
+          "complete_calendar_year": true
+        },
+        "1987": {
+          "n_months": 12,
+          "mean_saar_millions": 101967.0,
+          "complete_calendar_year": true
+        },
+        "1988": {
+          "n_months": 12,
+          "mean_saar_millions": 127970.91666666667,
+          "complete_calendar_year": true
+        },
+        "1989": {
+          "n_months": 12,
+          "mean_saar_millions": 157485.91666666666,
+          "complete_calendar_year": true
+        },
+        "1990": {
+          "n_months": 12,
+          "mean_saar_millions": 169718.0,
+          "complete_calendar_year": true
+        },
+        "1991": {
+          "n_months": 12,
+          "mean_saar_millions": 181009.0,
+          "complete_calendar_year": true
+        },
+        "1992": {
+          "n_months": 12,
+          "mean_saar_millions": 189268.0,
+          "complete_calendar_year": true
+        },
+        "1993": {
+          "n_months": 12,
+          "mean_saar_millions": 205119.91666666666,
+          "complete_calendar_year": true
+        },
+        "1994": {
+          "n_months": 12,
+          "mean_saar_millions": 237330.91666666666,
+          "complete_calendar_year": true
+        },
+        "1995": {
+          "n_months": 12,
+          "mean_saar_millions": 259194.0,
+          "complete_calendar_year": true
+        },
+        "1996": {
+          "n_months": 12,
+          "mean_saar_millions": 302415.9166666667,
+          "complete_calendar_year": true
+        },
+        "1997": {
+          "n_months": 12,
+          "mean_saar_millions": 337752.9166666667,
+          "complete_calendar_year": true
+        },
+        "1998": {
+          "n_months": 12,
+          "mean_saar_millions": 358440.0833333333,
+          "complete_calendar_year": true
+        },
+        "1999": {
+          "n_months": 12,
+          "mean_saar_millions": 348460.6666666667,
+          "complete_calendar_year": true
+        },
+        "2000": {
+          "n_months": 12,
+          "mean_saar_millions": 386370.0,
+          "complete_calendar_year": true
+        },
+        "2001": {
+          "n_months": 12,
+          "mean_saar_millions": 374409.75,
+          "complete_calendar_year": true
+        },
+        "2002": {
+          "n_months": 12,
+          "mean_saar_millions": 401476.6666666667,
+          "complete_calendar_year": true
+        },
+        "2003": {
+          "n_months": 12,
+          "mean_saar_millions": 431197.9166666667,
+          "complete_calendar_year": true
+        },
+        "2004": {
+          "n_months": 12,
+          "mean_saar_millions": 559364.6666666666,
+          "complete_calendar_year": true
+        },
+        "2005": {
+          "n_months": 12,
+          "mean_saar_millions": 555028.25,
+          "complete_calendar_year": true
+        },
+        "2006": {
+          "n_months": 12,
+          "mean_saar_millions": 683580.3333333334,
+          "complete_calendar_year": true
+        },
+        "2007": {
+          "n_months": 12,
+          "mean_saar_millions": 780054.5833333334,
+          "complete_calendar_year": true
+        },
+        "2008": {
+          "n_months": 12,
+          "mean_saar_millions": 805670.25,
+          "complete_calendar_year": true
+        },
+        "2009": {
+          "n_months": 12,
+          "mean_saar_millions": 565642.0,
+          "complete_calendar_year": true
+        },
+        "2010": {
+          "n_months": 12,
+          "mean_saar_millions": 536624.6666666666,
+          "complete_calendar_year": true
+        },
+        "2011": {
+          "n_months": 12,
+          "mean_saar_millions": 690419.0,
+          "complete_calendar_year": true
+        },
+        "2012": {
+          "n_months": 12,
+          "mean_saar_millions": 831741.5833333334,
+          "complete_calendar_year": true
+        },
+        "2013": {
+          "n_months": 12,
+          "mean_saar_millions": 781648.0833333334,
+          "complete_calendar_year": true
+        },
+        "2014": {
+          "n_months": 12,
+          "mean_saar_millions": 917027.25,
+          "complete_calendar_year": true
+        },
+        "2015": {
+          "n_months": 12,
+          "mean_saar_millions": 996868.5,
+          "complete_calendar_year": true
+        },
+        "2016": {
+          "n_months": 12,
+          "mean_saar_millions": 1027445.8333333334,
+          "complete_calendar_year": true
+        },
+        "2017": {
+          "n_months": 12,
+          "mean_saar_millions": 1144294.0,
+          "complete_calendar_year": true
+        },
+        "2018": {
+          "n_months": 12,
+          "mean_saar_millions": 1234902.8333333333,
+          "complete_calendar_year": true
+        },
+        "2019": {
+          "n_months": 12,
+          "mean_saar_millions": 1346503.25,
+          "complete_calendar_year": true
+        },
+        "2020": {
+          "n_months": 12,
+          "mean_saar_millions": 1399069.6666666667,
+          "complete_calendar_year": true
+        },
+        "2021": {
+          "n_months": 12,
+          "mean_saar_millions": 1771449.0833333333,
+          "complete_calendar_year": true
+        },
+        "2022": {
+          "n_months": 12,
+          "mean_saar_millions": 1956682.8333333333,
+          "complete_calendar_year": true
+        },
+        "2023": {
+          "n_months": 12,
+          "mean_saar_millions": 2031373.1666666667,
+          "complete_calendar_year": true
+        },
+        "2024": {
+          "n_months": 12,
+          "mean_saar_millions": 2134929.0833333335,
+          "complete_calendar_year": true
+        },
+        "2025": {
+          "n_months": 12,
+          "mean_saar_millions": 2151026.8333333335,
+          "complete_calendar_year": true
+        },
+        "2026": {
+          "n_months": 8,
+          "mean_saar_millions": 2186529.375,
+          "complete_calendar_year": false
+        }
+      },
+      "n_obs": 812,
+      "last": [
+        2026,
+        8,
+        2204505.0
+      ]
+    },
+    "A048RC": {
+      "title": "Rental income of persons with CCAdj",
+      "use": "INTP_component",
+      "annual": {
+        "1959": {
+          "n_months": 12,
+          "mean_saar_millions": 15557.0,
+          "complete_calendar_year": true
+        },
+        "1960": {
+          "n_months": 12,
+          "mean_saar_millions": 16462.75,
+          "complete_calendar_year": true
+        },
+        "1961": {
+          "n_months": 12,
+          "mean_saar_millions": 17199.75,
+          "complete_calendar_year": true
+        },
+        "1962": {
+          "n_months": 12,
+          "mean_saar_millions": 18045.333333333332,
+          "complete_calendar_year": true
+        },
+        "1963": {
+          "n_months": 12,
+          "mean_saar_millions": 18726.833333333332,
+          "complete_calendar_year": true
+        },
+        "1964": {
+          "n_months": 12,
+          "mean_saar_millions": 18830.416666666668,
+          "complete_calendar_year": true
+        },
+        "1965": {
+          "n_months": 12,
+          "mean_saar_millions": 19337.833333333332,
+          "complete_calendar_year": true
+        },
+        "1966": {
+          "n_months": 12,
+          "mean_saar_millions": 19910.333333333332,
+          "complete_calendar_year": true
+        },
+        "1967": {
+          "n_months": 12,
+          "mean_saar_millions": 20346.0,
+          "complete_calendar_year": true
+        },
+        "1968": {
+          "n_months": 12,
+          "mean_saar_millions": 20096.25,
+          "complete_calendar_year": true
+        },
+        "1969": {
+          "n_months": 12,
+          "mean_saar_millions": 20347.0,
+          "complete_calendar_year": true
+        },
+        "1970": {
+          "n_months": 12,
+          "mean_saar_millions": 20664.0,
+          "complete_calendar_year": true
+        },
+        "1971": {
+          "n_months": 12,
+          "mean_saar_millions": 21827.5,
+          "complete_calendar_year": true
+        },
+        "1972": {
+          "n_months": 12,
+          "mean_saar_millions": 22719.5,
+          "complete_calendar_year": true
+        },
+        "1973": {
+          "n_months": 12,
+          "mean_saar_millions": 23116.25,
+          "complete_calendar_year": true
+        },
+        "1974": {
+          "n_months": 12,
+          "mean_saar_millions": 23180.25,
+          "complete_calendar_year": true
+        },
+        "1975": {
+          "n_months": 12,
+          "mean_saar_millions": 22292.5,
+          "complete_calendar_year": true
+        },
+        "1976": {
+          "n_months": 12,
+          "mean_saar_millions": 20308.916666666668,
+          "complete_calendar_year": true
+        },
+        "1977": {
+          "n_months": 12,
+          "mean_saar_millions": 15865.75,
+          "complete_calendar_year": true
+        },
+        "1978": {
+          "n_months": 12,
+          "mean_saar_millions": 16546.0,
+          "complete_calendar_year": true
+        },
+        "1979": {
+          "n_months": 12,
+          "mean_saar_millions": 16092.5,
+          "complete_calendar_year": true
+        },
+        "1980": {
+          "n_months": 12,
+          "mean_saar_millions": 18978.666666666668,
+          "complete_calendar_year": true
+        },
+        "1981": {
+          "n_months": 12,
+          "mean_saar_millions": 23780.75,
+          "complete_calendar_year": true
+        },
+        "1982": {
+          "n_months": 12,
+          "mean_saar_millions": 23832.75,
+          "complete_calendar_year": true
+        },
+        "1983": {
+          "n_months": 12,
+          "mean_saar_millions": 24436.166666666668,
+          "complete_calendar_year": true
+        },
+        "1984": {
+          "n_months": 12,
+          "mean_saar_millions": 24653.083333333332,
+          "complete_calendar_year": true
+        },
+        "1985": {
+          "n_months": 12,
+          "mean_saar_millions": 26203.083333333332,
+          "complete_calendar_year": true
+        },
+        "1986": {
+          "n_months": 12,
+          "mean_saar_millions": 18268.416666666668,
+          "complete_calendar_year": true
+        },
+        "1987": {
+          "n_months": 12,
+          "mean_saar_millions": 16596.0,
+          "complete_calendar_year": true
+        },
+        "1988": {
+          "n_months": 12,
+          "mean_saar_millions": 22490.916666666668,
+          "complete_calendar_year": true
+        },
+        "1989": {
+          "n_months": 12,
+          "mean_saar_millions": 21522.666666666668,
+          "complete_calendar_year": true
+        },
+        "1990": {
+          "n_months": 12,
+          "mean_saar_millions": 28166.083333333332,
+          "complete_calendar_year": true
+        },
+        "1991": {
+          "n_months": 12,
+          "mean_saar_millions": 38577.5,
+          "complete_calendar_year": true
+        },
+        "1992": {
+          "n_months": 12,
+          "mean_saar_millions": 60572.666666666664,
+          "complete_calendar_year": true
+        },
+        "1993": {
+          "n_months": 12,
+          "mean_saar_millions": 90079.5,
+          "complete_calendar_year": true
+        },
+        "1994": {
+          "n_months": 12,
+          "mean_saar_millions": 113665.66666666667,
+          "complete_calendar_year": true
+        },
+        "1995": {
+          "n_months": 12,
+          "mean_saar_millions": 124882.83333333333,
+          "complete_calendar_year": true
+        },
+        "1996": {
+          "n_months": 12,
+          "mean_saar_millions": 142529.58333333334,
+          "complete_calendar_year": true
+        },
+        "1997": {
+          "n_months": 12,
+          "mean_saar_millions": 147060.41666666666,
+          "complete_calendar_year": true
+        },
+        "1998": {
+          "n_months": 12,
+          "mean_saar_millions": 165206.16666666666,
+          "complete_calendar_year": true
+        },
+        "1999": {
+          "n_months": 12,
+          "mean_saar_millions": 178497.41666666666,
+          "complete_calendar_year": true
+        },
+        "2000": {
+          "n_months": 12,
+          "mean_saar_millions": 183475.25,
+          "complete_calendar_year": true
+        },
+        "2001": {
+          "n_months": 12,
+          "mean_saar_millions": 202400.66666666666,
+          "complete_calendar_year": true
+        },
+        "2002": {
+          "n_months": 12,
+          "mean_saar_millions": 208448.16666666666,
+          "complete_calendar_year": true
+        },
+        "2003": {
+          "n_months": 12,
+          "mean_saar_millions": 227096.75,
+          "complete_calendar_year": true
+        },
+        "2004": {
+          "n_months": 12,
+          "mean_saar_millions": 242782.58333333334,
+          "complete_calendar_year": true
+        },
+        "2005": {
+          "n_months": 12,
+          "mean_saar_millions": 221105.75,
+          "complete_calendar_year": true
+        },
+        "2006": {
+          "n_months": 12,
+          "mean_saar_millions": 181119.25,
+          "complete_calendar_year": true
+        },
+        "2007": {
+          "n_months": 12,
+          "mean_saar_millions": 186259.16666666666,
+          "complete_calendar_year": true
+        },
+        "2008": {
+          "n_months": 12,
+          "mean_saar_millions": 290275.5,
+          "complete_calendar_year": true
+        },
+        "2009": {
+          "n_months": 12,
+          "mean_saar_millions": 347592.1666666667,
+          "complete_calendar_year": true
+        },
+        "2010": {
+          "n_months": 12,
+          "mean_saar_millions": 433670.5,
+          "complete_calendar_year": true
+        },
+        "2011": {
+          "n_months": 12,
+          "mean_saar_millions": 506541.0833333333,
+          "complete_calendar_year": true
+        },
+        "2012": {
+          "n_months": 12,
+          "mean_saar_millions": 534468.75,
+          "complete_calendar_year": true
+        },
+        "2013": {
+          "n_months": 12,
+          "mean_saar_millions": 578686.5,
+          "complete_calendar_year": true
+        },
+        "2014": {
+          "n_months": 12,
+          "mean_saar_millions": 598502.25,
+          "complete_calendar_year": true
+        },
+        "2015": {
+          "n_months": 12,
+          "mean_saar_millions": 601351.6666666666,
+          "complete_calendar_year": true
+        },
+        "2016": {
+          "n_months": 12,
+          "mean_saar_millions": 618723.4166666666,
+          "complete_calendar_year": true
+        },
+        "2017": {
+          "n_months": 12,
+          "mean_saar_millions": 642028.0,
+          "complete_calendar_year": true
+        },
+        "2018": {
+          "n_months": 12,
+          "mean_saar_millions": 671488.0833333334,
+          "complete_calendar_year": true
+        },
+        "2019": {
+          "n_months": 12,
+          "mean_saar_millions": 688431.8333333334,
+          "complete_calendar_year": true
+        },
+        "2020": {
+          "n_months": 12,
+          "mean_saar_millions": 743427.6666666666,
+          "complete_calendar_year": true
+        },
+        "2021": {
+          "n_months": 12,
+          "mean_saar_millions": 777130.8333333334,
+          "complete_calendar_year": true
+        },
+        "2022": {
+          "n_months": 12,
+          "mean_saar_millions": 874577.6666666666,
+          "complete_calendar_year": true
+        },
+        "2023": {
+          "n_months": 12,
+          "mean_saar_millions": 1002577.25,
+          "complete_calendar_year": true
+        },
+        "2024": {
+          "n_months": 12,
+          "mean_saar_millions": 1067564.3333333333,
+          "complete_calendar_year": true
+        },
+        "2025": {
+          "n_months": 12,
+          "mean_saar_millions": 1139831.9166666667,
+          "complete_calendar_year": true
+        },
+        "2026": {
+          "n_months": 8,
+          "mean_saar_millions": 1185818.125,
+          "complete_calendar_year": false
+        }
+      },
+      "n_obs": 812,
+      "last": [
+        2026,
+        8,
+        1201126.0
+      ]
+    },
+    "A033RC": {
+      "title": "Wage and salary disbursements",
+      "use": "crosscheck_not_household_WAGP",
+      "annual": {
+        "1959": {
+          "n_months": 12,
+          "mean_saar_millions": 285829.0833333333,
+          "complete_calendar_year": true
+        },
+        "1960": {
+          "n_months": 12,
+          "mean_saar_millions": 301282.1666666667,
+          "complete_calendar_year": true
+        },
+        "1961": {
+          "n_months": 12,
+          "mean_saar_millions": 310420.9166666667,
+          "complete_calendar_year": true
+        },
+        "1962": {
+          "n_months": 12,
+          "mean_saar_millions": 332202.25,
+          "complete_calendar_year": true
+        },
+        "1963": {
+          "n_months": 12,
+          "mean_saar_millions": 350408.0,
+          "complete_calendar_year": true
+        },
+        "1964": {
+          "n_months": 12,
+          "mean_saar_millions": 375975.4166666667,
+          "complete_calendar_year": true
+        },
+        "1965": {
+          "n_months": 12,
+          "mean_saar_millions": 405414.6666666667,
+          "complete_calendar_year": true
+        },
+        "1966": {
+          "n_months": 12,
+          "mean_saar_millions": 449248.25,
+          "complete_calendar_year": true
+        },
+        "1967": {
+          "n_months": 12,
+          "mean_saar_millions": 481790.5,
+          "complete_calendar_year": true
+        },
+        "1968": {
+          "n_months": 12,
+          "mean_saar_millions": 530750.4166666666,
+          "complete_calendar_year": true
+        },
+        "1969": {
+          "n_months": 12,
+          "mean_saar_millions": 584459.4166666666,
+          "complete_calendar_year": true
+        },
+        "1970": {
+          "n_months": 12,
+          "mean_saar_millions": 623346.6666666666,
+          "complete_calendar_year": true
+        },
+        "1971": {
+          "n_months": 12,
+          "mean_saar_millions": 664994.5,
+          "complete_calendar_year": true
+        },
+        "1972": {
+          "n_months": 12,
+          "mean_saar_millions": 731333.5,
+          "complete_calendar_year": true
+        },
+        "1973": {
+          "n_months": 12,
+          "mean_saar_millions": 812682.1666666666,
+          "complete_calendar_year": true
+        },
+        "1974": {
+          "n_months": 12,
+          "mean_saar_millions": 887714.3333333334,
+          "complete_calendar_year": true
+        },
+        "1975": {
+          "n_months": 12,
+          "mean_saar_millions": 947231.0833333334,
+          "complete_calendar_year": true
+        },
+        "1976": {
+          "n_months": 12,
+          "mean_saar_millions": 1048347.0,
+          "complete_calendar_year": true
+        },
+        "1977": {
+          "n_months": 12,
+          "mean_saar_millions": 1165825.0,
+          "complete_calendar_year": true
+        },
+        "1978": {
+          "n_months": 12,
+          "mean_saar_millions": 1316763.5,
+          "complete_calendar_year": true
+        },
+        "1979": {
+          "n_months": 12,
+          "mean_saar_millions": 1477231.0,
+          "complete_calendar_year": true
+        },
+        "1980": {
+          "n_months": 12,
+          "mean_saar_millions": 1622247.6666666667,
+          "complete_calendar_year": true
+        },
+        "1981": {
+          "n_months": 12,
+          "mean_saar_millions": 1792524.8333333333,
+          "complete_calendar_year": true
+        },
+        "1982": {
+          "n_months": 12,
+          "mean_saar_millions": 1892982.25,
+          "complete_calendar_year": true
+        },
+        "1983": {
+          "n_months": 12,
+          "mean_saar_millions": 2012487.75,
+          "complete_calendar_year": true
+        },
+        "1984": {
+          "n_months": 12,
+          "mean_saar_millions": 2215871.5833333335,
+          "complete_calendar_year": true
+        },
+        "1985": {
+          "n_months": 12,
+          "mean_saar_millions": 2387324.5,
+          "complete_calendar_year": true
+        },
+        "1986": {
+          "n_months": 12,
+          "mean_saar_millions": 2542062.9166666665,
+          "complete_calendar_year": true
+        },
+        "1987": {
+          "n_months": 12,
+          "mean_saar_millions": 2722404.75,
+          "complete_calendar_year": true
+        },
+        "1988": {
+          "n_months": 12,
+          "mean_saar_millions": 2947985.75,
+          "complete_calendar_year": true
+        },
+        "1989": {
+          "n_months": 12,
+          "mean_saar_millions": 3139601.25,
+          "complete_calendar_year": true
+        },
+        "1990": {
+          "n_months": 12,
+          "mean_saar_millions": 3340372.8333333335,
+          "complete_calendar_year": true
+        },
+        "1991": {
+          "n_months": 12,
+          "mean_saar_millions": 3450514.3333333335,
+          "complete_calendar_year": true
+        },
+        "1992": {
+          "n_months": 12,
+          "mean_saar_millions": 3668247.5,
+          "complete_calendar_year": true
+        },
+        "1993": {
+          "n_months": 12,
+          "mean_saar_millions": 3817289.1666666665,
+          "complete_calendar_year": true
+        },
+        "1994": {
+          "n_months": 12,
+          "mean_saar_millions": 4006191.5833333335,
+          "complete_calendar_year": true
+        },
+        "1995": {
+          "n_months": 12,
+          "mean_saar_millions": 4198086.5,
+          "complete_calendar_year": true
+        },
+        "1996": {
+          "n_months": 12,
+          "mean_saar_millions": 4416942.416666667,
+          "complete_calendar_year": true
+        },
+        "1997": {
+          "n_months": 12,
+          "mean_saar_millions": 4708819.0,
+          "complete_calendar_year": true
+        },
+        "1998": {
+          "n_months": 12,
+          "mean_saar_millions": 5071138.75,
+          "complete_calendar_year": true
+        },
+        "1999": {
+          "n_months": 12,
+          "mean_saar_millions": 5402682.416666667,
+          "complete_calendar_year": true
+        },
+        "2000": {
+          "n_months": 12,
+          "mean_saar_millions": 5847145.416666667,
+          "complete_calendar_year": true
+        },
+        "2001": {
+          "n_months": 12,
+          "mean_saar_millions": 6038348.5,
+          "complete_calendar_year": true
+        },
+        "2002": {
+          "n_months": 12,
+          "mean_saar_millions": 6135115.0,
+          "complete_calendar_year": true
+        },
+        "2003": {
+          "n_months": 12,
+          "mean_saar_millions": 6353605.5,
+          "complete_calendar_year": true
+        },
+        "2004": {
+          "n_months": 12,
+          "mean_saar_millions": 6719487.833333333,
+          "complete_calendar_year": true
+        },
+        "2005": {
+          "n_months": 12,
+          "mean_saar_millions": 7066107.333333333,
+          "complete_calendar_year": true
+        },
+        "2006": {
+          "n_months": 12,
+          "mean_saar_millions": 7479676.333333333,
+          "complete_calendar_year": true
+        },
+        "2007": {
+          "n_months": 12,
+          "mean_saar_millions": 7878475.083333333,
+          "complete_calendar_year": true
+        },
+        "2008": {
+          "n_months": 12,
+          "mean_saar_millions": 8056825.416666667,
+          "complete_calendar_year": true
+        },
+        "2009": {
+          "n_months": 12,
+          "mean_saar_millions": 7759019.333333333,
+          "complete_calendar_year": true
+        },
+        "2010": {
+          "n_months": 12,
+          "mean_saar_millions": 7925369.333333333,
+          "complete_calendar_year": true
+        },
+        "2011": {
+          "n_months": 12,
+          "mean_saar_millions": 8226174.583333333,
+          "complete_calendar_year": true
+        },
+        "2012": {
+          "n_months": 12,
+          "mean_saar_millions": 8567362.583333334,
+          "complete_calendar_year": true
+        },
+        "2013": {
+          "n_months": 12,
+          "mean_saar_millions": 8835039.0,
+          "complete_calendar_year": true
+        },
+        "2014": {
+          "n_months": 12,
+          "mean_saar_millions": 9250208.083333334,
+          "complete_calendar_year": true
+        },
+        "2015": {
+          "n_months": 12,
+          "mean_saar_millions": 9699418.916666666,
+          "complete_calendar_year": true
+        },
+        "2016": {
+          "n_months": 12,
+          "mean_saar_millions": 9966107.0,
+          "complete_calendar_year": true
+        },
+        "2017": {
+          "n_months": 12,
+          "mean_saar_millions": 10424371.75,
+          "complete_calendar_year": true
+        },
+        "2018": {
+          "n_months": 12,
+          "mean_saar_millions": 10957404.916666666,
+          "complete_calendar_year": true
+        },
+        "2019": {
+          "n_months": 12,
+          "mean_saar_millions": 11446611.25,
+          "complete_calendar_year": true
+        },
+        "2020": {
+          "n_months": 12,
+          "mean_saar_millions": 11598142.0,
+          "complete_calendar_year": true
+        },
+        "2021": {
+          "n_months": 12,
+          "mean_saar_millions": 12561521.25,
+          "complete_calendar_year": true
+        },
+        "2022": {
+          "n_months": 12,
+          "mean_saar_millions": 13447833.583333334,
+          "complete_calendar_year": true
+        },
+        "2023": {
+          "n_months": 12,
+          "mean_saar_millions": 14234468.166666666,
+          "complete_calendar_year": true
+        },
+        "2024": {
+          "n_months": 12,
+          "mean_saar_millions": 15041687.333333334,
+          "complete_calendar_year": true
+        },
+        "2025": {
+          "n_months": 12,
+          "mean_saar_millions": 15696228.083333334,
+          "complete_calendar_year": true
+        },
+        "2026": {
+          "n_months": 8,
+          "mean_saar_millions": 16307844.0,
+          "complete_calendar_year": false
+        }
+      },
+      "n_obs": 812,
+      "last": [
+        2026,
+        8,
+        16485646.0
+      ]
+    },
+    "A065RC": {
+      "title": "Personal income",
+      "use": "crosscheck_not_HINCP",
+      "annual": {
+        "1959": {
+          "n_months": 12,
+          "mean_saar_millions": 402862.9166666667,
+          "complete_calendar_year": true
+        },
+        "1960": {
+          "n_months": 12,
+          "mean_saar_millions": 422138.1666666667,
+          "complete_calendar_year": true
+        },
+        "1961": {
+          "n_months": 12,
+          "mean_saar_millions": 440575.25,
+          "complete_calendar_year": true
+        },
+        "1962": {
+          "n_months": 12,
+          "mean_saar_millions": 468837.9166666667,
+          "complete_calendar_year": true
+        },
+        "1963": {
+          "n_months": 12,
+          "mean_saar_millions": 492772.75,
+          "complete_calendar_year": true
+        },
+        "1964": {
+          "n_months": 12,
+          "mean_saar_millions": 528192.25,
+          "complete_calendar_year": true
+        },
+        "1965": {
+          "n_months": 12,
+          "mean_saar_millions": 570660.1666666666,
+          "complete_calendar_year": true
+        },
+        "1966": {
+          "n_months": 12,
+          "mean_saar_millions": 620339.25,
+          "complete_calendar_year": true
+        },
+        "1967": {
+          "n_months": 12,
+          "mean_saar_millions": 665723.8333333334,
+          "complete_calendar_year": true
+        },
+        "1968": {
+          "n_months": 12,
+          "mean_saar_millions": 730911.25,
+          "complete_calendar_year": true
+        },
+        "1969": {
+          "n_months": 12,
+          "mean_saar_millions": 800337.0,
+          "complete_calendar_year": true
+        },
+        "1970": {
+          "n_months": 12,
+          "mean_saar_millions": 865044.5,
+          "complete_calendar_year": true
+        },
+        "1971": {
+          "n_months": 12,
+          "mean_saar_millions": 932784.5833333334,
+          "complete_calendar_year": true
+        },
+        "1972": {
+          "n_months": 12,
+          "mean_saar_millions": 1024458.25,
+          "complete_calendar_year": true
+        },
+        "1973": {
+          "n_months": 12,
+          "mean_saar_millions": 1140779.3333333333,
+          "complete_calendar_year": true
+        },
+        "1974": {
+          "n_months": 12,
+          "mean_saar_millions": 1251817.3333333333,
+          "complete_calendar_year": true
+        },
+        "1975": {
+          "n_months": 12,
+          "mean_saar_millions": 1369390.5833333333,
+          "complete_calendar_year": true
+        },
+        "1976": {
+          "n_months": 12,
+          "mean_saar_millions": 1502647.75,
+          "complete_calendar_year": true
+        },
+        "1977": {
+          "n_months": 12,
+          "mean_saar_millions": 1659234.3333333333,
+          "complete_calendar_year": true
+        },
+        "1978": {
+          "n_months": 12,
+          "mean_saar_millions": 1863720.5,
+          "complete_calendar_year": true
+        },
+        "1979": {
+          "n_months": 12,
+          "mean_saar_millions": 2082708.8333333333,
+          "complete_calendar_year": true
+        },
+        "1980": {
+          "n_months": 12,
+          "mean_saar_millions": 2324459.8333333335,
+          "complete_calendar_year": true
+        },
+        "1981": {
+          "n_months": 12,
+          "mean_saar_millions": 2603197.9166666665,
+          "complete_calendar_year": true
+        },
+        "1982": {
+          "n_months": 12,
+          "mean_saar_millions": 2789460.5,
+          "complete_calendar_year": true
+        },
+        "1983": {
+          "n_months": 12,
+          "mean_saar_millions": 2981715.0833333335,
+          "complete_calendar_year": true
+        },
+        "1984": {
+          "n_months": 12,
+          "mean_saar_millions": 3288677.8333333335,
+          "complete_calendar_year": true
+        },
+        "1985": {
+          "n_months": 12,
+          "mean_saar_millions": 3522891.3333333335,
+          "complete_calendar_year": true
+        },
+        "1986": {
+          "n_months": 12,
+          "mean_saar_millions": 3731193.5,
+          "complete_calendar_year": true
+        },
+        "1987": {
+          "n_months": 12,
+          "mean_saar_millions": 3946806.5833333335,
+          "complete_calendar_year": true
+        },
+        "1988": {
+          "n_months": 12,
+          "mean_saar_millions": 4280019.166666667,
+          "complete_calendar_year": true
+        },
+        "1989": {
+          "n_months": 12,
+          "mean_saar_millions": 4621009.5,
+          "complete_calendar_year": true
+        },
+        "1990": {
+          "n_months": 12,
+          "mean_saar_millions": 4913299.0,
+          "complete_calendar_year": true
+        },
+        "1991": {
+          "n_months": 12,
+          "mean_saar_millions": 5089909.25,
+          "complete_calendar_year": true
+        },
+        "1992": {
+          "n_months": 12,
+          "mean_saar_millions": 5417488.666666667,
+          "complete_calendar_year": true
+        },
+        "1993": {
+          "n_months": 12,
+          "mean_saar_millions": 5652854.75,
+          "complete_calendar_year": true
+        },
+        "1994": {
+          "n_months": 12,
+          "mean_saar_millions": 5940907.083333333,
+          "complete_calendar_year": true
+        },
+        "1995": {
+          "n_months": 12,
+          "mean_saar_millions": 6283344.583333333,
+          "complete_calendar_year": true
+        },
+        "1996": {
+          "n_months": 12,
+          "mean_saar_millions": 6666184.833333333,
+          "complete_calendar_year": true
+        },
+        "1997": {
+          "n_months": 12,
+          "mean_saar_millions": 7073961.5,
+          "complete_calendar_year": true
+        },
+        "1998": {
+          "n_months": 12,
+          "mean_saar_millions": 7588343.333333333,
+          "complete_calendar_year": true
+        },
+        "1999": {
+          "n_months": 12,
+          "mean_saar_millions": 7978585.416666667,
+          "complete_calendar_year": true
+        },
+        "2000": {
+          "n_months": 12,
+          "mean_saar_millions": 8621284.833333334,
+          "complete_calendar_year": true
+        },
+        "2001": {
+          "n_months": 12,
+          "mean_saar_millions": 8993129.166666666,
+          "complete_calendar_year": true
+        },
+        "2002": {
+          "n_months": 12,
+          "mean_saar_millions": 9150049.0,
+          "complete_calendar_year": true
+        },
+        "2003": {
+          "n_months": 12,
+          "mean_saar_millions": 9481753.333333334,
+          "complete_calendar_year": true
+        },
+        "2004": {
+          "n_months": 12,
+          "mean_saar_millions": 10015874.25,
+          "complete_calendar_year": true
+        },
+        "2005": {
+          "n_months": 12,
+          "mean_saar_millions": 10546104.75,
+          "complete_calendar_year": true
+        },
+        "2006": {
+          "n_months": 12,
+          "mean_saar_millions": 11301996.5,
+          "complete_calendar_year": true
+        },
+        "2007": {
+          "n_months": 12,
+          "mean_saar_millions": 11932117.0,
+          "complete_calendar_year": true
+        },
+        "2008": {
+          "n_months": 12,
+          "mean_saar_millions": 12425680.0,
+          "complete_calendar_year": true
+        },
+        "2009": {
+          "n_months": 12,
+          "mean_saar_millions": 12065681.666666666,
+          "complete_calendar_year": true
+        },
+        "2010": {
+          "n_months": 12,
+          "mean_saar_millions": 12556627.916666666,
+          "complete_calendar_year": true
+        },
+        "2011": {
+          "n_months": 12,
+          "mean_saar_millions": 13309570.75,
+          "complete_calendar_year": true
+        },
+        "2012": {
+          "n_months": 12,
+          "mean_saar_millions": 13917794.583333334,
+          "complete_calendar_year": true
+        },
+        "2013": {
+          "n_months": 12,
+          "mean_saar_millions": 14068770.5,
+          "complete_calendar_year": true
+        },
+        "2014": {
+          "n_months": 12,
+          "mean_saar_millions": 14784073.583333334,
+          "complete_calendar_year": true
+        },
+        "2015": {
+          "n_months": 12,
+          "mean_saar_millions": 15473741.083333334,
+          "complete_calendar_year": true
+        },
+        "2016": {
+          "n_months": 12,
+          "mean_saar_millions": 15887649.75,
+          "complete_calendar_year": true
+        },
+        "2017": {
+          "n_months": 12,
+          "mean_saar_millions": 16662756.166666666,
+          "complete_calendar_year": true
+        },
+        "2018": {
+          "n_months": 12,
+          "mean_saar_millions": 17528192.916666668,
+          "complete_calendar_year": true
+        },
+        "2019": {
+          "n_months": 12,
+          "mean_saar_millions": 18363160.416666668,
+          "complete_calendar_year": true
+        },
+        "2020": {
+          "n_months": 12,
+          "mean_saar_millions": 19631655.416666668,
+          "complete_calendar_year": true
+        },
+        "2021": {
+          "n_months": 12,
+          "mean_saar_millions": 21507355.666666668,
+          "complete_calendar_year": true
+        },
+        "2022": {
+          "n_months": 12,
+          "mean_saar_millions": 22157246.083333332,
+          "complete_calendar_year": true
+        },
+        "2023": {
+          "n_months": 12,
+          "mean_saar_millions": 23642337.333333332,
+          "complete_calendar_year": true
+        },
+        "2024": {
+          "n_months": 12,
+          "mean_saar_millions": 25043404.166666668,
+          "complete_calendar_year": true
+        },
+        "2025": {
+          "n_months": 12,
+          "mean_saar_millions": 26327585.0,
+          "complete_calendar_year": true
+        },
+        "2026": {
+          "n_months": 8,
+          "mean_saar_millions": 27309315.625,
+          "complete_calendar_year": false
+        }
+      },
+      "n_obs": 812,
+      "last": [
+        2026,
+        8,
+        27626933.0
+      ]
+    }
+  },
+  "factors": {
+    "2021_to_2022": {
+      "proprietors_A041RC": 1.0266760048685382,
+      "interest_A064RC": 1.0659473198246516,
+      "dividends_B703RC": 1.1045662287122844,
+      "rental_A048RC": 1.1253930858918006,
+      "intp_interest_dividends_rental_bundle": 1.0944296119468069,
+      "nipa_wages_A033RC_crosscheck": 1.0705577227227423,
+      "kind": "computed annual-mean SAAR ratio from BEA monthly NIPA; not ACS household money income"
+    },
+    "2022_to_2023": {
+      "proprietors_A041RC": 0.9860285183262817,
+      "interest_A064RC": 1.3222690059322448,
+      "dividends_B703RC": 1.0381719162967735,
+      "rental_A048RC": 1.1463558791995985,
+      "intp_interest_dividends_rental_bundle": 1.1611050864653778,
+      "nipa_wages_A033RC_crosscheck": 1.0584952645687298,
+      "kind": "computed annual-mean SAAR ratio from BEA monthly NIPA; not ACS household money income"
+    },
+    "2023_to_2024": {
+      "proprietors_A041RC": 1.03983128794609,
+      "interest_A064RC": 1.077805513888158,
+      "dividends_B703RC": 1.05097828324502,
+      "rental_A048RC": 1.064820025921527,
+      "intp_interest_dividends_rental_bundle": 1.0646017054143444,
+      "nipa_wages_A033RC_crosscheck": 1.0567087689694625,
+      "kind": "computed annual-mean SAAR ratio from BEA monthly NIPA; not ACS household money income"
+    }
+  },
+  "bea_api": "GetDataSetList without UserID returns Invalid API UserId. Machine file NipaDataM.txt used instead of the HTML-stub zip endpoints."
+}

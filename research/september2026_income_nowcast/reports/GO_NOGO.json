@@ -1,0 +1,17 @@
+{
+  "decision": "NO-GO",
+  "phase": 4,
+  "national_september_2026_nowcast": false,
+  "national_2026_adequacy_share_published": false,
+  "scientific_validation": false,
+  "computational_reproduction": true,
+  "phase3_gates_locked": true,
+  "reason": [
+    "Locked G2 and G3 still fail on 2023→2024 for M4 (HINCP 1.646%, share 0.668 pp).",
+    "M5 with BEA SEMP/INTP reduces 2023→2024 HINCP error to 1.169% but share error remains 0.611 pp. Not scored as a retroactive PASS.",
+    "2023→2024 miss is within-cell income (Kitagawa rate +$5,030 vs composition +$106), not a changing ACS mix of zero-wage/retirement households.",
+    "BEA INTP bundle does not match ACS INTP (2022→2023 NIPA interest +32% vs ACS INTP). Aggregate BEA is not household INTP.",
+    "ACS RETP cannot be split into DB/DC from PUMS or a single ASEC year.",
+    "BEA NIPA ends 2026M08; September 2026 monthly PI is not on disk."
+  ]
+}

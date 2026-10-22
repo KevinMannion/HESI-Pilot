@@ -70,6 +70,67 @@ Demonstrated: verify_package.py PASS (35 hashes); live synthetic run_joint PASS 
 Failed / remaining: USDA candidate CSV SHA-256 still differs from frozen file (order, not numbers); person-cache pickle SHA-256 still differs from author caches; EXTERNALLY_INDEPENDENTLY_REPRODUCED=false; SCIENTIFICALLY_VALIDATED=false; SAFMR workbook not in the puma_fmr_screened path.
 Git: local commit on hesi/core-r25-integration with message Rebuild HUD and USDA sources and repair portable fixtures. Recovery points d658c08 and 55b61ea preserved. Not pushed. No PR.
 
+Core R2.5 — September 2026 household-income nowcast design (2026-10-21, uncommitted)
+------------------------------------------------------------------------------------
+What changed: added research/september2026_income_nowcast/ design files only. Documented ACS income fields, CPS ASEC 2026 (income year 2025), BLS September 2026 CES/CPS, SSA COLA, and a source-specific nowcast method. No national nowcast executed.
+What did not change: Food, Housing, Transportation; 18.9918% 2024-income scenario; core_r24 formulas and national_R22 files.
+Demonstrated: audit and method only.
+Remaining: ASEC/CES/BEA files not yet hashed in-repo; 2025 ACS PUMS not released; national nowcast not coded; EXTERNALLY_INDEPENDENTLY_REPRODUCED=false; SCIENTIFICALLY_VALIDATED=false.
+Git: design files later included in the uncommitted nowcast-engineering tree. No push. No PR.
+
+Core R2.5 — income source reconciliation engineering (2026-10-21, uncommitted)
+------------------------------------------------------------------------------
+What changed: added a 2024 ACS household source-reconstruction pipeline on the R2.4 eligibility frame; wrote reconciliation, acquisition, and backtesting-plan reports; froze a CES Table B-3 extract and SSA COLA FR hash. Factors were not applied to ACS income. No new national affordability estimate.
+What did not change: Food, Housing, Transportation; 18.9918% files; run_joint formulas.
+Demonstrated: included frame 1,235,731 / 121,036,726 exact; HINCP vs eight sources max |residual| $1.01525; reconstructed monthly mean $9,325.244238086176 vs published 9325.244238086181.
+Remaining: historical PUMS backtests; ASEC microdata; ECI; BEA Table 2.6; FRED series (timeout); BLS/SSA HTML 403; national nowcast blocked.
+Git: not committed. No push. No PR.
+
+Core R2.5 — income-nowcast Phase 2 source acquisition and historical backtests (2026-10-21, uncommitted)
+-------------------------------------------------------------------------------------------------------
+What changed: acquired and hashed CPS ASEC 2026 CSV, ACS 2022–2023 PUMS, SSA GovInfo COLA HTML, BEA August 2026 PI PDF; reconstructed occupied ACS sources for 2022–2024; ran COLA-on-SS backtests with wages frozen. No national 2026 nowcast. No 18.9918% rewrite.
+What did not change: Food, Housing, Transportation formulas; R2.4 eligibility frame; national_R22 hash 6778c312….
+Demonstrated: B2 occupied mean HINCP error −2.6105% (2022→2023) and −4.270% (2023→2024); diagnostic frozen-cost share error +0.700 pp and +1.100 pp, each ≫ ACS SDR sampling SE. ASEC 2026 HTOTVAL mean $126,664.22 (calendar 2025 observation).
+Failed / remaining: CES/ECI/CPI download.bls.gov HTTP 403; BEA NipaDataM.zip HTML stub 9578ca8e…; cpsmar26.pdf 247-byte WAF page; ACS 2019–2021 not downloaded; B2/B3/B4 production gates not passed; September 2026 run rate not identifiable.
+Git: not committed. No push. No PR.
+
+Core R2.5 — income-nowcast Phase 3 validation (2026-10-21, uncommitted)
+---------------------------------------------------------------------
+What changed: acquired BLS CES/ECI/CPI via Public API v1 (not download.bls.gov); implemented M1–M4 factors; ran occupied ACS 2022→2023 and 2023→2024 backtests against predeclared VALIDATION_GATES.json. Decision NO-GO. No national 2026 nowcast. No 18.9918% rewrite.
+What did not change: Food, Housing, Transportation; R2.4 eligibility; national_R22 hash 6778c312….
+Demonstrated: M4 WAGP error −0.085% and −0.437% (G4 PASS). M4 HINCP error +0.238% and −1.646% (G2 FAIL). M4 share error +0.322 pp and +0.668 pp (G3 FAIL). M4 beat freeze both years (G5 PASS). M3 mean slightly better than M4 in 2023→2024; not selected.
+Failed: BEA NIPA still HTML stubs; FRED/ALFRED maintenance; G1/G2/G3; ACS 2025 tables not released.
+Git: not committed. No push. No PR.
+
+Core R2.5 — income-nowcast Phase 4 non-wage audit (2026-10-21, uncommitted)
+--------------------------------------------------------------------------
+What changed: acquired BEA NipaDataM.txt (sha bd202765…); ACS 2021 PUMS; enriched occupied reconstruction with NP/age; Kitagawa composition vs within-cell; M5/M5b/M6 candidates. Phase 3 gates locked. Decision remains NO-GO. No 18.9918% rewrite.
+Demonstrated: 2023→2024 mean HINCP +$5,136 is +$5,030 within-cell and only +$106 composition. M4 zero-wage −4.11% / retirement-majority −3.47%. M5 BEA INTP/SEMP cuts 2023→2024 HINCP error to −1.169% but share error 0.611 pp still fails G3. BEA 2022→2023 interest +32% does not match ACS INTP.
+Git: not committed. No push. No PR.
+
+Core R2.5 — historical matched-year baseline feasibility audit (2026-10-21, uncommitted)
+--------------------------------------------------------------------------------------
+What changed: design-only audit under research/historical_matched_baseline/. No new national share. 18.9918% untouched. Income nowcast remains experimental NO-GO.
+Demonstrated: 2024 USDA monthly TFP already in source_2024_2026.csv (12 months); joint engine still uses only Sept 2026. HUD on disk is FY2026 only. Transport $7,264.70 is Sept 2026. ACS 2022-2024 PUMS on disk share 2020 PUMAs; 2021 does not.
+Decision: CONDITIONAL_GO to later build a 2024-income/2024-cost scenario after FY2024 FMR and 2024 EIA gasoline are hashed. NO-GO to compute a share this round. NO-GO for a 2022-2024 published series until those year-specific cost files exist.
+Git: not committed. No push. No PR.
+
+Core R2.5 — 2024 matched-year cost-input preparation (2026-10-22, uncommitted)
+-----------------------------------------------------------------------------
+What changed: acquired hashed FY2024 original/revised and FY2025 original/revised HUD county FMR workbooks; hashed EIA 2024 gasoline annual/monthly/weekly; reconstructed 2024 monthly TFP from the official Thrifty workbook into a new file; wrote a sibling cost-input pipeline under research/historical_matched_baseline/ without editing run_joint.py or frozen R2.4 tables.
+What did not change: 18.9918%; national_R22 bytes; puma_fmr_screened.csv; source_2024_2026.csv; household eligibility rules; income nowcast NO-GO.
+Demonstrated: 17/17 input-prep gates PASS; 6/6 local tests PASS; Honolulu-only FY24 revision; EIA 2024 annual $3.304/gal; calendar day-weight housing table; PUMA complete set 2350 with 170 county geo_id identifier differences vs FY2026 reported not forced.
+Failed / remaining: no sibling national engine run; person caches still 2026-09 in R2.4; non-fuel transport not historically priced; FY2025 revised not used for 2024; 2022–2023 series still blocked.
+Git: not committed. No push. No PR.
+
+Core R2.5 — public research-branch checkpoint (2026-10-22)
+----------------------------------------------------------
+What changed: README for reviewers; gitignore for microdata/workbooks/venvs; income-nowcast Phase 1–4 research tree; 2024 matched-year cost-input pipeline and hashed derived CSVs; STATUS/NOTES/REGISTER publication flags.
+What did not change: 18.9918%; national_R22 bytes; main branch; nowcast NO-GO; no new national percentage.
+Demonstrated: pre-push unittest/verify_package/pilot/matched-year gates as recorded in ITERATION_NOTES.
+Remaining: EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO; nowcast NO-GO; matched-year national share not computed.
+Git: checkpoint commit on hesi/core-r25-integration only. No merge to main. No force-push. No PR.
+
 Mandatory per-release evidence (starting with the next committed release)
 ------------------------------------------------------------------------
 1. ITERATION_NOTES.txt

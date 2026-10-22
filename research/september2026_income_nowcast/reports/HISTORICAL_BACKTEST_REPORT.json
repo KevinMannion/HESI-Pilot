@@ -1,0 +1,86 @@
+{
+  "national_2026_adequacy_share_published": false,
+  "go_nogo": "NO-GO",
+  "rows": [
+    {
+      "year": "2022_to_2023",
+      "model": "M1_freeze",
+      "hincp_pct_error": -0.03207031113820102,
+      "wagp_pct_error": -0.03883945673418096,
+      "ssp_pct_error": -0.05541329144224705,
+      "share_error": 0.012449451383078708,
+      "share_sampling_se_projected": 0.0005978898527622475,
+      "median_error": -2911.8804599999858
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M2_uniform_cpi",
+      "hincp_pct_error": 0.007772950172079718,
+      "wagp_pct_error": 0.0007251636376805125,
+      "ssp_pct_error": -0.01653090619013216,
+      "share_error": 0.004717956661594691,
+      "share_sampling_se_projected": 0.000602409999538296,
+      "median_error": 166.12766709121934
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M3_aggregate_wage",
+      "hincp_pct_error": 4.2394638560141004e-05,
+      "wagp_pct_error": 0.003991903047103537,
+      "ssp_pct_error": -0.05541329144224705,
+      "share_error": 0.006157925377598655,
+      "share_sampling_se_projected": 0.0005871715041741884,
+      "median_error": -929.7905203694099
+    },
+    {
+      "year": "2022_to_2023",
+      "model": "M4_source_specific",
+      "hincp_pct_error": 0.002381216117605213,
+      "wagp_pct_error": -0.0008454158042772673,
+      "ssp_pct_error": 0.026765752202277327,
+      "share_error": 0.0032157569035996814,
+      "share_sampling_se_projected": 0.0006029692256837696,
+      "median_error": -216.1017637532932
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M1_freeze",
+      "hincp_pct_error": -0.044908109790378806,
+      "wagp_pct_error": -0.03956430681333936,
+      "ssp_pct_error": -0.06903202300395922,
+      "share_error": 0.013128679507164787,
+      "share_sampling_se_projected": 0.0005211613571427248,
+      "median_error": -3532.7284000000072
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M2_uniform_cpi",
+      "hincp_pct_error": -0.01673743375914819,
+      "wagp_pct_error": -0.011236013966402678,
+      "ssp_pct_error": -0.0415728878733593,
+      "share_error": 0.007153457695310228,
+      "share_sampling_se_projected": 0.0005262626280758997,
+      "median_error": -1241.3227431961132
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M3_aggregate_wage",
+      "hincp_pct_error": -0.015971023450119085,
+      "wagp_pct_error": -0.0007525862082448915,
+      "ssp_pct_error": -0.06903202300395922,
+      "share_error": 0.008565463051522393,
+      "share_sampling_se_projected": 0.0005253772541456678,
+      "median_error": -1493.6924
+    },
+    {
+      "year": "2023_to_2024",
+      "model": "M4_source_specific",
+      "hincp_pct_error": -0.01645865948802087,
+      "wagp_pct_error": -0.004369404755134402,
+      "ssp_pct_error": -0.03924104774008648,
+      "share_error": 0.006675799343880129,
+      "share_sampling_se_projected": 0.0005224136794112811,
+      "median_error": -1155.642643510204
+    }
+  ]
+}

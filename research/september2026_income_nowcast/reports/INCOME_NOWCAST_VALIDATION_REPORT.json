@@ -1,0 +1,1712 @@
+{
+  "national_2026_adequacy_share_published": false,
+  "core_r24_18_9918_modified": false,
+  "computational_reproduction": "Phase 3 backtests executed on hashed ACS PUMS and hashed BLS API JSON.",
+  "scientific_validation": false,
+  "go_nogo": "NO-GO",
+  "gates": {
+    "declared_gates_file": "reports/VALIDATION_GATES.json",
+    "declared_before_comparisons": true,
+    "results": [
+      {
+        "id": "G1_series_acquired",
+        "pass": false,
+        "detail": {
+          "ces_ahe_awe_hours_employment": true,
+          "eci": true,
+          "cpi_u": true,
+          "bea_proprietors": false,
+          "bea_interest_dividends": false,
+          "alfred_vintages": false
+        }
+      },
+      {
+        "id": "G2_hincp_mean",
+        "pass": false,
+        "abs_pct_error": {
+          "2022_to_2023": 0.002381216117605213,
+          "2023_to_2024": 0.01645865948802087
+        }
+      },
+      {
+        "id": "G3_share",
+        "pass": false,
+        "abs_share_error": {
+          "2022_to_2023": 0.0032157569035996814,
+          "2023_to_2024": 0.006675799343880129
+        }
+      },
+      {
+        "id": "G4_wagp",
+        "pass": true,
+        "abs_pct_error": {
+          "2022_to_2023": 0.0008454158042772673,
+          "2023_to_2024": 0.004369404755134402
+        }
+      },
+      {
+        "id": "G5_beats_freeze",
+        "pass": true,
+        "detail": {
+          "2022_to_2023": {
+            "M4": 0.002381216117605213,
+            "M1": 0.03207031113820102,
+            "beats_freeze": true
+          },
+          "2023_to_2024": {
+            "M4": 0.01645865948802087,
+            "M1": 0.044908109790378806,
+            "beats_freeze": true
+          }
+        }
+      },
+      {
+        "id": "G6_no_cpi_production",
+        "pass": true,
+        "detail": "M2 scored only; not selected"
+      },
+      {
+        "id": "G7_uncertainty_separated",
+        "pass": true,
+        "detail": "SDR SE and share error stored in separate fields"
+      },
+      {
+        "id": "G8_baselines_frozen",
+        "pass": true,
+        "national_R22_sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7"
+      }
+    ],
+    "all_pass": false,
+    "go_nogo": "NO-GO",
+    "national_2026_adequacy_share_published": false
+  },
+  "comparisons": [
+    {
+      "label": "ACS2022_M1_freeze_vs_ACS2023_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109238.7179114002,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 129870877.0,
+        "rows": 1323938,
+        "hincp_adj": 105735.39823964343,
+        "WAGP": 78720.44971989398,
+        "SEMP": 5107.145358058574,
+        "RETP": 7573.331616857834,
+        "SSP": 6945.432617549494,
+        "SSIP": 545.0653801575262,
+        "INTP": 5333.60121123516,
+        "PAP": 99.70592166116296,
+        "OIP": 1410.6663895746606,
+        "residual": 2.465509860682892e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -3503.319671756777,
+        "WAGP": -3181.0081285718334,
+        "SEMP": -8.78827880688823,
+        "RETP": -76.50803081510912,
+        "SSP": -407.44727650931964,
+        "SSIP": 2.5723799001339103,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284
+      },
+      "pct_error": {
+        "hincp_adj": -0.03207031113820102,
+        "WAGP": -0.03883945673418096,
+        "SEMP": -0.0017178250209423781,
+        "RETP": -0.01000125941703662,
+        "SSP": -0.05541329144224705,
+        "SSIP": 0.0047417752835767725,
+        "INTP": 0.017296190984253456,
+        "PAP": 0.1617200723556056,
+        "OIP": 0.046978479344349414
+      },
+      "quantiles_actual": {
+        "0.1": 17025.9506,
+        "0.25": 39353.3948,
+        "0.5": 77687.2716,
+        "0.75": 137634.93,
+        "0.9": 222458.8276
+      },
+      "quantiles_projected": {
+        "0.1": 16051.5894,
+        "0.25": 37471.08045,
+        "0.5": 74775.39114,
+        "0.75": 132373.497,
+        "0.9": 213715.44744
+      },
+      "quantile_error": {
+        "0.1": -974.3611999999994,
+        "0.25": -1882.3143500000006,
+        "0.5": -2911.8804599999858,
+        "0.75": -5261.43299999999,
+        "0.9": -8743.38016
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.21890402596350148,
+        "actual_sampling_se_sdr": 0.0005211613571427248,
+        "projected_share": 0.23135347734658018,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005978898527622475,
+        "share_error_projected_minus_actual": 0.012449451383078708
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1343045,
+          "pred_rows": 1323938,
+          "actual_weight": 131332363.0,
+          "pred_weight": 129870877.0,
+          "actual_mean_hincp": 109238.7179114002,
+          "pred_mean_hincp": 105735.39823964343,
+          "pct_error_hincp": -0.03207031113820102,
+          "actual_share_below": 0.21890402596350148,
+          "pred_share_below": 0.23135347734658018,
+          "share_error": 0.012449451383078708
+        },
+        "positive_wages": {
+          "actual_rows": 952543,
+          "pred_rows": 940397,
+          "actual_weight": 98645483.0,
+          "pred_weight": 97126932.0,
+          "actual_mean_hincp": 126990.68321235786,
+          "pred_mean_hincp": 123004.47657300856,
+          "pct_error_hincp": -0.03138975662240858,
+          "actual_share_below": 0.12341314198846794,
+          "pred_share_below": 0.13353408506715728,
+          "share_error": 0.01012094307868934
+        },
+        "zero_wages": {
+          "actual_rows": 390502,
+          "pred_rows": 383541,
+          "actual_weight": 32686880.0,
+          "pred_weight": 32743945.0,
+          "actual_mean_hincp": 55665.198771237294,
+          "pred_mean_hincp": 54510.886440975686,
+          "pct_error_hincp": -0.02073669645922564,
+          "actual_share_below": 0.5070852280792782,
+          "pred_share_below": 0.5215108625426778,
+          "share_error": 0.014425634463399506
+        },
+        "wage_majority": {
+          "actual_rows": 824778,
+          "pred_rows": 815151,
+          "actual_weight": 87958159.0,
+          "pred_weight": 86542585.0,
+          "actual_mean_hincp": 127018.00762532065,
+          "pred_mean_hincp": 122741.8294670622,
+          "pct_error_hincp": -0.03366592059034949,
+          "actual_share_below": 0.118502082336671,
+          "pred_share_below": 0.12837961796495911,
+          "share_error": 0.009877535628288109
+        },
+        "retirement_majority": {
+          "actual_rows": 387990,
+          "pred_rows": 375779,
+          "actual_weight": 31056648.0,
+          "pred_weight": 30673087.0,
+          "actual_mean_hincp": 56230.00405677241,
+          "pred_mean_hincp": 54554.216009353084,
+          "pct_error_hincp": -0.02980238176272185,
+          "actual_share_below": 0.4477715367093062,
+          "pred_share_below": 0.46460749125120665,
+          "share_error": 0.016835954541900455
+        },
+        "income_tercile_1": {
+          "actual_rows": 433152,
+          "pred_rows": 426123,
+          "actual_weight": 43776993.0,
+          "pred_weight": 43290111.0,
+          "actual_mean_hincp": 26459.459417895527,
+          "pred_mean_hincp": 25243.601068074928,
+          "pct_error_hincp": -0.04595174567316626,
+          "actual_share_below": 0.6567189984931125,
+          "pred_share_below": 0.694063339315531,
+          "share_error": 0.03734434082241844
+        },
+        "income_tercile_2": {
+          "actual_rows": 447512,
+          "pred_rows": 440781,
+          "actual_weight": 43777782.0,
+          "pred_weight": 43290378.0,
+          "actual_mean_hincp": 79153.42670369655,
+          "pred_mean_hincp": 76024.88211961027,
+          "pct_error_hincp": -0.03952506814136671,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 462381,
+          "pred_rows": 457034,
+          "actual_weight": 43777588.0,
+          "pred_weight": 43290388.0,
+          "actual_mean_hincp": 222102.2758468605,
+          "pred_mean_hincp": 215937.1896294091,
+          "pct_error_hincp": -0.027757870530341625,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2022_to_2023",
+      "model": "M1_freeze",
+      "factors_used": {
+        "ahe_total_private": 1.044562128648928,
+        "awe_total_private": 1.0395293389809868,
+        "cpi_u_nsa": 1.041163383837449,
+        "cola_january_tplus1": 0.087,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2024-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2022_M2_uniform_cpi_vs_ACS2023_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109238.7179114002,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 129870877.0,
+        "rows": 1323938,
+        "hincp_adj": 110087.82502258739,
+        "WAGP": 81960.84980757054,
+        "SEMP": 5317.3727427459835,
+        "RETP": 7885.075573130837,
+        "SSP": 7231.330126302819,
+        "SSIP": 567.502115617456,
+        "INTP": 5553.150285129115,
+        "PAP": 103.81015478536818,
+        "OIP": 1468.73419163531,
+        "residual": 2.566998589433197e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": 849.1071111871861,
+        "WAGP": 59.39195910473063,
+        "SEMP": 201.4391058805213,
+        "RETP": 235.23592545789415,
+        "SSP": -121.54976775599516,
+        "SSIP": 25.009115360063674,
+        "INTP": 310.2315968414896,
+        "PAP": 17.984038809778227,
+        "OIP": 121.3651507185723
+      },
+      "pct_error": {
+        "hincp_adj": 0.007772950172079718,
+        "WAGP": 0.0007251636376805125,
+        "SEMP": 0.039374847325803715,
+        "RETP": 0.03075043874017048,
+        "SSP": -0.01653090619013216,
+        "SSIP": 0.04610034663709541,
+        "INTP": 0.05917154457011299,
+        "PAP": 0.20954040160565016,
+        "OIP": 0.09007565635914905
+      },
+      "quantiles_actual": {
+        "0.1": 17025.9506,
+        "0.25": 39353.3948,
+        "0.5": 77687.2716,
+        "0.75": 137634.93,
+        "0.9": 222458.8276
+      },
+      "quantiles_projected": {
+        "0.1": 16712.327135673328,
+        "0.25": 39013.516917367284,
+        "0.5": 77853.39926709121,
+        "0.75": 137822.4380669164,
+        "0.9": 222512.69843496487
+      },
+      "quantile_error": {
+        "0.1": -313.62346432667255,
+        "0.25": -339.87788263271796,
+        "0.5": 166.12766709121934,
+        "0.75": 187.50806691640173,
+        "0.9": 53.87083496488049
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.21890402596350148,
+        "actual_sampling_se_sdr": 0.0005211613571427248,
+        "projected_share": 0.22362198262509617,
+        "projected_sampling_se_sdr_factors_fixed": 0.000602409999538296,
+        "share_error_projected_minus_actual": 0.004717956661594691
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1343045,
+          "pred_rows": 1323938,
+          "actual_weight": 131332363.0,
+          "pred_weight": 129870877.0,
+          "actual_mean_hincp": 109238.7179114002,
+          "pred_mean_hincp": 110087.82502258739,
+          "pct_error_hincp": 0.007772950172079718,
+          "actual_share_below": 0.21890402596350148,
+          "pred_share_below": 0.22362198262509617,
+          "share_error": 0.004717956661594691
+        },
+        "positive_wages": {
+          "actual_rows": 952543,
+          "pred_rows": 940397,
+          "actual_weight": 98645483.0,
+          "pred_weight": 97126932.0,
+          "actual_mean_hincp": 126990.68321235786,
+          "pred_mean_hincp": 128067.75705590784,
+          "pct_error_hincp": 0.008481518614628316,
+          "actual_share_below": 0.12341314198846794,
+          "pred_share_below": 0.12732812357338746,
+          "share_error": 0.003914981584919527
+        },
+        "zero_wages": {
+          "actual_rows": 390502,
+          "pred_rows": 383541,
+          "actual_weight": 32686880.0,
+          "pred_weight": 32743945.0,
+          "actual_mean_hincp": 55665.198771237294,
+          "pred_mean_hincp": 56754.73898286514,
+          "pct_error_hincp": 0.01957309478235124,
+          "actual_share_below": 0.5070852280792782,
+          "pred_share_below": 0.5092542453268841,
+          "share_error": 0.0021690172476058756
+        },
+        "wage_majority": {
+          "actual_rows": 824778,
+          "pred_rows": 815151,
+          "actual_weight": 87958159.0,
+          "pred_weight": 86542585.0,
+          "actual_mean_hincp": 127018.00762532065,
+          "pred_mean_hincp": 127794.2985063256,
+          "pct_error_hincp": 0.006111660035598012,
+          "actual_share_below": 0.118502082336671,
+          "pred_share_below": 0.12262814890495818,
+          "share_error": 0.004126066568287179
+        },
+        "retirement_majority": {
+          "actual_rows": 387990,
+          "pred_rows": 375750,
+          "actual_weight": 31056648.0,
+          "pred_weight": 30670645.0,
+          "actual_mean_hincp": 56230.00405677241,
+          "pred_mean_hincp": 56799.62127942706,
+          "pct_error_hincp": 0.010130129495981112,
+          "actual_share_below": 0.4477715367093062,
+          "pred_share_below": 0.45077679324970177,
+          "share_error": 0.0030052565403955733
+        },
+        "income_tercile_1": {
+          "actual_rows": 433152,
+          "pred_rows": 426123,
+          "actual_weight": 43776993.0,
+          "pred_weight": 43290111.0,
+          "actual_mean_hincp": 26459.459417895527,
+          "pred_mean_hincp": 26282.71310827954,
+          "pct_error_hincp": -0.006679891180862447,
+          "actual_share_below": 0.6567189984931125,
+          "pred_share_below": 0.6708687579941757,
+          "share_error": 0.01414975950106312
+        },
+        "income_tercile_2": {
+          "actual_rows": 447512,
+          "pred_rows": 440781,
+          "actual_weight": 43777782.0,
+          "pred_weight": 43290378.0,
+          "actual_mean_hincp": 79153.42670369655,
+          "pred_mean_hincp": 79154.32352349663,
+          "pct_error_hincp": 1.1330144978276517e-05,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 462381,
+          "pred_rows": 457034,
+          "actual_weight": 43777588.0,
+          "pred_weight": 43290388.0,
+          "actual_mean_hincp": 222102.2758468605,
+          "pred_mean_hincp": 224825.8950509045,
+          "pct_error_hincp": 0.01226290542795679,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2022_to_2023",
+      "model": "M2_uniform_cpi",
+      "factors_used": {
+        "ahe_total_private": 1.044562128648928,
+        "awe_total_private": 1.0395293389809868,
+        "cpi_u_nsa": 1.041163383837449,
+        "cola_january_tplus1": 0.087,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2024-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2022_M3_aggregate_wage_vs_ACS2023_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109238.7179114002,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 129870877.0,
+        "rows": 1323938,
+        "hincp_adj": 109243.34904736283,
+        "WAGP": 82228.40052761332,
+        "SEMP": 5107.145358058574,
+        "RETP": 7573.331616857834,
+        "SSP": 6945.432617549494,
+        "SSIP": 545.0653801575262,
+        "INTP": 5333.60121123516,
+        "PAP": 99.70592166116296,
+        "OIP": 1410.6663895746606,
+        "residual": 2.465509860682892e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": 4.631135962627013,
+        "WAGP": 326.94267914751254,
+        "SEMP": -8.78827880688823,
+        "RETP": -76.50803081510912,
+        "SSP": -407.44727650931964,
+        "SSIP": 2.5723799001339103,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284
+      },
+      "pct_error": {
+        "hincp_adj": 4.2394638560141004e-05,
+        "WAGP": 0.003991903047103537,
+        "SEMP": -0.0017178250209423781,
+        "RETP": -0.01000125941703662,
+        "SSP": -0.05541329144224705,
+        "SSIP": 0.0047417752835767725,
+        "INTP": 0.017296190984253456,
+        "PAP": 0.1617200723556056,
+        "OIP": 0.046978479344349414
+      },
+      "quantiles_actual": {
+        "0.1": 17025.9506,
+        "0.25": 39353.3948,
+        "0.5": 77687.2716,
+        "0.75": 137634.93,
+        "0.9": 222458.8276
+      },
+      "quantiles_projected": {
+        "0.1": 16331.378953112891,
+        "0.25": 38106.55089059675,
+        "0.5": 76757.48107963058,
+        "0.75": 136648.88385616118,
+        "0.9": 222106.7537623353
+      },
+      "quantile_error": {
+        "0.1": -694.5716468871087,
+        "0.25": -1246.843909403251,
+        "0.5": -929.7905203694099,
+        "0.75": -986.0461438388156,
+        "0.9": -352.07383766467683
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.21890402596350148,
+        "actual_sampling_se_sdr": 0.0005211613571427248,
+        "projected_share": 0.22506195134110013,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005871715041741884,
+        "share_error_projected_minus_actual": 0.006157925377598655
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1343045,
+          "pred_rows": 1323938,
+          "actual_weight": 131332363.0,
+          "pred_weight": 129870877.0,
+          "actual_mean_hincp": 109238.7179114002,
+          "pred_mean_hincp": 109243.34904736283,
+          "pct_error_hincp": 4.2394638560141004e-05,
+          "actual_share_below": 0.21890402596350148,
+          "pred_share_below": 0.22506195134110013,
+          "share_error": 0.006157925377598655
+        },
+        "positive_wages": {
+          "actual_rows": 952543,
+          "pred_rows": 940397,
+          "actual_weight": 98645483.0,
+          "pred_weight": 97126932.0,
+          "actual_mean_hincp": 126990.68321235786,
+          "pred_mean_hincp": 127695.04630984917,
+          "pct_error_hincp": 0.00554657302152987,
+          "actual_share_below": 0.12341314198846794,
+          "pred_share_below": 0.12512152654013617,
+          "share_error": 0.0017083845516682322
+        },
+        "zero_wages": {
+          "actual_rows": 390502,
+          "pred_rows": 383541,
+          "actual_weight": 32686880.0,
+          "pred_weight": 32743945.0,
+          "actual_mean_hincp": 55665.198771237294,
+          "pred_mean_hincp": 54510.886440975686,
+          "pct_error_hincp": -0.02073669645922564,
+          "actual_share_below": 0.5070852280792782,
+          "pred_share_below": 0.5215108625426778,
+          "share_error": 0.014425634463399506
+        },
+        "wage_majority": {
+          "actual_rows": 824778,
+          "pred_rows": 818349,
+          "actual_weight": 87958159.0,
+          "pred_weight": 86817779.0,
+          "actual_mean_hincp": 127018.00762532065,
+          "pred_mean_hincp": 127821.34883245545,
+          "pct_error_hincp": 0.0063246245328025105,
+          "actual_share_below": 0.118502082336671,
+          "pred_share_below": 0.11932959031352322,
+          "share_error": 0.0008275079768522153
+        },
+        "retirement_majority": {
+          "actual_rows": 387990,
+          "pred_rows": 373208,
+          "actual_weight": 31056648.0,
+          "pred_weight": 30458402.0,
+          "actual_mean_hincp": 56230.00405677241,
+          "pred_mean_hincp": 54497.67512446599,
+          "pct_error_hincp": -0.03080791049841263,
+          "actual_share_below": 0.4477715367093062,
+          "pred_share_below": 0.4657378610998699,
+          "share_error": 0.017966324390563726
+        },
+        "income_tercile_1": {
+          "actual_rows": 433152,
+          "pred_rows": 427405,
+          "actual_weight": 43776993.0,
+          "pred_weight": 43290274.0,
+          "actual_mean_hincp": 26459.459417895527,
+          "pred_mean_hincp": 25811.409652796145,
+          "pct_error_hincp": -0.024492177064701543,
+          "actual_share_below": 0.6567189984931125,
+          "pred_share_below": 0.6751861399629857,
+          "share_error": 0.01846714146987316
+        },
+        "income_tercile_2": {
+          "actual_rows": 447512,
+          "pred_rows": 440552,
+          "actual_weight": 43777782.0,
+          "pred_weight": 43290238.0,
+          "actual_mean_hincp": 79153.42670369655,
+          "pred_mean_hincp": 78425.48266043626,
+          "pct_error_hincp": -0.009196620709615978,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 462381,
+          "pred_rows": 455981,
+          "actual_weight": 43777588.0,
+          "pred_weight": 43290365.0,
+          "actual_mean_hincp": 222102.2758468605,
+          "pred_mean_hincp": 223492.8890381769,
+          "pct_error_hincp": 0.006261138865030031,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2022_to_2023",
+      "model": "M3_aggregate_wage",
+      "factors_used": {
+        "ahe_total_private": 1.044562128648928,
+        "awe_total_private": 1.0395293389809868,
+        "cpi_u_nsa": 1.041163383837449,
+        "cola_january_tplus1": 0.087,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2024-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2022_M4_source_specific_vs_ACS2023_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109238.7179114002,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 129870877.0,
+        "rows": 1323938,
+        "hincp_adj": 109498.83890715736,
+        "WAGP": 81832.21706160737,
+        "SEMP": 5107.145358058574,
+        "RETP": 7573.331616857834,
+        "SSP": 7549.685255276299,
+        "SSIP": 592.4860682312313,
+        "INTP": 5333.60121123516,
+        "PAP": 99.70592166116296,
+        "OIP": 1410.6663895746606,
+        "residual": 2.465509860682892e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": 260.12099575715547,
+        "WAGP": -69.24078685844142,
+        "SEMP": -8.78827880688823,
+        "RETP": -76.50803081510912,
+        "SSP": 196.80536121748537,
+        "SSIP": 49.99306797383906,
+        "INTP": 90.68252294753438,
+        "PAP": 13.879805685573004,
+        "OIP": 63.29734865792284
+      },
+      "pct_error": {
+        "hincp_adj": 0.002381216117605213,
+        "WAGP": -0.0008454158042772673,
+        "SEMP": -0.0017178250209423781,
+        "RETP": -0.01000125941703662,
+        "SSP": 0.026765752202277327,
+        "SSIP": 0.09215430973324863,
+        "INTP": 0.017296190984253456,
+        "PAP": 0.1617200723556056,
+        "OIP": 0.046978479344349414
+      },
+      "quantiles_actual": {
+        "0.1": 17025.9506,
+        "0.25": 39353.3948,
+        "0.5": 77687.2716,
+        "0.75": 137634.93,
+        "0.9": 222458.8276
+      },
+      "quantiles_projected": {
+        "0.1": 16994.880855,
+        "0.25": 39006.46313433401,
+        "0.5": 77471.1698362467,
+        "0.75": 136736.48594527834,
+        "0.9": 221924.18798343776
+      },
+      "quantile_error": {
+        "0.1": -31.069745000000694,
+        "0.25": -346.93166566599393,
+        "0.5": -216.1017637532932,
+        "0.75": -898.4440547216509,
+        "0.9": -534.6396165622282
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.21890402596350148,
+        "actual_sampling_se_sdr": 0.0005211613571427248,
+        "projected_share": 0.22211978286710116,
+        "projected_sampling_se_sdr_factors_fixed": 0.0006029692256837696,
+        "share_error_projected_minus_actual": 0.0032157569035996814
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1343045,
+          "pred_rows": 1323938,
+          "actual_weight": 131332363.0,
+          "pred_weight": 129870877.0,
+          "actual_mean_hincp": 109238.7179114002,
+          "pred_mean_hincp": 109498.83890715736,
+          "pct_error_hincp": 0.002381216117605213,
+          "actual_share_below": 0.21890402596350148,
+          "pred_share_below": 0.22211978286710116,
+          "share_error": 0.0032157569035996814
+        },
+        "positive_wages": {
+          "actual_rows": 952543,
+          "pred_rows": 940397,
+          "actual_weight": 98645483.0,
+          "pred_weight": 97126932.0,
+          "actual_mean_hincp": 126990.68321235786,
+          "pred_mean_hincp": 127509.57275445589,
+          "pct_error_hincp": 0.004086044180346069,
+          "actual_share_below": 0.12341314198846794,
+          "pred_share_below": 0.12695074111884846,
+          "share_error": 0.003537599130380528
+        },
+        "zero_wages": {
+          "actual_rows": 390502,
+          "pred_rows": 383541,
+          "actual_weight": 32686880.0,
+          "pred_weight": 32743945.0,
+          "actual_mean_hincp": 55665.198771237294,
+          "pred_mean_hincp": 56074.38679374647,
+          "pct_error_hincp": 0.007350876877145092,
+          "actual_share_below": 0.5070852280792782,
+          "pred_share_below": 0.5044155491954314,
+          "share_error": -0.0026696788838468377
+        },
+        "wage_majority": {
+          "actual_rows": 824778,
+          "pred_rows": 815009,
+          "actual_weight": 87958159.0,
+          "pred_weight": 86532996.0,
+          "actual_mean_hincp": 127018.00762532065,
+          "pred_mean_hincp": 127588.16317515737,
+          "pct_error_hincp": 0.004488777304069952,
+          "actual_share_below": 0.118502082336671,
+          "pred_share_below": 0.12224434018209655,
+          "share_error": 0.003742257845425548
+        },
+        "retirement_majority": {
+          "actual_rows": 387990,
+          "pred_rows": 377942,
+          "actual_weight": 31056648.0,
+          "pred_weight": 30841265.0,
+          "actual_mean_hincp": 56230.00405677241,
+          "pred_mean_hincp": 56636.68831014259,
+          "pct_error_hincp": 0.007232513320816607,
+          "actual_share_below": 0.4477715367093062,
+          "pred_share_below": 0.4421068980147215,
+          "share_error": -0.005664638694584667
+        },
+        "income_tercile_1": {
+          "actual_rows": 433152,
+          "pred_rows": 425655,
+          "actual_weight": 43776993.0,
+          "pred_weight": 43290100.0,
+          "actual_mean_hincp": 26459.459417895527,
+          "pred_mean_hincp": 26409.35713792798,
+          "pct_error_hincp": -0.0018935488883670211,
+          "actual_share_below": 0.6567189984931125,
+          "pred_share_below": 0.666362309165375,
+          "share_error": 0.009643310672262428
+        },
+        "income_tercile_2": {
+          "actual_rows": 447512,
+          "pred_rows": 441359,
+          "actual_weight": 43777782.0,
+          "pred_weight": 43290477.0,
+          "actual_mean_hincp": 79153.42670369655,
+          "pred_mean_hincp": 78877.33619198113,
+          "pct_error_hincp": -0.003488042441282258,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 462381,
+          "pred_rows": 456924,
+          "actual_weight": 43777588.0,
+          "pred_weight": 43290300.0,
+          "actual_mean_hincp": 222102.2758468605,
+          "pred_mean_hincp": 223209.56472182943,
+          "pct_error_hincp": 0.0049854908993927655,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2022_to_2023",
+      "model": "M4_source_specific",
+      "factors_used": {
+        "ahe_total_private": 1.044562128648928,
+        "awe_total_private": 1.0395293389809868,
+        "cpi_u_nsa": 1.041163383837449,
+        "cola_january_tplus1": 0.087,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2024-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2023_M1_freeze_vs_ACS2024_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 132737145.0,
+        "rows": 1348408,
+        "hincp_adj": 114375.08686983486,
+        "WAGP": 85275.3166395996,
+        "SEMP": 5248.815916658851,
+        "RETP": 7897.643947368927,
+        "SSP": 7898.101842111036,
+        "SSIP": 556.9561751339463,
+        "INTP": 5957.901889298696,
+        "PAP": 89.750191135684,
+        "OIP": 1450.6002420181749,
+        "residual": 2.6509960735239417e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 109238.7179114002,
+        "WAGP": 81901.45784846581,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -5136.3689584346575,
+        "WAGP": -3373.858791133782,
+        "SEMP": -132.882279793389,
+        "RETP": -247.8042996959839,
+        "SSP": -545.2219480522217,
+        "SSIP": -14.463174876554035,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714
+      },
+      "pct_error": {
+        "hincp_adj": -0.044908109790378806,
+        "WAGP": -0.03956430681333936,
+        "SEMP": -0.02531662033938801,
+        "RETP": -0.031376990574326795,
+        "SSP": -0.06903202300395922,
+        "SSIP": -0.025968245837431795,
+        "INTP": -0.12000587023685128,
+        "PAP": -0.04372219279356906,
+        "OIP": -0.07116447254814655
+      },
+      "quantiles_actual": {
+        "0.1": 17868.4,
+        "0.25": 40813.05,
+        "0.5": 81220.0,
+        "0.75": 144165.5,
+        "0.9": 233507.5
+      },
+      "quantiles_projected": {
+        "0.1": 17025.9506,
+        "0.25": 39353.3948,
+        "0.5": 77687.2716,
+        "0.75": 137634.93,
+        "0.9": 222458.8276
+      },
+      "quantile_error": {
+        "0.1": -842.4494000000013,
+        "0.25": -1459.655200000001,
+        "0.5": -3532.7284000000072,
+        "0.75": -6530.570000000007,
+        "0.9": -11048.67240000001
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.2057753464563367,
+        "actual_sampling_se_sdr": 0.0004826584460524243,
+        "projected_share": 0.21890402596350148,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005211613571427248,
+        "share_error_projected_minus_actual": 0.013128679507164787
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1348408,
+          "pred_rows": 1343045,
+          "actual_weight": 132737145.0,
+          "pred_weight": 131332363.0,
+          "actual_mean_hincp": 114375.08686983486,
+          "pred_mean_hincp": 109238.7179114002,
+          "pct_error_hincp": -0.044908109790378806,
+          "actual_share_below": 0.2057753464563367,
+          "pred_share_below": 0.21890402596350148,
+          "share_error": 0.013128679507164787
+        },
+        "positive_wages": {
+          "actual_rows": 954895,
+          "pred_rows": 952543,
+          "actual_weight": 99572139.0,
+          "pred_weight": 98645483.0,
+          "actual_mean_hincp": 132924.33892787242,
+          "pred_mean_hincp": 126990.68321235786,
+          "pct_error_hincp": -0.04463934719084279,
+          "actual_share_below": 0.11189410122042272,
+          "pred_share_below": 0.12341314198846794,
+          "share_error": 0.011519040768045219
+        },
+        "zero_wages": {
+          "actual_rows": 393513,
+          "pred_rows": 390502,
+          "actual_weight": 33165006.0,
+          "pred_weight": 32686880.0,
+          "actual_mean_hincp": 58684.196771128016,
+          "pred_mean_hincp": 55665.198771237294,
+          "pct_error_hincp": -0.05144482102507086,
+          "actual_share_below": 0.4876373910500725,
+          "pred_share_below": 0.5070852280792782,
+          "share_error": 0.019447837029205772
+        },
+        "wage_majority": {
+          "actual_rows": 823672,
+          "pred_rows": 824778,
+          "actual_weight": 88556132.0,
+          "pred_weight": 87958159.0,
+          "actual_mean_hincp": 133038.39133220585,
+          "pred_mean_hincp": 127018.00762532065,
+          "pct_error_hincp": -0.04525298033596856,
+          "actual_share_below": 0.10751781706093487,
+          "pred_share_below": 0.118502082336671,
+          "share_error": 0.010984265275736135
+        },
+        "retirement_majority": {
+          "actual_rows": 390914,
+          "pred_rows": 387990,
+          "actual_weight": 31407993.0,
+          "pred_weight": 31056648.0,
+          "actual_mean_hincp": 59087.98440888588,
+          "pred_mean_hincp": 56230.00405677241,
+          "pct_error_hincp": -0.048368215309840104,
+          "actual_share_below": 0.42612971163104885,
+          "pred_share_below": 0.4477715367093062,
+          "share_error": 0.02164182507825735
+        },
+        "income_tercile_1": {
+          "actual_rows": 433847,
+          "pred_rows": 433152,
+          "actual_weight": 44245704.0,
+          "pred_weight": 43776993.0,
+          "actual_mean_hincp": 27818.60865466475,
+          "pred_mean_hincp": 26459.459417895527,
+          "pct_error_hincp": -0.048857556236599,
+          "actual_share_below": 0.6173261928434906,
+          "pred_share_below": 0.6567189984931125,
+          "share_error": 0.039392805649622
+        },
+        "income_tercile_2": {
+          "actual_rows": 449030,
+          "pred_rows": 447512,
+          "actual_weight": 44245678.0,
+          "pred_weight": 43777782.0,
+          "actual_mean_hincp": 83143.4068496495,
+          "pred_mean_hincp": 79153.42670369655,
+          "pct_error_hincp": -0.04798913464260787,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 465531,
+          "pred_rows": 462381,
+          "actual_weight": 44245763.0,
+          "pred_weight": 43777588.0,
+          "actual_mean_hincp": 232163.06968669847,
+          "pred_mean_hincp": 222102.2758468605,
+          "pct_error_hincp": -0.04333503107714293,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2023_to_2024",
+      "model": "M1_freeze",
+      "factors_used": {
+        "ahe_total_private": 1.0404105354272288,
+        "awe_total_private": 1.0366447252094837,
+        "cpi_u_nsa": 1.0294952520485208,
+        "cola_january_tplus1": 0.032,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2025-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2023_M2_uniform_cpi_vs_ACS2024_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 132737145.0,
+        "rows": 1348408,
+        "hincp_adj": 114375.08686983486,
+        "WAGP": 85275.3166395996,
+        "SEMP": 5248.815916658851,
+        "RETP": 7897.643947368927,
+        "SSP": 7898.101842111036,
+        "SSIP": 556.9561751339463,
+        "INTP": 5957.901889298696,
+        "PAP": 89.750191135684,
+        "OIP": 1450.6002420181749,
+        "residual": 2.6509960735239417e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 112460.74142965418,
+        "WAGP": 84317.16199084764,
+        "SEMP": 5266.829388948316,
+        "RETP": 7875.473596211824,
+        "SSP": 7569.754939816581,
+        "SSIP": 558.4939680345423,
+        "INTP": 5397.559896468572,
+        "PAP": 88.35757889863564,
+        "OIP": 1387.1100303809512,
+        "residual": 4.0047174685728344e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -1914.3454401806812,
+        "WAGP": -958.1546487519518,
+        "SEMP": 18.013472289464517,
+        "RETP": -22.17035115710314,
+        "SSP": -328.3469022944546,
+        "SSIP": 1.5377929005959459,
+        "INTP": -560.3419928301237,
+        "PAP": -1.3926122370483682,
+        "OIP": -63.49021163722364
+      },
+      "pct_error": {
+        "hincp_adj": -0.01673743375914819,
+        "WAGP": -0.011236013966402678,
+        "SEMP": 0.003431911611206027,
+        "RETP": -0.0028072107713198588,
+        "SSP": -0.0415728878733593,
+        "SSIP": 0.0027610662548558894,
+        "INTP": -0.09405022157826796,
+        "PAP": -0.015516537841607739,
+        "OIP": -0.043768234554332965
+      },
+      "quantiles_actual": {
+        "0.1": 17868.4,
+        "0.25": 40813.05,
+        "0.5": 81220.0,
+        "0.75": 144165.5,
+        "0.9": 233507.5
+      },
+      "quantiles_projected": {
+        "0.1": 17528.135304312662,
+        "0.25": 40514.13309859095,
+        "0.5": 79978.67725680389,
+        "0.75": 141694.50695103052,
+        "0.9": 229020.30679048042
+      },
+      "quantile_error": {
+        "0.1": -340.26469568733955,
+        "0.25": -298.9169014090512,
+        "0.5": -1241.3227431961132,
+        "0.75": -2470.9930489694816,
+        "0.9": -4487.193209519581
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.2057753464563367,
+        "actual_sampling_se_sdr": 0.0004826584460524243,
+        "projected_share": 0.21292880415164692,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005262626280758997,
+        "share_error_projected_minus_actual": 0.007153457695310228
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1348408,
+          "pred_rows": 1343045,
+          "actual_weight": 132737145.0,
+          "pred_weight": 131332363.0,
+          "actual_mean_hincp": 114375.08686983486,
+          "pred_mean_hincp": 112460.74142965418,
+          "pct_error_hincp": -0.01673743375914819,
+          "actual_share_below": 0.2057753464563367,
+          "pred_share_below": 0.21292880415164692,
+          "share_error": 0.007153457695310228
+        },
+        "positive_wages": {
+          "actual_rows": 954895,
+          "pred_rows": 952543,
+          "actual_weight": 99572139.0,
+          "pred_weight": 98645483.0,
+          "actual_mean_hincp": 132924.33892787242,
+          "pred_mean_hincp": 130736.30542152013,
+          "pct_error_hincp": -0.016460743938998018,
+          "actual_share_below": 0.11189410122042272,
+          "pred_share_below": 0.1186423001243757,
+          "share_error": 0.006748198903952979
+        },
+        "zero_wages": {
+          "actual_rows": 393513,
+          "pred_rows": 390502,
+          "actual_weight": 33165006.0,
+          "pred_weight": 32686880.0,
+          "actual_mean_hincp": 58684.196771128016,
+          "pred_mean_hincp": 57307.05783932595,
+          "pct_error_hincp": -0.023466946939275545,
+          "actual_share_below": 0.4876373910500725,
+          "pred_share_below": 0.497475317313858,
+          "share_error": 0.009837926263785546
+        },
+        "wage_majority": {
+          "actual_rows": 823672,
+          "pred_rows": 824778,
+          "actual_weight": 88556132.0,
+          "pred_weight": 87958159.0,
+          "actual_mean_hincp": 133038.39133220585,
+          "pred_mean_hincp": 130764.4357749305,
+          "pct_error_hincp": -0.017092476348403256,
+          "actual_share_below": 0.10751781706093487,
+          "pred_share_below": 0.11400176076900381,
+          "share_error": 0.006483943708068943
+        },
+        "retirement_majority": {
+          "actual_rows": 390914,
+          "pred_rows": 387925,
+          "actual_weight": 31407993.0,
+          "pred_weight": 31050858.0,
+          "actual_mean_hincp": 59087.98440888588,
+          "pred_mean_hincp": 57881.0416750477,
+          "pct_error_hincp": -0.020426195713263737,
+          "actual_share_below": 0.42612971163104885,
+          "pred_share_below": 0.43700254595219234,
+          "share_error": 0.010872834321143499
+        },
+        "income_tercile_1": {
+          "actual_rows": 433847,
+          "pred_rows": 433152,
+          "actual_weight": 44245704.0,
+          "pred_weight": 43776993.0,
+          "actual_mean_hincp": 27818.60865466475,
+          "pred_mean_hincp": 27239.88784249396,
+          "pct_error_hincp": -0.02080337012375152,
+          "actual_share_below": 0.6173261928434906,
+          "pred_share_below": 0.6387931441522262,
+          "share_error": 0.02146695130873566
+        },
+        "income_tercile_2": {
+          "actual_rows": 449030,
+          "pred_rows": 447512,
+          "actual_weight": 44245678.0,
+          "pred_weight": 43777782.0,
+          "actual_mean_hincp": 83143.4068496495,
+          "pred_mean_hincp": 81488.07697482617,
+          "pct_error_hincp": -0.019909334215961513,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 465531,
+          "pred_rows": 462381,
+          "actual_weight": 44245763.0,
+          "pred_weight": 43777588.0,
+          "actual_mean_hincp": 232163.06968669847,
+          "pred_mean_hincp": 228653.23845351368,
+          "pct_error_hincp": -0.01511795669277316,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2023_to_2024",
+      "model": "M2_uniform_cpi",
+      "factors_used": {
+        "ahe_total_private": 1.0404105354272288,
+        "awe_total_private": 1.0366447252094837,
+        "cpi_u_nsa": 1.0294952520485208,
+        "cola_january_tplus1": 0.032,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2025-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2023_M3_aggregate_wage_vs_ACS2024_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 132737145.0,
+        "rows": 1348408,
+        "hincp_adj": 114375.08686983486,
+        "WAGP": 85275.3166395996,
+        "SEMP": 5248.815916658851,
+        "RETP": 7897.643947368927,
+        "SSP": 7898.101842111036,
+        "SSIP": 556.9561751339463,
+        "INTP": 5957.901889298696,
+        "PAP": 89.750191135684,
+        "OIP": 1450.6002420181749,
+        "residual": 2.6509960735239417e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 112548.39967532732,
+        "WAGP": 85211.13961239292,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7352.879894058814,
+        "SSIP": 542.4930002573923,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -1826.68719450754,
+        "WAGP": -64.17702720667876,
+        "SEMP": -132.882279793389,
+        "RETP": -247.8042996959839,
+        "SSP": -545.2219480522217,
+        "SSIP": -14.463174876554035,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714
+      },
+      "pct_error": {
+        "hincp_adj": -0.015971023450119085,
+        "WAGP": -0.0007525862082448915,
+        "SEMP": -0.02531662033938801,
+        "RETP": -0.031376990574326795,
+        "SSP": -0.06903202300395922,
+        "SSIP": -0.025968245837431795,
+        "INTP": -0.12000587023685128,
+        "PAP": -0.04372219279356906,
+        "OIP": -0.07116447254814655
+      },
+      "quantiles_actual": {
+        "0.1": 17868.4,
+        "0.25": 40813.05,
+        "0.5": 81220.0,
+        "0.75": 144165.5,
+        "0.9": 233507.5
+      },
+      "quantiles_projected": {
+        "0.1": 17127.9024,
+        "0.25": 40307.256193792506,
+        "0.5": 79726.3076,
+        "0.75": 141971.31687350065,
+        "0.9": 229645.2885777915
+      },
+      "quantile_error": {
+        "0.1": -740.4976000000024,
+        "0.25": -505.79380620749725,
+        "0.5": -1493.6924,
+        "0.75": -2194.1831264993525,
+        "0.9": -3862.211422208493
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.2057753464563367,
+        "actual_sampling_se_sdr": 0.0004826584460524243,
+        "projected_share": 0.21434080950785908,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005253772541456678,
+        "share_error_projected_minus_actual": 0.008565463051522393
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1348408,
+          "pred_rows": 1343045,
+          "actual_weight": 132737145.0,
+          "pred_weight": 131332363.0,
+          "actual_mean_hincp": 114375.08686983486,
+          "pred_mean_hincp": 112548.39967532732,
+          "pct_error_hincp": -0.015971023450119085,
+          "actual_share_below": 0.2057753464563367,
+          "pred_share_below": 0.21434080950785908,
+          "share_error": 0.008565463051522393
+        },
+        "positive_wages": {
+          "actual_rows": 954895,
+          "pred_rows": 952543,
+          "actual_weight": 99572139.0,
+          "pred_weight": 98645483.0,
+          "actual_mean_hincp": 132924.33892787242,
+          "pred_mean_hincp": 131397.05148808061,
+          "pct_error_hincp": -0.011489900586382036,
+          "actual_share_below": 0.11189410122042272,
+          "pred_share_below": 0.11733787141576467,
+          "share_error": 0.0054437701953419515
+        },
+        "zero_wages": {
+          "actual_rows": 393513,
+          "pred_rows": 390502,
+          "actual_weight": 33165006.0,
+          "pred_weight": 32686880.0,
+          "actual_mean_hincp": 58684.196771128016,
+          "pred_mean_hincp": 55665.198771237294,
+          "pct_error_hincp": -0.05144482102507086,
+          "actual_share_below": 0.4876373910500725,
+          "pred_share_below": 0.5070852280792782,
+          "share_error": 0.019447837029205772
+        },
+        "wage_majority": {
+          "actual_rows": 823672,
+          "pred_rows": 827708,
+          "actual_weight": 88556132.0,
+          "pred_weight": 88212010.0,
+          "actual_mean_hincp": 133038.39133220585,
+          "pred_mean_hincp": 131799.63815259747,
+          "pct_error_hincp": -0.009311245928366107,
+          "actual_share_below": 0.10751781706093487,
+          "pred_share_below": 0.11203707975818712,
+          "share_error": 0.004519262697252252
+        },
+        "retirement_majority": {
+          "actual_rows": 390914,
+          "pred_rows": 385368,
+          "actual_weight": 31407993.0,
+          "pred_weight": 30832943.0,
+          "actual_mean_hincp": 59087.98440888588,
+          "pred_mean_hincp": 56186.36015256043,
+          "pct_error_hincp": -0.049106841016040674,
+          "actual_share_below": 0.42612971163104885,
+          "pred_share_below": 0.4487691622560973,
+          "share_error": 0.022639450625048463
+        },
+        "income_tercile_1": {
+          "actual_rows": 433847,
+          "pred_rows": 436323,
+          "actual_weight": 44245704.0,
+          "pred_weight": 43777226.0,
+          "actual_mean_hincp": 27818.60865466475,
+          "pred_mean_hincp": 27001.774509559975,
+          "pct_error_hincp": -0.029362868403837446,
+          "actual_share_below": 0.6173261928434906,
+          "pred_share_below": 0.6430257824011051,
+          "share_error": 0.025699589557614533
+        },
+        "income_tercile_2": {
+          "actual_rows": 449030,
+          "pred_rows": 446010,
+          "actual_weight": 44245678.0,
+          "pred_weight": 43777631.0,
+          "actual_mean_hincp": 83143.4068496495,
+          "pred_mean_hincp": 81426.01455988362,
+          "pct_error_hincp": -0.02065578444327504,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 465531,
+          "pred_rows": 460712,
+          "actual_weight": 44245763.0,
+          "pred_weight": 43777506.0,
+          "actual_mean_hincp": 232163.06968669847,
+          "pred_mean_hincp": 229216.95166736798,
+          "pct_error_hincp": -0.012689865030240357,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2023_to_2024",
+      "model": "M3_aggregate_wage",
+      "factors_used": {
+        "ahe_total_private": 1.0404105354272288,
+        "awe_total_private": 1.0366447252094837,
+        "cpi_u_nsa": 1.0294952520485208,
+        "cola_january_tplus1": 0.032,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2025-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    },
+    {
+      "label": "ACS2023_M4_source_specific_vs_ACS2024_occupied",
+      "actual_weighted_means_annual": {
+        "weight": 132737145.0,
+        "rows": 1348408,
+        "hincp_adj": 114375.08686983486,
+        "WAGP": 85275.3166395996,
+        "SEMP": 5248.815916658851,
+        "RETP": 7897.643947368927,
+        "SSP": 7898.101842111036,
+        "SSIP": 556.9561751339463,
+        "INTP": 5957.901889298696,
+        "PAP": 89.750191135684,
+        "OIP": 1450.6002420181749,
+        "residual": 2.6509960735239417e-05
+      },
+      "projected_weighted_means_annual": {
+        "weight": 131332363.0,
+        "rows": 1343045,
+        "hincp_adj": 112492.62626113145,
+        "WAGP": 84902.71426557894,
+        "SEMP": 5115.933636865462,
+        "RETP": 7649.839647672943,
+        "SSP": 7588.172050668692,
+        "SSIP": 559.8527762656287,
+        "INTP": 5242.918688287626,
+        "PAP": 85.82611597558996,
+        "OIP": 1347.3690409167377,
+        "residual": 3.889981484231351e-05
+      },
+      "error_projected_minus_actual": {
+        "hincp_adj": -1882.460608703419,
+        "WAGP": -372.6023740206583,
+        "SEMP": -132.882279793389,
+        "RETP": -247.8042996959839,
+        "SSP": -309.92979144234414,
+        "SSIP": 2.8966011316823597,
+        "INTP": -714.9832010110704,
+        "PAP": -3.9240751600940484,
+        "OIP": -103.23120110143714
+      },
+      "pct_error": {
+        "hincp_adj": -0.01645865948802087,
+        "WAGP": -0.004369404755134402,
+        "SEMP": -0.02531662033938801,
+        "RETP": -0.031376990574326795,
+        "SSP": -0.03924104774008648,
+        "SSIP": 0.005200770295770104,
+        "INTP": -0.12000587023685128,
+        "PAP": -0.04372219279356906,
+        "OIP": -0.07116447254814655
+      },
+      "quantiles_actual": {
+        "0.1": 17868.4,
+        "0.25": 40813.05,
+        "0.5": 81220.0,
+        "0.75": 144165.5,
+        "0.9": 233507.5
+      },
+      "quantiles_projected": {
+        "0.1": 17433.7578,
+        "0.25": 40402.27491839999,
+        "0.5": 80064.3573564898,
+        "0.75": 141621.6462321204,
+        "0.9": 229342.51665947854
+      },
+      "quantile_error": {
+        "0.1": -434.64220000000205,
+        "0.25": -410.7750816000116,
+        "0.5": -1155.642643510204,
+        "0.75": -2543.8537678795983,
+        "0.9": -4164.9833405214595
+      },
+      "diagnostic_share": {
+        "note": "NOT 18.9918%. Occupied households, frozen $2,894.91/mo three-cost mean.",
+        "actual_share": 0.2057753464563367,
+        "actual_sampling_se_sdr": 0.0004826584460524243,
+        "projected_share": 0.21245114580021682,
+        "projected_sampling_se_sdr_factors_fixed": 0.0005224136794112811,
+        "share_error_projected_minus_actual": 0.006675799343880129
+      },
+      "subgroups": {
+        "all": {
+          "actual_rows": 1348408,
+          "pred_rows": 1343045,
+          "actual_weight": 132737145.0,
+          "pred_weight": 131332363.0,
+          "actual_mean_hincp": 114375.08686983486,
+          "pred_mean_hincp": 112492.62626113145,
+          "pct_error_hincp": -0.01645865948802087,
+          "actual_share_below": 0.2057753464563367,
+          "pred_share_below": 0.21245114580021682,
+          "share_error": 0.006675799343880129
+        },
+        "positive_wages": {
+          "actual_rows": 954895,
+          "pred_rows": 952543,
+          "actual_weight": 99572139.0,
+          "pred_weight": 98645483.0,
+          "actual_mean_hincp": 132924.33892787242,
+          "pred_mean_hincp": 131121.03700772545,
+          "pct_error_hincp": -0.013566378698527757,
+          "actual_share_below": 0.11189410122042272,
+          "pred_share_below": 0.11705305350879573,
+          "share_error": 0.005158952288373014
+        },
+        "zero_wages": {
+          "actual_rows": 393513,
+          "pred_rows": 390502,
+          "actual_weight": 33165006.0,
+          "pred_weight": 32686880.0,
+          "actual_mean_hincp": 58684.196771128016,
+          "pred_mean_hincp": 56274.08917162767,
+          "pct_error_hincp": -0.04106910773440278,
+          "actual_share_below": 0.4876373910500725,
+          "pred_share_below": 0.50035231260983,
+          "share_error": 0.012714921559757564
+        },
+        "wage_majority": {
+          "actual_rows": 823672,
+          "pred_rows": 826346,
+          "actual_weight": 88556132.0,
+          "pred_weight": 88097156.0,
+          "actual_mean_hincp": 133038.39133220585,
+          "pred_mean_hincp": 131484.0684269196,
+          "pct_error_hincp": -0.0116832659334026,
+          "actual_share_below": 0.10751781706093487,
+          "pred_share_below": 0.11204358288251666,
+          "share_error": 0.00452576582158179
+        },
+        "retirement_majority": {
+          "actual_rows": 390914,
+          "pred_rows": 387191,
+          "actual_weight": 31407993.0,
+          "pred_weight": 30981016.0,
+          "actual_mean_hincp": 59087.98440888588,
+          "pred_mean_hincp": 57035.43013531197,
+          "pct_error_hincp": -0.034737253167587086,
+          "actual_share_below": 0.42612971163104885,
+          "pred_share_below": 0.4395561139763783,
+          "share_error": 0.013426402345329436
+        },
+        "income_tercile_1": {
+          "actual_rows": 433847,
+          "pred_rows": 434610,
+          "actual_weight": 44245704.0,
+          "pred_weight": 43777445.0,
+          "actual_mean_hincp": 27818.60865466475,
+          "pred_mean_hincp": 27211.359907463528,
+          "pct_error_hincp": -0.021828868393078155,
+          "actual_share_below": 0.6173261928434906,
+          "pred_share_below": 0.6373535732841421,
+          "share_error": 0.020027380440651554
+        },
+        "income_tercile_2": {
+          "actual_rows": 449030,
+          "pred_rows": 447074,
+          "actual_weight": 44245678.0,
+          "pred_weight": 43777451.0,
+          "actual_mean_hincp": 83143.4068496495,
+          "pred_mean_hincp": 81496.8977105711,
+          "pct_error_hincp": -0.019803243593996996,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        },
+        "income_tercile_3": {
+          "actual_rows": 465531,
+          "pred_rows": 461361,
+          "actual_weight": 44245763.0,
+          "pred_weight": 43777467.0,
+          "actual_mean_hincp": 232163.06968669847,
+          "pred_mean_hincp": 228769.5669795038,
+          "pct_error_hincp": -0.014616892823540575,
+          "actual_share_below": 0.0,
+          "pred_share_below": 0.0,
+          "share_error": 0.0
+        }
+      },
+      "year": "2023_to_2024",
+      "model": "M4_source_specific",
+      "factors_used": {
+        "ahe_total_private": 1.0404105354272288,
+        "awe_total_private": 1.0366447252094837,
+        "cpi_u_nsa": 1.0294952520485208,
+        "cola_january_tplus1": 0.032,
+        "bea_proprietors": null,
+        "bea_interest_dividends": null,
+        "simulated_forecast_date": "2025-01-31",
+        "vintage_limitation": "BLS Public API v1 current vintage as of download; ALFRED historical vintages not acquired (FRED site maintenance). CES months through the API include later revisions relative to first print."
+      }
+    }
+  ],
+  "asec_independent_benchmark": {
+    "kind": "independent_benchmark_not_a_match",
+    "do_not_equate_means": true,
+    "acs_occupied_weight": 132737145.0,
+    "asec_weight_sum_after_div100": 137123796.5,
+    "acs_mean_hincp": 114375.08686983486,
+    "asec_mean_htotval": 126664.21667458574,
+    "source_shares": {
+      "WAGP": {
+        "acs2024_occupied_mean": 85275.3166395996,
+        "acs2024_share_of_hincp": 0.7455759726473266,
+        "asec2026_cy2025_mean": 91140.00164923794,
+        "asec2026_share_of_htotval": 0.7195402461879711
+      },
+      "SEMP": {
+        "acs2024_occupied_mean": 5248.815916658851,
+        "acs2024_share_of_hincp": 0.04589125184781098,
+        "asec2026_cy2025_mean": 4366.019504793175,
+        "asec2026_share_of_htotval": 0.034469241743388015
+      },
+      "SSP": {
+        "acs2024_occupied_mean": 7898.101842111036,
+        "acs2024_share_of_hincp": 0.06905438988736691,
+        "asec2026_cy2025_mean": 9802.57146349649,
+        "asec2026_share_of_htotval": 0.07739021896515864
+      },
+      "SSIP": {
+        "acs2024_occupied_mean": 556.9561751339463,
+        "acs2024_share_of_hincp": 0.00486955848844769,
+        "asec2026_cy2025_mean": 437.1852387869089,
+        "asec2026_share_of_htotval": 0.0034515291711003566
+      },
+      "RETP": {
+        "acs2024_occupied_mean": 7897.643947368927,
+        "acs2024_share_of_hincp": 0.06905038643911046,
+        "asec2026_cy2025_mean": 3857.6594161289863,
+        "asec2026_share_of_htotval": 0.03045579499409637
+      },
+      "INTP": {
+        "acs2024_occupied_mean": 5957.901889298696,
+        "acs2024_share_of_hincp": 0.05209090591624307,
+        "asec2026_cy2025_mean": 6822.320229371347,
+        "asec2026_share_of_htotval": 0.05386146465420961
+      },
+      "PAP": {
+        "acs2024_occupied_mean": 89.750191135684,
+        "acs2024_share_of_hincp": 0.0007847005286896495,
+        "asec2026_cy2025_mean": 41.72565855329129,
+        "asec2026_share_of_htotval": 0.00032941946548715556
+      },
+      "OIP": {
+        "acs2024_occupied_mean": 1450.6002420181749,
+        "acs2024_share_of_hincp": 0.012682834013223857,
+        "asec2026_cy2025_mean": 224.79845823368808,
+        "asec2026_share_of_htotval": 0.0017747589977303532
+      }
+    },
+    "limitations": [
+      "ACS 2024 occupied PUMS vs CPS ASEC 2026 calendar-year 2025 money income.",
+      "Different sampling frames, weights, reference periods, and source taxonomies (ASEC splits pension/annuity/dividends/rent; ACS bundles RETP and INTP).",
+      "Not a test of September 2026 nowcast accuracy."
+    ]
+  },
+  "acs_2025_tables": {
+    "status": "NOT_RELEASED",
+    "scheduled": "2026-10-29"
+  },
+  "reconstruction_meta": {
+    "2022": {
+      "reused": true,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/backtest_cache/occupied_sources_2022.pkl"
+    },
+    "2023": {
+      "reused": true,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/backtest_cache/occupied_sources_2023.pkl"
+    },
+    "2024": {
+      "reused": true,
+      "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/phase2/backtest_cache/occupied_sources_2024.pkl"
+    }
+  },
+  "factor_file_sha256": "01eee5531665e0448a616914c396aa94c75b813ba6bfc5d579ac19eca6180d8b",
+  "bls_json_sha256": "bb68500e563ba28ebf75be4bbcf634d2c993a5095729a821ffd4f7de6221a231",
+  "national_R22_sha256": "6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7",
+  "error_attribution": [
+    "M1 error is the ACS year-to-year change in occupied mean income plus composition change between independent samples.",
+    "M3/M4 wage factors are national CES job-earnings indices applied only to ACS households with WAGP>0; they cannot capture occupation mix, hours of household earners, or new/lost jobs.",
+    "M4 cannot grow SEMP/INTP because BEA Table 2.6 machine series were not acquired.",
+    "Quantile and subgroup errors mix within-household income change with ACS sample composition change; the two cannot be separated without a panel.",
+    "BLS API current vintage includes CES revisions; ALFRED first-print vintages were not acquired (FRED maintenance)."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "declared_at": "2026-10-21T21:26:00-04:00",
+  "declared_before_phase3_model_comparisons": true,
+  "universe": "Occupied ACS 1-year PUMS households (TYPEHUGQ==1, NP>0, WGTP>0). Not the R2.4 geography/bedroom/infant frame. Diagnostic cost is the frozen R2.4 three-component monthly mean $2,894.90805340822. This is NOT the published 18.9918% HESI share.",
+  "simulated_forecast_date": {
+    "ACS_T_to_Tplus1": "31 January of year T+2. Calendar-year T+1 CES/BEA monthly observations through December T+1 are treated as available. ACS T+1 PUMS is treated as unavailable. ALFRED vintages at that date are preferred; if only current FRED/BLS vintages exist, that is a documented hindsight-revision limitation, not a silent update.",
+    "forbidden": "Do not use ACS T+1 microdata to fit factors. Do not use series observations dated after December T+1 for the T→T+1 backtest."
+  },
+  "models": {
+    "M1_freeze": "All reconstructed sources held at origin-year amounts (factor=1).",
+    "M2_uniform_cpi": "DIAGNOSTIC CONTROL ONLY. Multiply origin-year hincp_adj by CPI-U annual-average T+1/T. Forbidden for production even if it wins.",
+    "M3_aggregate_wage": "Apply CES total-private AHE annual-average T+1/T only to households with WAGP>0, and only to the WAGP component. Other sources frozen. Zero-wage households get no wage factor.",
+    "M4_source_specific": "WAGP>0: CES AWE annual-average T+1/T (rate×hours, not AHE alone). WAGP<=0: freeze WAGP. SEMP>=0: BEA proprietors income T+1/T. SEMP<0: freeze. SSP/SSIP: January COLA of T+1. INTP>=0: BEA personal interest+dividends T+1/T. INTP<0: freeze. RETP, PAP, OIP, residual: freeze. Employment counts frozen (no extensive-margin wage creation)."
+  },
+  "pass_all_required_for_GO": [
+    {
+      "id": "G1_series_acquired",
+      "rule": "Hashed machine-readable CES AHE, CES AWE or hours, CES private employment, ECI (or documented ECI failure), BEA proprietors, BEA interest+dividends, CPI-U. HTML stubs and HTTP 403 bodies are not series."
+    },
+    {
+      "id": "G2_hincp_mean",
+      "rule": "For BOTH 2022→2023 and 2023→2024, |M4 occupied weighted mean HINCP percent error| <= 0.015"
+    },
+    {
+      "id": "G3_share",
+      "rule": "For BOTH years, |M4 diagnostic share-below error in probability points| <= 0.005"
+    },
+    {
+      "id": "G4_wagp",
+      "rule": "For BOTH years, |M4 WAGP percent error| <= 0.020"
+    },
+    {
+      "id": "G5_beats_freeze",
+      "rule": "For BOTH years, |M4 HINCP percent error| < |M1 HINCP percent error|"
+    },
+    {
+      "id": "G6_no_cpi_production",
+      "rule": "M2 is never the production choice, regardless of score."
+    },
+    {
+      "id": "G7_uncertainty_separated",
+      "rule": "ACS 80-SDR sampling SE on origin-year projected share (factors fixed) is reported separately from share error vs T+1 actual. Do not add them."
+    },
+    {
+      "id": "G8_baselines_frozen",
+      "rule": "core_r24/results/national_R22/common_cohort_results.csv SHA-256 remains 6778c312f052cc9442d2adcee1d1c6c7c47a4459a9f31548f1cc8acacfe8cac7. No September 2026 adequacy share published unless all gates pass."
+    }
+  ],
+  "not_required_for_GO": [
+    "Equality of ACS occupied means and CPS ASEC means (different frames, years, and concepts).",
+    "ACS 2025 1-year tables (scheduled 2026-10-29; not released as of gate declaration).",
+    "Industry-specific CES factors (INDP not in the occupied household source pickle).",
+    "First-print CES vintages if ALFRED retrieval fails; failure must be labeled hindsight-revision risk."
+  ],
+  "loosening_policy": "These thresholds will not be relaxed after seeing Phase 3 comparisons. Failures produce NO-GO."
+}

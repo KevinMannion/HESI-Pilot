@@ -1,13 +1,21 @@
 input_data/
 __pycache__/
+**/__pycache__/
 *.pyc
 .venv/
+venv/
 .pytest_cache/
 
-# Census microdata and derived person caches — never commit
+# Operator scratch copies — keep historical/ copies only if already committed there
+/manifest_before_upgrade.json
+/results_before_upgrade.csv
+
+# Census microdata, HUD/USDA/EIA workbooks, and derived person caches — never commit
 csv_hus*.zip
 csv_pus*.zip
 HESI_Person_Part_*.zip
+*.xlsx
+*.xls
 core_r24/local_reproduction/
 **/acs2024_food_person_aggregates.pkl
 **/acs2024_person_composition.pkl

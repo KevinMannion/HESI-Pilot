@@ -1,0 +1,19 @@
+{
+  "frame": {
+    "raw_rows": 1631969,
+    "occupied_rows": 1348408,
+    "occupied_weight": 132737145.0,
+    "geography_excluded_rows": 64079,
+    "geography_excluded_weight": 6271320.0,
+    "composition_excluded_rows": 113,
+    "composition_excluded_weight": 17463.0,
+    "over4_excluded_rows": 23486,
+    "over4_excluded_weight": 2591711.0,
+    "infant_excluded_rows": 24999,
+    "infant_excluded_weight": 2819925.0,
+    "included_rows": 1235731,
+    "included_weight": 121036726.0
+  },
+  "rows_written": 1235731,
+  "path": "$HESI_OPERATOR_HOME/HESI-R25-CleanRepro/income_nowcast/r24_eligibility_frame.pkl"
+}
