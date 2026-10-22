@@ -1,0 +1,31 @@
+{
+  "reference": "September 2026",
+  "gasoline": {
+    "type": "observed",
+    "period": "four September 2026 weekly EIA observations",
+    "file": "eia_us_regular_sept2026.csv",
+    "mean_gallon_usd": 4.35475
+  },
+  "cpi": {
+    "type": "published September price indices",
+    "file": "september_2026_cpi_transport.csv",
+    "limitation": "not direct dollar budgets"
+  },
+  "used_vehicle": {
+    "type": "market listing quoted range, 2026, not necessarily September",
+    "value_quoted": "Used Honda Civic 1-5 years starting $18,990, iSeeCars",
+    "url": "https://www.iseecars.com/car/honda-civic/reliability",
+    "limitation": "current listing range not observed transaction or nationally available affordable vehicle"
+  },
+  "insurance": {
+    "type": "historical market benchmark only",
+    "naic_2023_national_average_premium": 1438,
+    "url": "https://content.naic.org/article/naic-releases-20222023-auto-insurance-database-report",
+    "limitation": "historical average issued policy, not chosen coverage or 2026 state premiums"
+  },
+  "aaa_2026": {
+    "type": "new vehicle comparator, not adequate used-vehicle input",
+    "annual_cost": 12863
+  },
+  "non_fuel_assumptions": "hypothetical only"
+}

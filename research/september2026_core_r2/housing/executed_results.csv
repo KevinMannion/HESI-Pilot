@@ -1,0 +1,5 @@
+scenario,weighted_households_covered,coverage_pct_canonical,monthly_mean_variable_population,monthly_mean_paired_population,annual_paired
+two_people_per_room,126093321,94.9948,1574.050339,1550.886873,18610.642472
+adult_individual_partner_share_children_pooled,123872733,93.3218,1641.533003,1636.794844,19641.538127
+adult_individual_partner_share_children_by_sex,123297823,92.8887,1661.399304,1661.399304,19936.791649
+two_people_recheck,126093321,94.9948,1574.050339,1550.886873,18610.642472

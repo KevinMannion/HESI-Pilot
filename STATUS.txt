@@ -1,0 +1,56 @@
+HESI STATUS — Core R2.5 integration working tree
+================================================
+Date: 2026-10-21
+Branch: hesi/core-r25-integration (local only; not committed, not pushed)
+Based on GitHub origin/main: 125500b Update README.md
+Local main left unchanged at: d06b9ef Publish verified 2024 Census audit and source manifest
+
+TWO SEPARATE RESEARCH OBJECTS
+-----------------------------
+A. 2024 observed-housing food pilot (repository root)
+   Code: run.py
+   Results: results.csv, audit.json, manifest.json
+   Eligible weighted households: 130,550,444
+   Thrifty share below observed housing + Dec 2024 food: 10.301%
+   Housing definition: ACS reported GRNTP / SMOCP
+
+B. September 2026 three-component joint scenario (core_r24/)
+   Canonical code: core_r24/reproduce_from_raw.py -> rebuild_raw_person_caches.py -> src/run_joint.py
+   Immutable reference results: core_r24/results/national_R22/ and core_r24/results/rebuilt_from_raw/
+   Eligible weighted households: 121,036,726
+   Food $653.522289/mo; housing $1,635.994098/mo; transport $605.391667/mo; combined $2,894.908053/mo
+   Share of 2024 gross income below three September 2026 costs: 18.9918%
+   Housing definition: FY2026 HUD replacement rent (puma_fmr_screened.csv)
+   Transport: constant one-car $7,264.70/year assigned to every included household
+   Do NOT publish 18.9918% as a measured September 2026 hardship rate.
+
+C. September 2026 locked pillar specifications (research/september2026_core_r2/)
+   Food / Housing / Transportation methodology locks and pillar tests
+   Housing-only candidate mean $1,641.53 on 123,872,733 households is NOT the joint housing mean
+   These modules are not the national joint calculator
+
+FOUR-WAY STATUS (must not be promoted by implication)
+-----------------------------------------------------
+Track B — Core R2.4 joint national scenario
+  EXECUTED_BY_AUTHOR:                         YES (author-run 2026-10-21; see core_r24/README.md)
+  CLEAN_ENVIRONMENT_REPRODUCED:               NO  (unit/synthetic/package regression PASS; full ACS national rerun not executed on this branch)
+  EXTERNALLY_INDEPENDENTLY_REPRODUCED:        NO
+  SCIENTIFICALLY_VALIDATED:                   NO
+
+Track A — 2024 observed-housing pilot
+  EXECUTED_BY_AUTHOR:                         YES (results.csv / audit.json on GitHub)
+  CLEAN_ENVIRONMENT_REPRODUCED:               NOT ESTABLISHED ON THIS BRANCH
+  EXTERNALLY_INDEPENDENTLY_REPRODUCED:        NO
+  SCIENTIFICALLY_VALIDATED:                   NO
+
+Track C — pillar specification locks
+  SPECIFICATION_LOCKED:                       YES (see research/september2026_core_r2/LOCK_REGISTER.json)
+  FULL_NATIONAL_SCIENTIFIC_APPROVAL:          NO
+
+WHAT THIS WORKING TREE IS NOT
+-----------------------------
+- Not a six-pillar HESI
+- Not a matched-year 2026 hardship prevalence
+- Not independent third-party replication
+- Not a reconstruction of puma_fmr_screened.csv from HUD xlsx
+- Not a reconstruction of source_2024_2026.csv from USDA workbooks

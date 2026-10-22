@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "verified_test_command": "python3 verify_release.py",
+  "console_output": "{\n  \"food\": true,\n  \"housing\": true,\n  \"transportation\": true,\n  \"release_register\": true\n}\n",
+  "source_packages_reconciled": true,
+  "full_national_scientific_approval": false
+}

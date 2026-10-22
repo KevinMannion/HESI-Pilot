@@ -1,0 +1,5 @@
+date,usd_per_gallon,price_basis,source
+2026-09-07,4.157,EIA weekly U.S. regular retail gasoline including taxes,https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?f=W&n=PET&s=EMM_EPMR_PTE_NUS_DPG
+2026-09-14,4.319,EIA weekly U.S. regular retail gasoline including taxes,https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?f=W&n=PET&s=EMM_EPMR_PTE_NUS_DPG
+2026-09-21,4.478,EIA weekly U.S. regular retail gasoline including taxes,https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?f=W&n=PET&s=EMM_EPMR_PTE_NUS_DPG
+2026-09-28,4.465,EIA weekly U.S. regular retail gasoline including taxes,https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?f=W&n=PET&s=EMM_EPMR_PTE_NUS_DPG

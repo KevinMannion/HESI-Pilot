@@ -1,0 +1,64 @@
+HESI — Version-by-Version Iteration Register
+============================================
+Established: 2026-10-21
+Purpose: Append-only, evidence-linked history of what each release changed, proved, did not prove, and left unresolved.
+
+Mandatory interpretation
+------------------------
+EXECUTED_BY_AUTHOR means the author ran a calculation successfully. It does not establish third-party reproduction.
+CLEAN_ENVIRONMENT_REPRODUCED / INTERNALLY_REPRODUCED means a subsequent execution regenerated published numbers from identified inputs on a clean environment.
+EXTERNALLY_INDEPENDENTLY_REPRODUCED requires an independent operator on a separate environment, with commands, input hashes, outputs, and a report attached. Until then: NOT_CONFIRMED.
+SCIENTIFICALLY_VALIDATED is separate from computational reproducibility. National adequacy and hardship claims remain unvalidated unless documented otherwise.
+A passing SHA-256 gate guarantees bytes match a recorded manifest, not scientific correctness.
+No release may be called complete if its documented acceptance tests cannot be run from the distribution with its documented public inputs.
+
+Do not mix these published numbers:
+- 2024 pilot (observed ACS housing + Dec 2024 USDA food): 10.301% of 130,550,444 weighted households
+- Core R2 housing-only replacement-rent candidate: $1,641.53/mo on 123,872,733 weighted households
+- Core R2.4 joint three-cost scenario: 18.9918% of 121,036,726 weighted households
+
+Core release lineage
+--------------------
+Version | What changed | Demonstrated | Remaining | Status
+Core R2 | Integrated Food, Housing, Transportation reference specifications with lock/integrity files | Separate pillar modules and tests | No common-household income comparison in that ZIP | Specification lock only
+Core R2.1 | Joint same-household calculation design | Joint calculation designed | National run not completed in that package | Designed, not nationally executed
+Core R2.2 | Restored food modules and PUMA/FMR mapping; national joint model executed by author | Author-executed 121,036,726 HH; $653.522289 + $1,635.994098 + $605.391667 = $2,894.908053/mo; 18.9918%; 80 SDR replicates | Raw inputs not in code release; not independently reproduced | EXECUTED_BY_AUTHOR
+Core R2.3 | Bundled tests/hashes; rent-free tenure; no-car sensitivity 14.0322% | Author re-execution matching R2.2 | Person caches not regenerated from raw PUMS by that package | EXECUTED_BY_AUTHOR
+Core R2.4 | Corrected USDA source-table schema; rebuilt person caches from two 2024 ACS person archives; explicit source fingerprints; 80-replicate regression | Author reported 3,422,888 persons processed; headline means, exclusions, and 80 SDR estimates matched R2.2 | External replication not confirmed; HUD PUMA mapping and USDA table not rebuilt from upstream files | EXECUTED_BY_AUTHOR; CLEAN_ENVIRONMENT_REPRODUCED=NO; EXTERNALLY_INDEPENDENTLY_REPRODUCED=NO; SCIENTIFICALLY_VALIDATED=NO
+
+Core R2.4 published scenario scope (immutable regression target)
+---------------------------------------------------------------
+Cost vintage: September 2026. Income vintage: 2024 ACS PUMS.
+Components: Thrifty food, HUD replacement rent, one assumed 12,000-mile vehicle.
+Covered frame: 121,036,726 weighted households of 132,737,145 occupied.
+Share 18.9918%; 90% ACS sampling interval [18.9028%, 19.0808%].
+Sampling interval does not include price, geographic, specification, or selection uncertainty.
+Reference files (do not edit):
+  core_r24/results/national_R22/common_cohort_results.csv
+  core_r24/results/national_R22/replicate_results.csv
+  core_r24/results/national_R22/audit.json
+  core_r24/results/rebuilt_from_raw/common_cohort_results.csv
+  core_r24/results/rebuilt_from_raw/replicate_results.csv
+  core_r24/results/rebuilt_from_raw/audit.json
+
+GitHub 2024 pilot (preserved at repository root)
+-----------------------------------------------
+origin/main 125500b: Update README.md (household audit table)
+origin/main d06b9ef: Publish verified 2024 Census audit and source manifest
+Code: run.py. Results: results.csv. This is observed housing plus December 2024 food, not Core R2.4.
+
+Core R2.5 — this working tree (2026-10-21)
+------------------------------------------
+What changed: imported Core R2.4 into core_r24/; imported September 2026 pillars into research/september2026_core_r2/; restored synthetic fixtures from the R2.4 ZIP; added STATUS.txt, ITERATION_NOTES.txt, ITERATION_REGISTER.txt; copied untracked split-ZIP manifests into historical/2024_pilot_pre_csv_pus/ without deleting the originals; extended .gitignore so Census ZIPs and derived caches cannot be committed; added a two-track warning to README.md without removing 2024 pilot text.
+What did not change: scientific formulas; published R2.4 numerical baselines; published 2024 pilot results; local main branch (left at d06b9ef).
+Demonstrated: local layout and package-hash integrity of the imported R2.4 files (34/34 RELEASE_FILE_HASHES.json matches after fixture restore).
+Not demonstrated: clean-environment national rerun; independent external reproduction; scientific validation; HUD/USDA upstream reconstruction.
+Git: branch hesi/core-r25-integration created from origin/main 125500b. NO COMMIT. NO PUSH. NO PR.
+
+Mandatory per-release evidence (starting with the next committed release)
+------------------------------------------------------------------------
+1. ITERATION_NOTES.txt
+2. ITERATION_REGISTER.txt (this file, append-only)
+3. STATUS.txt
+4. SOURCE / RUN / TEST / REPRODUCTION reports as JSON when a national run is executed
+5. Keep original result CSVs unmodified; fail loudly on changed outputs until explained and approved

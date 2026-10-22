@@ -1,0 +1,15 @@
+{
+  "source_price_excel_files": [
+    "usda-thriftyplan-june2021-sept2026.xlsx",
+    "usda-lowcostplan-sept2007-sept2026.xlsx",
+    "usda-moderatecostplan-sept2007-sept2026.xlsx",
+    "usda-liberalplan-sept2007-sept2026.xlsx"
+  ],
+  "sha256": {
+    "test_current_food.py": "9e0ab921014e0d46c086161d5523edf67e2e422aa52a73f61a855a86f0a2b968",
+    "usda_september_2026.csv": "904ec9db0528d7f48663f023393b56f3bca7b23c39ba22d29f1549a4ed823ed7",
+    "geography_sensitivity_2026.csv": "db3512d125928582235ad8ac9200f1ab4faf7c5dde1872a68ad6b4ba2a14412b",
+    "current_food.py": "4425ade46c2ceb8be1e2f868fd1b2e1768f7c6caecfde1abc7bcb2b51cc01dfc",
+    "national_sdr_2026_reference.csv": "fa8af13b8371c24608d40aaeeb2db8e7089d542919745e04df2171846dcb0ee0"
+  }
+}

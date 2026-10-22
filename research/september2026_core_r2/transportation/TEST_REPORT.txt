@@ -1,0 +1,9 @@
+test_baseline_mileage (test_standard.StandardTests.test_baseline_mileage) ... ok
+test_exec (test_standard.StandardTests.test_exec) ... ok
+test_sensitivity (test_standard.StandardTests.test_sensitivity) ... ok
+test_status (test_standard.StandardTests.test_status) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.032s
+
+OK

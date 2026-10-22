@@ -1,0 +1,69 @@
+{
+  "input_sha256": {
+    "acs_housing_zip": {
+      "sha256": "984985ecc9382e83a97639fafe65f30f0ec4cce55a026ef8849b6730ff3dfa3b",
+      "size_bytes": 879,
+      "basename": "synthetic_housing.zip"
+    },
+    "food_person_cache": {
+      "sha256": "306ca346a97d16128a57ddf3de174202a3b10f136601da556f121bd0c4d6a55e",
+      "size_bytes": 882,
+      "basename": "synthetic_food.pkl"
+    },
+    "composition_person_cache": {
+      "sha256": "f5f6547f9265eee7863ff3e12584ea3e02ffe548802a98ef82c6525b8f0215a6",
+      "size_bytes": 868,
+      "basename": "synthetic_composition.pkl"
+    },
+    "puma_fmr_table": {
+      "sha256": "5c711e0dc6ccde795b283fc9ba6ee2bd3fb8c788af42f2b32e728bda977d1b54",
+      "size_bytes": 179,
+      "basename": "synthetic_geography.csv"
+    }
+  },
+  "frame": {
+    "raw_rows": 7,
+    "occupied_rows": 7,
+    "occupied_weight": 35.0,
+    "geography_excluded_rows": 1,
+    "geography_excluded_weight": 5.0,
+    "composition_excluded_rows": 1,
+    "composition_excluded_weight": 5.0,
+    "over4_excluded_rows": 1,
+    "over4_excluded_weight": 5.0,
+    "infant_excluded_rows": 1,
+    "infant_excluded_weight": 5.0,
+    "included_rows": 3,
+    "included_weight": 15.0
+  },
+  "tenure_groups": {
+    "owner": [
+      5.0,
+      9826.958333333334
+    ],
+    "renter": [
+      10.0,
+      21428.916666666664
+    ],
+    "rent_free": [
+      0.0,
+      0.0
+    ],
+    "other_tenure": [
+      0.0,
+      0.0
+    ]
+  },
+  "status": "RESEARCH_ONLY",
+  "reference": "September 2026 USDA and HUD costs; 2024 ACS composition AND 2024 income; one assumed 12000-mile vehicle",
+  "limitations": [
+    "One vehicle per included household is a sensitivity scenario, not supported mobility allocation",
+    "Income is 2024, not a 2026 nowcast",
+    "PUMA rent is modeled area mean not actual household location",
+    "Infant-containing households excluded",
+    "Households needing >4 bedrooms excluded",
+    "No healthcare, childcare, essentials or taxes",
+    "Replicate intervals capture ACS survey sampling only, not price, geographical, household-mobility, or model uncertainty"
+  ],
+  "execution_status": "EXECUTED_BY_AUTHOR_NOT_INDEPENDENTLY_REPRODUCED"
+}

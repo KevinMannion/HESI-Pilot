@@ -1,0 +1,26 @@
+{
+  "county_model_ready.csv": {
+    "sha256": "f121cf328b3c71d7e84fe2073c50d3efe413b07ae2f335623ee5a4a20491dc8e",
+    "bytes": 644025
+  },
+  "small_area_model_ready.csv": {
+    "sha256": "32d6179dfcb9fe54e6b0cb1aae637e33f74343682a1cefb34b5d20857f802c28",
+    "bytes": 7019355
+  },
+  "housing_reference.py": {
+    "sha256": "369e91cc5f3445b9c282550561605b70b7aa407466472b4b8bd33c1d384a8c67",
+    "bytes": 2463
+  },
+  "test_reference.py": {
+    "sha256": "563b63527130f194770d46f71ecca26c8d71ca428f9cbdea2b973f20d236fae9",
+    "bytes": 1782
+  },
+  "FY26_FMRs_revised.xlsx": {
+    "sha256": "0b130fd046c7bedbee5d206ab55654d390d27da423ff22e307e0698fbb56ad9c",
+    "bytes": 367248
+  },
+  "fy2026_safmrs_revised.xlsx": {
+    "sha256": "35e26f33181adcfd2b5b457f7824fe2880e65be18aec2805766e39b5eaf3e28f",
+    "bytes": 4382259
+  }
+}

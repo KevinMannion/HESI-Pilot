@@ -1,0 +1,15 @@
+{
+  "canonical_occupied_unweighted": 1348408,
+  "canonical_occupied_weighted": 132737145,
+  "screened_geo_unweighted": 1284329,
+  "screened_geography_unweighted_excluded": 64079,
+  "composition_mismatch_after_geo": 7,
+  "paired_unweighted": 1255743,
+  "paired_weighted": 123297823.0,
+  "paired_pct_canonical": 92.8887,
+  "over_four_composition_sex_unweighted": 28579,
+  "sampling_uncertainty_new_composition": "NOT_RUN",
+  "new_price_vintage": "HUD FY2026 revised applicable September 2026",
+  "population_vintage": "ACS PUMS 2024",
+  "methodology_status": "RESEARCH ONLY, bedroom baseline user-defined not independently validated"
+}

@@ -1,0 +1,38 @@
+{
+  "frame": {
+    "raw_rows": 1631969,
+    "occupied_rows": 1348408,
+    "occupied_weight": 132737145.0,
+    "geography_excluded_rows": 64079,
+    "geography_excluded_weight": 6271320.0,
+    "composition_excluded_rows": 113,
+    "composition_excluded_weight": 17463.0,
+    "over4_excluded_rows": 23486,
+    "over4_excluded_weight": 2591711.0,
+    "infant_excluded_rows": 24999,
+    "infant_excluded_weight": 2819925.0,
+    "included_rows": 1235731,
+    "included_weight": 121036726.0
+  },
+  "tenure_groups": {
+    "owner": [
+      79103193.0,
+      227014814750.11987
+    ],
+    "renter": [
+      39910696.0,
+      118087664164.74255
+    ]
+  },
+  "status": "RESEARCH_ONLY",
+  "reference": "September 2026 USDA and HUD costs; 2024 ACS composition AND 2024 income; one assumed 12000-mile vehicle",
+  "limitations": [
+    "One vehicle per included household is a sensitivity scenario, not supported mobility allocation",
+    "Income is 2024, not a 2026 nowcast",
+    "PUMA rent is modeled area mean not actual household location",
+    "Infant-containing households excluded",
+    "Households needing >4 bedrooms excluded",
+    "No healthcare, childcare, essentials or taxes",
+    "Replicate intervals capture ACS survey sampling only, not price, geographical, household-mobility, or model uncertainty"
+  ]
+}

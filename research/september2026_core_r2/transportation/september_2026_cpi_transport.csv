@@ -1,0 +1,10 @@
+category,year_over_year_pct,month_over_month_pct,period,source,classification
+Gasoline (all types),34.2,6.5,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+"Gasoline, unleaded regular(3)",35.2,6.7,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+New vehicles,0.6,0.1,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+Used cars and trucks,-1.5,-0.1,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+Motor vehicle maintenance and repair(1),5.8,0.7,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+Motor vehicle insurance,-5.0,-0.3,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+Motor vehicle fees(1)(2),0.5,-0.3,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+Public transportation,15.6,1.9,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"
+Intracity transportation(1),9.6,2.2,2026-09,news-release-table2-202609.xlsx,"price change only, NOT dollar adequacy cost"

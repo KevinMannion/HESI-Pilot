@@ -3,3 +3,13 @@ __pycache__/
 *.pyc
 .venv/
 .pytest_cache/
+
+# Census microdata and derived person caches — never commit
+csv_hus*.zip
+csv_pus*.zip
+HESI_Person_Part_*.zip
+core_r24/local_reproduction/
+**/acs2024_food_person_aggregates.pkl
+**/acs2024_person_composition.pkl
+**/food_part_*.pkl
+**/composition_part_*.pkl

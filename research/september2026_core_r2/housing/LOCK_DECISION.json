@@ -1,0 +1,18 @@
+{
+  "reference_period": "2026-09",
+  "lock_level": "DEFINED_SCOPE_NORMATIVE_AND_PRICE_SPECIFICATION_LOCKED",
+  "scientific_national_pillar_approval": false,
+  "rent_source": "HUD FY2026 revised FMR effective 2026-05-21",
+  "adequacy_policy": "One bedroom per adult age 18+, minus one per distinct verified adult couple, plus ceil(children_under_18/2)",
+  "priceable_bedrooms": [1, 2, 3, 4],
+  "over_four_bedrooms": "EXCLUDE_AND_REPORT",
+  "population_vintage": "ACS PUMS 2024",
+  "national_baseline_candidate_monthly": 1641.533003,
+  "national_baseline_candidate_weighted_households": 123872733,
+  "comparison_cohort_monthly": 1636.794844,
+  "comparison_cohort_weighted_households": 123297823,
+  "national_sdr_ci": "NOT_CALCULATED_FOR_CURRENT_POLICY",
+  "independent_validation": "PENDING",
+  "geography_resolution": "PARTIAL",
+  "github_committed": false
+}

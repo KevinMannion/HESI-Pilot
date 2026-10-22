@@ -1,0 +1,16 @@
+{
+  "release": "HESI Science v5.2",
+  "reference_month": "2026-09",
+  "price_catalog_rows": 60,
+  "unit_tests_passed": 7,
+  "published_usda_price_schedule": "pass for 60 mainland values, reconciled against supplied September PDFs",
+  "2026_reference_family_thrifty_from_components": 1023.9,
+  "2026_reference_family_thrifty_published": 1024.0,
+  "national_2026_sdr": "reused from previously executed v5.0, conditional on 2024 covered households",
+  "infant_full_coverage": "blocked",
+  "alaska_hawaii_individual_pricing": "blocked",
+  "fresh_2026_microdata": "unavailable",
+  "food_pillar_unrestricted_scientific_freeze": false,
+  "2026_full-year_total": "not calculated; September monthly snapshot only",
+  "housing_science": "not yet validated"
+}

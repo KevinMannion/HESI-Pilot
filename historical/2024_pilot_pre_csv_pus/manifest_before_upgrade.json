@@ -1,0 +1,14 @@
+{
+  "sources": {
+    "HESI_Person_Part_1.zip": "05a4bdcb84fa8af1f3cc3034d9776a0a96e4311907fbb497298ff31bd445e6d8",
+    "HESI_Person_Part_2.zip": "2a891e40a44dec1374b9885926e20bc275c5ee93d6a55a12d0386893d091712c",
+    "csv_hus.zip": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0"
+  },
+  "USDA": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Thrifty_Food_Plan_December_2024.pdf",
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/Cost_Of_Food_Low_Moderate_Liberal_Food_Plans_December_2024.pdf"
+  ],
+  "reference_period": "December 2024 monthly food prices applied to full-year annual household income",
+  "limitation": "Not a complete essentials budget; taxes, healthcare, childcare, transport excluded. No 2024 full-year food average. Age-0 uses age-1 USDA estimate. Adult male low-cost groups use 19-50. Annualizing December 2024 prices is a scenario, not average 2024.",
+  "weight": "ACS WGTP and WGTP1-80, 4/80 variance"
+}

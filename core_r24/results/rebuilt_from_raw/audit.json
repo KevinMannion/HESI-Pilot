@@ -1,0 +1,69 @@
+{
+  "input_sha256": {
+    "acs_housing_zip": {
+      "sha256": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+      "size_bytes": 251500587,
+      "basename": "acs2024_housing.zip"
+    },
+    "food_person_cache": {
+      "sha256": "3166e998c8836cdb924c81818836774463796b1106a824ebc2777c806c3bc0b2",
+      "size_bytes": 50550580,
+      "basename": "acs2024_food_person_aggregates.pkl"
+    },
+    "composition_person_cache": {
+      "sha256": "b7e4a85ee9c9e2885c24ae1f65290ce0d82be897e8db8354e86c5bf2f79c2418",
+      "size_bytes": 33702666,
+      "basename": "acs2024_person_composition.pkl"
+    },
+    "puma_fmr_table": {
+      "sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+      "size_bytes": 219546,
+      "basename": "puma_fmr_screened.csv"
+    }
+  },
+  "frame": {
+    "raw_rows": 1631969,
+    "occupied_rows": 1348408,
+    "occupied_weight": 132737145.0,
+    "geography_excluded_rows": 64079,
+    "geography_excluded_weight": 6271320.0,
+    "composition_excluded_rows": 113,
+    "composition_excluded_weight": 17463.0,
+    "over4_excluded_rows": 23486,
+    "over4_excluded_weight": 2591711.0,
+    "infant_excluded_rows": 24999,
+    "infant_excluded_weight": 2819925.0,
+    "included_rows": 1235731,
+    "included_weight": 121036726.0
+  },
+  "tenure_groups": {
+    "owner": [
+      79103193.0,
+      227014814750.11996
+    ],
+    "renter": [
+      39910696.0,
+      118087664164.74254
+    ],
+    "rent_free": [
+      2022837.0,
+      5287713940.702332
+    ],
+    "other_tenure": [
+      0.0,
+      0.0
+    ]
+  },
+  "status": "RESEARCH_ONLY",
+  "reference": "September 2026 USDA and HUD costs; 2024 ACS composition AND 2024 income; one assumed 12000-mile vehicle",
+  "limitations": [
+    "One vehicle per included household is a sensitivity scenario, not supported mobility allocation",
+    "Income is 2024, not a 2026 nowcast",
+    "PUMA rent is modeled area mean not actual household location",
+    "Infant-containing households excluded",
+    "Households needing >4 bedrooms excluded",
+    "No healthcare, childcare, essentials or taxes",
+    "Replicate intervals capture ACS survey sampling only, not price, geographical, household-mobility, or model uncertainty"
+  ],
+  "execution_status": "EXECUTED_BY_AUTHOR_NOT_INDEPENDENTLY_REPRODUCED"
+}

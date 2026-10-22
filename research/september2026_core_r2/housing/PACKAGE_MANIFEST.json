@@ -1,0 +1,17 @@
+{
+  "county_model_ready.csv": "f121cf328b3c71d7e84fe2073c50d3efe413b07ae2f335623ee5a4a20491dc8e",
+  "adequacy.py": "dfc7268ebbf38f64b4834384fc300f0f64cc029f97eaf764c657b14b36981c11",
+  "README.md": "2cf1731732ef889d7e511fd0d524b915adfec5931fc11ed237c095f8545ce1d3",
+  "small_area_model_ready.csv": "32d6179dfcb9fe54e6b0cb1aae637e33f74343682a1cefb34b5d20857f802c28",
+  "verify.py": "25fcc7fd7104bbb7df90bcfc585ffd81fa984590b9e6f971542f10b1d1ec146e",
+  "SOURCE_MANIFEST.json": "209bfaad02fd1db2cc1564092a08909e3fc3353a75298526af22cdb17a35a900",
+  "LOCK_DECISION.json": "c5782a134c3277a8d13b7c3007bca7b61ac942925900605f99b92215f3695555",
+  "housing_reference.py": "369e91cc5f3445b9c282550561605b70b7aa407466472b4b8bd33c1d384a8c67",
+  "test_adequacy.py": "e26731835bbb19c766a29ce67433e97facae6d2b951df12224af933b088d9916",
+  "test_log.txt": "ea0d01aa5441310fa7f718589592b0737a5a5235bb5d5a058add1eabf4ded7c0",
+  "audit.json": "76df7b90e2192e64462ae65b42dbe6833fd72ebcebad4089c805e0b2f392baea",
+  "part_a.json": "5e82ef7b347a220e5bd47e8621741c93cb7b8ed8588f7ce07e9f51933d386c1b",
+  "executed_results.csv": "10b4a3dcdf5f8012961c8ea4de9e3544db764afd0a2f518d93e6c2d62757d697",
+  "test_reference.py": "563b63527130f194770d46f71ecca26c8d71ca428f9cbdea2b973f20d236fae9",
+  "part_b.json": "9afd976b70960c5a26597d4ed3f130d722d9b3a406457b2481f7259abb5ad6be"
+}

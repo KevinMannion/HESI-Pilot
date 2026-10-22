@@ -1,0 +1,4 @@
+scenario,annual_miles,monthly,annual,fuel_annual,status
+low_mileage,6000,537.35,6448.18,816.52,hypothetical_sensitivity_only
+reference,12000,605.39,7264.7,1633.03,hypothetical_sensitivity_only
+high_mileage,15000,639.41,7672.96,2041.29,hypothetical_sensitivity_only

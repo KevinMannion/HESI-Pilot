@@ -1,0 +1,56 @@
+{
+  "release": "HESI_September2026_Core_R2_3Pillars",
+  "reference_month": "2026-09",
+  "source_packages": {
+    "food": "HESI_Science_v52_September2026_Current_Food.zip",
+    "housing": "HESI_Housing_September2026_Scoped_Methodology_Lock_v1.zip",
+    "transportation": "HESI_Transportation_September2026_12000mi_Lock_v1.zip"
+  },
+  "pillars": {
+    "food": {
+      "scope": "USDA September 2026 mainland age>=1 modeled food budget; 2024 ACS population only as labeled reference",
+      "specification_locked": true,
+      "full_national_scientific_approval": false,
+      "blockers": [
+        "Infant costs",
+        "Alaska/Hawaii individual pricing",
+        "Independent validation"
+      ]
+    },
+    "housing": {
+      "scope": "FY2026 revised HUD gross FMR; adult individual bedrooms except couple sharing; <=2 minors/room; <=4 bedrooms; supported geographies",
+      "specification_locked": true,
+      "full_national_scientific_approval": false,
+      "candidate_monthly": 1641.533003,
+      "candidate_covered_weighted_households": 123872733,
+      "blockers": [
+        "New rule replicate-weight survey intervals",
+        "Complete mutually exclusive geographic and large-home exclusion reconciliation",
+        "Independent empirical/sensitivity validation"
+      ]
+    },
+    "transportation": {
+      "reference_period": "September 2026",
+      "version": "Transportation 1.0",
+      "reference_miles_per_year": 12000,
+      "reference_vehicle": "economical reliable used compact vehicle (illustrative Honda Civic case)",
+      "reference_mpg_scenario": 32,
+      "reference_gas_usd_per_gallon": 4.35475,
+      "methodology_locked": true,
+      "scientifically_approved_national_pillar": false,
+      "scope": "One-vehicle annual economic ownership cost reference only; not a complete national mobility model",
+      "limitations": [
+        "Insurance, depreciation/resale, maintenance, fees, financing are hypothetical scenario assumptions, not validated September 2026 geographic prices",
+        "No verified local household transit access or public transit fare allocation",
+        "No household-specific required vehicle counts or national weighted transport result",
+        "No independent replication or component price benchmarking sufficient for full approval",
+        "12,000 miles is a chosen normative reference, not an observed adequate mileage level"
+      ],
+      "specification_locked": true,
+      "full_national_scientific_approval": false
+    }
+  },
+  "github_committed": false,
+  "gtm_scientific_certification": false,
+  "integration_status": "three controlled reference standards bundled; no unified household-level 3-pillar national run"
+}
