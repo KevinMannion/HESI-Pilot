@@ -5,7 +5,7 @@ import numpy as np,pandas as pd
 P=Path(__file__).resolve().parent
 sys.path.insert(0,str(P/'tools'))
 from pums_archive import person_zip_args, verify_housing_zip
-from protected_paths import assert_output_allowed
+from protected_paths import assert_output_allowed, promote_staging_to_output
 from official_config import load_official_config
 HASHES={
  'housing':'8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0',
@@ -43,7 +43,7 @@ def main():
  if x.check_existing:
   verdict=check_results(x.check_existing);print(json.dumps(verdict,indent=2));return
  if x.output:
-  assert_output_allowed(x.output.resolve(),'--output')
+  assert_output_allowed(x.output,'--output')
  if x.exploratory:
   if not x.output: x.output=P/'local_reproduction'
   run_class='exploratory'
@@ -57,7 +57,7 @@ def main():
   for key,lock in (('geography_puma_fmr_screened','geography'),('usda_prices_source_2024_2026','prices'),('housing_zip','housing')):
    if cfg['required_input_sha256'].get(key) and cfg['required_input_sha256'][key]!=HASHES[lock]:
     raise RuntimeError('official config hash disagrees with engine lock: '+key)
- assert_output_allowed(x.output.resolve(),'--output')
+ assert_output_allowed(x.output,'--output')
  if not x.housing:ap.error('Provide --housing')
  if x.person_official and (x.person_a or x.person_b):ap.error('Use either --person-official or both --person-a and --person-b')
  if not x.person_official and not all([x.person_a,x.person_b]):ap.error('Provide --person-official csv_pus.zip or both split person ZIPs')
@@ -78,7 +78,7 @@ def main():
   value=digest(f)
   if value!=HASHES[key]:raise RuntimeError(f'INPUT HASH MISMATCH {key}: {value} != {HASHES[key]}')
   print('SOURCE VERIFIED:',key,f.name,flush=True)
- output=assert_output_allowed(x.output.resolve(),'--output')
+ output=assert_output_allowed(x.output,'--output')
  staging=Path(tempfile.mkdtemp(prefix='hesi_repro_'))
  try:
   cache=staging/'derived_person_caches'
@@ -96,9 +96,7 @@ def main():
    verdict['config_sha256']=digest(x.config)
    verdict['config_path']=str(Path(x.config).resolve())
    verdict['scientific_publication']=cfg['scientific_publication'] if cfg else None
-  if output.exists():
-   shutil.rmtree(output)
-  shutil.copytree(staging,output)
+  output=promote_staging_to_output(staging,output,'--output')
   (output/'REPRODUCTION_REPORT.json').write_text(json.dumps(verdict,indent=2)+'\n')
   print(json.dumps(verdict,indent=2),flush=True)
  finally:
