@@ -66,17 +66,17 @@ def main():
         if not a.config:
             p.error("Official matched-year run requires --config")
         run_class = "official"
-        sys.path.insert(0, str(ROOT / "core_r24" / "tools"))
-        from official_config import load_official_config
-        cfg = load_official_config(a.config, engine="matched_year_2024", model_vintage=a.model_vintage)
+        cfg = None
     sys.path.insert(0, str(ROOT / "core_r24" / "tools"))
     from protected_paths import assert_output_allowed
 
     out = assert_output_allowed(a.out, "matched-year --out")
     assert_output_allowed(Path(a.cache), "matched-year --cache")
-    frozen_matched = (PIPE / "results/matched2024_provisional").resolve()
-    if out == frozen_matched or frozen_matched in out.parents:
-        raise SystemExit("Refusing to write matched2024_provisional")
+    if not a.exploratory:
+        sys.path.insert(0, str(ROOT / "core_r24" / "tools"))
+        from official_config import load_official_config
+
+        cfg = load_official_config(a.config, engine="matched_year_2024", model_vintage=a.model_vintage)
     validation = validate(a.housing, a.person_official, a.person_a, a.person_b)
     if validation["status"] != "PASS":
         raise SystemExit("Input validation FAIL: " + ",".join(validation["failed"]))

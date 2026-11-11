@@ -21,7 +21,7 @@ class OfficialRunContract(unittest.TestCase):
     def test_matched_national_default_is_not_provisional_dir(self):
         src = (ROOT.parent / "research/historical_matched_baseline/src/run_matched_national.py").read_text()
         self.assertNotIn('default=str(PIPE / "results/matched2024_provisional")', src)
-        self.assertIn("Refusing to write matched2024_provisional", src)
+        self.assertIn("assert_output_allowed", src)
         proc = subprocess.run(
             [sys.executable, str(ROOT.parent / "research/historical_matched_baseline/src/run_matched_national.py"), "--housing", "x"],
             capture_output=True,

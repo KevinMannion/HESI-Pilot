@@ -153,10 +153,13 @@ def main():
     p.add_argument("--person-official")
     p.add_argument("--person-a")
     p.add_argument("--person-b")
-    p.add_argument("--out", default=str(PIPE / "results/matched2024_provisional/INPUT_VALIDATION.json"))
+    p.add_argument("--out", required=True, help="Validation report file path; parent must be a non-frozen scratch directory")
     a = p.parse_args()
-    report = validate(a.housing, a.person_official, a.person_a, a.person_b)
     dest = Path(a.out)
+    from protected_paths import assert_output_allowed  # noqa: E402
+
+    assert_output_allowed(dest.parent, "validate_matched_inputs --out parent")
+    report = validate(a.housing, a.person_official, a.person_a, a.person_b)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(report, indent=2, default=str) + "\n")
     print(json.dumps({"status": report["status"], "failed": report["failed"]}, indent=2))
