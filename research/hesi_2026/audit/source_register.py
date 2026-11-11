@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from audit.hesi_data_root import hesi_data_root, resolve_register_local_path
+from audit.hesi_data_root import hesi_data_root, hesi_scratch_root, resolve_register_local_path
 
 REGISTER_COLUMNS = (
     "source_id",
@@ -265,6 +265,7 @@ def validate_s3_bounded_pins(register_path: Path | None = None) -> dict[str, Any
         "missing_or_unverified": missing,
         "detail": detail,
         "hesi_data_root": str(hesi_data_root()) if hesi_data_root() else None,
+        "hesi_scratch_root": str(hesi_scratch_root()) if hesi_scratch_root() else None,
     }
 
 
