@@ -1,0 +1,22 @@
+{
+  "serialno": "SYNTH0001",
+  "weight": 1000.0,
+  "ten": 4,
+  "adults": 2,
+  "children": 1,
+  "partners": 1,
+  "np": 3,
+  "n_infant": 0,
+  "puma_geoid": "0603701",
+  "geography_complete": true,
+  "composition_valid": true,
+  "state_code": "CA",
+  "age": 35,
+  "employment_income": 52000,
+  "housing_annual_usd": 19200,
+  "food_annual_usd": 7800,
+  "transport_annual_usd": 7264.7,
+  "annual_gross_income_usd": 52000,
+  "annual_disposable_usd": 47000,
+  "income_fixture_approved": false
+}

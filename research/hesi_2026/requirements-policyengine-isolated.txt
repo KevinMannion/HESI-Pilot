@@ -1,0 +1,2 @@
+# Optional isolated environment only (scratch / CI). Not required for core R2.4 reproduction.
+policyengine-us==2.116.17
