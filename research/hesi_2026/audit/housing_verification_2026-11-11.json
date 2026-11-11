@@ -1,0 +1,34 @@
+{
+  "record_type": "housing_verification_acceptance",
+  "status": "ACCEPTED",
+  "verified_at": "2026-11-11",
+  "conclusion": "Synthetic $900/mo 2BR fixture is not used in production national joint calculations.",
+  "production_weighted_mean_housing_month_usd": 1635.9940981865961,
+  "included_household_weight_wgtp": 121036726.0,
+  "recompute_delta_vs_frozen": 2.2737367544323206e-13,
+  "input_sha256": {
+    "acs_housing_zip": "8281008e53de98f0ef81e7a2ee5a8725991dda1ecfd2713ead73246425e515d0",
+    "puma_fmr_screened_csv": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "synthetic_geography_fixture_csv": "5c711e0dc6ccde795b283fc9ba6ee2bd3fb8c788af42f2b32e728bda977d1b54"
+  },
+  "production_paths": {
+    "geography": "core_r24/inputs/puma_fmr_screened.csv",
+    "joint_engine": "core_r24/src/run_joint.py",
+    "frozen_reference": "core_r24/results/national_R22/common_cohort_results.csv"
+  },
+  "synthetic_fixture_usage": [
+    "core_r24/tests/test_run_joint_synthetic.py",
+    "research/hesi_2026/tests/test_empirical_components.py (geography_pin_key=synthetic_geography_fixture)"
+  ],
+  "methodology_summary": {
+    "rent_vintage": "HUD FY2026 revised PUMA FMR (COMPLETE_UNAMBIGUOUS only)",
+    "frame": "ACS 2024 PUMS housing weights (WGTP)",
+    "bedroom_rule": "adults - min(partners,1) + ceil(children/2); bedrooms 1-4; exclude infants and 5+BR"
+  },
+  "limitations": [
+    "Frozen national_R22 artifacts were not modified",
+    "PUMA rent is area benchmark not observed household payment",
+    "Joint cohort excludes infants vs housing-pillar own-eligible denominator",
+    "Owner households priced at replacement rent in joint engine; owner-specific methodology remains separate research"
+  ]
+}

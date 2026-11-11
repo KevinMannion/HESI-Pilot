@@ -1,0 +1,4 @@
+state_code,age_group,weekly_rate_usd,source_vintage_label
+AL,infant,250.00,CCDF_market_rate_research_fixture_2026
+AL,preschool,200.00,CCDF_market_rate_research_fixture_2026
+AL,school_age,175.00,CCDF_market_rate_research_fixture_2026

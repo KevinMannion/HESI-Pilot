@@ -57,6 +57,34 @@ PINNED_SOURCES: dict[str, PinnedSource] = {
         source_vintage="synthetic_fixture_not_production",
         geographic_applicability="test_fixture_single_puma",
     ),
+    "cms2026_marketplace_rates_sample": PinnedSource(
+        key="cms2026_marketplace_rates_sample",
+        rel_path="research/hesi_2026/fixtures/cms2026_marketplace_rates_sample.csv",
+        sha256="84a9f1bd42ec6482ebc9c98a911917d72f738ca8252ed7137116de8205bc2a58",
+        source_vintage="CMS_QHP_rate_extract_2026_sample_not_full_puf",
+        geographic_applicability="sample_rating_areas_only",
+    ),
+    "puma_to_marketplace_rating_area_sample": PinnedSource(
+        key="puma_to_marketplace_rating_area_sample",
+        rel_path="research/hesi_2026/fixtures/puma_to_marketplace_rating_area_sample.csv",
+        sha256="a92e8cd55329d470407fa39b2ffa3880b0d6f8c280dc591399cc19c93fea741f",
+        source_vintage="ACS_PUMA_to_marketplace_rating_area_sample_crosswalk",
+        geographic_applicability="sample_pumas_only",
+    ),
+    "childcare_market_rates_sample": PinnedSource(
+        key="childcare_market_rates_sample",
+        rel_path="research/hesi_2026/fixtures/childcare_market_rates_sample.csv",
+        sha256="904df49471acafe0fdeb55cd5e10bd36ea99f68f461c892fea5d8ca2a1e01308",
+        source_vintage="CCDF_market_rate_research_fixture_2026",
+        geographic_applicability="state_tables_sample_only",
+    ),
+    "ces_other_necessities_baseline_sample": PinnedSource(
+        key="ces_other_necessities_baseline_sample",
+        rel_path="research/hesi_2026/fixtures/ces_other_necessities_baseline_sample.csv",
+        sha256="f37f33c5a6a2e088b8358b9c057f17071e1fa52ea1db4fa3ef17ec37515073cc",
+        source_vintage="CES_residual_bundle_research_fixture_2026",
+        geographic_applicability="national_index_fixture",
+    ),
 }
 
 

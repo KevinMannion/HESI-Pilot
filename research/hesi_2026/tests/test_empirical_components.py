@@ -11,8 +11,11 @@ from components.transportation import TransportationComponent
 from components.base import MissingStatus
 from gating import NATIONAL_HEADLINE_ENABLED, six_component_complete
 from pipeline import run_household_pipeline
+from sources.childcare_empirical import price_childcare_annual
 from sources.food_empirical import price_food_annual
+from sources.healthcare_empirical import price_healthcare_annual, REF_FIXTURE_SLCSP_MONTHLY_AGE40
 from sources.housing_empirical import price_housing_annual
+from sources.other_necessities_empirical import price_other_necessities_annual
 from sources.pinned import verify_all_pins
 from sources.transport_empirical import price_transport_annual
 
@@ -101,10 +104,25 @@ class EmpiricalComponentNumerics(unittest.TestCase):
         self.assertFalse(ok)
         self.assertTrue(any("healthcare" in b for b in blockers))
 
+    def test_healthcare_slcsp_fixture_age40(self):
+        hh = {"puma_geoid": "0100100", "members": [{"age": 40}]}
+        detail = price_healthcare_annual(hh)
+        self.assertEqual(detail["monthly_usd"], REF_FIXTURE_SLCSP_MONTHLY_AGE40)
+
+    def test_childcare_fixture_preschool_child(self):
+        hh = {"state_code": "AL", "members": [{"age": 35}, {"age": 4}]}
+        detail = price_childcare_annual(hh)
+        self.assertEqual(detail["annual_usd"], 200.0 * 52)
+
+    def test_other_necessities_fixture_scales_np(self):
+        hh = {"np": 3}
+        detail = price_other_necessities_annual(hh)
+        self.assertEqual(detail["annual_usd"], 3200.0 + 2 * 1100.0)
+
     def test_component_inventory_present(self):
         inv = Path(__file__).resolve().parents[1] / "sources" / "component_inventory.json"
         data = json.loads(inv.read_text())
-        self.assertEqual(data["healthcare"]["status"], "not_implemented")
+        self.assertEqual(data["healthcare"]["status"], "empirical_pinned_sample")
 
 
 if __name__ == "__main__":
