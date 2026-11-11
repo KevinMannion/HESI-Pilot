@@ -5,22 +5,16 @@ import csv
 from pathlib import Path
 from typing import Any, Mapping
 
+from sources.age_rating import member_age_key
 from sources.cms_rates import load_cms_rate_rows, validate_rate_file
-from sources.healthcare_benchmark import BenchmarkPremiumError, slcsp_monthly, validate_benchmark_constructible
+from sources.healthcare_benchmark import (
+    BenchmarkPremiumError,
+    household_slcsp_monthly,
+    slcsp_monthly,
+    sum_of_individual_slcsp_monthly,
+    validate_benchmark_constructible,
+)
 from sources.pinned import PINNED_SOURCES
-
-# Age 40 in AL_RA01 fixture: second-lowest silver = 475/mo (plans 450, 475, 500)
-REF_FIXTURE_SLCSP_MONTHLY_AGE40 = 475.0
-
-
-def _childcare_age_group(age: int) -> str:
-    if age < 3:
-        return "infant"
-    if age < 6:
-        return "preschool"
-    if age < 13:
-        return "school_age"
-    return "none"
 
 
 def _load_crosswalk(path: Path) -> dict[str, dict[str, str]]:
@@ -44,20 +38,15 @@ def _household_member_ages(household: Mapping[str, Any]) -> list[int]:
             ages.append(int(m["age"]))
         return ages
     if "adults" in household or "children" in household:
-        adults = int(household.get("adults", 0))
-        children = int(household.get("children", 0))
-        if adults + children <= 0:
-            raise ValueError("household requires positive person count")
-        # Composition-only households without ages: fail closed
-        raise ValueError("healthcare empirical requires member ages or members[] with age")
+        raise ValueError("healthcare empirical requires members[] with age (composition-only insufficient)")
     raise ValueError("healthcare empirical requires members with ages")
 
 
 def price_healthcare_annual(
     household: Mapping[str, Any],
     *,
-    rates_pin_key: str = "cms2026_marketplace_rates_sample",
-    crosswalk_pin_key: str = "puma_to_marketplace_rating_area_sample",
+    rates_pin_key: str = "cms2026_rate_puf_bounded_al_ra1",
+    crosswalk_pin_key: str = "puma_to_marketplace_rating_area_bounded_2026",
     business_year: int = 2026,
     benchmark_rule: str = "second_lowest_silver",
 ) -> dict[str, Any]:
@@ -77,45 +66,78 @@ def price_healthcare_annual(
     rows = load_cms_rate_rows(rates_pin.path, business_year=business_year)
 
     ages = _household_member_ages(household)
-    per_person: list[dict[str, Any]] = []
-    monthly_total = 0.0
-    for age in ages:
-        try:
-            monthly = slcsp_monthly(
-                rows,
-                rating_area_id=rating_area_id,
-                age=age,
-                rule=benchmark_rule,  # type: ignore[arg-type]
-            )
-        except BenchmarkPremiumError as e:
-            raise ValueError(f"no SLCSP for age {age} in {rating_area_id}") from e
-        monthly_total += monthly
-        per_person.append({"age": age, "slcsp_monthly_usd": monthly})
+    try:
+        monthly, bench_detail = household_slcsp_monthly(
+            rows,
+            rating_area_id=rating_area_id,
+            member_ages=ages,
+            rule=benchmark_rule,  # type: ignore[arg-type]
+        )
+    except BenchmarkPremiumError as e:
+        raise ValueError(f"household SLCSP not constructible in {rating_area_id}") from e
 
-    annual = round(monthly_total * 12, 2)
+    per_person_reference = [
+        {
+            "age": age,
+            "age_key": member_age_key(age),
+            "single_member_slcsp_monthly_usd": slcsp_monthly(
+                rows, rating_area_id=rating_area_id, age=age, rule=benchmark_rule  # type: ignore[arg-type]
+            ),
+        }
+        for age in ages
+    ]
+
+    annual = round(monthly * 12, 2)
     return {
         "annual_usd": annual,
-        "monthly_usd": round(monthly_total, 2),
+        "monthly_usd": round(monthly, 2),
         "rating_area_id": rating_area_id,
         "business_year": business_year,
         "benchmark_rule": benchmark_rule,
-        "per_person": per_person,
+        "benchmark_construction": bench_detail,
+        "per_person_single_member_slcsp_reference": per_person_reference,
+        "anti_pattern_sum_individual_slcsp_monthly_usd": round(
+            sum_of_individual_slcsp_monthly(
+                rows,
+                rating_area_id=rating_area_id,
+                member_ages=ages,
+                rule=benchmark_rule,  # type: ignore[arg-type]
+            ),
+            2,
+        ),
         "source_vintage": rates_pin.source_vintage,
         "input_sha256_rates": rates_pin.sha256,
         "input_sha256_crosswalk": xwalk_pin.sha256,
         "geographic_applicability": f"marketplace_rating_area_{rating_area_id}",
-        "household_applicability": "unsubsidized_slcsp_sum_all_members",
-        "scientific_status": "research_benchmark_not_esi_adjusted",
+        "household_applicability": "all_members_one_silver_plan_unsubsidized",
+        "scientific_status": "bounded_empirical_demonstration_not_nationally_approved",
+        "coverage_assumptions": {
+            "marketplace_unsubsidized_gross_premium": True,
+            "employer_coverage_offset": False,
+            "medicaid_medicare_triple_lock": False,
+            "pediatric_dental_embedded": "as_in_qhp_medical_premium",
+        },
+        "subsidy_assumptions": {
+            "advance_premium_tax_credit_applied": False,
+            "cost_sharing_reduction_plan_variants_included": False,
+        },
+        "age_rating_assumptions": {
+            "tobacco_surcharge": False,
+            "uses_cms_puf_age_keys_non_tobacco_individual_rate": True,
+        },
         "limitations": [
-            "Employer-sponsored insurance offsets not applied",
-            "Medicaid/Medicare eligibility not modeled",
-            "Uses pinned sample extract not full national CMS file",
+            "Bounded AL Rating Area 1 extract only; not national representativeness",
+            "Household SLCSP uses one silver plan for all members (not sum of per-person plan picks)",
         ],
     }
 
 
-def verify_healthcare_sources(*, business_year: int = 2026) -> dict[str, object]:
-    rates_pin = PINNED_SOURCES["cms2026_marketplace_rates_sample"]
+def verify_healthcare_sources(
+    *,
+    business_year: int = 2026,
+    rates_pin_key: str = "cms2026_rate_puf_bounded_al_ra1",
+) -> dict[str, object]:
+    rates_pin = PINNED_SOURCES[rates_pin_key]
     rates_pin.verify()
     rate_meta = validate_rate_file(rates_pin.path, business_year=business_year)
     bench = validate_benchmark_constructible(rates_pin.path, business_year=business_year)

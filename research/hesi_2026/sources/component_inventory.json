@@ -1,9 +1,10 @@
 {
   "healthcare": {
-    "status": "empirical_pinned_sample",
+    "status": "empirical_bounded_cms_2026",
     "pins": [
-      "cms2026_marketplace_rates_sample",
-      "puma_to_marketplace_rating_area_sample"
+      "cms2026_rate_puf_bounded_al_ra1",
+      "puma_to_marketplace_rating_area_bounded_2026",
+      "cms2026_marketplace_rates_sample"
     ],
     "benchmark_rule_default": "second_lowest_silver",
     "required_inputs": [
@@ -17,8 +18,9 @@
     ]
   },
   "childcare": {
-    "status": "empirical_pinned_sample_policy_gated",
+    "status": "fixture_only_pending_authoritative_ccdf_2026",
     "pin": "childcare_market_rates_sample",
+    "authoritative_source_status": "not_pinned_national_ccdf",
     "required_inputs": [
       "State/CCDF market rate tables or BLS childcare expenditure series with 2026 vintage",
       "Household child ages and working-adult hours from PUMS"
@@ -29,8 +31,9 @@
     ]
   },
   "other_necessities": {
-    "status": "empirical_pinned_sample_policy_gated",
+    "status": "fixture_only_pending_ces_bundle_approval",
     "pin": "ces_other_necessities_baseline_sample",
+    "authoritative_source_status": "not_pinned_bls_ces_2026",
     "required_inputs": [
       "BLS Consumer Expenditure Survey category bundle with 2026 update method",
       "Residual essentials definition excluding double-counted food/housing/transport/health/childcare"

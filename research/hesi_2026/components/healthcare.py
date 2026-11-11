@@ -21,9 +21,9 @@ class HealthcareComponent(EssentialCostComponent):
 
                 detail = price_healthcare_annual(
                     household,
-                    rates_pin_key=str(context.get("healthcare_rates_pin_key", "cms2026_marketplace_rates_sample")),
+                    rates_pin_key=str(context.get("healthcare_rates_pin_key", "cms2026_rate_puf_bounded_al_ra1")),
                     crosswalk_pin_key=str(
-                        context.get("healthcare_crosswalk_pin_key", "puma_to_marketplace_rating_area_sample")
+                        context.get("healthcare_crosswalk_pin_key", "puma_to_marketplace_rating_area_bounded_2026")
                     ),
                     business_year=int(context.get("healthcare_business_year", 2026)),
                     benchmark_rule=str(context.get("healthcare_benchmark_rule", "second_lowest_silver")),

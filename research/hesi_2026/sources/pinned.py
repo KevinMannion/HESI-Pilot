@@ -64,12 +64,26 @@ PINNED_SOURCES: dict[str, PinnedSource] = {
         source_vintage="CMS_QHP_rate_extract_2026_sample_not_full_puf",
         geographic_applicability="sample_rating_areas_only",
     ),
+    "cms2026_rate_puf_bounded_al_ra1": PinnedSource(
+        key="cms2026_rate_puf_bounded_al_ra1",
+        rel_path="research/hesi_2026/fixtures/inputs/cms2026_rate_puf_bounded_al_ra1.csv",
+        sha256="9e028b54ced124b7d9bbdde9de14a129a132b437a41e0947242ae382f4640efe",
+        source_vintage="CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+        geographic_applicability="alabama_rating_area_1_only",
+    ),
     "puma_to_marketplace_rating_area_sample": PinnedSource(
         key="puma_to_marketplace_rating_area_sample",
         rel_path="research/hesi_2026/fixtures/puma_to_marketplace_rating_area_sample.csv",
         sha256="a92e8cd55329d470407fa39b2ffa3880b0d6f8c280dc591399cc19c93fea741f",
         source_vintage="ACS_PUMA_to_marketplace_rating_area_sample_crosswalk",
         geographic_applicability="sample_pumas_only",
+    ),
+    "puma_to_marketplace_rating_area_bounded_2026": PinnedSource(
+        key="puma_to_marketplace_rating_area_bounded_2026",
+        rel_path="research/hesi_2026/fixtures/puma_to_marketplace_rating_area_bounded_2026.csv",
+        sha256="3eff2e8ecede77485e1b4735d444872c2f9681055938faca788366533bf0f6a5",
+        source_vintage="ACS_PUMA_to_CMS_rating_area_bounded_2026",
+        geographic_applicability="three_al_pumas_rating_area_1",
     ),
     "childcare_market_rates_sample": PinnedSource(
         key="childcare_market_rates_sample",

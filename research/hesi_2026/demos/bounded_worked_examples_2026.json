@@ -1,0 +1,544 @@
+{
+  "status": "BOUNDED_EMPIRICAL_DEMONSTRATION",
+  "national_headline_enabled": false,
+  "scientific_approval": false,
+  "pinned_input_sha256": {
+    "usda_prices_source_2024_2026": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+    "puma_fmr_screened_fy2026": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+    "transport_reference_2026_09": "19cc412e1d13662782ee57315f148f0a2187e1fd1613052c3aebd3397a687af6",
+    "cms2026_rate_puf_bounded_al_ra1": "9e028b54ced124b7d9bbdde9de14a129a132b437a41e0947242ae382f4640efe",
+    "puma_to_marketplace_rating_area_bounded_2026": "3eff2e8ecede77485e1b4735d444872c2f9681055938faca788366533bf0f6a5",
+    "childcare_market_rates_sample": "904df49471acafe0fdeb55cd5e10bd36ea99f68f461c892fea5d8ca2a1e01308",
+    "ces_other_necessities_baseline_sample": "f37f33c5a6a2e088b8358b9c057f17071e1fa52ea1db4fa3ef17ec37515073cc"
+  },
+  "methodology_refs": [
+    "research/hesi_2026/audit/healthcare_benchmark_methodology_2026.md",
+    "research/hesi_2026/audit/housing_verification_2026-11-11.json"
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "al_puma_0100100_couple_one_child",
+      "label": "BOUNDED_DEMONSTRATION_NOT_NATIONAL",
+      "household": {
+        "puma_geoid": "0100100",
+        "state_code": "AL",
+        "adults": 2,
+        "children": 1,
+        "partners": 1,
+        "np": 3,
+        "members": [
+          {
+            "age": 35,
+            "sex": "Male"
+          },
+          {
+            "age": 33,
+            "sex": "Female"
+          },
+          {
+            "age": 4,
+            "sex": "Male"
+          }
+        ]
+      },
+      "essential_costs": [
+        {
+          "component": "housing",
+          "source_vintage": "HUD_FY2026_revised_PUMA_occupancy_weighted",
+          "geographic_applicability": "puma_0100100_COMPLETE_UNAMBIGUOUS",
+          "household_applicability": "replacement_rent_normative_not_observed",
+          "annual_usd": 11574.48,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned FMR lookup",
+          "metadata": {
+            "annual_usd": 11574.48,
+            "monthly_usd": 964.5399335213805,
+            "bedrooms": 2,
+            "source_vintage": "HUD_FY2026_revised_PUMA_occupancy_weighted",
+            "input_sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+            "input_path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/puma_fmr_screened.csv",
+            "geographic_applicability": "puma_0100100_COMPLETE_UNAMBIGUOUS",
+            "household_applicability": "replacement_rent_normative_not_observed",
+            "imputation": "none",
+            "calculation_mode": "empirical_pinned"
+          }
+        },
+        {
+          "component": "food",
+          "source_vintage": "USDA_monthly_Mainland_2026-09_Thrifty_via_source_2024_2026_csv",
+          "geographic_applicability": "mainland_us_reference_not_ak_hi_individualized",
+          "household_applicability": "thrifty_plan_thrifty_september_2026",
+          "annual_usd": 9591.12,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned; production approval separate",
+          "metadata": {
+            "annual_usd": 9591.12,
+            "monthly_usd": 799.26,
+            "source_vintage": "USDA_monthly_Mainland_2026-09_Thrifty_via_source_2024_2026_csv",
+            "input_sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+            "input_path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/source_2024_2026.csv",
+            "geographic_applicability": "mainland_us_reference_not_ak_hi_individualized",
+            "household_applicability": "thrifty_plan_thrifty_september_2026",
+            "food_plan": "thrifty",
+            "price_month": "2026-09",
+            "imputation": "none",
+            "calculation_mode": "empirical_pinned"
+          }
+        },
+        {
+          "component": "transportation",
+          "source_vintage": "EIA_Sept2026_gasoline_plus_hypothetical_nonfuel_12000mi_scenario",
+          "geographic_applicability": "national_single_scenario_not_household_drawn",
+          "household_applicability": "one_vehicle_assigned_provisional",
+          "annual_usd": 7264.7,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "hypothetical_sensitivity_only",
+          "metadata": {
+            "annual_usd": 7264.7,
+            "monthly_usd": 605.39,
+            "scenario": "reference",
+            "source_vintage": "EIA_Sept2026_gasoline_plus_hypothetical_nonfuel_12000mi_scenario",
+            "input_sha256": "19cc412e1d13662782ee57315f148f0a2187e1fd1613052c3aebd3397a687af6",
+            "input_path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/transport_reference_2026_09.csv",
+            "geographic_applicability": "national_single_scenario_not_household_drawn",
+            "household_applicability": "one_vehicle_assigned_provisional",
+            "imputation": "none",
+            "calculation_mode": "empirical_pinned",
+            "scientific_status": "hypothetical_sensitivity_only"
+          }
+        },
+        {
+          "component": "healthcare",
+          "source_vintage": "CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+          "geographic_applicability": "marketplace_rating_area_Rating Area 1",
+          "household_applicability": "all_members_one_silver_plan_unsubsidized",
+          "annual_usd": 17161.08,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned CMS SLCSP; ESI/Medicaid not modeled",
+          "metadata": {
+            "annual_usd": 17161.08,
+            "monthly_usd": 1430.09,
+            "rating_area_id": "Rating Area 1",
+            "business_year": 2026,
+            "benchmark_rule": "second_lowest_silver",
+            "benchmark_construction": {
+              "method": "single_plan_household_second_lowest_silver",
+              "member_age_keys": [
+                "35",
+                "33",
+                "0-14"
+              ],
+              "candidate_plan_count": 10,
+              "selected_issuer_id": "69461",
+              "selected_plan_id": "69461AL0110004"
+            },
+            "per_person_single_member_slcsp_reference": [
+              {
+                "age": 35,
+                "age_key": "35",
+                "single_member_slcsp_monthly_usd": 572.04
+              },
+              {
+                "age": 33,
+                "age_key": "33",
+                "single_member_slcsp_monthly_usd": 560.8
+              },
+              {
+                "age": 4,
+                "age_key": "0-14",
+                "single_member_slcsp_monthly_usd": 297.25
+              }
+            ],
+            "anti_pattern_sum_individual_slcsp_monthly_usd": 1430.09,
+            "source_vintage": "CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+            "input_sha256_rates": "9e028b54ced124b7d9bbdde9de14a129a132b437a41e0947242ae382f4640efe",
+            "input_sha256_crosswalk": "3eff2e8ecede77485e1b4735d444872c2f9681055938faca788366533bf0f6a5",
+            "geographic_applicability": "marketplace_rating_area_Rating Area 1",
+            "household_applicability": "all_members_one_silver_plan_unsubsidized",
+            "scientific_status": "bounded_empirical_demonstration_not_nationally_approved",
+            "coverage_assumptions": {
+              "marketplace_unsubsidized_gross_premium": true,
+              "employer_coverage_offset": false,
+              "medicaid_medicare_triple_lock": false,
+              "pediatric_dental_embedded": "as_in_qhp_medical_premium"
+            },
+            "subsidy_assumptions": {
+              "advance_premium_tax_credit_applied": false,
+              "cost_sharing_reduction_plan_variants_included": false
+            },
+            "age_rating_assumptions": {
+              "tobacco_surcharge": false,
+              "uses_cms_puf_age_keys_non_tobacco_individual_rate": true
+            },
+            "limitations": [
+              "Bounded AL Rating Area 1 extract only; not national representativeness",
+              "Household SLCSP uses one silver plan for all members (not sum of per-person plan picks)"
+            ]
+          }
+        },
+        {
+          "component": "childcare",
+          "source_vintage": "CCDF_market_rate_research_fixture_2026",
+          "geographic_applicability": "state_AL",
+          "household_applicability": "essential_hours_full_year_fixture",
+          "annual_usd": 10400.0,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned market rates; essential-hours policy gated",
+          "metadata": {
+            "annual_usd": 10400.0,
+            "monthly_usd": 866.67,
+            "covered_children": 1,
+            "lines": [
+              {
+                "age": 4,
+                "age_group": "preschool",
+                "weekly_usd": 200.0
+              }
+            ],
+            "weeks_per_year": 52,
+            "source_vintage": "CCDF_market_rate_research_fixture_2026",
+            "input_sha256": "904df49471acafe0fdeb55cd5e10bd36ea99f68f461c892fea5d8ca2a1e01308",
+            "geographic_applicability": "state_AL",
+            "household_applicability": "essential_hours_full_year_fixture",
+            "scientific_status": "research_fixture_policy_gated",
+            "limitations": [
+              "Informal care not valued",
+              "Parent work-hours gate not implemented"
+            ]
+          }
+        },
+        {
+          "component": "other_necessities",
+          "source_vintage": "CES_residual_bundle_research_fixture_2026",
+          "geographic_applicability": "national_index_fixture",
+          "household_applicability": "residual_essentials_scaled_by_np",
+          "annual_usd": 5400.0,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned CES residual bundle; category policy gated",
+          "metadata": {
+            "annual_usd": 5400.0,
+            "monthly_usd": 450.0,
+            "person_count": 3,
+            "bundle_id": "national_residual_essentials_2026",
+            "source_vintage": "CES_residual_bundle_research_fixture_2026",
+            "input_sha256": "f37f33c5a6a2e088b8358b9c057f17071e1fa52ea1db4fa3ef17ec37515073cc",
+            "geographic_applicability": "national_index_fixture",
+            "household_applicability": "residual_essentials_scaled_by_np",
+            "scientific_status": "research_fixture_policy_gated",
+            "excludes": "food,housing,transport,healthcare,childcare",
+            "limitations": [
+              "No subnational price index in fixture",
+              "CES category mapping not finalized"
+            ]
+          }
+        }
+      ],
+      "total_arithmetic": {
+        "component_lines": [
+          {
+            "component": "housing",
+            "annual_usd": 11574.48,
+            "source_vintage": "HUD_FY2026_revised_PUMA_occupancy_weighted",
+            "arithmetic": "add 11574.48"
+          },
+          {
+            "component": "food",
+            "annual_usd": 9591.12,
+            "source_vintage": "USDA_monthly_Mainland_2026-09_Thrifty_via_source_2024_2026_csv",
+            "arithmetic": "add 9591.12"
+          },
+          {
+            "component": "transportation",
+            "annual_usd": 7264.7,
+            "source_vintage": "EIA_Sept2026_gasoline_plus_hypothetical_nonfuel_12000mi_scenario",
+            "arithmetic": "add 7264.70"
+          },
+          {
+            "component": "healthcare",
+            "annual_usd": 17161.08,
+            "source_vintage": "CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+            "arithmetic": "add 17161.08"
+          },
+          {
+            "component": "childcare",
+            "annual_usd": 10400.0,
+            "source_vintage": "CCDF_market_rate_research_fixture_2026",
+            "arithmetic": "add 10400.00"
+          },
+          {
+            "component": "other_necessities",
+            "annual_usd": 5400.0,
+            "source_vintage": "CES_residual_bundle_research_fixture_2026",
+            "arithmetic": "add 5400.00"
+          }
+        ],
+        "sum_annual_usd": 61391.38,
+        "formula": "sum of priced component annual_usd (six-vector intended)"
+      },
+      "six_component_complete": false,
+      "six_component_blockers": [
+        "unapproved:food",
+        "unapproved:other_necessities",
+        "unapproved:healthcare",
+        "unapproved:childcare",
+        "unapproved:housing",
+        "unapproved:transportation"
+      ]
+    },
+    {
+      "scenario_id": "al_puma_0100200_single_adult",
+      "label": "BOUNDED_DEMONSTRATION_NOT_NATIONAL",
+      "household": {
+        "puma_geoid": "0100200",
+        "state_code": "AL",
+        "adults": 1,
+        "children": 0,
+        "partners": 0,
+        "np": 1,
+        "members": [
+          {
+            "age": 40,
+            "sex": "Female"
+          }
+        ]
+      },
+      "essential_costs": [
+        {
+          "component": "housing",
+          "source_vintage": "HUD_FY2026_revised_PUMA_occupancy_weighted",
+          "geographic_applicability": "puma_0100200_COMPLETE_UNAMBIGUOUS",
+          "household_applicability": "replacement_rent_normative_not_observed",
+          "annual_usd": 13632.0,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned FMR lookup",
+          "metadata": {
+            "annual_usd": 13632.0,
+            "monthly_usd": 1136.0,
+            "bedrooms": 1,
+            "source_vintage": "HUD_FY2026_revised_PUMA_occupancy_weighted",
+            "input_sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+            "input_path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/puma_fmr_screened.csv",
+            "geographic_applicability": "puma_0100200_COMPLETE_UNAMBIGUOUS",
+            "household_applicability": "replacement_rent_normative_not_observed",
+            "imputation": "none",
+            "calculation_mode": "empirical_pinned"
+          }
+        },
+        {
+          "component": "food",
+          "source_vintage": "USDA_monthly_Mainland_2026-09_Thrifty_via_source_2024_2026_csv",
+          "geographic_applicability": "mainland_us_reference_not_ak_hi_individualized",
+          "household_applicability": "thrifty_plan_thrifty_september_2026",
+          "annual_usd": 3656.16,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned; production approval separate",
+          "metadata": {
+            "annual_usd": 3656.16,
+            "monthly_usd": 304.68,
+            "source_vintage": "USDA_monthly_Mainland_2026-09_Thrifty_via_source_2024_2026_csv",
+            "input_sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+            "input_path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/source_2024_2026.csv",
+            "geographic_applicability": "mainland_us_reference_not_ak_hi_individualized",
+            "household_applicability": "thrifty_plan_thrifty_september_2026",
+            "food_plan": "thrifty",
+            "price_month": "2026-09",
+            "imputation": "none",
+            "calculation_mode": "empirical_pinned"
+          }
+        },
+        {
+          "component": "transportation",
+          "source_vintage": "EIA_Sept2026_gasoline_plus_hypothetical_nonfuel_12000mi_scenario",
+          "geographic_applicability": "national_single_scenario_not_household_drawn",
+          "household_applicability": "one_vehicle_assigned_provisional",
+          "annual_usd": 7264.7,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "hypothetical_sensitivity_only",
+          "metadata": {
+            "annual_usd": 7264.7,
+            "monthly_usd": 605.39,
+            "scenario": "reference",
+            "source_vintage": "EIA_Sept2026_gasoline_plus_hypothetical_nonfuel_12000mi_scenario",
+            "input_sha256": "19cc412e1d13662782ee57315f148f0a2187e1fd1613052c3aebd3397a687af6",
+            "input_path": "/Users/kevinmannion/HESI-Pilot/core_r24/inputs/transport_reference_2026_09.csv",
+            "geographic_applicability": "national_single_scenario_not_household_drawn",
+            "household_applicability": "one_vehicle_assigned_provisional",
+            "imputation": "none",
+            "calculation_mode": "empirical_pinned",
+            "scientific_status": "hypothetical_sensitivity_only"
+          }
+        },
+        {
+          "component": "healthcare",
+          "source_vintage": "CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+          "geographic_applicability": "marketplace_rating_area_Rating Area 1",
+          "household_applicability": "all_members_one_silver_plan_unsubsidized",
+          "annual_usd": 7179.0,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned CMS SLCSP; ESI/Medicaid not modeled",
+          "metadata": {
+            "annual_usd": 7179.0,
+            "monthly_usd": 598.25,
+            "rating_area_id": "Rating Area 1",
+            "business_year": 2026,
+            "benchmark_rule": "second_lowest_silver",
+            "benchmark_construction": {
+              "method": "single_plan_household_second_lowest_silver",
+              "member_age_keys": [
+                "40"
+              ],
+              "candidate_plan_count": 10,
+              "selected_issuer_id": "69461",
+              "selected_plan_id": "69461AL0110004"
+            },
+            "per_person_single_member_slcsp_reference": [
+              {
+                "age": 40,
+                "age_key": "40",
+                "single_member_slcsp_monthly_usd": 598.25
+              }
+            ],
+            "anti_pattern_sum_individual_slcsp_monthly_usd": 598.25,
+            "source_vintage": "CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+            "input_sha256_rates": "9e028b54ced124b7d9bbdde9de14a129a132b437a41e0947242ae382f4640efe",
+            "input_sha256_crosswalk": "3eff2e8ecede77485e1b4735d444872c2f9681055938faca788366533bf0f6a5",
+            "geographic_applicability": "marketplace_rating_area_Rating Area 1",
+            "household_applicability": "all_members_one_silver_plan_unsubsidized",
+            "scientific_status": "bounded_empirical_demonstration_not_nationally_approved",
+            "coverage_assumptions": {
+              "marketplace_unsubsidized_gross_premium": true,
+              "employer_coverage_offset": false,
+              "medicaid_medicare_triple_lock": false,
+              "pediatric_dental_embedded": "as_in_qhp_medical_premium"
+            },
+            "subsidy_assumptions": {
+              "advance_premium_tax_credit_applied": false,
+              "cost_sharing_reduction_plan_variants_included": false
+            },
+            "age_rating_assumptions": {
+              "tobacco_surcharge": false,
+              "uses_cms_puf_age_keys_non_tobacco_individual_rate": true
+            },
+            "limitations": [
+              "Bounded AL Rating Area 1 extract only; not national representativeness",
+              "Household SLCSP uses one silver plan for all members (not sum of per-person plan picks)"
+            ]
+          }
+        },
+        {
+          "component": "childcare",
+          "source_vintage": "CCDF_market_rate_research_fixture_2026",
+          "geographic_applicability": "state_AL",
+          "household_applicability": "essential_hours_full_year_fixture",
+          "annual_usd": 0.0,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned market rates; essential-hours policy gated",
+          "metadata": {
+            "annual_usd": 0.0,
+            "monthly_usd": 0.0,
+            "covered_children": 0,
+            "lines": [],
+            "weeks_per_year": 52,
+            "source_vintage": "CCDF_market_rate_research_fixture_2026",
+            "input_sha256": "904df49471acafe0fdeb55cd5e10bd36ea99f68f461c892fea5d8ca2a1e01308",
+            "geographic_applicability": "state_AL",
+            "household_applicability": "essential_hours_full_year_fixture",
+            "scientific_status": "research_fixture_policy_gated",
+            "limitations": [
+              "Informal care not valued",
+              "Parent work-hours gate not implemented"
+            ]
+          }
+        },
+        {
+          "component": "other_necessities",
+          "source_vintage": "CES_residual_bundle_research_fixture_2026",
+          "geographic_applicability": "national_index_fixture",
+          "household_applicability": "residual_essentials_scaled_by_np",
+          "annual_usd": 3200.0,
+          "missing_status": "priced",
+          "policy_approved": false,
+          "notes": "empirical_pinned CES residual bundle; category policy gated",
+          "metadata": {
+            "annual_usd": 3200.0,
+            "monthly_usd": 266.67,
+            "person_count": 1,
+            "bundle_id": "national_residual_essentials_2026",
+            "source_vintage": "CES_residual_bundle_research_fixture_2026",
+            "input_sha256": "f37f33c5a6a2e088b8358b9c057f17071e1fa52ea1db4fa3ef17ec37515073cc",
+            "geographic_applicability": "national_index_fixture",
+            "household_applicability": "residual_essentials_scaled_by_np",
+            "scientific_status": "research_fixture_policy_gated",
+            "excludes": "food,housing,transport,healthcare,childcare",
+            "limitations": [
+              "No subnational price index in fixture",
+              "CES category mapping not finalized"
+            ]
+          }
+        }
+      ],
+      "total_arithmetic": {
+        "component_lines": [
+          {
+            "component": "housing",
+            "annual_usd": 13632.0,
+            "source_vintage": "HUD_FY2026_revised_PUMA_occupancy_weighted",
+            "arithmetic": "add 13632.00"
+          },
+          {
+            "component": "food",
+            "annual_usd": 3656.16,
+            "source_vintage": "USDA_monthly_Mainland_2026-09_Thrifty_via_source_2024_2026_csv",
+            "arithmetic": "add 3656.16"
+          },
+          {
+            "component": "transportation",
+            "annual_usd": 7264.7,
+            "source_vintage": "EIA_Sept2026_gasoline_plus_hypothetical_nonfuel_12000mi_scenario",
+            "arithmetic": "add 7264.70"
+          },
+          {
+            "component": "healthcare",
+            "annual_usd": 7179.0,
+            "source_vintage": "CMS_2026_rate_puf_AL_Rating_Area_1_bounded_extract",
+            "arithmetic": "add 7179.00"
+          },
+          {
+            "component": "childcare",
+            "annual_usd": 0.0,
+            "source_vintage": "CCDF_market_rate_research_fixture_2026",
+            "arithmetic": "add 0.00"
+          },
+          {
+            "component": "other_necessities",
+            "annual_usd": 3200.0,
+            "source_vintage": "CES_residual_bundle_research_fixture_2026",
+            "arithmetic": "add 3200.00"
+          }
+        ],
+        "sum_annual_usd": 34931.86,
+        "formula": "sum of priced component annual_usd (six-vector intended)"
+      },
+      "six_component_complete": false,
+      "six_component_blockers": [
+        "unapproved:food",
+        "unapproved:other_necessities",
+        "unapproved:healthcare",
+        "unapproved:childcare",
+        "unapproved:housing",
+        "unapproved:transportation"
+      ]
+    }
+  ]
+}

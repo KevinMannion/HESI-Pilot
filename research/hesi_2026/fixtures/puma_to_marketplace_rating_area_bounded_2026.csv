@@ -1,0 +1,4 @@
+puma_geoid,state_code,rating_area_id,status,notes
+0100100,AL,Rating Area 1,COMPLETE_UNAMBIGUOUS,Jefferson County core PUMA bounded validation
+0100200,AL,Rating Area 1,COMPLETE_UNAMBIGUOUS,Adjacent AL PUMA same rating area (bounded)
+0100300,AL,Rating Area 1,COMPLETE_UNAMBIGUOUS,Adjacent AL PUMA same rating area (bounded)

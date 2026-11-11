@@ -7,10 +7,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from components.healthcare import HealthcareComponent
 from sources.cms_rates import validate_rate_file
 from sources.healthcare_benchmark import second_lowest_silver_monthly, slcsp_monthly
-from sources.healthcare_empirical import REF_FIXTURE_SLCSP_MONTHLY_AGE40, price_healthcare_annual, verify_healthcare_sources
+from sources.healthcare_empirical import price_healthcare_annual, verify_healthcare_sources
 from sources.pinned import verify_all_pins
 
-REF_FAMILY_ANNUAL = (475.0 + 335.0) * 12  # adults 40+10 second-lowest silver in fixture
+REF_FIXTURE_SLCSP_MONTHLY_AGE40 = 475.0
+REF_FAMILY_MONTHLY_HOUSEHOLD = 810.0  # household one-plan SLCSP ages 40+10 in sample CSV
 
 
 class HealthcareEmpirical(unittest.TestCase):
@@ -39,13 +40,23 @@ class HealthcareEmpirical(unittest.TestCase):
             "state_code": "AL",
             "members": [{"age": 40}, {"age": 10}],
         }
-        detail = price_healthcare_annual(hh)
-        self.assertEqual(detail["annual_usd"], REF_FAMILY_ANNUAL)
+        detail = price_healthcare_annual(
+            hh,
+            rates_pin_key="cms2026_marketplace_rates_sample",
+            crosswalk_pin_key="puma_to_marketplace_rating_area_sample",
+        )
+        self.assertEqual(detail["monthly_usd"], REF_FAMILY_MONTHLY_HOUSEHOLD)
         self.assertEqual(detail["benchmark_rule"], "second_lowest_silver")
+        self.assertEqual(detail["benchmark_construction"]["method"], "single_plan_household_second_lowest_silver")
 
     def test_healthcare_component_empirical_mode(self):
         hh = {"puma_geoid": "0100100", "members": [{"age": 40}]}
-        ctx = {"calculation_mode": "empirical_pinned", "healthcare_policy_approved": True}
+        ctx = {
+            "calculation_mode": "empirical_pinned",
+            "healthcare_policy_approved": True,
+            "healthcare_rates_pin_key": "cms2026_marketplace_rates_sample",
+            "healthcare_crosswalk_pin_key": "puma_to_marketplace_rating_area_sample",
+        }
         result = HealthcareComponent().price(hh, context=ctx)
         self.assertEqual(result.missing_status.value, "priced")
         self.assertEqual(result.annual_usd, REF_FIXTURE_SLCSP_MONTHLY_AGE40 * 12)
