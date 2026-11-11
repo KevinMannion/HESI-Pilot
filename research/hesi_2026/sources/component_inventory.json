@@ -1,0 +1,41 @@
+{
+  "healthcare": {
+    "status": "not_implemented",
+    "required_inputs": [
+      "2026 Marketplace QHP plan-level rate files by rating area",
+      "ACS age/PUMA to rating-area crosswalk",
+      "approved benchmark metal tier and age curve"
+    ],
+    "owner_decisions": [
+      "Second-lowest silver vs lowest-cost bronze benchmark",
+      "Employer-sponsored insurance offset rules"
+    ]
+  },
+  "childcare": {
+    "status": "missing_unapproved_policy",
+    "required_inputs": [
+      "State/CCDF market rate tables or BLS childcare expenditure series with 2026 vintage",
+      "Household child ages and working-adult hours from PUMS"
+    ],
+    "owner_decisions": [
+      "Essential childcare hours definition",
+      "Informal care valuation"
+    ]
+  },
+  "other_necessities": {
+    "status": "missing_unapproved_policy",
+    "required_inputs": [
+      "BLS Consumer Expenditure Survey category bundle with 2026 update method",
+      "Residual essentials definition excluding double-counted food/housing/transport/health/childcare"
+    ],
+    "owner_decisions": [
+      "Which CES categories enter essential bundle",
+      "Geographic price adjustment"
+    ]
+  },
+  "transportation_note": {
+    "empirical_available": true,
+    "pin": "transport_reference_2026_09",
+    "limitation": "National fixed scenario; nonfuel dollars hypothetical; one car per eligible household not validated"
+  }
+}

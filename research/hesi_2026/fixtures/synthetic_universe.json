@@ -1,0 +1,86 @@
+{
+  "records": [
+    {
+      "weight": 79103193.0,
+      "ten": 1,
+      "adults": 2,
+      "children": 0,
+      "partners": 1,
+      "np": 2,
+      "n_infant": 0,
+      "geography_complete": true,
+      "composition_valid": true,
+      "monthly_joint_cost": 2894.91
+    },
+    {
+      "weight": 39910696.0,
+      "ten": 3,
+      "adults": 1,
+      "children": 2,
+      "partners": 0,
+      "np": 3,
+      "n_infant": 0,
+      "geography_complete": true,
+      "composition_valid": true,
+      "monthly_joint_cost": 2894.91
+    },
+    {
+      "weight": 2022837.0,
+      "ten": 4,
+      "adults": 1,
+      "children": 0,
+      "partners": 0,
+      "np": 1,
+      "n_infant": 0,
+      "geography_complete": true,
+      "composition_valid": true,
+      "monthly_joint_cost": 2894.91
+    },
+    {
+      "weight": 6271320.0,
+      "ten": 3,
+      "adults": 1,
+      "children": 0,
+      "partners": 0,
+      "np": 1,
+      "n_infant": 0,
+      "geography_complete": false,
+      "composition_valid": true
+    },
+    {
+      "weight": 17463.0,
+      "ten": 3,
+      "adults": 1,
+      "children": 0,
+      "partners": 0,
+      "np": 2,
+      "n_infant": 0,
+      "geography_complete": true,
+      "composition_valid": false
+    },
+    {
+      "weight": 2591711.0,
+      "ten": 1,
+      "adults": 6,
+      "children": 0,
+      "partners": 0,
+      "np": 6,
+      "n_infant": 0,
+      "geography_complete": true,
+      "composition_valid": true
+    },
+    {
+      "weight": 2819925.0,
+      "ten": 2,
+      "adults": 1,
+      "children": 1,
+      "partners": 0,
+      "np": 2,
+      "n_infant": 1,
+      "geography_complete": true,
+      "composition_valid": true
+    }
+  ],
+  "occupied_weight": 132737145.0,
+  "included_weight": 121036726.0
+}

@@ -8,6 +8,7 @@ from typing import Any, Mapping
 from audit.schema import AUDIT_SCHEMA_VERSION, audit_v2_skeleton
 from components.base import MissingStatus
 from components.registry import default_six_component_registry
+from gating import NATIONAL_HEADLINE_ENABLED, production_headline_allowed, six_component_complete
 from policies import DEFAULT_UNIVERSE_POLICIES
 from resources.disposable import disposable_from_fixture
 from universe import classify_household, tenure_label
@@ -105,7 +106,14 @@ def run_household_pipeline(
     }
     audit["essential_costs"] = [c.to_dict() for c in costs]
     audit["disposable_resources"] = disposable.to_dict()
+    complete, gate_blockers = six_component_complete([c.to_dict() for c in costs])
     audit["adequacy"] = adequacy
+    audit["release_gates"] = {
+        "national_headline_enabled": NATIONAL_HEADLINE_ENABLED,
+        "production_headline_allowed": production_headline_allowed(),
+        "six_component_complete": complete,
+        "six_component_blockers": gate_blockers,
+    }
     audit["policies"] = {
         "infant_policy": policies.infant_policy.value,
         "bedroom_policy": policies.bedroom_policy.value,
