@@ -1,0 +1,71 @@
+{
+  "scenario_id": "source_backed_al_family_2026",
+  "label": "SYNTHETIC_HOUSEHOLD_NOT_OBSERVED",
+  "scenario_kind": "source_backed_provisional_2026",
+  "description": "AL Jefferson geography: 2020 PUMA 0101403 (Birmingham) for FMR/healthcare; county 01073 for NDCP P4-C01; BLS CE other unresolved; optional PolicyEngine D.",
+  "geography_mapping_ref": "fixtures/prototype_scenarios/al_puma_0101403_jefferson_county_01073_mapping.json",
+  "household": {
+    "serialno": "SYN_SOURCE_BACKED_AL_2026",
+    "weight": 1.0,
+    "ten": 3,
+    "adults": 2,
+    "children": 1,
+    "partners": 1,
+    "np": 3,
+    "geography_complete": true,
+    "composition_valid": true,
+    "puma_geoid": "0101403",
+    "state_code": "AL",
+    "county_fips": "01073",
+    "ndcp_county_name": "Jefferson County",
+    "members": [
+      {"age": 35, "sex": "Male"},
+      {"age": 33, "sex": "Female"},
+      {"age": 4, "sex": "Male"}
+    ],
+    "disposable_source": "named_fixture",
+    "disposable_named_variables": {
+      "employment_income": 72000,
+      "income_tax_before_refundable_credits": 8200,
+      "fica_payroll_tax": 5508,
+      "eitc": 0,
+      "refundable_ctc": 0,
+      "refundable_aotc": 0,
+      "state_income_tax": 2400,
+      "snap_benefit": 0,
+      "tanf_benefit": 0
+    },
+    "income_fixture_approved": false,
+    "policyengine_synthetic": {
+      "primary_employment_income": 48000,
+      "spouse_employment_income": 24000,
+      "primary_adult_age": 35,
+      "spouse_adult_age": 33,
+      "labeled_hypothetical": true
+    }
+  },
+  "cost_context": {
+    "calculation_mode": "empirical_pinned",
+    "childcare_calculation_mode": "ndcp_county",
+    "ndcp_data_source": "register",
+    "cpi_bridge": "none",
+    "study_year": 2022,
+    "geography_pin_key": "puma_fmr_screened_fy2026",
+    "healthcare_rates_pin_key": "cms2026_rate_puf_bounded_al_ra1",
+    "healthcare_crosswalk_pin_key": "puma_to_marketplace_rating_area_al_jefferson_2020puma",
+    "other_necessities_calculation_mode": "bls_ce_register",
+    "food_policy_approved": false,
+    "housing_policy_approved": false,
+    "transport_policy_approved": false,
+    "healthcare_policy_approved": false,
+    "childcare_policy_approved": false,
+    "other_necessities_policy_approved": false
+  },
+  "use_policyengine": false,
+  "warnings": [
+    "Split geography: 2020 PUMA 0101403 for housing/healthcare; county 01073 for NDCP childcare per mapping doc",
+    "NDCP prices are 2022 observed weekly USD; no 2026 CPI bridge applied",
+    "BLS CE register parsed; other_necessities essential vector unresolved",
+    "Named disposable fixture is hypothetical until PolicyEngine household venv run"
+  ]
+}

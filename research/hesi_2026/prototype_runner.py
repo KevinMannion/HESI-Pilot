@@ -213,6 +213,21 @@ def run_reviewer_prototype(
             "empirical_pinned context uses repository pins/samples; "
             "not a claim of full national 2026 empirical HESI."
         )
+    if scenario.get("scenario_kind") == "source_backed_provisional_2026":
+        warnings.append("source_backed_provisional_2026: mixed vintages; not APPROVED HESI methodology")
+    for reg_id in ("P4-C01", "P4-O01", "P4-O02"):
+        if reg_id == "P4-C01" and cost_context.get("ndcp_data_source") == "register":
+            try:
+                from audit.source_register import validate_required_source_pins_or_abort
+
+                verified = validate_required_source_pins_or_abort([reg_id])
+                pins[reg_id] = {
+                    "source_id": reg_id,
+                    "sha256": verified[reg_id],
+                    "data_year_class": "observed_ndcp_2022_not_2026",
+                }
+            except Exception as e:
+                warnings.append(f"{reg_id} verification failed: {e}")
     if any(v == "synthetic_fixture_literal" for v in component_years.values()):
         warnings.append("one_or_more_components_use_synthetic_fixture_literals")
 

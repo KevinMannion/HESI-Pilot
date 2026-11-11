@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
+from audit.source_register import SourceRegisterAbortError
 from components.base import EssentialCostComponent, EssentialCostResult, MissingStatus
 
 
@@ -14,7 +15,7 @@ class ChildcareComponent(EssentialCostComponent):
 
     def price(self, household: Mapping[str, Any], *, context: Mapping[str, Any] | None = None) -> EssentialCostResult:
         context = context or {}
-        mode = _mode(context)
+        mode = str(context.get("childcare_calculation_mode") or _mode(context))
         if mode in ("empirical_pinned", "ndcp_county"):
             try:
                 if mode == "ndcp_county":
@@ -22,10 +23,11 @@ class ChildcareComponent(EssentialCostComponent):
 
                     detail = price_childcare_ndcp_county(
                         household,
-                        county_fips=context.get("county_fips"),
+                        county_fips=context.get("county_fips") or household.get("county_fips"),
                         cpi_bridge=str(context.get("cpi_bridge", "none")),
                         cpi_factor=context.get("cpi_factor"),
                         data_source=str(context.get("ndcp_data_source", "fixture")),
+                        study_year=int(context.get("study_year", context.get("ndcp_study_year", 2022))),
                     )
                 else:
                     from sources.childcare_empirical import price_childcare_annual
@@ -34,6 +36,8 @@ class ChildcareComponent(EssentialCostComponent):
                         household,
                         rates_pin_key=str(context.get("childcare_rates_pin_key", "childcare_market_rates_sample")),
                     )
+            except SourceRegisterAbortError:
+                raise
             except (ValueError, FileNotFoundError) as e:
                 return EssentialCostResult(
                     component=self.name,

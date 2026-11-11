@@ -69,10 +69,18 @@ def run_household_pipeline(
     costs = [c.price(household, context=cost_context) for c in default_six_component_registry()]
     essential_annual, blockers, partial_three = sum_priced_essential(costs)
 
+    pe_audit = None
     if use_policyengine:
-        from resources.policyengine_ty2026 import disposable_from_policyengine
+        if household.get("policyengine_synthetic") or household.get("disposable_source") == "policyengine_household":
+            from resources.policyengine_ty2026 import disposable_from_policyengine_household
 
-        disposable = disposable_from_policyengine(household)
+            disposable, pe_detail = disposable_from_policyengine_household(household)
+            pe_audit = pe_detail
+        else:
+            from resources.policyengine_ty2026 import disposable_from_policyengine
+
+            disposable = disposable_from_policyengine(household)
+            pe_audit = None
     else:
         disposable = disposable_from_fixture(household)
 
@@ -106,6 +114,8 @@ def run_household_pipeline(
     }
     audit["essential_costs"] = [c.to_dict() for c in costs]
     audit["disposable_resources"] = disposable.to_dict()
+    if use_policyengine and pe_audit is not None:
+        audit["disposable_resources"]["policyengine_detail"] = pe_audit
     complete, gate_blockers = six_component_complete([c.to_dict() for c in costs])
     audit["adequacy"] = adequacy
     audit["release_gates"] = {

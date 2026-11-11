@@ -1,0 +1,21 @@
+{
+  "mapping_id": "al_jefferson_ndcp_split_geography_2020_puma",
+  "puma_vintage": "2020",
+  "crosswalk_authority": "spm_calculator puma2020_county2020_overlap.csv (PolicyEngine-US bundle); Census 2020 PUMA Names",
+  "puma_geoid": "0101403",
+  "puma_name_census_2020": "Birmingham City PUMA",
+  "state_code": "AL",
+  "mapping_status": "census_2020_puma_county_overlap_verified",
+  "jefferson_county_fips": "01073",
+  "jefferson_county_name": "Jefferson County, AL",
+  "overlap_evidence": {
+    "puma0101403_to_county01073_population_share": 1.0,
+    "puma0100100_counties": ["01033", "01059", "01077"],
+    "puma0100100_jefferson_incompatible": true
+  },
+  "puma_used_for": ["HUD_FY2026_PUMA_FMR", "CMS_marketplace_rating_area_crosswalk"],
+  "ndcp_county_fips": "01073",
+  "ndcp_county_name": "Jefferson County, AL",
+  "selection_rule": "Use PUMA 0101403 for PUMA-level housing and CMS crosswalk; use county FIPS 01073 for NDCP P4-C01 childcare. Do not use PUMA 0100100 for Jefferson narratives (Census 2020 PUMA 00100 is northwest AL).",
+  "register_childcare_source_id": "P4-C01"
+}

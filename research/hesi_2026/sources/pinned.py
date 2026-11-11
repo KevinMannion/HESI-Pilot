@@ -85,6 +85,13 @@ PINNED_SOURCES: dict[str, PinnedSource] = {
         source_vintage="ACS_PUMA_to_CMS_rating_area_bounded_2026",
         geographic_applicability="three_al_pumas_rating_area_1",
     ),
+    "puma_to_marketplace_rating_area_al_jefferson_2020puma": PinnedSource(
+        key="puma_to_marketplace_rating_area_al_jefferson_2020puma",
+        rel_path="research/hesi_2026/fixtures/puma_to_marketplace_rating_area_al_jefferson_2020puma.csv",
+        sha256="31c3a0484829c9621a497d6a1185150c99f894805f21a4d5921698c6df84f473",
+        source_vintage="Census2020_PUMA0101403_to_CMS_AL_Rating_Area_1",
+        geographic_applicability="jefferson_al_puma_0101403_only",
+    ),
     "childcare_market_rates_sample": PinnedSource(
         key="childcare_market_rates_sample",
         rel_path="research/hesi_2026/fixtures/childcare_market_rates_sample.csv",
