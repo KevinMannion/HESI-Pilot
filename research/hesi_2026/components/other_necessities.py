@@ -16,6 +16,10 @@ class OtherNecessitiesComponent(EssentialCostComponent):
         context = context or {}
         mode = _mode(context)
         per_component_mode = str(context.get("other_necessities_calculation_mode") or mode)
+        if per_component_mode in ("sprint2e_vector", "other_essentials_o"):
+            from components.other_essentials_interface import price_other_essentials_o_unresolved
+
+            return price_other_essentials_o_unresolved(household, context=context)
         if per_component_mode == "bls_ce_register":
             try:
                 from sources.bls_ce_workbook import price_other_ce_register_or_unresolved

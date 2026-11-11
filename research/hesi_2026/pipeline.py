@@ -145,6 +145,15 @@ def run_household_pipeline(
         "Six-component vector incomplete until healthcare/childcare/other approved",
         "Does not validate national 2026 HESI estimate",
     ]
+    if bool((cost_context or {}).get("include_provisional_five_tier")):
+        from classification.provisional_five_tier import classify_from_audit
+
+        th = (cost_context or {}).get("provisional_tier_thresholds")
+        tier_thresholds = th if th is None or hasattr(th, "validate") else None
+        audit["provisional_five_tier"] = classify_from_audit(
+            audit,
+            tier_thresholds=tier_thresholds,
+        ).to_dict()
     return {"audit": audit, "adequacy": adequacy}
 
 
