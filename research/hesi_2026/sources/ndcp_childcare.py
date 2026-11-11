@@ -83,8 +83,32 @@ def _care_type(age: int) -> str:
     return "none"
 
 
-def load_ndcp_weekly_table(path: Path) -> dict[tuple[str, str], float]:
-    out: dict[tuple[str, str], float] = {}
+def load_ndcp_weekly_table(
+    path: Path,
+    *,
+    study_year: int = 2022,
+    care_setting: str = "market_center_median",
+) -> dict[tuple[str, str], float]:
+    if path.suffix.lower() == ".xlsx":
+        from sources.ndcp_workbook import iter_ndcp_workbook_rows, parse_ndcp_price_cell
+        from sources.ndcp_workbook import CARE_SETTING_COLUMNS, normalize_county_fips
+
+        if care_setting not in CARE_SETTING_COLUMNS:
+            raise ValueError(f"unknown ndcp care_setting {care_setting!r}")
+        columns = CARE_SETTING_COLUMNS[care_setting]
+        year_s = str(int(study_year))
+        out: dict[tuple[str, str], float] = {}
+        for _row_num, row in iter_ndcp_workbook_rows(path):
+            if str(row.get("STUDYYEAR", "")).strip() != year_s:
+                continue
+            fips = normalize_county_fips(row.get("COUNTY_FIPS_CODE"))
+            for care_type, (price_col, _flag_col) in columns.items():
+                price = parse_ndcp_price_cell(row.get(price_col))
+                if price is None:
+                    continue
+                out[(fips, care_type)] = price
+        return out
+    out = {}
     with open(path, newline="") as f:
         for row in csv.DictReader(f):
             fips = row["county_fips"].strip()
@@ -101,6 +125,8 @@ def price_childcare_ndcp_county(
     cpi_bridge: str = "none",
     cpi_factor: float | None = None,
     data_source: str = "fixture",
+    study_year: int = 2022,
+    care_setting: str = "market_center_median",
 ) -> dict[str, Any]:
     county = (county_fips or household.get("county_fips") or "").strip()
     if not county:
@@ -118,7 +144,27 @@ def price_childcare_ndcp_county(
     if not path_s:
         raise FileNotFoundError("NDCP source missing: register bytes absent and fixture missing")
     path = Path(path_s)
-    rates = load_ndcp_weekly_table(path)
+    if data_source == "register" and path.suffix.lower() == ".xlsx":
+        from sources.ndcp_workbook import lookup_ndcp_weekly_prices, normalize_county_fips
+
+        workbook_lookup = lookup_ndcp_weekly_prices(
+            path,
+            normalize_county_fips(county),
+            study_year=study_year,
+            care_setting=care_setting,
+        )
+        rates = {
+            (workbook_lookup["county_fips"], care): wk
+            for care, wk in workbook_lookup["weekly_usd_by_care_type"].items()
+        }
+        src["ndcp_workbook_row"] = workbook_lookup.get("workbook_row")
+        src["ndcp_observed_records"] = workbook_lookup.get("records")
+        src["ingest_mode"] = "register_xlsx_bounded_lookup"
+    else:
+        rates = load_ndcp_weekly_table(
+            path, study_year=study_year, care_setting=care_setting
+        )
+        src["ingest_mode"] = "fixture_csv" if data_source == "fixture" else "register_csv"
     bridge_opts = load_bridge_options()
     bridge_detail = apply_cpi_bridge(
         bridge_key=cpi_bridge,
@@ -152,7 +198,9 @@ def price_childcare_ndcp_county(
         "weeks_per_year": weeks_per_year,
         "ndcp_source": src,
         "cpi_bridge": bridge_detail,
-        "source_vintage": "NDCP_2022_county_weekly_unapproved",
+        "source_vintage": f"NDCP_{int(study_year)}_county_weekly_observed_unapproved",
+        "ndcp_study_year_observed": int(study_year),
+        "ndcp_care_setting": care_setting,
         "geographic_applicability": f"county_{county}",
         "household_applicability": "center_based_mc_star_weekly_fixture_or_register",
         "scientific_status": "ndcp_ingest_unapproved_policy_gated",

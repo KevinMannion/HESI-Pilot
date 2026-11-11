@@ -1,0 +1,63 @@
+{
+  "source_id": "P4-C01",
+  "register_title": "DOL NDCP 2008-2022 county childcare prices (NDCP2022.xlsx)",
+  "workbook_sheet": "County_LevelNDCP_v8_update2008_",
+  "sha256": "6722a36474118c1ef3ec0313e610a476c57a880a35f380cb8599841a8d4cce62",
+  "care_setting": "market_center_median",
+  "study_year": 2022,
+  "unit": "USD_per_week",
+  "samples": [
+    {
+      "county_fips": "36119",
+      "county_name": "Westchester County",
+      "state_abbreviation": "NY",
+      "care_type": "infant",
+      "price_column": "MCINFANT",
+      "weekly_usd_observed": 325.0,
+      "flag_column": "MCInfant_flag",
+      "flag_value": "2"
+    },
+    {
+      "county_fips": "36119",
+      "county_name": "Westchester County",
+      "state_abbreviation": "NY",
+      "care_type": "toddler",
+      "price_column": "MCTODDLER",
+      "weekly_usd_observed": 300.0,
+      "flag_column": "MCToddler_flag",
+      "flag_value": "1"
+    },
+    {
+      "county_fips": "36119",
+      "county_name": "Westchester County",
+      "state_abbreviation": "NY",
+      "care_type": "preschool",
+      "price_column": "MCPRESCHOOL",
+      "weekly_usd_observed": 293.0,
+      "flag_column": "MCPreschool_flag",
+      "flag_value": "1"
+    },
+    {
+      "county_fips": "36119",
+      "county_name": "Westchester County",
+      "state_abbreviation": "NY",
+      "care_type": "school_age",
+      "price_column": "MCSA",
+      "weekly_usd_observed": 250.0,
+      "flag_column": null,
+      "flag_value": null
+    },
+    {
+      "county_fips": "01001",
+      "county_name": "Autauga County",
+      "state_abbreviation": "AL",
+      "care_type": "infant",
+      "price_column": "MCINFANT",
+      "weekly_usd_observed": 145.8,
+      "flag_column": "MCInfant_flag",
+      "flag_value": "3",
+      "notes": "Illustrates non-NY county; values read from STUDYYEAR=2022 row"
+    }
+  ],
+  "cpi_note": "Observed weekly_usd_observed values are NDCP study-year dollars only; CPI-bridged estimates are computed separately in ndcp_childcare.price_childcare_ndcp_county."
+}
