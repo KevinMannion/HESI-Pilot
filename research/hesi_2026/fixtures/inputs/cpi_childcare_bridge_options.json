@@ -1,0 +1,14 @@
+{
+  "description": "Configurable 2022->2026 CPI bridge for NDCP county prices. NOT policy-approved; factors must be owner-supplied.",
+  "policy_approved": false,
+  "scientific_status": "proposed_cpi_bridge_unapproved",
+  "method_options": {
+    "none": {"factor": 1.0, "notes": "Use NDCP vintage weekly prices as-is"},
+    "owner_supplied_factor": {
+      "factor": null,
+      "notes": "Set factor explicitly in context; do not auto-compute from missing CPI bases"
+    }
+  },
+  "register_gaps": ["G-05"],
+  "proposed_reference": "P4-C01 adjustment_2026: CPI SEEB03 bridge 2022->2026 (not implemented without pins)"
+}

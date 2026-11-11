@@ -15,12 +15,22 @@ class HousingComponent(EssentialCostComponent):
     def price(self, household: Mapping[str, Any], *, context: Mapping[str, Any] | None = None) -> EssentialCostResult:
         context = context or {}
         mode = _mode(context)
-        if mode == "empirical_pinned":
+        if mode in ("empirical_pinned", "fmr_q4_schedule_unapproved"):
             try:
-                from sources.housing_empirical import price_housing_annual
+                if mode == "fmr_q4_schedule_unapproved":
+                    from sources.housing_fmr_q4_schedule import price_housing_with_schedule_option
 
-                pin_key = str(context.get("geography_pin_key", "puma_fmr_screened_fy2026"))
-                detail = price_housing_annual(household, geography_pin_key=pin_key)
+                    detail = price_housing_with_schedule_option(
+                        household,
+                        area_label=str(context.get("fmr_area_label", "general")),
+                        calendar_month=int(context.get("calendar_month", 10)),
+                        use_schedule=bool(context.get("use_er1_schedule", True)),
+                    )
+                else:
+                    from sources.housing_empirical import price_housing_annual
+
+                    pin_key = str(context.get("geography_pin_key", "puma_fmr_screened_fy2026"))
+                    detail = price_housing_annual(household, geography_pin_key=pin_key)
             except (ValueError, FileNotFoundError) as e:
                 return EssentialCostResult(
                     component=self.name,

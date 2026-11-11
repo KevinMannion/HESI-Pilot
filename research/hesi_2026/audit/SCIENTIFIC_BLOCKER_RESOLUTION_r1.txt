@@ -1,0 +1,343 @@
+HESI 2026 (Household Economic Security Index) - SCIENTIFIC BLOCKER RESOLUTION r1 (t96u)
+r1 CHANGE LOG (2026-11-11 ~02:07 ET; answers Audit Lead review 77dd09c8...73d7; r0 0b352090
+  unchanged): B-3 ER-1 is no longer "record only" - it is carried by shortlist S-4, which
+  SUPERSEDES v1.2 C3 Q4 / P-1 / AT-5 fixtures and the C3 clause of OA-28 (no v1.3). B-4 P1:
+  N defined, S_p-undefined rule, VEH = 0 -> no car charge (CHANGE vs amendment B1, declared),
+  under-16 rule, fallback series named as register gaps G-01..G-10, cutoffs labelled VALUE
+  choices. B-5 P2: PE variables named (static read of the installed package); PTC exclusion and a
+  Marketplace test (HYPOTHESIS, untested). B-6: "11" -> "10" FY27-hold areas. Register note on
+  P1-T39. Register r1 = SOURCE_PIN_REGISTER_r1.csv (C rows unchanged + gap/static rows).
+RECOMMENDATIONS - NOT APPROVED. AI review != independent human peer review or validation.
+Prepared 2026-11-11 ET by Grok Bot (executor) for Kevin Mannion. Nothing here is approved, merged
+or published, and nothing authorizes a national run, holdout access or publication.
+Register ids ([P1-T13], [X-01], [G-01] ...) refer to SOURCE_PIN_REGISTER_r1.csv (same folder).
+
+== 0. INPUTS (every hash re-computed 2026-11-11 ~02:00 ET; all MATCH) ===========================
+  Dossier v1.2           f2e4a4b0029f369b3470c1ca9f4010ad24478bfd0b0c32b28dfaa0c4ea01080e
+  Bounded amendments     51183629806a1767ceb8479cce6eba8ad8f7d21566731ff830a28e58573a9ac1
+  [DS] blocker pins      cb133ee4934ce499910cc9a83ea9ec1a0c3ca7e54e093c4412cf281aa84ee722
+  [DS] register draft    7b700d46941f6c84466d36aa47aaa0bb121571834caacaff1d532c88ea19b402
+  [DS] bundle SHA256SUMS a4f434142b1a7b59622f35f274b44cda7ed05d2780e0a9d373018623d53655f2
+                         (sha256sum -c: 223/223 OK)
+  [DS] earlier pins      7dcab64f...a609 (verification; its bundle 39/39 OK), ed7694c2...6613
+  [RP] PE assessment     61edb8412a522330976444db915abe79b3642863a8dc256285b07651f477701e
+  [RP] coverage matrix   9f5c2150dda06d314a5e32b4cc48a57678d941dd817b7804b79ea335a987a957
+  [RP] PE wheel 2.116.17 19b46205c9c3b727862d38725f1736ab6b7947ff323062c89bf3b18adff016a6
+                         (Reproducer pe_ty2026 SHA256SUMS: all OK)
+  Register: all 114 draft rows that carry bytes re-hashed against local_path: 114/114 MATCH.
+    3 draft rows have no bytes (P3-H19, P1-T43, P1-T44: UNVERIFIED, kept UNVERIFIED). A 4th
+    UNVERIFIED row, P1-T39 (ACS API), has bytes (a "Missing Key" error body) and is not used.
+  Code: dev/hesi-2026-framework @ 9c772a42b779 (read-only; bounded review, not executed).
+  Boundary kept: no 2025 ACS PUMS or 2025 income outcomes, no ASEC 2026 bytes opened, no holdout,
+    no runs, no code executed, no git writes, no frozen or dossier edits.
+
+== P1. TRANSPORT (v1.2 3.3; amendments B1) ======================================================
+EVIDENCE
+  - Branch prices one vehicle for every household and ignores the household
+    (sources/transport_empirical.py L15); reference annual 7264.7
+    (core_r24/inputs/transport_reference_2026_09.csv L3), status "hypothetical_sensitivity_only".
+  - ACS 2024 PUMS fields exist [X-26]: AGEP, DEYE (vision), DOUT (independent living), ESR,
+    JWTRNS (01 car ... 02-06 bus/subway/rail/light rail/ferry, 07 taxi/ride-hail, 11 WFH), VEH.
+  - Pinned cost inputs: AAA YDC 2026 [P1-T01/T02] (new car, 15k mi: fuel 17.32c/mi, maintenance
+    11.73c/mi, insurance $2,098, license/registration/taxes $802, depreciation $4,422, finance
+    $1,184); IRS Notice 2026-10 [P1-T10] business depreciation component 35c/mi for 2026
+    (notice text L85-88); FHWA VM-1 2024 LDV 10,787 mi/vehicle [P1-T13]; NAIC AIDB 2023 state
+    averages [P1-T09]; EIA weekly through 2026-11-09, ~9 states [P1-T18]; Fed G.19 new-car APR
+    only [P1-T08]; FHWA MV-103 registration fees as of 2008 [P1-T16]; agency fare pages
+    [P1-T26..T33]; ADA paratransit fare <= 2x fixed-route (49 CFR 37.131(c)) [P1-T34];
+    NTD 2024 fare revenue + agency files [P1-T21/T22]; EPA SLD v3 (2021) [P1-T35].
+RECOMMENDED DECISION (full vector)
+  T_h = V_h x PVC_a + A_h, with the INVARIANT V_h = min(2, N_h, DRV_h) for every record, where
+    N_h = the access-class vehicle NEED below (not household size); and V_h = 0 if VEH_h = 0.
+  VEH RULE (r1, declared CHANGE vs amendment B1, which ignored VEH): a household with observed
+    VEH = 0 carries NO car charge and receives A_h instead; VEH >= 1 does not raise V above the
+    normative V. Sensitivity E-5f: VEH ignored (pure normative). Objection: forced carlessness
+    then lowers C, understating need for the poorest carless households.
+  DRV_h (driver proxy, ASSUMPTION; ACS has no licence field) = persons with AGEP >= 16 AND
+    DEYE = 2 AND DOUT != 1. Sensitivities: E-5b1 AGEP >= 16 only; E-5b2 AGEP >= 18 only.
+  ACCESS CLASS a by PUMA from the 2024 frame: S_p = weighted workers with JWTRNS in 02-06 /
+    workers with JWTRNS not in {bb, 11}. HIGH S_p >= 0.20; MEDIUM 0.05 <= S_p < 0.20; LOW < 0.05.
+    The cutoffs are VALUE choices (not sourced, not estimated), set by Kevin pre-data and hashed
+    before any R. Sensitivities (E-5): HIGH at 0.15 / 0.30; LOW at 0.03 / 0.10.
+    S_p UNDEFINED RULE: if a PUMA has < 30 unweighted workers with a valid non-WFH JWTRNS
+    (incl. 0), use the state-wide S over all that state's PUMAs and flag; sens: class LOW.
+    The 30 is a VALUE choice.
+    No S_p distribution was computed (that is a national computation); counts per class unknown.
+  NEED N_h: HIGH 0; MEDIUM 1; LOW 1, or 2 if DRV_h >= 2 and workers (ESR in 1,2,4,5) >= 2.
+  PER-VEHICLE COST PVC_a (2026 $, CALCULATION rule; whole components only from pinned sources):
+    miles M = 10,787 (FHWA VM-1 2024) [sens 15,000 = AAA basis]
+    fuel = M x 17.32c x (EIA CY2026 mean price, area / US); area = state where EIA publishes,
+      else PADD region [G-01: PADD series not separately pinned - GAP]
+    maintenance = M x 11.73c (AAA, national)
+    insurance = NAIC 2023 state average expenditure x CPI motor-vehicle-insurance (CY2026/CY2023)
+      [CY2023 CPI not in P1-T06 - GAP G-04]
+    licence/registration/taxes = AAA 2026 $802 national (ASSUMPTION; MV-103 2008 is 18 yrs stale)
+    depreciation = IRS 2026 35c/mi x M (= $3,775.45 at 10,787 mi, CALCULATION) [sens: AAA
+      new-car $4,422 upper; 0 = vehicle already owned, lower]
+    finance = 0 in primary (capital cost carried by depreciation) [sens: AAA $1,184]
+  ALLOWANCE A_h: if V_h = 0, each person AGEP >= 16 gets 12 x monthly mobility allowance.
+    Members under 16 get NO allowance (declared: school transport assumed provided; youth fares
+    not modelled; objection: understates costs for teens in transit areas; sens E-5e: pass for
+    ages 12-15 in HIGH/MEDIUM).
+    HIGH/MEDIUM: agency pass where pinned - CTA 30-day $75; SEPTA monthly $116; MBTA monthly $90;
+      MTA 7-day cap $35 -> $151.67/mo; LA Metro 7-day cap $18 -> $78.00/mo (x52/12, CALCULATION);
+      WMATA UNVERIFIED; elsewhere NTD 2024 agency fare revenue [P1-T21] / unlinked trips
+      [G-03 not pinned - GAP] x 44 trips/month (ASSUMPTION: 2 trips x 22 workdays).
+      PUMA -> agency map [G-02 no source - GAP]. Until G-02/G-03 are pinned the allowance is
+      not deterministic outside the 5 pinned agencies, and that blocks lock.
+    LOW access with DRV_h = 0: no official ride-hail source. Interim BOUNDS (E-5d): lower =
+      16 one-way trips/month x 2 x local fixed-route base fare (ADA cap); upper = one-vehicle PVC.
+    If V_h >= 1: A_h = 0 (E-5c adds a pass per worker beyond V_h).
+  RETIRE 7,264.70 as primary: its row is a single national 12,000-mile scenario labelled
+    hypothetical; it cannot satisfy the invariant. AT-7 must FAIL on any value numerically equal
+    to 7264.7 (the CSV stores "7264.7", not "7264.70").
+  GAPS WITHOUT OFFICIAL SOURCES, fallback, and lock status:
+    used-car depreciation [P1-T43 UNVERIFIED] -> IRS 35c/mi rule (official, but business/new-
+      basis) -> does NOT block lock if Kevin accepts the declared ASSUMPTION; else BLOCKS.
+    used-car loan rates [P1-T08 new-car only] -> finance excluded in primary -> same.
+    state registration fees [P1-T16 2008] -> AAA national $802 -> same.
+    ride-hail [P1-T44 UNVERIFIED] -> bounds only -> BLOCKS LOCK until a rule is chosen.
+    EIA state fuel coverage (~9 states) [P1-T18] -> PADD fallback -> does not block if approved.
+    CPI 2023 insurance base and CPI 2008 base are not in the pinned CPI JSON (2024-01..2026-10)
+      -> implementation pin, not a science blocker.
+STRONGEST OBJECTION
+  DEYE/DOUT are self-reports, not licence status; PUMA commute shares hide within-PUMA variation
+  and are endogenous to car ownership; IRS depreciation is a business, newer-vehicle basis and
+  likely overstates used-car depreciation; the ride-hail bounds are wide.
+RESIDUAL UNCERTAINTY
+  Class shares and zero-driver counts unknown until an approved run; WMATA and APTA unpinned;
+  AllTransit licence UNVERIFIED (not used in the primary).
+
+== P2. DISPOSABLE RESOURCES ENGINE: POLICYENGINE-US 2.116.17 (v1.2 4.1-4.3) ======================
+EVIDENCE ([RP]; synthetic households only; not validation)
+  Coverage matrix (52 rows; YAML effective dates; "implemented" != "correct"):
+    federal income tax, FICA/SE (SS cap $184,500), EITC, CTC/ACTC ($2,200/$1,700), AOTC:
+      IMPLEMENTED-2026-PARAMS.
+    state income tax: 2026-PARAMS 34; STALE 4 (AL, DE, KS, PA); STALE;UPRATED = projected 4 (CA,
+      IL, NM, VT); no tax 9.
+    local income tax: MISSING 6 (AL, IA, KS, MI, OH, WV); PARTIAL 6 (CO, IN, KY, MD, OR, PA);
+      STALE 2 (DE Wilmington, MO KC/STL); STALE;UPRATED 1 (NY: NYC + Yonkers).
+    state refundable credits: 11 current / 25 stale / 3 projected (CA, NM, WA).
+    SNAP: federal FY26 + FY27 present; all 51 state SUAs FY26 only (FY27-STALE).
+    tax-unit construction: MISSING.
+  Tests: 42/46 VERIFIED-CORRECT (federal, FICA, EITC, CTC, NY State, PA, no-tax states, SNAP
+    FY26/FY27); 2 DISCREPANCY CA (+$22.02 at $50k, +$47.92 at $100k; PE projects 2026 CA values
+    with CPI uprating; FTB published schedule [X-07]); NOT-TESTED NYC (only withholding tables
+    pinned [X-09]) and WA capital gains (2026 deduction projected).
+  Behaviours (VERIFIED probes): R1 default joins unrelated adults into one JOINT unit (EITC
+    $1,416 in the probe); R2 endogenous SSI/TANF/SNAP with take-up default True; R3 ABAWD
+    limit applied statically (SNAP = 0); R4 household_net_income includes housing assistance,
+    school meals, WIC and imputed state use tax; R7 FY27 SUAs not loaded.
+  Branch fact: resources/policyengine_ty2026.py computes D = employment_income - income_tax for a
+    one-person situation (L29-46, L79-80); pin L7 matches 2.116.17.
+RECOMMENDED DECISION
+  1 Adopt PE 2.116.17 (wheel 19b46205...) as the single pinned engine for federal income tax,
+    FICA/SE, EITC, CTC/ACTC, AOTC and the federal SNAP benefit formula.
+    VARIABLES (static read of the installed package, not executed; [X-29], [X-30]):
+      PE `income_tax` = `income_tax_before_refundable_credits` - `income_tax_refundable_credits`;
+      the latter adds parameter gov.irs.credits.refundable = eitc,
+      refundable_american_opportunity_credit, refundable_ctc, recovery_rebate_credit,
+      refundable_payroll_tax_credit, claim_of_right_credit; the file comments that the premium
+      tax credit is NOT included (refundable.yaml L10/L19/L29).
+    RULE: fed_u in 4.1 = `income_tax_before_refundable_credits`; REFCRED_u = `eitc` +
+      `refundable_ctc` + `refundable_american_opportunity_credit` + named state refundable
+      credits; `income_tax` (net) is NOT used, so no refundable PTC (`premium_tax_credit`) or
+      other unlisted credit can enter D (ND-5, D-9). Branch L79-80 (gross - income_tax) must change.
+    AT-8b (HYPOTHESIS; untested): seeded Marketplace household (single, 200% FPL, no ESI) with
+      premium_tax_credit > 0: assert dD = 0 when PTC changes, PTC appears only in M, and
+      REFCRED excludes it. Seed: D built from `income_tax` with PTC netted -> FAIL.
+  2 State tax: use PE where IMPLEMENTED-2026-PARAMS. Override CA with the FTB 2026 schedule
+    [X-07]; IL, NM, VT: enter published 2026 schedules as versioned overrides, else flag
+    "PROJECTED" and add E-18 (projected vs carried-forward). STALE AL/DE/KS/PA: law check
+    each (PA 3.07% VERIFIED in tests); carried forward only where the law check passes.
+  3 Local tax: compute modelled locals (NYC, Yonkers, MD counties, IN counties, Philadelphia,
+    KC/STL, Wilmington, Multnomah, CO OPT) via a declared PUMA -> jurisdiction share mapping;
+    unmodelled locals (OH, MI, IA, AL, most PA and KY) = 0 in primary, FLAGGED, with the direction
+    declared (D overstated -> R<1 share understated in those areas).
+  4 Tax units: HESI builds tax, SPM and marital units from ACS relationships (RELSHIPP etc.) and
+    passes them explicitly; PE's default unit is never used (AT: unrelated adults -> 2 units).
+  5 Benefits: confirm v1.2 ND-9 - set all PE take-up flags off for simulated SSI, TANF and other
+    benefits; ACS-reported PA, SSI and SS used as-is; SNAP from the declared imputation only
+    (full take-up E-11), with the ABAWD time limit treated as NOT binding in the primary
+    (3-in-36 and waivers not observable in ACS) and applied in sensitivity E-19.
+  6 Never use household_net_income. D = the explicit 4.1 list of named variables; state use tax,
+    housing assistance, school meals and WIC excluded (ND-3, ND-8).
+  7 SNAP Oct-Dec 2026: FY27 federal amounts from PE; FY27 state SUAs pinned and overridden
+    before lock, else FY26 SUAs flagged.
+STRONGEST OBJECTION
+  A single non-official engine with 4 checked states is thin evidence for 51 jurisdictions;
+  zeroing unmodelled local taxes biases D upward exactly where municipal wage taxes are common.
+RESIDUAL UNCERTAINTY
+  State credits other than PA, NYC/Yonkers, MD counties, SS taxation, itemizing, and state
+  payroll taxes are untested; secondary sources for CA deduction and NY brackets.
+
+== P3. HOUSING (v1.2 3.1, C3; amendments B3) =====================================================
+3.1 rho (outright owners; v1.2 3.1)
+  EVIDENCE: official BLS spm_shares.xlsx [P3-H01] obtained (HTTP 200) and byte-identical to the
+    third-party copy [P3-H06]; thresholds [P3-H02] = Census spmthresh_25 [P3-H05].
+  CALCULATION (re-computed here from the [DS] extract values, 2025):
+    s_nm = shelter 0.1952699121 + utilities 0.1167495586 = 0.3120194707
+    s_r  = shelter 0.3730896039 + utilities 0.0605961665 = 0.4336857704
+    rho = (0.3120194707 x 34,325.99772) / (0.4336857704 x 41,700.555713)
+        = 10,710.38 / 18,084.94 = 0.592227  -> PRIMARY 0.5922
+  Alternatives (CALCULATION): 0.6002 Census metro-implied shares [P3-H04] (median of 323 areas;
+    gap +0.0055/+0.011/+0.0093 UNEXPLAINED); 0.6080 if s includes internet; 0.6276 if rental
+    assistance (0.0244396704) is removed from s_r (E-3).
+  Uncertainty (CALCULATION, thresholds only, shares fixed, not a CI): T_nm -/+1.645 x 560.287 and
+    T_r +/-1.645 x 393.035 give 0.5675 .. 0.6177 (E-2).
+  RECOMMENDED: rho = 0.5922 from official BLS bytes, s = shelter + utilities; report R<1 and
+    S-a..S-d at 0.5922 and 0.6002 (E-1); E-2 and E-3 in the envelope.
+  OBJECTION: a national CE ratio applied to local FMRs; rental assistance in s_r conflicts with
+    ND-8; the metro gap is unexplained.
+3.2 Mortgage owners and rent-free (TEN 4)
+  RECOMMENDED: mortgage owners at FMR (BLS: mortgage vs renter thresholds "not statistically
+    significantly different"); rent-free at FMR x rho as in v1.2; NEW sensitivity E-20
+    rent-free = utilities only, s_util,r x T_r / (s_r x T_r) = 2,526.89 / 18,084.94 = 0.1397 x FMR.
+  OBJECTION: rent-free households often pay no shelter cost at all; FMR x rho may overstate.
+3.3 FMR schedule - CORRECTED (see ERRATUM ER-1)
+  EVIDENCE: HUD "Reevaluation Requests for FY 2027 FMRs" [P3-H14] 0e1c974d (pinned since 11-04,
+    manifest row 81; re-download identical): FY2026 FMRs/SAFMRs remain in effect from
+    2026-10-01 pending survey data due 2027-01-08 in 12 FMR areas + 1 ZIP entry:
+    Davenport-Moline-Rock Island; Erie PA; Madison WI; Merrimack County NH; Milwaukee-Waukesha;
+    Oxnard-Thousand Oaks-Ventura; Pinehurst-Southern Pines; Portsmouth-Rochester NH; San Luis
+    Obispo-Paso Robles-Arroyo Grande; San Jose-Sunnyvale-Santa Clara; Santa Ana-Anaheim-Irvine;
+    Santa Maria-Santa Barbara; ZIPs 03766 and 03784 in Grafton County NH.
+    (The directive's "13 areas + 2 Grafton ZIPs" = 13 list entries: 12 areas + the ZIP entry.)
+    Six further areas had valid requests but FY27 is in effect: Coos OR, Curry OR, Seattle-
+    Bellevue, Yolo, San Francisco, ZIP 06073 (Hartford MSA).
+    FY26 revision (91 FR 21301, eff. 2026-05-21) changed 7 areas: Albany OR, Asheville, Corvallis,
+    Los Angeles, Napa, San Luis Obispo, Transylvania [P3-H11/H12]. P-2b immaterial: FY25 original
+    = revised in all 7 holdover areas (CALCULATION, [DS]).
+  RECOMMENDED schedule (monthly convention; weights Jan1-May20 0.3871, May21-Sep30 0.3629,
+    Q4 0.2500; Jan1-11 = 0.0296):
+    General (incl. LA):             FY26 orig | FY26 rev | Q4 FY27
+    10 FY27-hold areas (not SJ/SLO): FY26 orig | FY26 rev (= orig values) | Q4 FY26 rev
+    San Luis Obispo:                FY26 orig | FY26 rev | Q4 FY26 rev
+    San Jose:  Jan1-11 FY25 | Jan12-May20 FY26 orig | May21-Dec FY26 rev (= orig values)
+    Seattle:   Jan1-11 FY25 | Jan12-May20 FY26 orig | May21-Sep FY26 rev | Q4 FY27
+    Albany OR, Asheville, Corvallis, Napa, Transylvania: FY25 | FY26 rev | Q4 FY27 (unchanged)
+    Grafton ZIPs: ZIP-level hold is not resolvable from PUMA -> FMR area; Grafton County priced
+      as General, flagged; E-17 alternative = FY26 for the county.
+  OBJECTION: later reevaluations may revise FY27 values in the 6 "in effect" areas after T_c;
+    handled only by the revision log.
+3.4 Westchester (FIPS 3611999999), VERIFIED from pinned files [P3-H07..H13], 0/1/2/3/4BR:
+    FY24 (Westchester SEA)  1648/1934/2352/2885/3132   FY25 orig NY HMFA 2233/2330/2580/3215/3469
+    FY25 rev NY HMFA        2406/2511/2780/3465/3738   FY26 orig = rev   2529/2655/2910/3644/3959
+    FY27 NY HMFA            2593/2729/2971/3760/4121   (FY24 NY HMFA 2BR 2752 = C-W2 source)
+  W1/W2 (which FMR administratively governed Westchester Oct-Dec 2024): BLOCKED - HUD-only;
+    not contacted; Kevin's track; affects the 2024 matched-year track, not CY2026 values.
+3.5 Normative vs observed: adopt amendment B3 wording verbatim (H is a NORMATIVE essential-cost
+    benchmark, not observed housing cash-flow expenditure; GRNTP/SMOCP diagnostics only) and the
+    mandatory release sentence (AT-21). The branch already labels housing
+    "replacement_rent_normative_not_observed" (sources/housing_empirical.py L61).
+
+== P4. CHILDCARE, HEALTHCARE, OTHER NECESSITIES ==================================================
+  Item                                 Evidence (register)                         Blocks
+  Childcare price: NDCP 2022 county    [P4-C01] 6722a364; Westchester 2022 weekly   lock (lag/
+    (center, MC*), 2008-2022           infant $325 / toddler $300 / preschool $293  bridge rule)
+                                       / school-age $250
+  Childcare bridge 2022 -> 2026        CPI day care Oct 2026 407.844 [P1-T06];      impl (CPI
+                                       CPI JSON starts 2024-01 -> 2022-23 not pinned 2022-23 pin)
+  CCDF copay rule                      FR 2026-09382 [X-24/X-25] PINNED             none
+  Marketplace SLCSP                    FFE Rate/Plan/Service-Area PUFs [P4-HC01-03]; impl
+                                       SBE QHP PUF PY2026, 22 zips [P4-HC-*]        (derivation)
+  CMS attribution                      disclaimer: altered data not CMS data [HC07] publication
+  Employer premium (employee share)    MEPS-IC 2025 [P4-HC21/22] (NY single $2,231, lock (2025->
+                                       family $7,075)                               2026 bridge)
+  OOP by coverage                      MEPS-HC HC-256 (2024) [P4-HC26]              impl (tab) +
+                                                                                    lock (bridge)
+  Medicare Part B                      $202.90/mo 2026 [P4-HC30/31] PINNED          none
+  Medicaid/CHIP eligibility            KFF Jan 2026 third-party [P4-HC32/33];       none (declared
+                                       Medicaid.gov stale 2023-12 [P4-HC34]         third-party)
+  PTC law                              current law; H.R.1834 not law [X-17]         lock (re-check
+                                                                                    at T_c)
+  Other necessities                    CE 2025 Tables 1101/1400 [P4-O01/O02]; no     lock (rule)
+                                       internet line, no quintile x size
+RECOMMENDED
+  Childcare: NDCP 2022 county median center price x CPI day-care (CY2026 mean / CY2022 mean),
+    Oct 2025 CPI geometrically interpolated; need rule per v1.2 3.5 (all adults work/study).
+  Health: derive SLCSP for FFE + SBE states at implementation; employee share = MEPS-IC 2025 x
+    (1 + g), g declared before lock (Kevin); OOP from MEPS-HC 2024 tabulated by age x coverage,
+    bridged by a declared medical-care index (not yet pinned).
+  Other: CE PUMD quintile 2 x size cross-tab is the target; FALLBACK (ASSUMPTION): Table 1101
+    Q2 items x Table 1400 size ratios (separability), and internet = BLS SPM renter internet
+    share x T_r = 0.0174259065 x 41,700.555713 = $726.67 (2A2C, CALCULATION), scaled by the SPM
+    equivalence scale.
+OBJECTION: NDCP lags 3-4 years and center care overstates need; MEPS bridges are modelled;
+  separability of quintile and size is untested.
+RESIDUAL: SLCSP not yet derived; OOP not tabulated; medical index and CPI 2022-23 not pinned.
+
+== P5. FAIL-CLOSED RULE, INVARIANTS, MINIMUM DECISIONS, CODE RECONCILIATION ======================
+5.1 Unresolved C (amendment B2, adopted here as the recommendation)
+  u-class = C missing/non-finite/<= 0, any component not PRICED, or D missing/non-finite.
+  Excluded from numerator and denominator of the primary; u printed per published geography;
+  bounds L (all not-below) and Up (all below), width = u; headline WITHHELD where u > X,
+  X = 0.5% fixed at S5a (no change after any u is seen). Objection: arbitrary X; small-state
+  withholding; resolved-only primary biased if u clusters in poor/rural areas (alt: X = 1%).
+5.2 V/driver invariant test (AT-7 replacement, B1): fixtures (a) 3 drivers LOW, 3 workers -> V=2;
+  (b) 2 adults one DEYE=1 -> V<=1; (c) AGEP 80 DOUT=1 -> V=0, vehicle cost 0, A>0;
+  (d) HIGH, 2 drivers -> V=0, A for both; (e) LOW, 2 drivers, VEH=0 -> V=0, no car charge, A for
+  both; (f) PUMA with S_p undefined -> state S used and flagged; (g) age 14 member -> no A.
+  Assert V<=DRV, V<=2, VEH=0 => V=0 for all records. Must-FAIL seeds: V>DRV; DRV=0 or VEH=0
+  with vehicle cost>0; V=0 with A=0 for a person 16+; any transport value == 7264.7.
+5.3 Normative housing label: B3 text + AT-21 (release without the sentence -> FAIL).
+5.4 Minimum owner decisions for IMPLEMENTATION ONLY: I-1 scope (implement as config options
+  defaulting to policy_approved=False, synthetic fixtures); I-2 pushes to
+  dev/hesi-2026-framework only; I-3 (optional) named small public extracts, never 2025 ACS
+  PUMS or a national run. Everything else is before lock/run (shortlist B).
+5.5 Reconciliation vs 9c772a4 (no rebuilds proposed; keep base contract, policy gates,
+  NATIONAL_HEADLINE_ENABLED=False, hash pins, audit manifest):
+  S0 NEEDS-AMENDMENT: pin mismatch (pinned.py L28) is caught as MISSING_DATA by all six
+     components (e.g. housing.py L24) and pipeline.py L134-141 still writes; CH-21 mutation test
+     and CH-19 snap_ns harness not found.
+  S1 NEEDS-AMENDMENT: universe.py L87-108 exclusions vs 0 cost-model exclusions; L27-28 rejects
+     adults<1; no b<1 -> 1BR clamp; no replicate weights or a_pk split.
+  S2 NEEDS-AMENDMENT: single FY26-revised FMR vintage (pinned.py L43) vs the corrected 3.3
+     schedule; no rho branch; food Sep 2026 x 12; transport 7264.7; health SLCSP only; childcare
+     without the work test; ND guard partial.
+  S3 MISSING (pipeline.py L94-95 raises on C<=0 -> must return u-class status).
+  S4 NEEDS-AMENDMENT (P2 items 4-6). S4b, S5, S5a, S6, S7, S8 MISSING. S7a human.
+
+== ERRATA (dossier v1.2 file is NOT edited; no v1.3) ==============================================
+  ER-1 MATERIAL. v1.2 C3 L421-423 and P-1 L365-366 state the HUD FY27 reevaluation list is "not
+       pinned" and assume "FY27 everywhere" in Q4. The list was pinned 11-04 (manifest row 81,
+       0e1c974d) and holds FY26 in 12 areas + Grafton ZIPs. Correct schedule: P3 3.3.
+       r1: NOT record-only. Shortlist S-4 SUPERSEDES v1.2 C3 (schedule L411-414, Q4 assumption
+       L421-423), P-1b (L366), AT-5 fixtures (L444-445) and the C3 clause of OA-28 (L549), with
+       exact replacement text in OWNER_APPROVAL_SHORTLIST_r1.txt. v1.2 OA-28 must NOT be approved as
+       written.
+  ER-2 v1.2 P-2b L368-369, L419-420 (which FY25 file): RESOLVED, immaterial (identical values).
+  ER-3 v1.2 3.1 L170-173: official BLS shares are no longer BLOCKED; 0.592 now comes from
+       official bytes (identical to the third-party copy); 0.600 is reproduced as 0.6002.
+  ER-4 v1.2 1.5 L110 "VERIFIED-UNPINNED: Sep 2026 PDF": it is pinned (manifest rows 8/155,
+       0a6b7bd9...0c25) [X-21].
+  ER-5 Status upgrades now VERIFIED-PINNED: CCDF FR 2026-09382 and NDCP 2022 (v1.2 L217)
+       [X-24, P4-C01]; Medicare Part B (L200) [P4-HC30/31]; MEPS-IC, MEPS-HC, SBE PUFs (3.4);
+       CE 2025 tables (L221) [P4-O01/O02].
+  ER-6 Amendment B1 used two access classes; this file proposes three (refinement, not error).
+
+== UNRESOLVED BLOCKERS ===========================================================================
+BLOCKS IMPLEMENTATION
+  I-1 / I-2 (and optional I-3) owner decisions not yet made.
+  S0 hash-mismatch abort; CH-21 mutation test; CH-19 snap_ns harness.
+  Tax/SPM/marital unit builder; PUMA -> local-tax jurisdiction and PUMA -> transit-agency maps.
+  SLCSP derivation (FFE + SBE); MEPS-HC OOP tabulation.
+  Pins (register gaps G-01..G-10): EIA PADD series, PUMA->agency map, NTD unlinked trips,
+    CPI 2023 insurance, CPI 2022-23 day care, CPI 2008 registration (sens.), medical index,
+    FY27 SNAP SUAs, PUMA->local-tax map, IL/NM/VT 2026 schedules; APTA fare bytes.
+  Code gaps S1-S8 (5.5).
+BLOCKS LOCK / NATIONAL COMPUTATION
+  rho adoption and definition of s; acceptance of ER-1 schedule; Grafton ZIP rule.
+  Transport: DRV proxy, access cutoffs, depreciation/finance/registration/fuel fallbacks,
+    ride-hail rule (no source).
+  Engine: state overrides (CA; IL/NM/VT published schedules); stale-state law checks; local tax
+    rule; ABAWD rule; FY27 SUAs; PTC law re-check at T_c.
+  Health: MEPS-IC and MEPS-HC bridges. Childcare: NDCP lag/bridge rule. Other: CE PUMD or
+    fallback rule.
+  v1.2 standing: C-8 C_hold (OA-22), gates (OA-14, OA-21), income evidence P-14/P-15 (OA-18,
+    OA-19), threshold X (A2b), custody OA-26, S4b run OA-31; any national run needs separate
+    written approval.
+BLOCKS PUBLICATION
+  Westchester W1/W2 (HUD-only; 2024 matched-year track); CMS attribution wording; normative
+  housing sentence (B3/AT-21); evidence labels OA-27; AllTransit licence (only if used);
+  outside human reproduction and external methodological review (S9).

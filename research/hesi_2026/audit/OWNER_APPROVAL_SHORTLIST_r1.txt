@@ -1,0 +1,130 @@
+HESI 2026 (Household Economic Security Index) - OWNER APPROVAL SHORTLIST r1 (t96u)
+r1 CHANGE LOG (2026-11-11 ~02:07 ET; answers Audit Lead review 77dd09c8...73d7; r0 747f0139
+  unchanged): B-1 "GATES" field added; timing corrected so nothing that gates S2/S4b/S5a is
+  called merely deferrable (S-5,7,8,9,16,17,18 gate S2 C_hold freeze; S-15, S-21, OA-14/21/22).
+  B-2 PUSH and RUN tags; S-2 = IMPLEMENTATION+PUSH, S-3 = IMPLEMENTATION+RUN with an exact file
+  list. B-3 S-4 now SUPERSEDES v1.2 C3 Q4 / P-1b / AT-5 and OA-28's C3 clause (replacement
+  text below; no v1.3) + warning. B-4/B-5: S-6, S-7, S-8, S-10 text per A r1.
+RECOMMENDATIONS - NOT APPROVED. AI review != independent human peer review or validation.
+Prepared for Kevin Mannion. No item is approved by this file. Evidence:
+SCIENTIFIC_BLOCKER_RESOLUTION_r1.txt (section in brackets); register SOURCE_PIN_REGISTER_r1.csv.
+LEGEND
+  TIMING  NOW = decide before the matching code is built. REQUIRED-AT-Sx = may wait during
+          implementation (options default policy_approved=False) but must be decided before
+          step Sx of v1.2 8.2 starts. Not deferrable past the listed GATES step.
+  GATES   first v1.2 8.2 step it blocks: S0 (implementation start), S2 (cost registry; C_hold
+          frozen), S3, S4, S4b (G.6 simulation), S5a (gate lock), S6, S7 (custody), PUB.
+  AUTHORIZES  DESIGN = method choice only. IMPLEMENTATION = code in new files, no execution on
+          real data. PUSH = externally visible push (scope stated). RUN = execution on named
+          real files (scope stated). NATIONAL COMPUTATION. PUBLICATION. EXTERNAL CONTACT.
+  No item authorizes merge, PR, main, tags, frozen edits, holdout access, 2025 ACS PUMS or
+  2025 income outcomes.
+WARNING (B-3): do NOT approve v1.2 OA-28 as written - its C3 clause carries the "FY27
+  everywhere" Q4 schedule that the pinned HUD list contradicts. Approve OA-28 only as amended
+  by S-4 (C1, C2 as written; C3 replaced).
+
+S-1  I-1 (narrows OA-29) - Implementation scope        NOW | GATES S0 | IMPLEMENTATION
+     Choice: Cursor implements v1.2 + amendments B1-B3 + A r1 as NEW versioned files; every
+       scientific choice a config option defaulting to policy_approved=False; synthetic fixtures.
+     Why: branch already fails closed this way. Objection: unapproved options may be discarded.
+S-2  I-2 - Delivery channel                     NOW | GATES S0 | IMPLEMENTATION+PUSH (standing)
+     Choice: STANDING push authority, externally visible, limited to branch
+       dev/hesi-2026-framework; no merge, PR, main, tags, force-push or frozen-file edits; each
+       push logged to Kevin (commit sha, files, tests run). Alternative: per-push approval.
+     Why: v1.2 OA-26 push clause covers lock artifacts, not dev code. Objection: any push is
+       public and a standing grant removes a per-push check.
+S-3  I-3 (optional) - Bounded real-data tests   REQUIRED-AT-S2 if wanted | GATES none (optional)
+       | IMPLEMENTATION+RUN (bounded)
+     Choice: execution allowed ONLY on these register files (paths in register r1): P3-H01,
+       P3-H02, P3-H10, P3-H11, P3-H13, P3-H14, X-20, X-23, P4-HC01, P4-HC02, P4-HC03, P4-C01,
+       P4-O01, P4-O02, P1-T01, P1-T10, P1-T13, P1-T18, P1-T21, P1-T22, X-01 (PE wheel), X-10.
+       Any other file needs a new named approval. Excluded: P1-T40 and ALL ACS/CPS microdata,
+       any 2025 file, holdout. Outputs limited to schema/unit/fixture checks of cost or tax
+       components; NO R, D/C ratio, headline, tier, threshold or classification outputs.
+     Why: catches schema errors fixtures miss. Objection: drift toward de-facto runs.
+S-4  ER-1 - SUPERSEDES v1.2 C3 Q4, P-1b, AT-5, OA-28 C3       NOW | GATES S2 | DESIGN
+     Superseded v1.2 text: C3 schedule L411-414 ("Q4 FY27" rows), Q4 assumption L421-423
+       ("HUD's list is not pinned. Use FY27 everywhere"), P-1b L366 ("NOT pinned (C3)"), AT-5
+       fixtures L444-445, and OA-28 L549 "C3 (C3 monthly-convention FMR schedule)".
+     Replacement text (exact): "P-1b: HUD Reevaluation Requests for FY2027 FMRs, sha256
+       0e1c974d... (register P3-H14): VERIFIED-PINNED. C3 Q4: FY26 revised FMRs in the 12 listed
+       areas (incl. San Jose, San Luis Obispo); FY27 elsewhere incl. Coos, Curry, Seattle,
+       Yolo, San Francisco and ZIP 06073; Grafton County priced at FY27, flagged, E-17 = FY26.
+       Jan1-Sep30 schedule unchanged (A r1 P3 3.3). E-17 = FY27 in the 12 areas. AT-5
+       fixtures: general, San Jose, Napa, Santa Ana (Q4 FY26 rev), Seattle (Q4 FY27); seeds:
+       Napa Jan-May20 at FY26 orig -> FAIL; Santa Ana Q4 at FY27 -> FAIL. OA-28r1: approve C1,
+       C2 as written and C3 as replaced by S-4."
+     Why: pinned list contradicts v1.2. Objection: later reevaluations may still change FY27.
+S-5  OA-9 - rho                               REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice: rho = 0.5922 (BLS bytes, s = shelter + utilities); report 0.6002 (E-1); E-2 band
+       0.5675-0.6177; E-3 0.6276; mortgage owners at FMR; rent-free FMR x rho, E-20 0.1397.
+     Why: official, reproducible. Objection: national ratio on local FMRs; metro gap unexplained.
+S-6  OA-11 + A1 - Transport vector and invariant       NOW | GATES S2 | DESIGN
+     Choice: V = min(2, N, DRV), N = access-class vehicle NEED (HIGH 0; MEDIUM 1; LOW 1, or 2 if
+       DRV>=2 and workers>=2), NOT household size; V = 0 if VEH = 0 (no car charge; declared
+       change vs B1; E-5f ignores VEH); DRV = AGEP>=16, DEYE=2, DOUT!=1; allowance for persons
+       16+ when V=0, none under 16 (E-5e); retire 7,264.70 as primary [P1].
+     Why: no car charged without a driver or a car. Objection: DRV is a disability proxy;
+       VEH rule lowers C for forced-carless households.
+S-7  OA-11 (values) - Access-class cutoffs     REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice (VALUE choices, pre-data, hashed before any R): HIGH S_p>=0.20, LOW <0.05 (sens
+       0.15/0.30, 0.03/0.10); S_p undefined (<30 valid workers) -> state S, flagged; sens LOW.
+     Why: declared before data. Objection: arbitrary; no class distribution computed.
+S-8  OA-11 (gaps) - Transport fallbacks        REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice: depreciation IRS 35c/mi; finance 0 (sens $1,184); registration AAA $802; fuel EIA
+       state else PADD; insurance NAIC 2023 x CPI. Gaps to pin first: G-01..G-06.
+     Why: only official bases exist. Objection: IRS basis is business/newer vehicles.
+S-9  OA-11 (ride-hail) - Low-access allowance  REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice: primary within bounds (16 trips x 2 x base fare .. one-vehicle PVC) or commission
+       a source (e.g. Chicago TNP) before S2.
+     Why: P1-T44 UNVERIFIED. Objection: either bound may misstate older carless households.
+S-10 OA-15 / PE-1 - Engine and D variables       NOW | GATES S4 | DESIGN
+     Choice: PE 2.116.17 (wheel 19b46205...); fed_u = income_tax_before_refundable_credits;
+       REFCRED = eitc + refundable_ctc + refundable_american_opportunity_credit + named state
+       credits; PE income_tax (net) and household_net_income never used; premium_tax_credit
+       excluded from D; AT-8b Marketplace household (HYPOTHESIS, untested) [P2; X-29/X-30].
+     Why: 42/46 synthetic checks VERIFIED-CORRECT. Objection: single non-official engine.
+S-11 OA-15 / PE-2 - Tax, SPM, marital units built by HESI   NOW | GATES S4 | DESIGN
+     Choice: construct from ACS relationships, pass explicitly; PE default never used.
+     Why: PE default filed unrelated adults jointly. Objection: construction rules are assumed.
+S-12 OA-15 / PE-3 (confirms ND-9) - Benefits, ABAWD    NOW | GATES S4 | DESIGN
+     Choice: simulated SSI/TANF/other off; reported PA/SSI/SS as-is; SNAP declared imputation,
+       full take-up; ABAWD not binding in primary, E-19.
+     Why: avoids double counting. Objection: overstates SNAP for some ABAWDs.
+S-13 OA-15 / PE-4 - State overrides, stale states  REQUIRED-AT-S4 | GATES S4 | DESIGN
+     Choice: CA FTB 2026; IL/NM/VT published 2026 schedules (G-10) else PROJECTED + E-18;
+       AL/DE/KS/PA carried forward after law check; FY27 SNAP SUAs (G-08).
+     Why: CA confirmed off. Objection: override maintenance burden.
+S-14 OA-15 / PE-5 - Local income taxes         REQUIRED-AT-S4 | GATES S4 | DESIGN
+     Choice: modelled locals via PUMA->jurisdiction shares (G-09); others 0, flagged, bias
+       declared. Why: PE lacks OH/MI/IA/AL/PA/KY locals. Objection: material in wage-tax areas.
+S-15 OA-6 + A2/A2b - Fail-closed unresolved C   NOW (rule) | GATES S3; X GATES S5a | DESIGN
+     Choice: u-class excluded; bounds L/Up; headline withheld if u > X; X = 0.5% must be fixed
+       before S5a (and before S4b uses it).
+     Why: no silent default near R=1. Objection: arbitrary X; MAR assumption (alt X = 1%).
+S-16 OA-13 - Childcare price and lag           REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice: NDCP 2022 county center median x CPI day care (G-05); need = all adults work/study.
+     Why: only pinned county source. Objection: 3-4 year lag; center care overstates need.
+S-17 OA-12 - Health premiums, OOP, PTC          REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice: SLCSP FFE + SBE PUFs; MEPS-IC 2025 x declared growth; MEPS-HC 2024 x medical index
+       (G-07); Part B $202.90; PTC current law. Why: bytes pinned except index. Objection: bridges.
+S-18 OA-23 - Other necessities                  REQUIRED-AT-S2 | GATES S2 (C_hold) | DESIGN
+     Choice: CE PUMD Q2 x size target; fallback Table 1101 x Table 1400 + internet $726.67 (2A2C).
+     Why: published tables lack internet/cross-tab. Objection: separability untested.
+S-19 A3 + OA-27 - Housing label, release template  REQUIRED-AT-S8 | GATES PUB | PUBLICATION
+     Choice: B3 wording, release sentence, AT-21; CMS attribution.
+     Why: prevents misreading R as bill-paying. Objection: caveats in every release.
+S-20 Westchester W1/W2 (HUD track)          OPTIONAL | GATES 2024-track PUB | EXTERNAL CONTACT
+     Choice: whether to ask HUD which FMR governed Westchester Oct-Dec 2024 [P3-H19].
+     Note: any message to HUD needs a draft and your explicit approval before sending.
+S-21 OA-31 / OA-26 / national run - Computation gates   REQUIRED-AT-S4b | GATES S4b, S5a, S7
+       | NATIONAL COMPUTATION
+     Choice: unchanged v1.2: S4b simulation (OA-31) before S5a; custody + push of lock artifacts
+       (OA-26) at S5a/S7; separate written approval for any national run.
+     Why: keeps lock-before-read. Objection: sequential approvals slow delivery.
+
+STANDING v1.2 ITEMS NOT RE-DECIDED HERE, by gate (v1.2 8.2):
+  GATES S0: OA-25.  GATES S1: OA-1..OA-5.  GATES S2: OA-10, OA-24 (savings/debt; my placement),
+  OA-22 (C-8, BLOCKING: C_hold is frozen at S2, so name it before S2 although v1.2 lists it at
+  S5a).  GATES S3: OA-7, OA-8, OA-30.  GATES S5: OA-16, OA-18, OA-19, OA-20b.
+  GATES S5a (REQUIRED-AT-S5a; v1.2 8.2 entry): OA-14, OA-20a, OA-21, OA-22.  GATES S6: OA-17.

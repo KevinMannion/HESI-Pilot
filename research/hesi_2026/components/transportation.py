@@ -15,6 +15,39 @@ class TransportationComponent(EssentialCostComponent):
     def price(self, household: Mapping[str, Any], *, context: Mapping[str, Any] | None = None) -> EssentialCostResult:
         context = context or {}
         mode = _mode(context)
+        if mode == "normative_need_unapproved":
+            try:
+                from sources.transport_normative import price_transport_normative
+
+                detail = price_transport_normative(
+                    household,
+                    access_class=str(context.get("transport_access_class", "LOW")),
+                    use_veh_zero_rule=bool(context.get("use_veh_zero_rule", False)),
+                    mobility_allowance_annual=float(context.get("mobility_allowance_annual", 0.0)),
+                )
+            except (ValueError, FileNotFoundError) as e:
+                return EssentialCostResult(
+                    component=self.name,
+                    source_vintage=None,
+                    geographic_applicability="national_scenario",
+                    household_applicability="normative_mobility_unapproved",
+                    annual_usd=None,
+                    missing_status=MissingStatus.MISSING_DATA,
+                    policy_approved=False,
+                    notes=str(e),
+                    metadata={"calculation_mode": mode},
+                )
+            return EssentialCostResult(
+                component=self.name,
+                source_vintage="normative_need_unapproved",
+                geographic_applicability=detail["empirical_reference"]["geographic_applicability"],
+                household_applicability=f"vehicles_{detail['vehicles_assigned']}",
+                annual_usd=detail["annual_usd"],
+                missing_status=MissingStatus.PRICED,
+                policy_approved=False,
+                notes=detail["scientific_status"],
+                metadata=detail,
+            )
         if mode == "empirical_pinned":
             try:
                 from sources.transport_empirical import price_transport_annual

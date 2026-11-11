@@ -1,0 +1,6 @@
+county_fips,county_name,state,price_year,care_type,weekly_usd,source_id,notes
+36119,Westchester,NY,2022,infant,325.0,P4-C01,synthetic_bounded_extract_not_full_ndcp
+36119,Westchester,NY,2022,toddler,300.0,P4-C01,synthetic_bounded_extract_not_full_ndcp
+36119,Westchester,NY,2022,preschool,293.0,P4-C01,synthetic_bounded_extract_not_full_ndcp
+36119,Westchester,NY,2022,school_age,250.0,P4-C01,synthetic_bounded_extract_not_full_ndcp
+01003,Baldwin,AL,2022,infant,155.0,P4-C01,synthetic_placeholder_row

@@ -1,0 +1,4 @@
+table_id,vintage,metric,value_usd,notes
+1101_q2_2025,2025,mean_annual_spending_quintile2,45234.0,synthetic_scalar_placeholder_until_xlsx_ingest
+1400_two_or_more_2025,2025,mean_annual_spending,78123.0,synthetic_scalar_placeholder
+spm_internet_2a2c_calc,2026,internet_annual_2a2c,726.67,from_A_r1_fallback_calculation_unapproved

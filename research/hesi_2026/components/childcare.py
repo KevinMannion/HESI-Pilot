@@ -15,14 +15,24 @@ class ChildcareComponent(EssentialCostComponent):
     def price(self, household: Mapping[str, Any], *, context: Mapping[str, Any] | None = None) -> EssentialCostResult:
         context = context or {}
         mode = _mode(context)
-        if mode == "empirical_pinned":
+        if mode in ("empirical_pinned", "ndcp_county"):
             try:
-                from sources.childcare_empirical import price_childcare_annual
+                if mode == "ndcp_county":
+                    from sources.ndcp_childcare import price_childcare_ndcp_county
 
-                detail = price_childcare_annual(
-                    household,
-                    rates_pin_key=str(context.get("childcare_rates_pin_key", "childcare_market_rates_sample")),
-                )
+                    detail = price_childcare_ndcp_county(
+                        household,
+                        county_fips=context.get("county_fips"),
+                        cpi_bridge=str(context.get("cpi_bridge", "none")),
+                        cpi_factor=context.get("cpi_factor"),
+                    )
+                else:
+                    from sources.childcare_empirical import price_childcare_annual
+
+                    detail = price_childcare_annual(
+                        household,
+                        rates_pin_key=str(context.get("childcare_rates_pin_key", "childcare_market_rates_sample")),
+                    )
             except (ValueError, FileNotFoundError) as e:
                 return EssentialCostResult(
                     component=self.name,

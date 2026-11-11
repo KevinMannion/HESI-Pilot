@@ -15,6 +15,37 @@ class OtherNecessitiesComponent(EssentialCostComponent):
     def price(self, household: Mapping[str, Any], *, context: Mapping[str, Any] | None = None) -> EssentialCostResult:
         context = context or {}
         mode = _mode(context)
+        if mode == "bls_ce_fallback":
+            try:
+                from sources.bls_ce_other import price_other_ce_fallback
+
+                detail = price_other_ce_fallback(
+                    household,
+                    use_fallback=bool(context.get("use_ce_fallback", True)),
+                )
+            except (ValueError, FileNotFoundError) as e:
+                return EssentialCostResult(
+                    component=self.name,
+                    source_vintage=None,
+                    geographic_applicability="national",
+                    household_applicability="residual_essentials",
+                    annual_usd=None,
+                    missing_status=MissingStatus.MISSING_DATA,
+                    policy_approved=False,
+                    notes=str(e),
+                    metadata={"calculation_mode": mode},
+                )
+            return EssentialCostResult(
+                component=self.name,
+                source_vintage="BLS_CE_fallback_unapproved",
+                geographic_applicability="national",
+                household_applicability=detail["method"],
+                annual_usd=detail["annual_usd"],
+                missing_status=MissingStatus.PRICED,
+                policy_approved=False,
+                notes=detail["scientific_status"],
+                metadata=detail,
+            )
         if mode == "empirical_pinned":
             try:
                 from sources.other_necessities_empirical import price_other_necessities_annual

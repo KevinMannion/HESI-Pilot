@@ -15,6 +15,34 @@ class HealthcareComponent(EssentialCostComponent):
     def price(self, household: Mapping[str, Any], *, context: Mapping[str, Any] | None = None) -> EssentialCostResult:
         context = context or {}
         mode = _mode(context)
+        if mode == "meps_bounds":
+            try:
+                from sources.meps_health_bounds import derive_health_bounds
+
+                detail = derive_health_bounds(household)
+            except (ValueError, FileNotFoundError) as e:
+                return EssentialCostResult(
+                    component=self.name,
+                    source_vintage=None,
+                    geographic_applicability=str(household.get("state_code", "unknown")),
+                    household_applicability="healthcare_by_coverage_type",
+                    annual_usd=None,
+                    missing_status=MissingStatus.MISSING_DATA,
+                    policy_approved=False,
+                    notes=str(e),
+                    metadata={"calculation_mode": mode},
+                )
+            return EssentialCostResult(
+                component=self.name,
+                source_vintage=str(detail.get("scientific_status")),
+                geographic_applicability=str(household.get("state_code", "national")),
+                household_applicability=f"coverage_{detail.get('coverage_type')}",
+                annual_usd=detail["annual_usd"],
+                missing_status=MissingStatus.PRICED,
+                policy_approved=False,
+                notes="meps bounds derivation; not nationally approved",
+                metadata=detail,
+            )
         if mode == "empirical_pinned":
             try:
                 from sources.healthcare_empirical import price_healthcare_annual

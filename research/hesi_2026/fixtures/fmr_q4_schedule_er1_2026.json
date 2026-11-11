@@ -1,0 +1,39 @@
+{
+  "schedule_id": "fmr_q4_er1_unapproved",
+  "policy_approved": false,
+  "scientific_status": "proposed_schedule_supersedes_v1_2_q4_fy27_everywhere",
+  "register_pin": "P3-H14",
+  "pin_sha256_prefix": "0e1c974d",
+  "weights": {
+    "jan1_may20": 0.3871,
+    "may21_sep30": 0.3629,
+    "q4_oct_dec": 0.25,
+    "jan1_11": 0.0296
+  },
+  "q4_fy26_revised_holdover_areas": [
+    "Davenport-Moline-Rock Island",
+    "Erie PA",
+    "Madison WI",
+    "Merrimack County NH",
+    "Milwaukee-Waukesha",
+    "Oxnard-Thousand Oaks-Ventura",
+    "Pinehurst-Southern Pines",
+    "Portsmouth-Rochester NH",
+    "San Luis Obispo-Paso Robles-Arroyo Grande",
+    "San Jose-Sunnyvale-Santa Clara",
+    "Santa Ana-Anaheim-Irvine",
+    "Santa Maria-Santa Barbara"
+  ],
+  "grafton_county_flag": {
+    "priced_as": "general_fy27",
+    "sensitivity_e17": "fy26_for_county"
+  },
+  "at5_fixture_areas": {
+    "general": "q4_fy27",
+    "san_jose": "q4_fy26_rev",
+    "napa": "q4_fy26_rev",
+    "santa_ana": "q4_fy26_rev",
+    "seattle": "q4_fy27"
+  },
+  "legacy_default": "puma_fmr_screened_fy2026_single_vintage"
+}

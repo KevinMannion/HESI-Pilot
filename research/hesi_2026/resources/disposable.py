@@ -28,6 +28,10 @@ class DisposableResourceResult:
 
 
 def disposable_from_fixture(household: Mapping[str, Any], *, tax_year: str = "2026") -> DisposableResourceResult:
+    if household.get("disposable_source") == "named_fixture" or household.get("disposable_named_variables"):
+        from resources.disposable_named import disposable_from_named_fixture
+
+        return disposable_from_named_fixture(household)
     if "annual_gross_income_usd" not in household:
         return DisposableResourceResult(
             annual_pre_tax_income_usd=None,

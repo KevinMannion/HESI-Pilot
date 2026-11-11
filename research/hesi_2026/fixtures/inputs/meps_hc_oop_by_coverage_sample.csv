@@ -1,0 +1,6 @@
+coverage_type,age_group,oop_annual_usd,survey_year,source_id,scientific_status
+employer,adult_19_64,1200.0,2024,P4-HC26,fixture_tabulation_placeholder_not_meps_derived
+marketplace_unsubsidized,adult_19_64,2400.0,2024,P4-HC26,fixture_tabulation_placeholder_not_meps_derived
+medicare,adult_65_plus,1800.0,2024,P4-HC30,fixture_placeholder_part_b_only_context
+medicaid,adult_19_64,150.0,2024,P4-HC26,fixture_placeholder_low_oop
+uninsured,adult_19_64,3500.0,2024,P4-HC26,fixture_placeholder_high_oop
