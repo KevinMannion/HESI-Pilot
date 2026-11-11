@@ -1,0 +1,34 @@
+{
+  "scenario_id": "partial_three_pillar_synthetic",
+  "label": "SYNTHETIC_HOUSEHOLD_NOT_OBSERVED",
+  "description": "Fixture literals for housing/food/transport only; other essential costs unpriced.",
+  "household": {
+    "serialno": "SYN_PROTOTYPE_PARTIAL",
+    "weight": 1.0,
+    "ten": 4,
+    "adults": 2,
+    "children": 1,
+    "partners": 1,
+    "np": 3,
+    "n_infant": 0,
+    "puma_geoid": "0603701",
+    "geography_complete": true,
+    "composition_valid": true,
+    "state_code": "CA",
+    "housing_annual_usd": 19200,
+    "food_annual_usd": 7800,
+    "transport_annual_usd": 7264.7,
+    "annual_gross_income_usd": 52000,
+    "annual_disposable_usd": 47000,
+    "income_fixture_approved": false
+  },
+  "cost_context": {
+    "housing_vintage": "synthetic_fixture_literal",
+    "food_vintage": "synthetic_fixture_literal",
+    "transport_vintage": "synthetic_fixture_literal"
+  },
+  "use_policyengine": false,
+  "warnings": [
+    "housing_food_transport_annual_usd are synthetic literals, not observed 2026 market prices"
+  ]
+}

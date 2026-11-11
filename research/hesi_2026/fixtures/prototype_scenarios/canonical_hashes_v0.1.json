@@ -1,0 +1,14 @@
+{
+  "complete_provisional_al_family": {
+    "status": "COMPLETE_PROVISIONAL",
+    "canonical_calculation_sha256": "6ac422f2df096a415b5aa685d56b093b56ecab4c743b2e563c1f62b9d4e3b293"
+  },
+  "partial_missing_disposable": {
+    "status": "PARTIAL_UNRESOLVED",
+    "canonical_calculation_sha256": "cee565afafe4d1f4bee287377e80fbeff5f13fe693ef6c2af10f53e4b9477077"
+  },
+  "partial_three_pillar_synthetic": {
+    "status": "PARTIAL_UNRESOLVED",
+    "canonical_calculation_sha256": "c3457f0517a81253ffccada943e428eefd539868c1bc5b5dc323d3d7c2fe35c7"
+  }
+}

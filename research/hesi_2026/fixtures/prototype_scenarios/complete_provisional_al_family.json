@@ -1,0 +1,52 @@
+{
+  "scenario_id": "complete_provisional_al_family",
+  "label": "SYNTHETIC_HOUSEHOLD_NOT_OBSERVED",
+  "description": "Bounded AL PUMA empirical_pinned demo; six numeric costs; named disposable fixture; all policy_approved remain false.",
+  "household": {
+    "serialno": "SYN_PROTOTYPE_AL_FAMILY",
+    "weight": 1.0,
+    "ten": 3,
+    "adults": 2,
+    "children": 1,
+    "partners": 1,
+    "np": 3,
+    "geography_complete": true,
+    "composition_valid": true,
+    "puma_geoid": "0100100",
+    "state_code": "AL",
+    "members": [
+      {"age": 35, "sex": "Male"},
+      {"age": 33, "sex": "Female"},
+      {"age": 4, "sex": "Male"}
+    ],
+    "disposable_source": "named_fixture",
+    "disposable_named_variables": {
+      "employment_income": 72000,
+      "income_tax_before_refundable_credits": 8200,
+      "fica_payroll_tax": 5508,
+      "eitc": 0,
+      "refundable_ctc": 0,
+      "refundable_aotc": 0,
+      "state_income_tax": 2400,
+      "snap_benefit": 0,
+      "tanf_benefit": 0
+    },
+    "income_fixture_approved": false
+  },
+  "cost_context": {
+    "calculation_mode": "empirical_pinned",
+    "geography_pin_key": "puma_fmr_screened_fy2026",
+    "healthcare_rates_pin_key": "cms2026_rate_puf_bounded_al_ra1",
+    "healthcare_crosswalk_pin_key": "puma_to_marketplace_rating_area_bounded_2026",
+    "food_policy_approved": false,
+    "housing_policy_approved": false,
+    "transport_policy_approved": false,
+    "healthcare_policy_approved": false,
+    "childcare_policy_approved": false,
+    "other_necessities_policy_approved": false
+  },
+  "use_policyengine": false,
+  "warnings": [
+    "empirical_pinned uses bounded CMS/USDA/HUD pins and research childcare fixture; not full empirical 2026 national HESI"
+  ]
+}

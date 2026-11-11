@@ -1,0 +1,35 @@
+{
+  "scenario_id": "partial_missing_disposable",
+  "label": "SYNTHETIC_HOUSEHOLD_NOT_OBSERVED",
+  "description": "All six costs numerically priced via bounded demo context but disposable resources absent.",
+  "household": {
+    "serialno": "SYN_PROTOTYPE_NO_D",
+    "weight": 1.0,
+    "ten": 3,
+    "adults": 1,
+    "children": 0,
+    "partners": 0,
+    "np": 1,
+    "geography_complete": true,
+    "composition_valid": true,
+    "puma_geoid": "0100200",
+    "state_code": "AL",
+    "members": [{"age": 40, "sex": "Female"}]
+  },
+  "cost_context": {
+    "calculation_mode": "empirical_pinned",
+    "geography_pin_key": "puma_fmr_screened_fy2026",
+    "healthcare_rates_pin_key": "cms2026_rate_puf_bounded_al_ra1",
+    "healthcare_crosswalk_pin_key": "puma_to_marketplace_rating_area_bounded_2026",
+    "food_policy_approved": false,
+    "housing_policy_approved": false,
+    "transport_policy_approved": false,
+    "healthcare_policy_approved": false,
+    "childcare_policy_approved": false,
+    "other_necessities_policy_approved": false
+  },
+  "use_policyengine": false,
+  "warnings": [
+    "disposable resources intentionally omitted to demonstrate PARTIAL_UNRESOLVED"
+  ]
+}
