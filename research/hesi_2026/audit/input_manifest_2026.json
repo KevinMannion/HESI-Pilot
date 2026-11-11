@@ -1,0 +1,56 @@
+{
+  "manifest_version": "hesi_input_manifest_2026_v1",
+  "description": "2026 framework input pins; verification harness only. Does not govern frozen core_r24 national_R22.",
+  "pins": {
+    "usda_prices_source_2024_2026": {
+      "rel_path": "core_r24/inputs/source_2024_2026.csv",
+      "sha256": "90bc39d1a569073b9530ca0a78a4ccf19c781c4a42dd70c51a0bed9e1907602c",
+      "required": true
+    },
+    "puma_fmr_screened_fy2026": {
+      "rel_path": "core_r24/inputs/puma_fmr_screened.csv",
+      "sha256": "210a7ec6ae756ca8034cf3b7bff8afb3480d53186834cc7b304b913445f2a3ee",
+      "required": true
+    },
+    "transport_reference_2026_09": {
+      "rel_path": "core_r24/inputs/transport_reference_2026_09.csv",
+      "sha256": "19cc412e1d13662782ee57315f148f0a2187e1fd1613052c3aebd3397a687af6",
+      "required": true
+    },
+    "cms2026_rate_puf_bounded_al_ra1": {
+      "rel_path": "research/hesi_2026/fixtures/inputs/cms2026_rate_puf_bounded_al_ra1.csv",
+      "sha256": "9e028b54ced124b7d9bbdde9de14a129a132b437a41e0947242ae382f4640efe",
+      "required": true
+    },
+    "puma_to_marketplace_rating_area_bounded_2026": {
+      "rel_path": "research/hesi_2026/fixtures/puma_to_marketplace_rating_area_bounded_2026.csv",
+      "sha256": "3eff2e8ecede77485e1b4735d444872c2f9681055938faca788366533bf0f6a5",
+      "required": true
+    },
+    "childcare_market_rates_sample": {
+      "rel_path": "research/hesi_2026/fixtures/childcare_market_rates_sample.csv",
+      "sha256": "904df49471acafe0fdeb55cd5e10bd36ea99f68f461c892fea5d8ca2a1e01308",
+      "required": true
+    },
+    "ces_other_necessities_baseline_sample": {
+      "rel_path": "research/hesi_2026/fixtures/ces_other_necessities_baseline_sample.csv",
+      "sha256": "f37f33c5a6a2e088b8358b9c057f17071e1fa52ea1db4fa3ef17ec37515073cc",
+      "required": true
+    },
+    "cms2026_marketplace_rates_sample": {
+      "rel_path": "research/hesi_2026/fixtures/cms2026_marketplace_rates_sample.csv",
+      "sha256": "84a9f1bd42ec6482ebc9c98a911917d72f738ca8252ed7137116de8205bc2a58",
+      "required": false
+    },
+    "puma_to_marketplace_rating_area_sample": {
+      "rel_path": "research/hesi_2026/fixtures/puma_to_marketplace_rating_area_sample.csv",
+      "sha256": "a92e8cd55329d470407fa39b2ffa3880b0d6f8c280dc591399cc19c93fea741f",
+      "required": false
+    },
+    "synthetic_geography_fixture": {
+      "rel_path": "core_r24/fixtures/synthetic_geography.csv",
+      "sha256": "5c711e0dc6ccde795b283fc9ba6ee2bd3fb8c788af42f2b32e728bda977d1b54",
+      "required": false
+    }
+  }
+}
