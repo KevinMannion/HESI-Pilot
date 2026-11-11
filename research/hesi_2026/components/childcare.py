@@ -25,6 +25,7 @@ class ChildcareComponent(EssentialCostComponent):
                         county_fips=context.get("county_fips"),
                         cpi_bridge=str(context.get("cpi_bridge", "none")),
                         cpi_factor=context.get("cpi_factor"),
+                        data_source=str(context.get("ndcp_data_source", "fixture")),
                     )
                 else:
                     from sources.childcare_empirical import price_childcare_annual

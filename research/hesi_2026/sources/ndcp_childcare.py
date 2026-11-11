@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from audit.hesi_data_root import resolve_register_local_path
-from audit.source_register import load_source_register
+from audit.source_register import load_source_register, validate_required_source_pins_or_abort
 from sources.childcare_cpi_bridge import apply_cpi_bridge, load_bridge_options
 
 REPO = Path(__file__).resolve().parents[3]
@@ -35,8 +35,8 @@ def _register_row(source_id: str) -> tuple[str, str] | None:
     return None
 
 
-def resolve_ndcp_source(*, use_register: bool = True) -> dict[str, Any]:
-    """Return resolved path and verification metadata; missing register bytes are reported, not fabricated."""
+def resolve_ndcp_source(*, use_register: bool = False) -> dict[str, Any]:
+    """Return resolved path metadata. Default uses bounded fixture unless use_register=True."""
     meta: dict[str, Any] = {"source_id": P4_C01_ID, "path": None, "sha256": None, "sha256_match": None}
     if use_register:
         reg = _register_row(P4_C01_ID)
@@ -100,11 +100,20 @@ def price_childcare_ndcp_county(
     weeks_per_year: int = 52,
     cpi_bridge: str = "none",
     cpi_factor: float | None = None,
+    data_source: str = "fixture",
 ) -> dict[str, Any]:
     county = (county_fips or household.get("county_fips") or "").strip()
     if not county:
         raise ValueError("ndcp childcare requires county_fips")
-    src = resolve_ndcp_source()
+    if data_source == "register":
+        verified = validate_required_source_pins_or_abort([P4_C01_ID])
+        src = resolve_ndcp_source(use_register=True)
+        src["verified_sha256"] = verified[P4_C01_ID]
+        src["fail_closed"] = True
+    elif data_source == "fixture":
+        src = resolve_ndcp_source(use_register=False)
+    else:
+        raise ValueError(f"unknown ndcp data_source {data_source!r}; use fixture or register")
     path_s = src.get("path")
     if not path_s:
         raise FileNotFoundError("NDCP source missing: register bytes absent and fixture missing")

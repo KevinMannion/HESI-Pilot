@@ -37,6 +37,10 @@ class SourceRegisterError(ValueError):
     pass
 
 
+class SourceRegisterAbortError(SourceRegisterError):
+    """Fail-closed: a required pinned source is missing or hash-mismatched."""
+
+
 @dataclass
 class SourceRegisterRow:
     source_id: str
@@ -91,6 +95,60 @@ def load_source_register(register_path: Path | None = None) -> list[SourceRegist
                 )
             )
     return rows
+
+
+def _register_index(register_path: Path | None = None) -> dict[str, SourceRegisterRow]:
+    rows = load_source_register(register_path)
+    by_id = {r.source_id: r for r in rows}
+    if len(by_id) != len(rows):
+        raise SourceRegisterError("duplicate source_id in register")
+    return by_id
+
+
+def validate_required_source_pins_or_abort(
+    source_ids: list[str],
+    *,
+    register_path: Path | None = None,
+) -> dict[str, str]:
+    """
+    Fail closed: every listed source_id must exist on disk and match register sha256.
+    Only the requested ids are checked (unrelated missing register rows do not block).
+    """
+    if not source_ids:
+        raise SourceRegisterError("validate_required_source_pins_or_abort requires at least one source_id")
+    by_id = _register_index(register_path)
+    verified: dict[str, str] = {}
+    for sid in source_ids:
+        if sid not in by_id:
+            raise SourceRegisterAbortError(f"required source_id not in register: {sid}")
+        row = by_id[sid]
+        if not row.sha256 or len(row.sha256) != 64:
+            raise SourceRegisterAbortError(f"{sid}: required pin has no sha256 in register")
+        if not row.local_path:
+            raise SourceRegisterAbortError(f"{sid}: required pin missing local_path in register")
+        resolved = resolve_register_local_path(row.local_path)
+        if resolved is None or not resolved.is_file():
+            raise SourceRegisterAbortError(
+                f"{sid}: required source file missing; set HESI_DATA_ROOT "
+                f"(register local_path={row.local_path!r})"
+            )
+        got = _sha256_file(resolved)
+        want = row.sha256.lower()
+        if got != want:
+            raise SourceRegisterAbortError(
+                f"{sid}: sha256 mismatch at {resolved} got={got} want={want}"
+            )
+        verified[sid] = got
+    return verified
+
+
+def validate_source_register_or_abort(
+    source_ids: list[str],
+    *,
+    register_path: Path | None = None,
+) -> dict[str, str]:
+    """Alias for fail-closed validation of an explicit required-source subset."""
+    return validate_required_source_pins_or_abort(source_ids, register_path=register_path)
 
 
 def validate_source_register(

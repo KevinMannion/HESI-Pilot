@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from audit.hesi_data_root import resolve_register_local_path
-from audit.source_register import load_source_register
+from audit.source_register import load_source_register, validate_required_source_pins_or_abort
 
 REGISTER_IDS = ("P4-HC01", "P4-HC02", "P4-HC03")
 
@@ -55,11 +55,21 @@ def inspect_rate_puf_zip(path: Path) -> dict[str, Any]:
 
 
 def verify_cms_marketplace_register() -> dict[str, Any]:
-    out = {sid: resolve_cms_puf(sid) for sid in REGISTER_IDS}
-    any_present = [m for m in out.values() if m.get("path")]
+    """Bounded real-source CMS PUF inspection; aborts if any required pin is missing or mismatched."""
+    verified = validate_required_source_pins_or_abort(list(REGISTER_IDS))
+    out = {
+        sid: {
+            **resolve_cms_puf(sid),
+            "verified_sha256": verified[sid],
+            "fail_closed": True,
+        }
+        for sid in REGISTER_IDS
+    }
+    row = _row(REGISTER_IDS[0])
+    assert row is not None
+    rate_path = resolve_register_local_path(row.local_path)
+    assert rate_path is not None
     inspection = None
-    if any_present:
-        p = Path(any_present[0]["path"])
-        if p.suffix.lower() == ".zip":
-            inspection = inspect_rate_puf_zip(p)
-    return {"sources": out, "rate_puf_inspection": inspection}
+    if rate_path.suffix.lower() == ".zip":
+        inspection = inspect_rate_puf_zip(rate_path)
+    return {"sources": out, "rate_puf_inspection": inspection, "verified_pins": verified}

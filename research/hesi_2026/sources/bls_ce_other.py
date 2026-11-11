@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from audit.hesi_data_root import resolve_register_local_path
-from audit.source_register import load_source_register
+from audit.source_register import load_source_register, validate_required_source_pins_or_abort
 
 REPO = Path(__file__).resolve().parents[3]
 FALLBACK_FIXTURE = REPO / "research/hesi_2026/fixtures/inputs/bls_ce_quintile_size_fallback_sample.csv"
@@ -38,6 +38,21 @@ def _load_fallback_fixture() -> dict[str, float]:
         for row in csv.DictReader(f):
             out[row["table_id"].strip()] = float(row["value_usd"])
     return out
+
+
+BLS_CE_REGISTER_IDS = ("P4-O01", "P4-O02")
+
+
+def inspect_bls_ce_register() -> dict[str, Any]:
+    """Fail-closed verify BLS CE table pins (no xlsx parsing in Sprint 2A)."""
+    verified = validate_required_source_pins_or_abort(list(BLS_CE_REGISTER_IDS))
+    return {
+        "verified_pins": verified,
+        "register_p4_o01": _register_source("P4-O01"),
+        "register_p4_o02": _register_source("P4-O02"),
+        "scientific_status": "register_pins_verified_only_tables_not_parsed",
+        "policy_approved": False,
+    }
 
 
 def price_other_ce_fallback(
