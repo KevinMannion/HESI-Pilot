@@ -193,6 +193,9 @@ def run_reviewer_prototype(
     *,
     repo_root: Path | None = None,
 ) -> dict[str, Any]:
+    from audit.reserved_validation_policy import WorkflowKind, assert_official_entry_allowed
+
+    assert_official_entry_allowed(workflow=WorkflowKind.PIPELINE, context={"scenario": dict(scenario)})
     household = dict(scenario["household"])
     cost_context = dict(scenario.get("cost_context") or {})
     use_pe = bool(scenario.get("use_policyengine", False))

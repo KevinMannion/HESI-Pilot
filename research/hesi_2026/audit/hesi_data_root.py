@@ -38,6 +38,9 @@ def hesi_scratch_root() -> Path | None:
 def resolve_register_local_path(local_path: str) -> Path | None:
     if not local_path or not str(local_path).strip():
         return None
+    from audit.reserved_validation_policy import assert_path_resolution_allowed
+
+    assert_path_resolution_allowed(str(local_path).strip())
     lp = str(local_path).strip()
     if lp.startswith(REGISTER_DATA_PREFIX):
         root = hesi_data_root()

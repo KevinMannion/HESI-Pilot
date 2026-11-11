@@ -278,6 +278,13 @@ def main():
     p.add_argument("--national-r22", required=True)
     p.add_argument("--report", required=True)
     a = p.parse_args()
+    from _reserved_validation_guard import enforce_blocked
+
+    enforce_blocked(
+        workflow="official_validation",
+        context={"script": "run_phase3_validation", "asec_arg": a.asec},
+        paths=[a.asec],
+    )
     cache = Path(a.cache)
     cache.mkdir(parents=True, exist_ok=True)
     meta = {}

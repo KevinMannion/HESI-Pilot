@@ -32,6 +32,13 @@ def main():
     p.add_argument("--zip", required=True)
     p.add_argument("--report", required=True)
     a = p.parse_args()
+    from _reserved_validation_guard import enforce_blocked
+
+    enforce_blocked(
+        workflow="official_calibration",
+        context={"script": "asec_source_totals", "zip_arg": a.zip},
+        paths=[a.zip, a.report],
+    )
     with zipfile.ZipFile(a.zip) as z:
         names = z.namelist()
         hhname = [n for n in names if "hh" in n.lower() and n.lower().endswith(".csv")]

@@ -55,6 +55,12 @@ def run_household_pipeline(
     cost_context: Mapping[str, Any] | None = None,
     use_policyengine: bool = False,
 ) -> dict[str, Any]:
+    from audit.reserved_validation_policy import WorkflowKind, assert_official_entry_allowed
+
+    assert_official_entry_allowed(
+        workflow=WorkflowKind.PIPELINE,
+        context={"household": dict(household), "cost_context": dict(cost_context or {})},
+    )
     policies = DEFAULT_UNIVERSE_POLICIES
     policies.validate()
     bucket = classify_household(
@@ -132,6 +138,7 @@ def run_household_pipeline(
     audit["provenance"] = {
         "pipeline": "research.hesi_2026.pipeline",
         "synthetic_only": True,
+        "reserved_asec_2026_validation_policy": "PRIOR_EXPOSURE_RESTRICTED_VALIDATION_enforced",
     }
     audit["limitations"] = [
         "Synthetic fixture path only",
