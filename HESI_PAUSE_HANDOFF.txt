@@ -1,0 +1,219 @@
+HESI PAUSE HANDOFF — development restart baseline
+===================================================
+Prepared: 2026-11-12 (pause checkpoint; no commit authorized by this file)
+Authoring rule: evidence from repository and handoff materials only. Do not treat
+this document as scientific validation or as proof of a complete 2026 national HESI.
+
+========================================================================
+1. REPOSITORY, BRANCH, HEAD
+========================================================================
+Canonical git repository (active 2026 framework work):
+  Remote:  https://github.com/KevinMannion/HESI-Pilot.git
+  Branch:  dev/hesi-2026-framework
+  HEAD:    08e8bf12c41b2526f1376a2f736899000e0d4a84
+  Subject: docs: preserve HESI acceptance test inventory
+  Author:  Kevin Mannion (2026-11-12 03:13:17 -0500)
+  Tracking: dev/hesi-2026-framework...origin/dev/hesi-2026-framework (in sync at pause)
+
+Related published integration branch (Core R2.5 / three-pillar national scenario):
+  origin/hesi/core-5-integration (documented checkpoint 273406208abe439cbad960567f32822b870c43b5)
+  STATUS.txt in that lineage still describes review/r25-release-integrity context (2026-10-22).
+
+This Cursor workspace path (handoff extract, not a git root):
+  .../HESI_Cursor_Handoff_Core_R24_September2026 (1)/
+  Contains HESI_CURSOR_HANDOFF.txt, extracted HESI_Core_R24_Source_to_Result_Reproduction/,
+  and HESI_September2026_Core_R2_3Pillars/. No .git directory here.
+
+========================================================================
+2. IMPLEMENTED COMPONENTS AND LAST VERIFIED TESTS
+========================================================================
+A. Frozen national joint scenario — Core R2.4 (Track B)
+   Location (HESI-Pilot): core_r24/
+   Pipeline: reproduce_from_raw.py -> rebuild_raw_person_caches.py -> src/run_joint.py
+   Immutable reference: core_r24/results/national_R22/ (do not edit)
+   Author-documented verification: clean-environment reproduction matched national_R22
+     at atol=1e-7 (README.md, STATUS.txt, ITERATION_REGISTER.txt); external third party: NO.
+   Handoff package README.md (2026-10-21): 80/80 SDR replicates and headline metrics matched
+     after person-cache rebuild from original Census ZIPs (author-run only).
+
+   Last verification on dev/hesi-2026-framework at pause (2026-11-12):
+     python3 core_r24/verify_package.py  -> FAIL (HASH MISMATCH reproduce_from_raw.py)
+     python3 -m unittest discover -s core_r24/tests -q -> FAIL (7 failures, 3 errors)
+   Interpretation: RELEASE_FILE_HASHES.json on this branch noonger matches the working tree
+     for at least reproduce_from_raw.py; coordinator acceptance immutability work is incomplete.
+     Frozen national_R22 CSV audit files were not re-run or modified during this check.
+
+B. September 2026 three-pillar specification locks (Track C)
+   HESI-Pilot: research/september2026_core_r2/
+   Handoff extract: HESI_September2026_Core_R2_3Pillars/
+   LOCK_REGISTER.json: specification_locked=true per pillar;
+     integration_status="three controlled reference standards bundled; no unified household-level
+     3-pillar national run"; full_national_scientific_approval=false.
+
+   Last verified in handoff extract (recorded TEST_REPORT.json / INTEGRATION_TEST_REPORT.json):
+     Food:    unittest test_current_food.py — 7 tests, exit 0
+     Housing: unittest test_adequacy.py test_reference.py — 21 tests, exit 0
+     Housing: verify.py — PASS (11 integrity assertions)
+     Release: python3 verify_release.py — PASS; full_national_scientific_approval=false
+
+C. 2024 observed-hous pilot (Track A)
+   HESI-Pilot root: run.py, results.csv, audit.json, manifest.json
+   Published on origin/main; not the Core R2.4 joint engine.
+
+D. HESI 2026 six-component engineering framework (greenfield)
+   Location: research/hesi_2026/ on dev/hesi-2026-framework
+   Scope: household universe accounting, six essential-cost components, disposable resources,
+     manifest/source-pin harness, synthetic and bounded empirical fixtures, prototype runner,
+     provisional five-tier classification scaffold, Alabama TY2026 tax prototype integration,
+     ASEC 2026 reserved-validation fail-closed guards, Sprint 2 NDCP ingest, etc.
+   Does NOT replace frozen core_r24/results/national_R22/.
+
+   Last verified at pause (2026-11-12, HESI-Pilot checkout):
+     env -u HESI_DATA_ROOT -u HESI_SCRATCH_ROOT \
+       python3 -m unittest discover -s research/hesi_2026/tests -p 'test_*.py' -q
+     -> Ran 125 tests in ~6.7s; OK (skipped=12)
+   README: synthetic/demo runs only; NATIONAL_HEADLINE_ENABLED=False.
+
+E. Other research tracks (present on integration/R2.5 lineage; see STATUS.txt)
+   Track D — september2026_income_nowcast: gates G2/G3 FAIL; NO-GO; no national nowcast share.
+   Track E — historical_matched_baseline: provisional 17.6839565% computed; NOT scientifically
+     validated; formal publication NO-GO per GOVERNANCE_CORRECTION_2026-10-22.txt.
+
+========================================================================
+3. CURRENT 2026 METHODOLOGY AND SCIENTIFIC STATUS
+========================================================================
+Research baseline (handoff): Core R2.4 three components for a joint national calculation:
+  Food:        September 2026 USDA Thrifty (mainland; age>=1 in joint frame)
+  Housing:     HUD FY2026 revised FMR, replacement-rent adequacy rule on 2024 ACS frame
+  Transport:   Provisional one-car $7,264.70/year (12k mi / 32 mpg + September 2026 gas + hypothetical non-fuel)
+  Income:      2024 ACS HINCP (cross-vintage scenario — NOT mayear 2026 hardship)
+
+Published joint scenario numbers (immutable regression target; NOT a validated national hardship rate):
+  Eligible weighted households: 121,036,726
+  Monthly means: food $653.522289; housing $1,635.994098; transport $605.391667
+  Combined: $2,894.908053/mo
+  Share of covered households with 2024 gross income below three September 2026 costs: 18.9918%
+  90% interval (ACS sampling only): [18.9028%, 19.0808%] — excludes model/price uncertainty
+
+2026 framework (research/hesi_2026) targets six pillars plus disposable income/tax logic per
+dossier v1.2 + blocker-resolution r1 (transport access class, PolicyEngine TY2026 prototype, etc.).
+All design choices default policy_approved=False until owner decisions are recorded.
+
+Four-way status flags (must not be conflated):
+  COMPUTATIONALLY_REPRODUCED (author / operator):  YES for specified R2.4 scenario (documented)
+  CLEAN_ENVIRONMENT_REPRODUCED (same operator):      YES (documented 2026-10-21 evidence)
+  EXTERNALLY_INDEPENDENTLY_REPRODUCED:           NO
+  SCIENTIFICALLY_VALIDATED:                        NO
+  SEPTEMBER_2026 six-pillar national HESI complete: NO
+  SCIENTIFIC_PUBLICATION_GO:                       NO
+
+========================================================================
+4. OAP-1 AUTHORIZATION, SOURCE PINS, OWNER DECISIONS, ACCEPTANCE TESTS
+========================================================================
+OAP-1 (literal label):
+  No file in HESI-Pilot contains the string "OAP-1". Pause documentation maps owner
+  authorization to these artifacts instead:
+
+Owner approval / authorization state (NOT APPROVED unless Kevin records otherwise):
+  research/hesi_2026/audit/OWNER_APPROVAL_SHORTLIST_r1.txt
+    -> "RECOMMENDATIONS - NOT APPROVED" for items S-1 through S-21 (implementation scope,
+       standing push to dev/hesi-2026-framework [S-2], bounded real-data runs [S-3], HUD Q4
+       schedule supersession [S-4], transport/housing/tax design choices, national-run gates).
+  research/hesi_2026/audit/SCIENTIFIC_BLOCKER_RESOLUTION_r1.txt
+    -> same NOT APPROVED banner; register cross-reference SOURCE_PIN_REGISTER_r1.csv
+  v1.2 standing items not re-decided in shortlist r1 (gates S1): OA-1..OA-5 (per shortlist footer)
+
+Nearest "authorization package" for engineering delivery:
+  S-2 (I-2): proposed STANDING push authority limited to dev/hesi-2026-framework — candidate only,
+  not approved by the shortlist file itself.
+
+Outstanding source pins (research/hesi_2026/audit/source_pin_register_r1.csv):
+  UNVERIFIED (no bytes or blocked): P3-H19 (Westchester W1/W2 HUD-only), P1-T39 (ACS API error body),
+    P1-T43, P1-T44, G-01..G-10 (transport/tax gap placeholders)
+  VERIFIED-UNPINNED: P1-T25
+  P3-H14: VERIFIED-PINNED with Kevin decision still needed on Q4 FY26 vs FY27 schedule (see S-4 ER-1)
+  Register rows reference /workspace/hesi-data/... paths; local HESI_DATA_ROOT must mirror pins for
+  bounded runs (see input_manifest_2026.json for in-repo fixture pins tied to core_r24 inputs).
+
+In-repo framework pins (input_manifest_2026.json — vication harness):
+  source_2024_2026.csv, puma_fmr_screened.csv, transport_reference_2026_09.csv (under core_r24/inputs)
+  plus bounded healthcare/childcare/CESS fixtures under research/hesi_2026/fixtures/
+
+Owner decisions outstanding (candidate proposals — not validated):
+  Shortlist S-4..S-21: rho, transport vector V=min(2,N,DRV), access-class cutoffs, ride-hail allowance,
+    PolicyEngine variable mapping, fail-closed unresolved cost rule, childcare/health/OON methods, etc.
+  All marked TIMING/GATES per shortlist; none approved in OWNER_APPROVAL_SHORTLIST_r1.txt
+
+Acceptance tests (R2.5 coordinator package):
+  research/coordinator_acceptance/HESI_R25_acceptance_package_2026-10-22/ACCEPTANCE_TESTS.md
+  research/coordinator_acceptance/EVIDENCE_MAP.md — majority of named tests/acceptance FAIL or ABSENT
+    (tests/acceptance/* largely not implemented); sign-off INCOMPLETE per STATUS.txt
+  research/ACCEPTANCE_CRITERIA_MAP.txt — engineering map; coordinator 1:1 PASS not claimed
+  research/coordinator_acce/_ids_extract.txt — preserved inventory at HEAD 08e8bf1
+
+========================================================================
+5. UNRESOLVED BLOCKERS (verified issues vs candidate proposals)
+========================================================================
+VERIFIED ISSUES (documented in repo evidence):
+  - External independent reproduction: NOT CONFIRMED (README, STATUS, LOCK_REGISTER, handoff)
+  - Scientific validation / publication: NO-GO across tracks
+  - Six-pillar national HESI: not built; 2026 framework is engineering + synthetic/bounded only
+  - Cross-vintage 18.9918% scenario must not be labeled measured September 2026 hardship
+  - Income nowcast Track D: locked gates FAIL; NO-GO
+  - Census microdata not in git; acquisition must match PUMS_ARCHIVE_LOCK / README SHA-256 table
+  - core_r24 verify_package HASH MISMATCH on dev/hesi-2026-framework at pause (reproduce_from_raw.py)
+  - Coordinator acceptance pytest suite largely missing (EVIDENCE_MAP.md)
+  - Three-pillar ZIP integration: no unied national run in Core R2 lock register
+  - Pillar blockers per LOCK_REGISTER.json: food (infant, AK/HI, independent validation);
+    housing (survey intervals, geographic reconciliation, independent validation);
+    transport (hypothetical non-fuel, no national household-weighted mobility model)
+
+CANDIDATE PROPOSALS (not approved; may change or be discarded):
+  - 2026 transport redesign (access class, VEH=0 rule, retire flat $7,264.70 primary) — SCIENTIFIC_BLOCKER_RESOLUTION_r1
+  - HUD Q4 FY26/FY27 schedule per S-4 / P3-H14 (supersedes v1.2 "FY27 everywhere")
+  - Six-pillar cost registry, PolicyEngine disposable income, five-tier classification scaffold
+  - Bounded real-data tests per S-3 file list (not authorized in shortlist)
+  - Westchester HUD contact (S-20, P3-H19) — optional external contact, not sent
+
+========================================================================
+6. EXACT NEXT STEPS TO RESUME HESI
+========================================================================
+1. Open canonicepo: clone or cd HESI-Pilot; confirm branch dev/hesi-2026-framework at
+   08e8bf12c41b2526f1376a2f736899000e0d4a84 (or newer only after explicit review).
+
+2. Reconcile core_r24 RELEASE_FILE_HASHES.json vs working tree OR restore hash alignment for
+   reproduce_from_raw.py; re-run:
+     python3 core_r24/verify_package.py
+     python3 -m unittest discover -s core_r24/tests -v
+   Do not edit frozen core_r24/results/national_R22/ without governed correction.
+
+3. Record owner decisions: resolve shortlist S-1..S-21 (and v1.2 OA-1..OA-5 at S1) in a dated
+   owner-approved file before flipping policy_approved defaults in research/hesi_2026.
+
+4. Establish HESI_DATA_ROOT with byte-identical pins from source_pin_register_r1.csv for any
+   bounded S-3 run; keep national Census ZIPs outside git per .gitignore.
+
+5. Continue 2026 framework with synthetic-first discipline:
+     cd research/hesi_2026 && env -u HESI_DATA_ROOT python3 -m unittest discover -s tests -v
+   Prototype demo: demos/run_prototype_household.py (synthetic scenarios only).
+
+6. If resuming R2.5 release-integrity / coordinator acceptance: implement missing
+   tests/acceptance/* per _ids_extract.txt and EVIDENCE_MAP.md; run official reproduction only
+   with explicit --output and documented Census hashes (P-01 path in acceptance spec).
+
+7. Keep iteration discipline: append ITERATION_NOTES.txt + ITERATION_REGISTER.txt per change;
+   separate EXECUTED_BY_AUTHOR vs EXTERNALLY_INDEPENDENTLY_REPRODUCED vs SCIENTIFICALLY_VALIDATED.
+
+8. Do not merge dev/hesi-2026-framework to main, force-push, or publish headline shares without
+   separate written owner authorization (shortlist S-21 / OA-26 / OA-31 gates).
+
+========================================================================
+PAUSE ARTIFACT
+========================================================================
+This file: HESI_PAUSE_HANDOFF.txt (workspace handoff root). Copy to HESI-Pilot repo root when
+committing pause state to dev/hesi-2026-framework (owner authorization required for git push).
+
+Companion materials:
+  HESI_CURSOR_HANDOFF.txt (2026-10-21 Core R2.4 baseline)
+  HESI-Pilot: STATUS.txt, README.md, ITERATION_REGISTER.txt, ERRATA.txt
+
